@@ -1,17 +1,21 @@
-<div id="top"></div>
+![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=Controlo&fontSize=90&animation=fadeIn&fontAlignY=38&desc=S3.01A%20Développement%20d'application%20et%20Gestion%20de%20projet&descAlignY=51&descAlign=62&customColorList=4)
+
+
+<div id="top">
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 
+</div>
 <!-- PROJECT LOGO -->
 <br />
 <br />
 <div align="center">
-  <img src="images/ciseau_115.png" alt="Logo" width="80" height="80"
+  <!-- <img src="src/img/logo.png" alt="Logo" width="80" height="80" -->
 
-  <h3 align="center">Application de placement des étudiants lors des contrôles</h3>
+  <h3 align="center">Controlo - L'application de placement des étudiants lors des contrôles</h3>
 
   <p align="center">
     S3.01A - Développement d'application et Gestion de projet
@@ -34,18 +38,32 @@
     <li>
       <a href="#a-propos-du-projet">A propos du projet</a>
     </li>
+    <li>
+      <a href="#hierarchie-du-projet">Hiérarchie du projet</a>
+    </li>
+    <li>
+      <a href="#contact">Contact</a>
+    </li>
   </ol>
 </details>
 
 
 
-<!-- ABOUT THE PROJECT -->
+<!-- A PROPOS DU PROJET -->
 ## A Propos du projet
 
 L'application a pour but de permettre le placement des étudiants lors des contrôles de façon automatique pour simplifier, gagner du temps pour le secretariat. L'application a surtout été pensé pour les IUT.
 
 <p align="right">(<a href="#top">Retour en haut</a>)</p>
 
+<!-- -->
+## Hierarchie du projet
+
+Notre projet est constitué de 4 dossiers :
+- Un dossier `Spécification` contenant les Spécifications Externes du Problème Algorithmique que nous traitons.
+- Un dossier `Algorithme` contenant notre Algorithme et son Dictionnaire.
+- Un dossier `src` qui héberge le Code correspondant à notre Algorithme.
+- Un dossier `docs` qui contient la documentation Doxygen du code source.
 
 <!-- CONTACT -->
 ## Contact
