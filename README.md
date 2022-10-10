@@ -52,7 +52,22 @@
 <!-- A PROPOS DU PROJET -->
 ## A Propos du projet
 
-L'application a pour but de permettre le placement des étudiants lors des contrôles de façon automatique pour simplifier, gagner du temps pour le secretariat. L'application a surtout été pensé pour les IUT.
+L'application que nous développons est une application web. Celle-ci permet gérer le placement des étudiants lors des contrôles à travers la création de plans de placement et de feuilles d’émargements, elle a un but professionnel puisqu'elle s'adresse à l'administration du département informatique de l'IUT de Bayonne et du Pays Basque. 
+
+## Pitch de la fonctionnalité retenu
+
+La fonctionnalité que nous avons retenue pour notre application est le placement automatique des étudiants. Celui-ci se base sur des plans de salles qui seront fournis en CSV où on va venir appliquer de nombreuses contraintes qui définiront le placement :
+- Le nombre de places séparant les étudiants
+- Le nombre de rangés séparant les étudiants (rare en salle, mais très fréquent en amphi)
+- Les étudiants tier-temps qui doivent être dans des salles spécifiques avec des places précise selon l’utilisation d’un ordinateur ou non
+- Le nombre d’étudiants à placer, l’application vérifiera à partir des plans de placements déjà établis les salles qui sont disponibles pour effectuer le              placement
+- Si le nombre d’étudiants est trop grand par rapport aux salles disponibles, l’application enverra une notification à l'utilisateur en l’invitant à ajouter de           nouvelles salles.
+
+On aura aussi des algorithmes différents afin de placer les étudiants :
+- Un placement selon les groupes : TP ou TD ou indifférent
+- Un placement par ordre alphabétique ascendant, descendant ou aléatoire
+
+Pour ce qui est du résultat du placement automatique, les plans de placement seront générés par un PDF
 
 <p align="right">(<a href="#top">Retour en haut</a>)</p>
 
