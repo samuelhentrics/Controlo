@@ -30,7 +30,7 @@
                 (le nom de la salle est celle du fichier).</p>
 
             <p>Chaque plan de placement d'un controle se retrouve dans le dossier
-                <strong>/PlansDePlacement/NOM_DU_CONTROLE</strong> au format PDF.
+                <strong>/PlansPlacement/NOM_DU_CONTROLE</strong> au format PDF.
             </p>
 
 
