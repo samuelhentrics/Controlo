@@ -1,0 +1,96 @@
+*{
+    margin:0;
+    padding:0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*
+-------------------------------------------------------------
+
+                PARTIE HEADER
+
+-------------------------------------------------------------
+*/
+
+header{
+    display:grid;
+    grid-template-columns: 1;
+    grid-template-rows:auto;
+    background-color: #005C96;
+    color: white;
+    font-weight: bold;
+    padding:20px;
+    font-size:large;
+}
+
+header>*{
+    padding:10px;
+}
+
+img{
+    height:50px;
+}
+
+li{
+    display:inline;
+    padding:10px;
+}
+
+li>a{
+    text-decoration: none;
+    color:white;
+}
+
+li>a:hover{
+    color:#e8e8e8;
+}
+
+/*
+-------------------------------------------------------------
+
+                PARTIE MAIN
+                
+-------------------------------------------------------------
+*/
+
+section{
+    margin:30px 50px 30px 50px;
+}
+
+h1{
+    font-size:xx-large;
+    padding: 10px 0 10px 0; 
+}
+
+p{
+    padding: 10px 0 10px 0; 
+}
+
+.information{
+    background-color:#007FEB;
+    padding: 100px;
+    color:white;
+    border-radius: 20px;
+}
+
+/*
+-------------------------------------------------------------
+
+                PARTIE FOOTER
+                
+-------------------------------------------------------------
+*/
+
+footer{
+    background-color:#005C96;
+    color: white;
+    bottom: 0;
+    width: 100%;
+    text-align:center;
+}
+
+footer>p>a{
+    color:white;
+    text-decoration: none;
+    font-weight: bold;
+}
