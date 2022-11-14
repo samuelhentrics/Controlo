@@ -10,33 +10,33 @@ class Salle
     //ENCAPSULATION
     public function getNom()
     {
-        return $this->nom;
+        return $this->$nom;
     }
 
     public function setNom($nouveauNom)
     {
-        $this->$nom = $nouveauNom;
+        $this->nom = $nouveauNom;
     }
 
     public function getMonPlan()
     {
-        return $this->monPlan;
+        return $this->$monPlan;
     }
 
     public function setMonPlan($nouveauPlan)
     {
-        $this->$monPlan = $nouveauPlan;
+        $this->monPlan = $nouveauPlan;
 
     }
 
     public function getMonVoisin()
     {
-        return $this->monVoisin;
+        return $this->$monVoisin;
     }
 
     public function setMonVoisin($nouveauVoisin)
     {
-        $this->$monVoisin = $nouveauVoisin;
+        $this->monVoisin = $nouveauVoisin;
     }
 }
 
