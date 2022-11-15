@@ -46,16 +46,18 @@ function creerListeSalles()
         $listeSalles[$j] = $uneSalle;
     }
 
-    // Association des voisins s'ils existent
+    // Association des voisins des salles
     for ($j=0; $j<=count($tabCSV)-1; $j++){
         if ($tabCSV[$j][1]!=null){
+            // Création de la salle que l'on recherche
             $uneSalleAChercher = new Salle;
             $uneSalleAChercher->setNom($tabCSV[$j][1]);
 
+            // Tentative de recherche du voisin si l'objet a été crée
             $indiceSalleListe = array_search($uneSalleAChercher, $listeSalles);
             if($indiceSalleListe!=null){
                 $listeSalles[$j]->lierVoisin($listeSalles[$indiceSalleListe]);
-            };
+            }
             
         }
     }
