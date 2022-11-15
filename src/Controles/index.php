@@ -6,14 +6,14 @@
     include("../rsc/template/head2.php");
     ?>
     <!-- DataTables -->
-    <link rel="stylesheet" href="css/datatables.css">
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/datatables.js"></script>
+    <link rel="stylesheet" href="../rsc/css/datatables.css">
+    <script type="text/javascript" src="../rsc/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../rsc/js/datatables.js"></script>
     <script>
         $(document).ready(function() {
             $('#controles').DataTable({
                 "language": {
-                    "url": "js/French.json"
+                    "url": "../rsc/js/French.json"
                 }
             });
         });
