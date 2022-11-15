@@ -1,68 +1,68 @@
 <?php
 /**
- * Classe contrôle permettant de définir un contrôle
+ * Classe Controle permettant de définir un contrôle
  */
 class Controle
 {
     // Variables
     /**
-     * Nom long du contrôle
+     * Nom long du Controle
      *
      * @var string
      */
     private $nomLong;
 
     /**
-     * Nom court du contrôle
+     * Nom court du Controle
      *
      * @var string
      */
     private $nomCourt;
 
     /**
-     * Date de quand se passe le contrôle
+     * Date de quand se passe le Controle
      *
      * @var string
      */
     private $date;
 
     /**
-     * Durée totale du contrôle (tiers temps compris) exprimée en minutes
+     * Durée totale du Controle (tiers temps compris) exprimée en minutes
      *
      * @var int
      */
     private $duree;
 
     /**
-     * Heure à laquelle les tiers-temps débutent leur contrôle
+     * Heure à laquelle les tiers-temps débutent leur Controle
      *
      * @var string
      */
     private $heureTT;
 
     /**
-     * Heure à laquelle les non tiers-temps débutent leur contrôle
+     * Heure à laquelle les non tiers-temps débutent leur Controle
      *
      * @var string
      */
     private $heureNonTT;
 
     /**
-     * Liste des promotions qui participent à ce contrôle
+     * Liste des promotions qui participent à ce Controle
      *
      * @var array
      */
     private $mesPromotions = array();
 
     /**
-     * Liste des salles où se déroulent le contrôle
+     * Liste des salles où se déroulent le Controle
      *
      * @var array
      */
     private $mesSalles = array();
 
     /**
-     * Liste des plans de salles générés par le contrôle
+     * Liste des plans de placement générés par le Controle
      *
      * @var array
      */
@@ -71,7 +71,7 @@ class Controle
     // Encapsulation
 
     /**
-     * Retourne le nom long du contrôle
+     * Retourne le nom long du Controle
      *
      * @return string
      */
@@ -81,7 +81,7 @@ class Controle
     }
 
     /**
-     * Permet d'affecter un nom long à un contrôle
+     * Permet d'affecter un nom long à un Controle
      *
      * @param string $nouveauNomLong
      */
@@ -91,7 +91,7 @@ class Controle
     }
 
     /**
-     * Retourne le nom court du contrôle
+     * Retourne le nom court du Controle
      *
      * @return string
      */
@@ -101,7 +101,7 @@ class Controle
     }
 
     /**
-     * Permet d'affecter un nom court à un contrôle
+     * Permet d'affecter un nom court à un Controle
      *
      * @param string $nouveauNomCourt
      */
@@ -111,7 +111,7 @@ class Controle
     }
 
     /**
-     * Retourne la date du contrôle
+     * Retourne la date du Controle
      *
      * @return string
      */
@@ -121,7 +121,7 @@ class Controle
     }
 
     /**
-     * Permet d'affecter une date à un contrôle
+     * Permet d'affecter une date à un Controle
      *
      * @param string $nouvelleDate
      */
@@ -131,7 +131,7 @@ class Controle
     }
 
     /**
-     * Retourne la durée totale (tiers-temps compris) du contrôle
+     * Retourne la durée totale (tiers-temps compris) du Controle
      *
      * @return string
      */
@@ -141,7 +141,7 @@ class Controle
     }
 
     /**
-     * Permet d'affecter une durée à un contrôle
+     * Permet d'affecter une durée à un Controle
      *
      * @param int $nouvelleDuree
      */
@@ -161,7 +161,7 @@ class Controle
     }
 
     /**
-     * Permet d'affecter l'heure du début du contrôle pour un étudiant non tiers-temps
+     * Permet d'affecter l'heure du début du Controle pour un étudiant non tiers-temps
      *
      * @param string $nouvelleHeureNonTT
      */
@@ -181,7 +181,7 @@ class Controle
     }
 
     /**
-     * Permet d'affecter l'heure du début du contrôle pour un étudiant tiers-temps
+     * Permet d'affecter l'heure du début du Controle pour un étudiant tiers-temps
      *
      * @param string $nouvelleHeureTT
      */
@@ -194,7 +194,7 @@ class Controle
 
 
     /**
-     * Permet d'ajouter une promotion à la liste de promotions participant au contrôle
+     * Permet d'ajouter une Promotion à la liste de promotions participant au Controle
      *
      * @param Promotion $unePromotion
      */
@@ -204,7 +204,7 @@ class Controle
     }
 
     /**
-     * Permet de supprimer une promotion de la liste de promotions participant au contrôle
+     * Permet de supprimer une Promotion de la liste de promotions participant au Controle
      *
      * @param Promotion $unePromotion
      */
@@ -216,7 +216,7 @@ class Controle
     }
 
     /**
-     * Permet d'ajouter une salle à la liste des salles du contrôle
+     * Permet d'ajouter une Salle à la liste des salles du Controle
      *
      * @param Salle $uneSalle
      */
@@ -226,7 +226,7 @@ class Controle
     }
 
     /**
-     * Permet de supprimer une salle de la liste des salles du contrôle
+     * Permet de supprimer une Salle de la liste des salles du Controle
      *
      * @param Salle $uneSalle
      */
@@ -238,7 +238,7 @@ class Controle
     }
 
     /**
-     * Permet d'ajouter un plan de placement à la liste des plans de placement du contrôle
+     * Permet d'ajouter un PlanDePlacement à la liste des plans de placement du Controle
      *
      * @param PlanDePlacement $unPlanDePlacement
      */
@@ -248,7 +248,7 @@ class Controle
     }
 
     /**
-     * Permet de supprimer un plan de placement de la liste des plans de placement du contrôle
+     * Permet de supprimer un PlanDePlacement de la liste des plans de placement du Controle
      *
      * @param PlanDePlacement $unPlanDePlacement
      */

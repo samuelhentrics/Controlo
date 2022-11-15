@@ -2,16 +2,15 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <?php
+    include("../rsc/template/head2.php");
+    ?>
     <!-- DataTables -->
     <link rel="stylesheet" href="css/datatables.css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/datatables.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#controles').DataTable({
                 "language": {
                     "url": "js/French.json"
@@ -24,7 +23,7 @@
 
 <body>
     <?php
-        include("header.php");
+    include("../rsc/template/header2.php");
     ?>
     <main>
         <section>
@@ -71,7 +70,7 @@
         </section>
     </main>
     <?php
-        include("footer.php");
+    include("../rsc/template/footer2.php");
     ?>
 </body>
 
