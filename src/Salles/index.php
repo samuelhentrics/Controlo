@@ -27,7 +27,7 @@
     ?>
     <main>
         <section>
-        <h1>Liste des contrôles</h1>
+        <h1>Liste des salles</h1>
             <table id="salles" class="display" style="width:100%">
                 <thead>
                     <tr>
