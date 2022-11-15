@@ -10,7 +10,7 @@ class Salle
     //ENCAPSULATION
     public function getNom()
     {
-        return $this->$nom;
+        return $this->nom;
     }
 
     public function setNom($nouveauNom)
@@ -20,7 +20,7 @@ class Salle
 
     public function getMonPlan()
     {
-        return $this->$monPlan;
+        return $this->monPlan;
     }
 
     public function setMonPlan($nouveauPlan)
@@ -31,7 +31,7 @@ class Salle
 
     public function getMonVoisin()
     {
-        return $this->$monVoisin;
+        return $this->monVoisin;
     }
 
     public function setMonVoisin($nouveauVoisin)
