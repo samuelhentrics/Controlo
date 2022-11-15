@@ -110,8 +110,10 @@ class Salle
      *
      */
     public function delierVoisin(){
-        $this->monVoisin->setMonVoisin(null);
-        $this->setMonVoisin(null);
+        if ($this->monVoisin != null){
+            $this->monVoisin->setMonVoisin(null);
+            $this->setMonVoisin(null);
+        } 
     }
 
 }
