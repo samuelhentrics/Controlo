@@ -65,7 +65,7 @@ class Salle
      *
      * @param Plan $nouveauPlan
      */
-    private function setMonPlan($nouveauPlan)
+    public function setMonPlan($nouveauPlan)
     {
         $this->monPlan = $nouveauPlan;
 
@@ -86,7 +86,7 @@ class Salle
      *
      * @param Salle $nouveauVoisin
      */
-    public function setMonVoisin($nouveauVoisin)
+    private function setMonVoisin($nouveauVoisin)
     {
         $this->monVoisin = $nouveauVoisin;
     }
