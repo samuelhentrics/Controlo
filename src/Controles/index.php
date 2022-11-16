@@ -10,7 +10,13 @@
             $('#controles').DataTable({
                 "language": {
                     "url": "../rsc/js/French.json"
-                }
+                },
+
+                order: [
+                    [1, 'asc'],
+                    [2, 'asc']
+                ]
+
             });
         });
     </script>
@@ -36,30 +42,60 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>R2.03 Qualité de développement</td>
-                        <td>09/03/2022</td>
-                        <td>14h30-16h00</td>
-                        <td>14h00-16h00</td>
-                        <td>BUT INFO S2</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>R2.10 Gestion de projet</td>
-                        <td>10/03/2022</td>
-                        <td>16h30-18h00</td>
-                        <td>16h30-18h00</td>
-                        <td>BUT INFO S2</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>R2.11 Droits des contrats et du numérique</td>
-                        <td>11/03/2022</td>
-                        <td>15h30-17h00</td>
-                        <td>15h30-17h30</td>
-                        <td>BUT INFO S2</td>
-                        <td></td>
-                    </tr>
+                    <?php
+                    include("../rsc/fonctions/creationObjets/creerListeControles.php");
+                    include("../rsc/fonctions/ajouterMinutesHeure.php");
+
+                    $listeControles = creerListeControles();
+
+                    for ($i = 0; $i <= count($listeControles) - 1; $i++) {
+                        print("<tr>
+                            <td>");
+
+                        echo $listeControles[$i]->getNomLong();
+
+                        print("</td>
+                            <td>");
+
+                        if ($listeControles[$i]->getDate()!=null){
+                            echo $listeControles[$i]->getDate();
+                        }
+                        else{
+                            echo "Non définie";
+                        }
+
+
+                        print("</td>
+                            <td>");
+
+                        if ($listeControles[$i]->getHeureNonTT() != null) {
+                            echo $listeControles[$i]->getHeureNonTT(), "-", ajouterMinutesHeure($listeControles[$i]->getHeureNonTT(), $listeControles[$i]->getDureeNonTT());
+                        } else {
+                            echo "Non définie";
+                        }
+
+                        print("</td>
+                            <td>");
+
+                        if ($listeControles[$i]->getHeureTT() != null) {
+                            echo $listeControles[$i]->getHeureTT(), "-", ajouterMinutesHeure($listeControles[$i]->getHeureTT(), $listeControles[$i]->getDuree());
+                        } else {
+                            echo "Non définie";
+                        }
+
+                        print("</td>
+                            <td>");
+
+                        echo "Pas encore programmé";
+
+                        print("</td>
+                            <td>");
+
+
+                        print("</td>
+                            </tr>");
+                    }
+                    ?>
                 </tbody>
             </table>
 

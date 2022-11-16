@@ -259,4 +259,9 @@ class Controle
         }
     }
 
+    // METHODES SPECIFIQUES
+    public function getDureeNonTT(){
+        return ($this->duree)*2/3;
+    }
+
 }
