@@ -184,7 +184,29 @@ class Zone{
 
     // METHODES SPECIFIQUES
 
+    /**
+     * Lie la Zone dans le Plan d'une Salle
+     *
+     * @param Plan $unPlan
+     */
+    public function lierPlan($unPlan){
+        if ($this->monPlan != null){
+            $this->monPlan->delierUneZone($this->numLigne, $this->numCol);
+        }
+        $this->setMonPlan($unPlan);
+        $unPlan->lierUneZone($this);
+    }
 
+    /**
+     * Delie la Zone du Plan courant d'une Salle
+     *
+     */
+    public function delierPlan(){
+        if($this->monPlan != null){
+            $this->monPlan->delierUneZone($this->numLigne, $this->numCol);
+            $this->setMonPlan(null);
+        }
+    }
 }
 
 ?>
