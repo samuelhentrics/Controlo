@@ -9,7 +9,7 @@ class Zone{
     /**
      * Type de Zone (vide, place, tableau )
      *
-     * @var [type]
+     * @var string
      */
     private $type;
 
@@ -68,6 +68,8 @@ class Zone{
         switch($unType){
             case "tableau":
                 $this->type=$unType;
+                $this->setNumero(null);
+                $this->setInfoPrise(false);
                 break;
 
             case "place":
@@ -76,6 +78,8 @@ class Zone{
 
             default:
                 $this->type="vide";
+                $this->setNumero(null);
+                $this->setInfoPrise(false);
                 break;
         }
     }
@@ -90,13 +94,15 @@ class Zone{
     }
 
     /**
-     * Affecte un numéro à une place (uniquement s'il s'agit d'une place)
+     * Affecte un numéro à une place (uniquement s'il s'agit d'une place).
+     * On récupére uniquement les nombres et non pas les caractères dans
+     * la variable unNumero
      *
      * @param int $unNumero
      */
     public function setNumero($unNumero){
         if ($this->getType()=="place"){
-            $this->numero=$unNumero;
+            $this->numero= intval($unNumero);
         }
         else{
             $this->numero=null;
@@ -113,7 +119,7 @@ class Zone{
     }
 
     /**
-     * Affecte vrai/faux si une prise est proche de la place
+     * Affecte vrai/faux si une prise est proche d'une Zone place uniquement
      *
      * @param bool $infoPrisePlace
      */
@@ -141,7 +147,7 @@ class Zone{
      * @param int $unNumLigne
      */
     public function setNumLigne($unNumLigne){
-        $this->numLigne=$unNumLigne;
+        $this->numLigne= intval($unNumLigne);
     }
     
     /**
@@ -159,7 +165,7 @@ class Zone{
      * @param int $unNumCol
      */
     public function setNumCol($unNumCol){
-        $this->numCol=$unNumCol;
+        $this->numCol= intval($unNumCol);
     }
 
     /**
@@ -190,11 +196,7 @@ class Zone{
      * @param Plan $unPlan
      */
     public function lierPlan($unPlan){
-        if ($this->monPlan != null){
-            $this->monPlan->delierUneZone($this->numLigne, $this->numCol);
-        }
         $this->setMonPlan($unPlan);
-        $unPlan->lierUneZone($this);
     }
 
     /**

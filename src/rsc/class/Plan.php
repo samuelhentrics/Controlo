@@ -42,11 +42,7 @@ class Plan{
      * @param Zone $uneZone
      */
     public function lierUneZone($uneZone){
-        // Délier le Plan de l'ancienne Zone si une Zone a déjà été affecté à cette place
-        if($this->monPlan[$uneZone->getNumLigne][$uneZone->getNumCol]!=null){
-            $this->monPlan[$uneZone->getNumLigne][$uneZone->getNumCol]->setMonPlan(null);
-        }
-        $this->monPlan[$uneZone->getNumLigne][$uneZone->getNumCol] = $uneZone;
+        $this->monPlan[$uneZone->getNumLigne()][$uneZone->getNumCol()] = $uneZone;
         $uneZone->lierPlan($this);
     }
 
