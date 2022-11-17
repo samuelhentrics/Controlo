@@ -260,8 +260,14 @@ class Controle
     }
 
     // METHODES SPECIFIQUES
+    
+    /**
+     * Retourne la durée totale pour un étudiant non tiers temps
+     *
+     * @return int
+     */
     public function getDureeNonTT(){
-        return ($this->duree)*2/3;
+        return ($this->duree)*3/4;
     }
 
 }

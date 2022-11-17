@@ -1,14 +1,14 @@
 Promotion;Semaine;Code Apogee;Module/Ressource nom Complet;Modules/Ressource nom EDT;Enseignant;Durée;Date;Heure;HeureTT;Salles;Surveillants
-Info semestre 1;27/09/2021;BBIN101R - R1.01 Initiation au développement;R1.01 - Initiation au développement (Partie  1);R1.01 - Initiation au dév.;Corre;120;28/09/2021;14:00;14:00;Amphi, S124-S125;Dagorret, Marquesuzaà
-Info semestre 1;04/10/2021;BBIN109R - R1.09 Économie durable et numérique;R1.09 - Économie durable et numérique;R1.09 - Économie Durable et Num.;Drame;120;06/10/2021;08:30;08:00;Amphi, S124, S126;Dalmau, Roose, Alami
-Info semestre 1;08/11/2021;BBIN101R - R1.01 Initiation au développement;R1.01 - Initiation au développement (Partie 2);R1.01 - Initiation au dév.;Corre;120;15/12/2022;10:00;09:30;Amphi, S124, S126;
-Info semestre 1;15/11/2021;BBIN105R - R1.05 Introduction aux bases de données et SQL;R1.05 - Introduction aux bases de données et SQL - Manipulation;R1.05 - Introduction BD - Manipulation;Fischer;60;16/01/2023;10:00;09:30;Amphi, S124, S126;
-Info semestre 1;22/11/2021;BBIN108R - R1.08 Gestion de projet & des organisations;R1.08 - Gestion de projet et des organisations;R1.08 - Gestion Proj. & Orga.;Bergeron;120;17/01/2023;10:00;09:30;Amphi, S124, S126;
-Info semestre 1;29/11/2021;BBIN109R - R1.09 Économie durable et numérique;R1.09 - Économie durable et numérique;R1.09 - Économie Durable et Num.;Drame;120;18/01/2023;10:00;09:30;Amphi, S124, S126;
-Info semestre 1;06/12/2021;BBIN103R - R1.03 Introduction à l’architecture des ordinateurs;R1.03 - Introduction à l'architecture des ordinateurs;R1.03 - Intro. archi.;Drame;120;;;;;
-Info semestre 1;06/12/2021;BBIN105R - R1.05 Introduction aux bases de données et SQL;R1.05 - Introduction aux bases de données et SQL - Conception;R1.05 - Introduction BD - Conception;Corre;60;;;;;
-Info semestre 1;13/12/2021;BBIN104R - R1.04 Introduction aux systèmes d’exploitation et à leur fonctionnement;R1.04 - Introduction aux systèmes d'exploitation et à leur fonctionnement;R1.04 - Intro. systèmes;Corre;120;;;;;
-Info semestre 1;10/01/2022;BBIN101R - R1.01 Initiation au développement;R1.01 - Initiation au développement (Partie 2);R1.01 - Initiation au dév.;Bergeron;120;;;;;
+Info semestre 1;27/09/2021;BBIN101R - R1.01 Initiation au développement;R1.01 - Initiation au développement (Partie  1);R1.01 - Initiation au dév.;Corre;120;28/09/2023;14:00;14:00;Amphi, S124-S125;Dagorret, Marquesuzaà
+Info semestre 1;04/10/2021;BBIN109R - R1.09 Économie durable et numérique;R1.09 - Économie durable et numérique;R1.09 - Économie Durable et Num.;Drame;120;06/10/2022;08:00;08:00;Amphi, S124, S126;Dalmau, Roose, Alami
+Info semestre 1;08/11/2021;BBIN101R - R1.01 Initiation au développement;R1.01 - Initiation au développement (Partie 2);R1.01 - Initiation au dév.;Corre;120;15/12/2022;09:00;09:00;Amphi, S124, S126;
+Info semestre 1;15/11/2021;BBIN105R - R1.05 Introduction aux bases de données et SQL;R1.05 - Introduction aux bases de données et SQL - Manipulation;R1.05 - Introduction BD - Manipulation;Fischer;60;16/01/2023;08:30;08:30;Amphi, S124, S126;
+Info semestre 1;22/11/2021;BBIN108R - R1.08 Gestion de projet & des organisations;R1.08 - Gestion de projet et des organisations;R1.08 - Gestion Proj. & Orga.;Bergeron;60;17/01/2023;09:15;09:00;Amphi, S124, S126;
+Info semestre 1;29/11/2021;BBIN109R - R1.09 Économie durable et numérique;R1.09 - Économie durable et numérique;R1.09 - Économie Durable et Num.;Drame;120;17/01/2023;10:30;10:30;Amphi, S124, S126;
+Info semestre 1;06/12/2021;BBIN103R - R1.03 Introduction à l’architecture des ordinateurs;R1.03 - Introduction à l'architecture des ordinateurs;R1.03 - Intro. archi.;Drame;120;23/03/2023;14:00;14:00;Amphi, S124, S125, S126;
+Info semestre 1;06/12/2021;BBIN105R - R1.05 Introduction aux bases de données et SQL;R1.05 - Introduction aux bases de données et SQL - Conception;R1.05 - Introduction BD - Conception;Corre;60;30/04/2023;10:00;10:00;Amphi, S124, S125;
+Info semestre 1;13/12/2021;BBIN104R - R1.04 Introduction aux systèmes d’exploitation et à leur fonctionnement;R1.04 - Introduction aux systèmes d'exploitation et à leur fonctionnement;R1.04 - Intro. systèmes;Corre;120;02/05/2023;09:30;09:00;Amphi, S124, S126;
+Info semestre 1;10/01/2022;BBIN101R - R1.01 Initiation au développement;R1.01 - Initiation au développement (Partie 2);R1.01 - Initiation au dév.;Bergeron;60;02/05/2023;11:30;11:30;Amphi, S124, S126;
 Info semestre 1;10/01/2022;BBIN106R - R1.06 Mathématiques discrètes;R1.06 - Mathématiques discrètes;R1.06 - Maths discrètes;Fischer;120;;;;;
 Info semestre 1;10/01/2022;BBIN107R - R1.07 Outils mathématiques fondamentaux;R1.07 - Outils mathématiques fondamentaux;R1.07 - Outils math. fondamentaux;Costes;120;;;;;
 Info semestre 1;10/01/2022;BBIN108R - R1.08 Gestion de projet & des organisations;R1.08 - Gestion de projet et des organisations;R1.08 - Gestion Proj. & Orga.;Corre;120;;;;;
