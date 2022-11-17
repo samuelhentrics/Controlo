@@ -37,7 +37,7 @@
                         <th>Date</th>
                         <th>Heure</th>
                         <th>Tiers-temps</th>
-                        <th>Promotion</th>
+                        <th>Promotion(s)</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -49,48 +49,51 @@
                     $listeControles = creerListeControles();
 
                     for ($i = 0; $i <= count($listeControles) - 1; $i++) {
+                        // Nom long du contrôle
                         print("<tr>
-                            <td>");
+                            <td>
+                                {$listeControles[$i]->getNomLong()}
+                            </td>
+                        <td>");
 
-                        echo $listeControles[$i]->getNomLong();
-
-                        print("</td>
-                            <td>");
-
+                        // Date du contrôle
                         if ($listeControles[$i]->getDate()!=null){
-                            echo $listeControles[$i]->getDate();
+                            print("{$listeControles[$i]->getDate()}");
                         }
                         else{
-                            echo "Non définie";
+                            print("Non définie");
                         }
-
 
                         print("</td>
                             <td>");
 
+                        // Heure Non TT
                         if ($listeControles[$i]->getHeureNonTT() != null) {
                             echo $listeControles[$i]->getHeureNonTT(), "-", ajouterMinutesHeure($listeControles[$i]->getHeureNonTT(), $listeControles[$i]->getDureeNonTT());
                         } else {
-                            echo "Non définie";
+                            print("Non définie");
                         }
 
                         print("</td>
                             <td>");
 
+                        // Heure TT
                         if ($listeControles[$i]->getHeureTT() != null) {
                             echo $listeControles[$i]->getHeureTT(), "-", ajouterMinutesHeure($listeControles[$i]->getHeureTT(), $listeControles[$i]->getDuree());
                         } else {
-                            echo "Non définie";
+                            print("Non définie");
                         }
 
                         print("</td>
                             <td>");
 
-                        echo "Pas encore programmé";
+                        // Promotions du contrôles
+                        print("Pas encore programmé");
 
                         print("</td>
                             <td>");
 
+                        // Bouton pour Générer
 
                         print("</td>
                             </tr>");
