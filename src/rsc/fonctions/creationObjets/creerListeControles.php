@@ -4,6 +4,11 @@ include(dirname(dirname(__FILE__))."../../class/Controle.php");
 
 DEFINE("CHEMIN_LISTE_CONTROLES", dirname(dirname(__FILE__))."../../CSV/controles/liste-controles.csv");
 
+/**
+ * Cette fonction retourne la liste des contrôles sans les liens
+ *
+ * @return array
+ */
 function creerListeControles(){
     $monFichier = fopen(CHEMIN_LISTE_CONTROLES, "r");
 

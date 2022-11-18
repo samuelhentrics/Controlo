@@ -3,6 +3,12 @@
 include(dirname(dirname(__FILE__))."../../class/Plan.php");
 include(dirname(dirname(__FILE__))."../../class/Zone.php");
 
+/**
+ * Retourne un Plan de Salle si cette Salle existe
+ *
+ * @param string $nomSalle
+ * @return Plan
+ */
 function creerPlanSalle($nomSalle)
 {
     $nomFichier = dirname(dirname(__FILE__))."../../CSV/plansSalles/" . $nomSalle . ".csv";
