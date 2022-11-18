@@ -5,7 +5,7 @@ include("../rsc/class/Zone.php");
 
 function creerPlanSalle($nomSalle)
 {
-
+    echo dirname(dirname(__FILE__))."../rsc/class/Plan.php";
     $nomFichier = "../rsc/CSV/plansSalles/" . $nomSalle . ".csv";
     $monFichier = fopen($nomFichier, "r");
 
