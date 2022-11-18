@@ -8,7 +8,7 @@ class Plan{
     // ATTRIBUTS
 
     /**
-     * Liste d'une liste de zone (tableau à double dimension)
+     * Liste d'une liste de Zone (tableau à double dimension)
      *
      * @var array
      */
@@ -26,9 +26,9 @@ class Plan{
     }
 
     /**
-     * Affecte un Plan à un plan de zone
+     * Affecte un Plan à un plan de Zone
      *
-     * @param array $unPlan
+     * @param array $unPlan Plan d'une Salle
      */
     public function setPlan($unPlan){
         $this->monPlan = $unPlan;
@@ -39,8 +39,9 @@ class Plan{
     /**
      * Ajoute une Zone au Plan
      *
-     * @param Zone $uneZone
+     * @param Zone $uneZone Zone d'une Salle
      */
+    
     public function lierUneZone($uneZone){
         $this->monPlan[$uneZone->getNumLigne()][$uneZone->getNumCol()] = $uneZone;
         $uneZone->lierPlan($this);
@@ -49,8 +50,8 @@ class Plan{
     /**
      * Supprime une Zone à une ligne et une colonne
      *
-     * @param int $numLigne
-     * @param int $numCol
+     * @param int $numLigne Numéro de ligne de la Zone
+     * @param int $numCol   Numéro de colonne de la Zone
      * @return void
      */
     public function delierUneZone($numLigne, $numCol){

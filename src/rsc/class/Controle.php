@@ -83,7 +83,7 @@ class Controle
     /**
      * Permet d'affecter un nom long à un Controle
      *
-     * @param string $nouveauNomLong
+     * @param string $nouveauNomLong Nom long du contrôle à affecter
      */
     public function setNomLong($nouveauNomLong)
     {
@@ -103,7 +103,7 @@ class Controle
     /**
      * Permet d'affecter un nom court à un Controle
      *
-     * @param string $nouveauNomCourt
+     * @param string $nouveauNomCourt Nom court du contrôle à affecter
      */
     public function setNomCourt($nouveauNomCourt)
     {
@@ -123,7 +123,7 @@ class Controle
     /**
      * Permet d'affecter une date à un Controle
      *
-     * @param string $nouvelleDate
+     * @param string $nouvelleDate Date du contrôle à affecter
      */
     public function setDate($nouvelleDate)
     {
@@ -143,7 +143,7 @@ class Controle
     /**
      * Permet d'affecter une durée à un Controle
      *
-     * @param int $nouvelleDuree
+     * @param int $nouvelleDuree Durée totale du contrôle à affecter
      */
     public function setDuree($nouvelleDuree)
     {
@@ -153,7 +153,7 @@ class Controle
     /**
      * Retourne l'heure de quand commence un étudiant non tiers-temps
      *
-     * @return string
+     * @return string 
      */
     public function getHeureNonTT()
     {
@@ -163,7 +163,7 @@ class Controle
     /**
      * Permet d'affecter l'heure du début du Controle pour un étudiant non tiers-temps
      *
-     * @param string $nouvelleHeureNonTT
+     * @param string $nouvelleHeureNonTT Heure non tiers temps du contrôle à affecter
      */
     public function setHeureNonTT($nouvelleHeureNonTT)
     {
@@ -173,7 +173,7 @@ class Controle
     /**
      * Retourne l'heure de quand commence un étudiant tiers-temps
      *
-     * @return string
+     * @return string 
      */
     public function getHeureTT()
     {
@@ -183,7 +183,7 @@ class Controle
     /**
      * Permet d'affecter l'heure du début du Controle pour un étudiant tiers-temps
      *
-     * @param string $nouvelleHeureTT
+     * @param string $nouvelleHeureTT Heure tiers-temps du contrôle à affecter
      */
     public function setHeureTT($nouvelleHeureTT)
     {
@@ -196,7 +196,7 @@ class Controle
     /**
      * Permet d'ajouter une Promotion à la liste de promotions participant au Controle
      *
-     * @param Promotion $unePromotion
+     * @param Promotion $unePromotion Promotion participant au contrôle à ajouter
      */
     public function ajouterPromotion($unePromotion)
     {
@@ -206,7 +206,7 @@ class Controle
     /**
      * Permet de supprimer une Promotion de la liste de promotions participant au Controle
      *
-     * @param Promotion $unePromotion
+     * @param Promotion $unePromotion Promotion participant au contrôle à supprimer
      */
     public function supprimerPromotion($unePromotion)
     {
@@ -218,7 +218,7 @@ class Controle
     /**
      * Permet d'ajouter une Salle à la liste des salles du Controle
      *
-     * @param Salle $uneSalle
+     * @param Salle $uneSalle Salle participant au contrôle à ajouter
      */
     public function ajouterSalle($uneSalle)
     {
@@ -228,11 +228,11 @@ class Controle
     /**
      * Permet de supprimer une Salle de la liste des salles du Controle
      *
-     * @param Salle $uneSalle
+     * @param Salle $uneSalle Salle participant au contrôle à supprimer
      */
     public function supprimerSalle($uneSalle)
     {
-        if (array_key_exists($uneSalle, $this->mesSalles)) {
+        if (array_key_exists($uneSalle, $this->getMesSalles)) {
             unset($this->mesSalles[$uneSalle]);
         }
     }
@@ -240,7 +240,7 @@ class Controle
     /**
      * Permet d'ajouter un PlanDePlacement à la liste des plans de placement du Controle
      *
-     * @param PlanDePlacement $unPlanDePlacement
+     * @param PlanDePlacement $unPlanDePlacement Plan de Placement du contrôle à ajouter
      */
     public function ajouterPlanDePlacement($unPlanDePlacement)
     {
@@ -250,7 +250,7 @@ class Controle
     /**
      * Permet de supprimer un PlanDePlacement de la liste des plans de placement du Controle
      *
-     * @param PlanDePlacement $unPlanDePlacement
+     * @param PlanDePlacement $unPlanDePlacement Plan de Placement du contrôle à supprimer
      */
     public function supprimerPlanDePlacement($unPlanDePlacement)
     {
