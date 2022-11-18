@@ -43,24 +43,25 @@
                             <td>");
 
                             // Afficher le nom de la salle
-                            echo $listeSalles[$i]->getNom();
+                            print("{$listeSalles[$i]->getNom()}");
 
                             print("</td>
                             <td>");
 
                             // Afficher le voisin de la salle
                             if ($listeSalles[$i]->getMonVoisin() != null){
-                                echo $listeSalles[$i]->getMonVoisin()->getNom();
+                                print("{$listeSalles[$i]->getMonVoisin()->getNom()}");;
                             }
 
                             print("</td>
                             <td>");
+
                             // Afficher si le plan existe ou non
                             if ($listeSalles[$i]->getMonPlan() != null){
-                                echo "Plan existant";
+                                print("Plan existant");
                             }
                             else{
-                                echo "Plan inexistant";
+                                print("Plan inexistant");
                             }
 
                             print("</td>

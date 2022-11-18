@@ -1,8 +1,8 @@
 <?php
 
-include("../rsc/class/Salle.php");
+include(dirname(dirname(__FILE__))."../../class/Salle.php");
 
-DEFINE("CHEMIN_LISTE_SALLES", "../rsc/CSV/salles/liste-salles.csv");
+DEFINE("CHEMIN_LISTE_SALLES", dirname(dirname(__FILE__))."../../CSV/salles/liste-salles.csv");
 
 /**
  * Cette fonction permet de créer une liste de salles
