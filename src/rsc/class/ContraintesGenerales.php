@@ -11,14 +11,19 @@ class ContraintesGenerales
 
     //ENCAPSULATION
 
-    public function getNbRang()
+    public function getAlgoRemplissage()
     {
-        return $this->nbRang; 
+        return $this->algoRemplissage; 
     }
 
-    public function setNbRang($nouveauNbRang)
+    public function setAlgoRemplissage($nouveauAlgoRemplissage)
     {
-        $this->nbRang = $nouveauNbRang;
+        if ($nouveauAlgoRemplissage = "aléatoire" or $nouveauAlgoRemplissage == "ascendant" or $nouveauAlgoRemplissage =="descendant"){
+            $this->algoRemplissage = $nouveauAlgoRemplissage;
+        }
+        else{
+            $this->algoRemplissage ="ascendant";
+        }
     }
 
     public function getCoteACote()
