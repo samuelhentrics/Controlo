@@ -1,8 +1,8 @@
 <?php
 
-include("../rsc/class/Controle.php");
+include(dirname(dirname(__FILE__))."../../class/Controle.php");
 
-DEFINE("CHEMIN_LISTE_CONTROLES", "../rsc/CSV/controles/liste-controles.csv");
+DEFINE("CHEMIN_LISTE_CONTROLES", dirname(dirname(__FILE__))."../../CSV/controles/liste-controles.csv");
 
 function creerListeControles(){
     $monFichier = fopen(CHEMIN_LISTE_CONTROLES, "r");

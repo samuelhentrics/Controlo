@@ -1,12 +1,11 @@
 <?php
 
-include("../rsc/class/Plan.php");
-include("../rsc/class/Zone.php");
+include(dirname(dirname(__FILE__))."../../class/Plan.php");
+include(dirname(dirname(__FILE__))."../../class/Zone.php");
 
 function creerPlanSalle($nomSalle)
 {
-    echo dirname(dirname(__FILE__))."../rsc/class/Plan.php";
-    $nomFichier = "../rsc/CSV/plansSalles/" . $nomSalle . ".csv";
+    $nomFichier = dirname(dirname(__FILE__))."../../CSV/plansSalles/" . $nomSalle . ".csv";
     $monFichier = fopen($nomFichier, "r");
 
     // Créer le plan de la salle en lisant le fichier CSV s'il existe
