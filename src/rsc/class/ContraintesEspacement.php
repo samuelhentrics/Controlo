@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Classe ContraintesEspacement permettant de définir les contraintes d'espacement
  */
@@ -7,50 +8,53 @@ class ContraintesEspacement
 
     //VARIABLES
     /**
-     * nombre de rang d'une salle
+     * Nombre de rangées espaçant chaque Etudiant dans une Salle
      * 
      * @var int
      */
-    private $nbRang;
+    private $nbRangs;
 
     /**
-     * Nombre de places dans la salle
+     * Nombre de places espaçant chaque Etudiant dans une Salle
      * 
      * @var int
      */
     private $nbPlaces;
-    
+
     /**
-     * Le plan de plassement d'un contrôle
+     * PlanDePlacement relié aux ContraintesEspacement
      * 
      * @var PlanDePlacement
      */
-    private $monPlan;
+    private $monPlanDePlacement;
 
     //ENCAPSULATION
-    
+
     /**
-     * Retourne le nombre de rangs de la salle
+     * Retourne le nombre de rangs séparant les étudiants dans une Salle pour un
+     * PlanDePlacement d'un Controle
      * 
      * @return int
      */
-    public function getNbRang()
+    public function getNbRangs()
     {
-        return $this->nbRang;
+        return $this->nbRangs;
     }
 
     /**
-     * Permet d'affecter un nombre de rangs à une salle
+     * Permet d'affecter le nombre de rangs séparant les étudiants dans une Salle pour un
+     * PlanDePlacement d'un Controle
      * 
-     * @param int $nouveauNBRang
+     * @param int $nouveauNbRangs Nombre de rangées qui sépare les étudiants
      */
-    public function setNbRang($nouveauNbRang)
+    public function setNbRangs($nouveauNbRangs)
     {
-        $this->nbRang = $nouveauNbRang;
+        $this->nbRangs = $nouveauNbRangs;
     }
 
     /**
-     * Retourne le nombre de places dans la salle
+     * Retourne le nombre de places séparant les étudiants dans une Salle pour un
+     * PlanDePlacement d'un Controle
      * 
      * @return int
      */
@@ -60,33 +64,70 @@ class ContraintesEspacement
     }
 
     /**
-     * Permet d'affecter un nombre de places à une salle
+     * Permet d'affecter le nombre de places séparant les étudiants dans une Salle pour un
+     * PlanDePlacement d'un Controle
      * 
-     * @param int $nouveauNBPlaces
+     * @param int $nouveauNbPlaces Nombre de places qui sépare les étudiants
      */
     public function setNbPlaces($nouveauNbPlaces)
     {
         $this->nbPlaces = $nouveauNbPlaces;
-
     }
 
     /**
-     * Retourne le plan de placement d'un contrôle
+     * Retourne le PlanDePlacement affecté à ces ContraintesEspacement
      * 
-     * @retrun PlanDePlacement
+     * @return PlanDePlacement
      */
-    public function getMonPlan()
+    public function getMonPlanDePlacement()
     {
-        return $this->monPlan;
+        return $this->monPlanDePlacement;
     }
 
     /**
-     * Permet d'affecter un plan de placement d'un contrôle
-     * 
-     * @param PlanDePlacement nouveauPlan
+     * Permet de mettre à jour un PlanDePlacement d'une Salle pour un Controle
+     * à ContraintesEspacement
+     *
+     * @param PlanDePlacement nouveauPlan PlanDePlacement correspondant aux ContraintesEspacement.
      */
-    public function setMonPlan($nouveauPlan)
+    public function majMonPlanDePlacement($nouveauPlan)
     {
-        $this->monPlan = $nouveauPlan;
+        $this->monPlanDePlacement = $nouveauPlan;
+    }
+
+
+    // METHODES SPECIFIQUES
+
+    /**
+     * Supprime le lien entre le PlanDePlacement et les ContraintesEspacement
+     *
+     */
+    public function supprimerMonPlanDePlacement()
+    {
+        if ($this->getMonPlanDePlacement() != null) {
+            $this->getMonPlanDePlacement()->majMesContraintesEspacement(null);
+            $this->majMonPlanDePlacement(null);
+        }
+    }
+
+    /**
+     * Définit le PlanDePlacement des ContraintesEspacement
+     *
+     * @param PlanDePlacement $unPlanDePlacement PlanDePlacement correspondant aux ContraintesEspacement
+     * @return void
+     */
+    public function setMonPlanDePlacement($unPlanDePlacement)
+    {
+        $this->supprimerMonPlanDePlacement();
+
+        if ($this->getMonPlanDePlacement() != null) {
+            // Construire le nouveau lien
+            // Supprimer l'éventuel lien actuel de mon nouveau PlanDePlacement
+            $unPlanDePlacement->supprimerMesContraintesGenerales();
+
+            // Établir le lien croisé avec mon correspondant
+            $unPlanDePlacement->majMesContraintesGenerales($this); // Il pointe sur moi
+            $this->majMonPlanDePlacement($unPlanDePlacement);       // Je pointe sur lui
+        }
     }
 }
