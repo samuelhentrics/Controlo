@@ -57,7 +57,7 @@ class ContraintesGenerales
     /**
      * Retourne un variable qui identifie qui peut rester à coté d'un étudiant
      * 
-     * @retrun string
+     * @return string
      */
     public function getCoteACote()
     {
@@ -65,20 +65,24 @@ class ContraintesGenerales
     }
 
     /**
-     * Permet d'affecter un variable qui identifie qui peut reste à coté d'un étudiant
+     * Permet d'affecter une variable qui identifie qui peut reste à coté d'un étudiant
      * 
      * @param string $nouveauCoteACote
      */
-    public function setNbPlaces($nouveauCoteACote)
+    public function setCoteACote($nouveauCoteACote)
     {
-        $this->coteACote = $nouveauCoteACote;
-
+        if ($nouveauCoteACote = "tdDifférent" or $nouveauCoteACote == "tpDifférent" or$nouveauCoteACote =="alphabétique"){
+            $this->coteACote = $nouveauCoteACote;
+        }
+        else{
+            $this->coteACote ="alphabétique";
+        }
     }
 
     /**
      * Retourne le plan de placement d'un contrôle
      * 
-     * @retrun PlanDePlacement
+     * @return PlanDePlacement
      */
     public function getMonPlan()
     {
