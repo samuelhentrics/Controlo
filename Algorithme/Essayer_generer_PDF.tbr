@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE Tabula_Rasa>
+<Algorithme>
+  <nom>Essayer générer PDF</nom>
+  <date_creation>14/11/2022 15:21</date_creation>
+  <Elements>
+    <Action>
+      <Position>455;46</Position>
+      <StyleLien>2</StyleLien>
+      <PreAssertion>erreur,
+controleChoisi</PreAssertion>
+      <PostAssertion>[pdf]</PostAssertion>
+      <Titre>Essayer de générer PDF</Titre>
+      <DetailsVisible>1</DetailsVisible>
+      <DetailsVideVisible>1</DetailsVideVisible>
+      <Enfants>
+        <Condition>
+          <Position>568.5;307</Position>
+          <StyleLien>0</StyleLien>
+          <estUnique>0</estUnique>
+          <operationsLogiques>
+            <operation>
+              <Titre>erreur = faux</Titre>
+              <Enfants>
+                <Action>
+                  <Position>247;500</Position>
+                  <StyleLien>1</StyleLien>
+                  <PreAssertion>controleChoisi,
+plansDePlacement</PreAssertion>
+                  <PostAssertion>pdf</PostAssertion>
+                  <Titre>Générer les plans de
+placement au format
+PDF</Titre>
+                  <DetailsVisible>1</DetailsVisible>
+                  <DetailsVideVisible>1</DetailsVideVisible>
+                  <Enfants/>
+                </Action>
+              </Enfants>
+            </operation>
+            <operation>
+              <Titre>Sinon</Titre>
+              <Enfants>
+                <Action>
+                  <Position>706;491</Position>
+                  <StyleLien>1</StyleLien>
+                  <PreAssertion>?</PreAssertion>
+                  <PostAssertion>?</PostAssertion>
+                  <Titre>Afficher "Tous les étudiants n'ont pas pu être placés"</Titre>
+                  <DetailsVisible>1</DetailsVisible>
+                  <DetailsVideVisible>0</DetailsVideVisible>
+                  <Enfants/>
+                </Action>
+              </Enfants>
+            </operation>
+          </operationsLogiques>
+        </Condition>
+      </Enfants>
+    </Action>
+  </Elements>
+  <Dictionary/>
+</Algorithme>

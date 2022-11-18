@@ -1,20 +1,20 @@
-<?xml version="1.1"?>
+<?xml version="1.0"?>
 <!DOCTYPE Tabula_Rasa>
 <Algorithme>
   <nom>Trouver une place</nom>
-  <date_creation>17/11/2022 11:50</date_creation>
+  <date_creation>18/11/2022 09:13</date_creation>
   <Elements>
     <Action>
-      <Position>325;51</Position>
+      <Position>125;45</Position>
       <StyleLien>2</StyleLien>
-      <PreAssertion>unEtudiant, erreur, unControle, listePDP</PreAssertion>
+      <PreAssertion>unEtudiant, erreur, controleChoisi, listePDP</PreAssertion>
       <PostAssertion>place, erreur</PostAssertion>
       <Titre>Trouver une place</Titre>
       <DetailsVisible>1</DetailsVisible>
       <DetailsVideVisible>1</DetailsVideVisible>
       <Enfants>
         <Action>
-          <Position>227;169</Position>
+          <Position>213;198</Position>
           <StyleLien>1</StyleLien>
           <PreAssertion>?</PreAssertion>
           <PostAssertion>?</PostAssertion>
@@ -24,7 +24,7 @@
           <Enfants/>
         </Action>
         <Action>
-          <Position>425;168</Position>
+          <Position>301;310</Position>
           <StyleLien>1</StyleLien>
           <PreAssertion>?</PreAssertion>
           <PostAssertion>?</PostAssertion>
@@ -34,7 +34,7 @@
           <Enfants/>
         </Action>
         <Action>
-          <Position>618;169</Position>
+          <Position>406;210</Position>
           <StyleLien>2</StyleLien>
           <PreAssertion>?</PreAssertion>
           <PostAssertion>?</PostAssertion>
@@ -43,225 +43,29 @@
           <DetailsVideVisible>0</DetailsVideVisible>
           <Enfants>
             <Iteration>
-              <Position>634.5;276.5</Position>
+              <Position>645.5;347.5</Position>
               <StyleLien>1</StyleLien>
-              <Titre>Pour numSalle de 0 à count(unControle→mesSalles)</Titre>
+              <Titre>Pour numSalle de 0 à count(controleChoisi→getMesSalles())</Titre>
               <IterationFixe>1</IterationFixe>
               <Enfants>
                 <Iteration>
-                  <Position>634.5;377.5</Position>
+                  <Position>644.5;456.5</Position>
                   <StyleLien>1</StyleLien>
-                  <Titre>Pour zoneLigne de 0 à count(unControle→mesSalles[numSalle]→mesZones)</Titre>
+                  <Titre>Pour zoneLigne de 0 à count( controleChoisi→getMesSalles()[numSalle ]→getMesZones())</Titre>
                   <IterationFixe>1</IterationFixe>
                   <Enfants>
                     <Action>
-                      <Position>1013;475</Position>
-                      <StyleLien>2</StyleLien>
+                      <Position>617;548</Position>
+                      <StyleLien>1</StyleLien>
                       <PreAssertion>?</PreAssertion>
                       <PostAssertion>?</PostAssertion>
                       <Titre>Vérifier contraintes espacement des rangées</Titre>
                       <DetailsVisible>1</DetailsVisible>
                       <DetailsVideVisible>0</DetailsVideVisible>
-                      <Enfants>
-                        <Condition>
-                          <Position>979.5;549</Position>
-                          <StyleLien>0</StyleLien>
-                          <estUnique>0</estUnique>
-                          <operationsLogiques>
-                            <operation>
-                              <Titre>zoneLigne %  listePlansDePlacements[numSalle]→ mesContraintesEspacement→getNbRangee == 0</Titre>
-                              <Enfants>
-                                <Iteration>
-                                  <Position>998.5;628.5</Position>
-                                  <StyleLien>1</StyleLien>
-                                  <Titre>Pour zoneColonne de 0 à count(unControle→mesSalles[numSalle]→mesZones[zoneLigne])</Titre>
-                                  <IterationFixe>1</IterationFixe>
-                                  <Enfants>
-                                    <Action>
-                                      <Position>533;731</Position>
-                                      <StyleLien>1</StyleLien>
-                                      <PreAssertion>?</PreAssertion>
-                                      <PostAssertion>?</PostAssertion>
-                                      <Titre>place ← listeSalles[numSalles]→getMaZone() [zoneLigne][zoneColonne]</Titre>
-                                      <DetailsVisible>1</DetailsVisible>
-                                      <DetailsVideVisible>0</DetailsVideVisible>
-                                      <Enfants/>
-                                    </Action>
-                                    <Condition>
-                                      <Position>945.5;732</Position>
-                                      <StyleLien>1</StyleLien>
-                                      <estUnique>1</estUnique>
-                                      <operationsLogiques>
-                                        <operation>
-                                          <Titre>place→getType()=="place" </Titre>
-                                          <Enfants>
-                                            <Action>
-                                              <Position>777;819</Position>
-                                              <StyleLien>1</StyleLien>
-                                              <PreAssertion>?</PreAssertion>
-                                              <PostAssertion>?</PostAssertion>
-                                              <Titre>nbPlaces++</Titre>
-                                              <DetailsVisible>1</DetailsVisible>
-                                              <DetailsVideVisible>0</DetailsVideVisible>
-                                              <Enfants/>
-                                            </Action>
-                                            <Condition>
-                                              <Position>943.5;831</Position>
-                                              <StyleLien>1</StyleLien>
-                                              <estUnique>1</estUnique>
-                                              <operationsLogiques>
-                                                <operation>
-                                                  <Titre>find(place, listPDP[nomSalle]→ getMesZones()) == false</Titre>
-                                                  <Enfants>
-                                                    <Condition>
-                                                      <Position>936.5;922</Position>
-                                                      <StyleLien>1</StyleLien>
-                                                      <estUnique>1</estUnique>
-                                                      <operationsLogiques>
-                                                        <operation>
-                                                          <Titre>(nbPlaces-1)% listePlansDePlacements[numSalle] → getMesContraintes[espacement]→  getNombreDePlaces</Titre>
-                                                          <Enfants>
-                                                            <Condition>
-                                                              <Position>874.5;1003</Position>
-                                                              <StyleLien>1</StyleLien>
-                                                              <estUnique>0</estUnique>
-                                                              <operationsLogiques>
-                                                                <operation>
-                                                                  <Titre>unEtudiant→aOrdi</Titre>
-                                                                  <Enfants>
-                                                                    <Condition>
-                                                                      <Position>497.5;1104</Position>
-                                                                      <StyleLien>1</StyleLien>
-                                                                      <estUnique>1</estUnique>
-                                                                      <operationsLogiques>
-                                                                        <operation>
-                                                                          <Titre>place→getAUnePrise()</Titre>
-                                                                          <Enfants>
-                                                                            <Action>
-                                                                              <Position>293;1269</Position>
-                                                                              <StyleLien>1</StyleLien>
-                                                                              <PreAssertion>?</PreAssertion>
-                                                                              <PostAssertion>?</PostAssertion>
-                                                                              <Titre>trouve=true</Titre>
-                                                                              <DetailsVisible>1</DetailsVisible>
-                                                                              <DetailsVideVisible>0</DetailsVideVisible>
-                                                                              <Enfants/>
-                                                                            </Action>
-                                                                            <Action>
-                                                                              <Position>427;1308</Position>
-                                                                              <StyleLien>1</StyleLien>
-                                                                              <PreAssertion>?</PreAssertion>
-                                                                              <PostAssertion>?</PostAssertion>
-                                                                              <Titre>erreur←false</Titre>
-                                                                              <DetailsVisible>1</DetailsVisible>
-                                                                              <DetailsVideVisible>0</DetailsVideVisible>
-                                                                              <Enfants/>
-                                                                            </Action>
-                                                                            <Action>
-                                                                              <Position>524;1231</Position>
-                                                                              <StyleLien>1</StyleLien>
-                                                                              <PreAssertion>?</PreAssertion>
-                                                                              <PostAssertion>?</PostAssertion>
-                                                                              <Titre>listePDP[numSalle].array_push(place)</Titre>
-                                                                              <DetailsVisible>1</DetailsVisible>
-                                                                              <DetailsVideVisible>0</DetailsVideVisible>
-                                                                              <Enfants/>
-                                                                            </Action>
-                                                                            <Sortie>
-                                                                              <Position>754;1312</Position>
-                                                                            </Sortie>
-                                                                          </Enfants>
-                                                                        </operation>
-                                                                        <operation>
-                                                                          <Titre>Sinon</Titre>
-                                                                          <Enfants/>
-                                                                        </operation>
-                                                                      </operationsLogiques>
-                                                                    </Condition>
-                                                                  </Enfants>
-                                                                </operation>
-                                                                <operation>
-                                                                  <Titre>Sinon</Titre>
-                                                                  <Enfants>
-                                                                    <Sortie>
-                                                                      <Position>1406;1243</Position>
-                                                                    </Sortie>
-                                                                    <Action>
-                                                                      <Position>1176;1150</Position>
-                                                                      <StyleLien>1</StyleLien>
-                                                                      <PreAssertion>?</PreAssertion>
-                                                                      <PostAssertion>?</PostAssertion>
-                                                                      <Titre>listePDP[numSalle].array_push(place)</Titre>
-                                                                      <DetailsVisible>1</DetailsVisible>
-                                                                      <DetailsVideVisible>0</DetailsVideVisible>
-                                                                      <Enfants/>
-                                                                    </Action>
-                                                                    <Action>
-                                                                      <Position>985;1154</Position>
-                                                                      <StyleLien>1</StyleLien>
-                                                                      <PreAssertion>?</PreAssertion>
-                                                                      <PostAssertion>?</PostAssertion>
-                                                                      <Titre>trouve=true</Titre>
-                                                                      <DetailsVisible>1</DetailsVisible>
-                                                                      <DetailsVideVisible>0</DetailsVideVisible>
-                                                                      <Enfants/>
-                                                                    </Action>
-                                                                    <Action>
-                                                                      <Position>1071;1235</Position>
-                                                                      <StyleLien>1</StyleLien>
-                                                                      <PreAssertion>?</PreAssertion>
-                                                                      <PostAssertion>?</PostAssertion>
-                                                                      <Titre>erreur←false</Titre>
-                                                                      <DetailsVisible>1</DetailsVisible>
-                                                                      <DetailsVideVisible>0</DetailsVideVisible>
-                                                                      <Enfants/>
-                                                                    </Action>
-                                                                  </Enfants>
-                                                                </operation>
-                                                              </operationsLogiques>
-                                                            </Condition>
-                                                          </Enfants>
-                                                        </operation>
-                                                        <operation>
-                                                          <Titre>Sinon</Titre>
-                                                          <Enfants/>
-                                                        </operation>
-                                                      </operationsLogiques>
-                                                    </Condition>
-                                                  </Enfants>
-                                                </operation>
-                                                <operation>
-                                                  <Titre>Sinon</Titre>
-                                                  <Enfants/>
-                                                </operation>
-                                              </operationsLogiques>
-                                            </Condition>
-                                          </Enfants>
-                                        </operation>
-                                        <operation>
-                                          <Titre>?</Titre>
-                                          <Enfants/>
-                                        </operation>
-                                      </operationsLogiques>
-                                    </Condition>
-                                  </Enfants>
-                                </Iteration>
-                              </Enfants>
-                            </operation>
-                            <operation>
-                              <Titre>Sinon</Titre>
-                              <Enfants>
-                                <Sortie>
-                                  <Position>1319;632</Position>
-                                </Sortie>
-                              </Enfants>
-                            </operation>
-                          </operationsLogiques>
-                        </Condition>
-                      </Enfants>
+                      <Enfants/>
                     </Action>
                     <Action>
-                      <Position>570;476</Position>
+                      <Position>362;543</Position>
                       <StyleLien>2</StyleLien>
                       <PreAssertion>?</PreAssertion>
                       <PostAssertion>?</PostAssertion>
@@ -270,7 +74,7 @@
                       <DetailsVideVisible>0</DetailsVideVisible>
                       <Enfants>
                         <Condition>
-                          <Position>586.5;544</Position>
+                          <Position>371.5;662</Position>
                           <StyleLien>1</StyleLien>
                           <estUnique>1</estUnique>
                           <operationsLogiques>
@@ -278,7 +82,7 @@
                               <Titre>trouve</Titre>
                               <Enfants>
                                 <Sortie>
-                                  <Position>624;615</Position>
+                                  <Position>375;784</Position>
                                 </Sortie>
                               </Enfants>
                             </operation>
@@ -291,11 +95,11 @@
                       </Enfants>
                     </Action>
                     <Action>
-                      <Position>745;481</Position>
+                      <Position>514;548</Position>
                       <StyleLien>1</StyleLien>
                       <PreAssertion>?</PreAssertion>
                       <PostAssertion>?</PostAssertion>
-                      <Titre>nbPlace=0</Titre>
+                      <Titre>nbPlaces=0</Titre>
                       <DetailsVisible>1</DetailsVisible>
                       <DetailsVideVisible>0</DetailsVideVisible>
                       <Enfants/>
@@ -303,7 +107,7 @@
                   </Enfants>
                 </Iteration>
                 <Action>
-                  <Position>419;366</Position>
+                  <Position>198;427</Position>
                   <StyleLien>2</StyleLien>
                   <PreAssertion>?</PreAssertion>
                   <PostAssertion>?</PostAssertion>
@@ -312,7 +116,7 @@
                   <DetailsVideVisible>0</DetailsVideVisible>
                   <Enfants>
                     <Condition>
-                      <Position>435.5;434</Position>
+                      <Position>207.5;536</Position>
                       <StyleLien>1</StyleLien>
                       <estUnique>1</estUnique>
                       <operationsLogiques>
@@ -320,7 +124,7 @@
                           <Titre>trouve</Titre>
                           <Enfants>
                             <Sortie>
-                              <Position>473;505</Position>
+                              <Position>209;659</Position>
                             </Sortie>
                           </Enfants>
                         </operation>
@@ -339,4 +143,5 @@
       </Enfants>
     </Action>
   </Elements>
+  <Dictionary/>
 </Algorithme>
