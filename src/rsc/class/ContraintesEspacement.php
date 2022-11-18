@@ -21,7 +21,7 @@ class ContraintesEspacement
     private $nbPlaces;
     
     /**
-     * Le plan de la salle
+     * Le plan de plassement d'un contrôle
      * 
      * @var PlanDePlacement
      */
@@ -71,7 +71,7 @@ class ContraintesEspacement
     }
 
     /**
-     * Retourne le plan de la salle
+     * Retourne le plan de placement d'un contrôle
      * 
      * @retrun PlanDePlacement
      */
@@ -81,7 +81,7 @@ class ContraintesEspacement
     }
 
     /**
-     * Permet d'affecter un plan de salle à une salle
+     * Permet d'affecter un plan de placement d'un contrôle
      * 
      * @param PlanDePlacement nouveauPlan
      */
