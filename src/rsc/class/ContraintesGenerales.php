@@ -7,30 +7,23 @@ class ContraintesGenerales
 
     //VARIABLES
     /**
-     * Permet de connaitre l'ordre de tri des étudiants pour le placement.
+     * Ordre de tri des étudiants pour le placement.
      * 
      * @var string
      */
     private $algoRemplissage;
 
     /**
-     * Permet de connaitre qui peut rester à coté d'un étudiant
+     * Information sur qui peut rester à coté d'un Etudiant
      * 
      * @var string
      */
     private $coteACote;
 
-    /**
-     * Plan de placement d'un contrôle
-     * 
-     * @var PlanDePlacement
-     */
-    private $monPlan;
-
     //ENCAPSULATION
 
     /**
-     * Retourne L'algo de remplissage 
+     * Retourne l'ordre de tri des étudiants pour le placement
      * 
      * @return string
      */
@@ -40,9 +33,9 @@ class ContraintesGenerales
     }
 
     /**
-     * Permet d'affecter un algo de remplissage 
+     * Affecte un algo de remplissage aux ContraintesGenerales 
      * 
-     * @param  string $nouveauAlgoRemplissage
+     * @param  string $nouveauAlgoRemplissage Algorithme de remplissage (aléatoire, ascendant, descendant)
      */
     public function setAlgoRemplissage($nouveauAlgoRemplissage)
     {
@@ -55,7 +48,7 @@ class ContraintesGenerales
     }
 
     /**
-     * Retourne un variable qui identifie qui peut rester à coté d'un étudiant
+     * Retourne une information sur qui peut rester à coté d'un étudiant
      * 
      * @return string
      */
@@ -65,13 +58,13 @@ class ContraintesGenerales
     }
 
     /**
-     * Permet d'affecter une variable qui identifie qui peut reste à coté d'un étudiant
+     * Permet d'affecter l'information qui identifie qui peut rester à coté d'un étudiant
      * 
-     * @param string $nouveauCoteACote
+     * @param string $nouveauCoteACote Information pour placer un Etudiant à côté d'un autre Etudiant
      */
     public function setCoteACote($nouveauCoteACote)
     {
-        if ($nouveauCoteACote = "tdDifférent" or $nouveauCoteACote == "tpDifférent" or$nouveauCoteACote =="alphabétique"){
+        if ($nouveauCoteACote == "tdDifférent" or $nouveauCoteACote == "tpDifférent" or $nouveauCoteACote == "alphabétique"){
             $this->coteACote = $nouveauCoteACote;
         }
         else{
@@ -79,23 +72,4 @@ class ContraintesGenerales
         }
     }
 
-    /**
-     * Retourne le plan de placement d'un contrôle
-     * 
-     * @return PlanDePlacement
-     */
-    public function getMonPlan()
-    {
-        return $this->monPlan;
-    }
-
-    /**
-     * Permet d'affecter un plan de placement d'un contrôle
-     * 
-     * @param PlanDePlacement nouveauPlan
-     */
-    public function setMonPlan($nouveauPlan)
-    {
-        $this->monPlan = $nouveauPlan;
-    }
 }

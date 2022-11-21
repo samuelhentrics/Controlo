@@ -21,13 +21,6 @@ class ContraintesEspacement
      */
     private $nbPlaces;
 
-    /**
-     * PlanDePlacement relié aux ContraintesEspacement
-     * 
-     * @var PlanDePlacement
-     */
-    private $monPlanDePlacement;
-
     //ENCAPSULATION
 
     /**
@@ -74,60 +67,4 @@ class ContraintesEspacement
         $this->nbPlaces = $nouveauNbPlaces;
     }
 
-    /**
-     * Retourne le PlanDePlacement affecté à ces ContraintesEspacement
-     * 
-     * @return PlanDePlacement
-     */
-    public function getMonPlanDePlacement()
-    {
-        return $this->monPlanDePlacement;
-    }
-
-    /**
-     * Permet de mettre à jour un PlanDePlacement d'une Salle pour un Controle
-     * à ContraintesEspacement
-     *
-     * @param PlanDePlacement nouveauPlan PlanDePlacement correspondant aux ContraintesEspacement.
-     */
-    public function majMonPlanDePlacement($nouveauPlan)
-    {
-        $this->monPlanDePlacement = $nouveauPlan;
-    }
-
-
-    // METHODES SPECIFIQUES
-
-    /**
-     * Supprime le lien entre le PlanDePlacement et les ContraintesEspacement
-     *
-     */
-    public function supprimerMonPlanDePlacement()
-    {
-        if ($this->getMonPlanDePlacement() != null) {
-            $this->getMonPlanDePlacement()->majMesContraintesEspacement(null);
-            $this->majMonPlanDePlacement(null);
-        }
-    }
-
-    /**
-     * Définit le PlanDePlacement des ContraintesEspacement
-     *
-     * @param PlanDePlacement $unPlanDePlacement PlanDePlacement correspondant aux ContraintesEspacement
-     * @return void
-     */
-    public function setMonPlanDePlacement($unPlanDePlacement)
-    {
-        $this->supprimerMonPlanDePlacement();
-
-        if ($this->getMonPlanDePlacement() != null) {
-            // Construire le nouveau lien
-            // Supprimer l'éventuel lien actuel de mon nouveau PlanDePlacement
-            $unPlanDePlacement->supprimerMesContraintesGenerales();
-
-            // Établir le lien croisé avec mon correspondant
-            $unPlanDePlacement->majMesContraintesGenerales($this); // Il pointe sur moi
-            $this->majMonPlanDePlacement($unPlanDePlacement);       // Je pointe sur lui
-        }
-    }
 }

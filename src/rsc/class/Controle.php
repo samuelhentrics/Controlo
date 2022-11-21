@@ -10,6 +10,7 @@ class Controle
      *
      * @var string
      */
+
     private $nomLong;
 
     /**
@@ -222,7 +223,9 @@ class Controle
      */
     public function ajouterSalle($uneSalle)
     {
-        array_push($this->mesSalles, $uneSalle);
+        if (array_key_exists($uneSalle, $this->getMesSalles())) {
+            array_push($this->getMesSalles(), $uneSalle);
+        }
     }
 
     /**
@@ -232,9 +235,17 @@ class Controle
      */
     public function supprimerSalle($uneSalle)
     {
-        if (array_key_exists($uneSalle, $this->getMesSalles)) {
-            unset($this->mesSalles[$uneSalle]);
+        if (array_key_exists($uneSalle, $this->getMesSalles())) {
+            unset($this->getMesSalles()[array_search($uneSalle, $this->getMesSalles())]);
         }
+    }
+
+    /**
+     * Retourne la liste des Salle affectés au Controle
+     *
+     */
+    public function getMesSalles(){
+        return $this->mesSalles;
     }
 
     /**
@@ -244,7 +255,9 @@ class Controle
      */
     public function ajouterPlanDePlacement($unPlanDePlacement)
     {
-        array_push($this->mesPlansDePlacement, $unPlanDePlacement);
+        if (array_key_exists($unPlanDePlacement, $this->getMesPlansDePlacement())) {
+            array_push($this->getMesSalles(), $unPlanDePlacement);
+        }
     }
 
     /**
@@ -254,9 +267,13 @@ class Controle
      */
     public function supprimerPlanDePlacement($unPlanDePlacement)
     {
-        if (array_key_exists($unPlanDePlacement, $this->mesPlansDePlacement)) {
-            unset($this->mesPlansDePlacement[$unPlanDePlacement]);
+        if (array_key_exists($unPlanDePlacement, $this->getMesPlansDePlacement())) {
+            unset($this->getMesPlansDePlacement()[$unPlanDePlacement]);
         }
+    }
+
+    public function getMesPlansDePlacement(){
+        return $this->mesPlansDePlacement;
     }
 
     // METHODES SPECIFIQUES
