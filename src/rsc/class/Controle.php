@@ -201,7 +201,9 @@ class Controle
      */
     public function ajouterPromotion($unePromotion)
     {
-        array_push($this->mesPromotions, $unePromotion);
+        if (array_key_exists($unePromotion, $this->getMesPromotions())) {
+            array_push($this->mesPromotions, $unePromotion);
+        }
     }
 
     /**
@@ -211,9 +213,18 @@ class Controle
      */
     public function supprimerPromotion($unePromotion)
     {
-        if (array_key_exists($unePromotion, $this->mesPromotions)) {
-            unset($this->mesPromotions[$unePromotion]);
+        if (array_key_exists($unePromotion, $this->getMesPromotions())) {
+            unset($this->getMesPromotions()[array_search($unePromotion, $this->getMesPromotions())]);
         }
+    }
+
+    /**
+     * Retourne les Promotion du Controle
+     *
+     * @return array
+     */
+    public function getMesPromotions(){
+        return $this->mesPromotions;
     }
 
     /**
@@ -268,7 +279,7 @@ class Controle
     public function supprimerPlanDePlacement($unPlanDePlacement)
     {
         if (array_key_exists($unPlanDePlacement, $this->getMesPlansDePlacement())) {
-            unset($this->getMesPlansDePlacement()[$unPlanDePlacement]);
+            unset($this->getMesPlansDePlacement()[array_search($unPlanDePlacement, $this->getMesPlansDePlacement())]);
         }
     }
 
