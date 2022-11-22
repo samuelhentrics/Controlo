@@ -6,9 +6,9 @@ $PATH = 'http://'.$_SERVER['HTTP_HOST']."/src/";
 
 // DOSSIERS CSV
 
-$CONTROLES = $PATH."Controles/";
-$ETUDIANTS = $PATH."Etudiants/";
-$SALLES = $PATH."Etudiants/";
+$CSV_CONTROLES = $PATH."Controles/";
+$CSV_ETUDIANTS = $PATH."Etudiants/";
+$CSV_SALLES = $PATH."Salles/";
 
 // DOSSIER GENERATION PDF PLANS DE PLACEMENT
 
@@ -29,5 +29,11 @@ $IMPORT_FOLDER = $RESSOURCES_FOLDER."import";
 $CSS_FOLDER = $FRONT_FOLDER."css/";
 $IMG_FOLDER = $FRONT_FOLDER."img/";
 $JS_FOLDER = $FRONT_FOLDER."js/";
+
+// LIENS DES PAGES
+
+$CONTROLES = $PATH."Controles/";
+$ETUDIANTS = $PATH."Etudiants/";
+$SALLES = $PATH."Salles/";
 
 ?>

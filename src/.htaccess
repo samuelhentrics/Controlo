@@ -1,5 +1,3 @@
-
 # Redirection pour les pages principales Controles/
-RedirectMatch 301 /src/Controles /src/index.php
-RedirectMatch 301 /src/Etudiants /src/index.php
-RedirectMatch 301 /src/Salles /src/index.php
+RewriteEngine On
+RewriteRule ^Controles$ /src/index.php [L]
