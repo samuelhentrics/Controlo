@@ -43,6 +43,8 @@
             <div class="col-12">
                 Contenu
                 <?php echo $PATH; ?>
+                <br>
+                <?php //print_r($_SERVER); ?>
             </div>
         </div>
 

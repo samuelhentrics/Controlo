@@ -1,6 +1,6 @@
 <?php
 
-$PATH = 'http://'.$_SERVER['HTTP_HOST']."/src/";
+$PATH = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER["REQUEST_URI"];
 
 //echo $PATH.$_SERVER['PHP_SELF'];
 
