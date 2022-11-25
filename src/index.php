@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Controlo</title>
         <?php include("config.php"); ?>
-        <link href="<?php echo $CSS_FOLDER; ?>bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <link href="<?php echo $CSS_FOLDER; ?>bootstrap.min.css" rel="stylesheet" >
     </head>
 
     <body>
@@ -42,7 +42,7 @@
         <div class="container">
             <div class="col-12">
                 Contenu
-                <?php echo $PATH; ?>
+                <?php echo $CSS_FOLDER; ?>
                 <br>
                 <?php //print_r($_SERVER); ?>
             </div>
@@ -54,7 +54,7 @@
 
         <!-- Javascript -->
         <script src="<?php echo $JS_FOLDER; ?>jquery.min.js"></script>
-        <script src="<?php echo $JS_FOLDER; ?>bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
+        <script src="<?php echo $JS_FOLDER; ?>bootstrap.bundle.min.js">
         </script>
     </body>
 
