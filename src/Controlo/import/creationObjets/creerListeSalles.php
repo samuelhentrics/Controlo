@@ -1,17 +1,18 @@
 <?php
 
-include(dirname(dirname(__FILE__))."../../class/Salle.php");
 
-DEFINE("CHEMIN_LISTE_SALLES", dirname(dirname(__FILE__))."../../CSV/salles/liste-salles.csv");
+
+$CHEMIN_LISTE_SALLES = "../../../Salles/liste-salles.csv";
 
 /**
  * Cette fonction permet de créer une liste de salles
  *
  * @return array
  */
+
 function creerListeSalles()
 {
-    $monFichier = fopen(CHEMIN_LISTE_SALLES, "r");
+    $monFichier = fopen($CHEMIN_LISTE_SALLES, "r");
 
     // Récupérer les données du CSV dans un tableau
 
