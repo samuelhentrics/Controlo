@@ -1,9 +1,9 @@
 <?php
 
-include(dirname(dirname(__FILE__))."../../class/Controle.php");
+// include(dirname(dirname(__FILE__))."../../class/Controle.php");
 
-DEFINE("CHEMIN_LISTE_CONTROLES", dirname(dirname(__FILE__))."../../CSV/controles/liste-controles.csv");
-
+DEFINE("CHEMIN_LISTE_CONTROLES", $CSV_CONTROLES.$NOM_FICHIER_LISTE_CONTROLES);
+include($CLASS_FOLDER.$FICHIER_CONTROLE_PHP);
 /**
  * Cette fonction retourne la liste des contrôles sans les liens
  *
@@ -23,7 +23,6 @@ function creerListeControles(){
 
         // On enleve l'entete
         fgetcsv($monFichier, null, ";");
-
         // Lecture du reste du CSV
         while ($data = fgetcsv($monFichier, null, ";")) {
             // Création d'un contrôle de la ligne actuelle
