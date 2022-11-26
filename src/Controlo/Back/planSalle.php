@@ -1,7 +1,11 @@
-<section>
-    <h1>Plan de la salle <?php print($_GET["salle"]); ?></h1>
-    <table class="table table-striped table-bordered">
-        <?php
+<div class="container">
+    <div class="col-12">
+        <br>
+
+        <section>
+            <h1>Plan de la salle <?php print($_GET["salle"]); ?></h1>
+            <table class="table table-striped table-bordered">
+                <?php
                 include($FONCTION_CREER_PLAN_SALLE);
 
                 $plan = creerPlanSalle($_GET["salle"])->getPlan();
@@ -35,5 +39,8 @@
                     print("</tr>");
                 }
                 ?>
-    </table>
-</section>
+            </table>
+        </section>
+
+    </div>
+</div>

@@ -2,8 +2,8 @@
 
 
 
-include(dirname(dirname(__FILE__))."../../class/Plan.php");
-include(dirname(dirname(__FILE__))."../../class/Zone.php");
+include($CLASS_PATH.$CLASS_PLAN_FILE_NAME);
+include($CLASS_PATH.$CLASS_ZONE_FILE_NAME);
 
 /**
  * Retourne un Plan de Salle si cette Salle existe
@@ -14,13 +14,13 @@ include(dirname(dirname(__FILE__))."../../class/Zone.php");
 function creerPlanSalle($nomSalle)
 {
     include("config.php");
-    $nomFichier = $CSV_SALLES . $nomSalle . ".csv";
+    $nomFichier = $CSV_SALLES_PATH . $nomSalle . ".csv";
     $monFichier = fopen($nomFichier, "r");
 
     // Créer le plan de la salle en lisant le fichier CSV s'il existe
 
     if (!($monFichier)) {
-        print("Cette salle n'existe pas \n");
+        print("Cette salle n'existe pas <br>");
         exit;
     } else {
         // Création d'un objet unPlan

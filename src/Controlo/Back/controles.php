@@ -1,35 +1,39 @@
-<script>
-var lien = "<?php echo $JS_FOLDER ?>";
-$(document).ready(function() {
-    $('#controles').DataTable({
-        "language": {
-            "url": lien + "/French.json"
-        },
+<div class="container">
+    <div class="col-12">
+        <br>
 
-        order: [
-            [1, 'asc'],
-            [2, 'asc']
-        ]
+        <script>
+        var lien = "<?php echo $JS_PATH ?>";
+        $(document).ready(function() {
+            $('#controles').DataTable({
+                "language": {
+                    "url": lien + "/French.json"
+                },
 
-    });
-});
-</script>
-<section>
-    <h1>Liste des contrôles</h1>
-    <table id="controles" class="table table-striped table-bordered" style="width:100%">
-        <thead>
-            <tr>
-                <th>Nom long</th>
-                <th>Date</th>
-                <th>Heure</th>
-                <th>Tiers-temps</th>
-                <th>Promotion(s)</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
+                order: [
+                    [1, 'asc'],
+                    [2, 'asc']
+                ]
 
-            <?php
+            });
+        });
+        </script>
+        <section>
+            <h1>Liste des contrôles</h1>
+            <table id="controles" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Nom long</th>
+                        <th>Date</th>
+                        <th>Heure</th>
+                        <th>Tiers-temps</th>
+                        <th>Promotion(s)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <?php
             include($FONCTION_CREER_LISTE_CONTROLES);
             include($FONCTION_AJOUTER_MINUTES_HEURE);
 
@@ -100,6 +104,9 @@ $(document).ready(function() {
                 ");
             }
             ?>
-        </tbody>
-    </table>
-</section>
+                </tbody>
+            </table>
+        </section>
+
+    </div>
+</div>

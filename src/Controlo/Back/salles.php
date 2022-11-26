@@ -1,32 +1,35 @@
-<script>
-    var lien = "<?php echo $JS_FOLDER ?>";
-    $(document).ready(function() {
-        $('#salles').DataTable({
-            "language": {
-                "url": lien + "/French.json"
-            },
+<div class="container">
+    <div class="col-12">
+        <br>
 
-            order: [
-                [1, 'asc'],
-                [2, 'asc']
-            ]
+        <script>
+        var lien = "<?php echo $JS_PATH ?>";
+        $(document).ready(function() {
+            $('#salles').DataTable({
+                "language": {
+                    "url": lien + "/French.json"
+                },
 
+                order: [
+                    [1, 'asc'],
+                    [2, 'asc']
+                ]
+
+            });
         });
-    });
-</script>
-<main>
-    <section>
-        <h1>Liste des salles</h1>
-        <table id="salles" class="table table-striped table-bordered" style="width:100%">
-            <thead>
-                <tr>
-                    <th>Nom de la Salle</th>
-                    <th>Salle voisine</th>
-                    <th>Etat du plan</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
+        </script>
+        <section>
+            <h1>Liste des salles</h1>
+            <table id="salles" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Nom de la Salle</th>
+                        <th>Salle voisine</th>
+                        <th>Etat du plan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
                     include($FONCTION_CREER_LISTE_SALLES);
 
                     $listeSalles = creerListeSalles();
@@ -69,7 +72,8 @@
                     }
                     ?>
 
-            </tbody>
-        </table>
-    </section>
-</main>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>
