@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['config_2ephp_0',['config.php',['../config_8php.html',1,'']]],
-  ['contraintesespacement_1',['ContraintesEspacement',['../class_contraintes_espacement.html',1,'']]],
-  ['contraintesgenerales_2',['ContraintesGenerales',['../class_contraintes_generales.html',1,'']]],
-  ['controle_3',['Controle',['../class_controle.html',1,'']]],
-  ['controle_2ephp_4',['Controle.php',['../_controle_8php.html',1,'']]]
+  ['ajoutercontrole_0',['ajouterControle',['../class_promotion.html#a1bf4b4ae789c4ddfbb720d1121d13cf2',1,'Promotion']]],
+  ['ajouteretudiant_1',['ajouterEtudiant',['../class_promotion.html#a3313addd7f7105e39ddb83828dc493b7',1,'Promotion']]],
+  ['ajouterplandeplacement_2',['ajouterPlanDePlacement',['../class_controle.html#aad1348289b9a21a11d01c0d3a7d2263a',1,'Controle']]],
+  ['ajouterpromotion_3',['ajouterPromotion',['../class_controle.html#a6846fafe7b51ccfbd5cf81441cd97733',1,'Controle']]],
+  ['ajoutersalle_4',['ajouterSalle',['../class_controle.html#a58c6881b9c583c475e3438ee27fc3fb0',1,'Controle']]]
 ];

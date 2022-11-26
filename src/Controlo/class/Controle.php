@@ -83,6 +83,28 @@ class Controle
      */
     private $mesPlansDePlacement = array();
 
+    // Constructeur
+
+    /**
+     * @brief Constructeur du Controle
+     *
+     * @param string $unNomLong Nom long du Controle
+     * @param string $unNomCourt Nom court du Controle
+     * @param int $uneDuree Durée du Controle
+     * @param string $uneDate Date du Controle (au format YYYY-MM-DD)
+     * @param string $uneHeureNonTT Heure non tiers-temps (au format HH:MM)
+     * @param string $uneHeureTT Heure tiers-temps (au format HH:MM)
+     */
+    function __construct($unNomLong, $unNomCourt, $uneDuree, $uneDate, $uneHeureNonTT, $uneHeureTT) {
+        $this->setNomLong($unNomLong);
+        $this->setNomCourt($unNomCourt);
+        $this->setDuree($uneDuree);
+        $this->setDate($uneDate);
+        $this->setHeureNonTT($uneHeureNonTT);
+        $this->setHeureTT($uneHeureTT);
+    }
+
+
     // Encapsulation
 
     /**

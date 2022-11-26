@@ -29,12 +29,14 @@ var menudata={children:[
 {text:"Index des structures de données",url:"classes.html"},
 {text:"Champs de donnée",url:"functions.html",children:[
 {text:"Tout",url:"functions.html",children:[
+{text:"_",url:"functions.html#index__5F"},
 {text:"a",url:"functions.html#index_a"},
 {text:"d",url:"functions.html#index_d"},
 {text:"g",url:"functions.html#index_g"},
 {text:"l",url:"functions.html#index_l"},
 {text:"s",url:"functions.html#index_s"}]},
 {text:"Fonctions",url:"functions_func.html",children:[
+{text:"_",url:"functions_func.html#index__5F"},
 {text:"a",url:"functions_func.html#index_a"},
 {text:"d",url:"functions_func.html#index_d"},
 {text:"g",url:"functions_func.html#index_g"},
@@ -44,6 +46,8 @@ var menudata={children:[
 {text:"Liste des fichiers",url:"files.html"},
 {text:"Variables globale",url:"globals.html",children:[
 {text:"Tout",url:"globals.html",children:[
-{text:"$",url:"globals.html#index__24"}]},
+{text:"$",url:"globals.html#index__24"},
+{text:"c",url:"globals.html#index_c"}]},
+{text:"Fonctions",url:"globals_func.html"},
 {text:"Variables",url:"globals_vars.html",children:[
 {text:"$",url:"globals_vars.html#index__24"}]}]}]}]}
