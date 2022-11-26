@@ -98,6 +98,18 @@
 
                 // Bouton pour Générer
 
+                if ($listeControles[$i]->controleInfoComplet()){
+                    print("
+                    <a href=\"\">
+                        <i class=\"fa-solid fa-arrow-rotate-right text-dark\"></i>
+                    </a>");
+                }
+                else{
+                    print("<i class=\"fa-solid fa-circle text-danger\"></i>");
+                }
+                
+
+
                 print("
                         </td>
                         </tr>

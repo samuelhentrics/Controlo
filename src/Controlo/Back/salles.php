@@ -61,9 +61,14 @@
 
                         // Afficher si le plan existe ou non
                         if ($listeSalles[$i]->getMonPlan() != null) {
-                            print("Plan existant");
+                            print("<i class=\"fa-solid fa-circle text-success\"></i> ");
+                            print("- <a class=\"text-reset fw-bold text-decoration-none\"
+                                    href=\"$PAGE_SALLES_PATH&salle={$listeSalles[$i]->getNom()}\">
+                                    Aperçu
+                                    <i class=\"fa-solid fa-arrow-right\"></i>
+                                    </a>");
                         } else {
-                            print("Plan inexistant");
+                            print("<i class=\"fa-solid fa-circle text-danger\"></i>");
                         }
                         print("
                             </td>

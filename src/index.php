@@ -16,6 +16,7 @@
         <script src="<?php echo $JS_PATH; ?>jquery.dataTables.min.js"></script>
         <script src="<?php echo $JS_PATH; ?>bootstrap.bundle.min.js"></script>
         <script src="<?php echo $JS_PATH; ?>datatables.bootstrap5.js"></script>
+        <script src="https://kit.fontawesome.com/1c7be7f624.js" crossorigin="anonymous"></script>
 
     </head>
 

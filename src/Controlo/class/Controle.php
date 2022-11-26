@@ -334,4 +334,21 @@ class Controle
         return ($this->duree)*3/4;
     }
 
+    /**
+     * @brief Retourne vrai si le Controle a toutes les informations, faux sinon
+     *
+     * @return boolean
+     */
+    public function controleInfoComplet(){
+        if($this->getNomLong()!=null and $this->getNomCourt()!=null
+            and $this->getDate()!= null and $this->getDuree()!=null
+            and $this->getHeureTT()!=null and $this->getHeureNonTT()!=null
+            and $this->getMesPromotions()!=null and $this->getMesSalles()!=null){
+                return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 }
