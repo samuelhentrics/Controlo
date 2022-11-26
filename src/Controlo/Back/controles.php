@@ -1,9 +1,23 @@
-<?php
+<main>
+        <script>
+        var lien="<?php echo $JS_FOLDER ?>";    
+        $(document).ready(function() {
+            $('#controles').DataTable({
+                "language": {
+                    "url": lien+"/French.json"
+                },
 
-echo '<main>
+                order: [
+                    [1, 'asc'],
+                    [2, 'asc']
+                ]
+
+            });
+        });
+    </script>
         <section>
             <h1>Liste des contrôles</h1>
-            <table id="controles" class="display" style="width:100%">
+            <table id="controles" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
                         <th>Nom long</th>
@@ -14,7 +28,9 @@ echo '<main>
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>';
+                <tbody>
+
+<?php 
 include($FONCTION_CREER_LISTE_CONTROLES);
 include($FONCTION_AJOUTER_MINUTES_HEURE);
 
@@ -69,9 +85,10 @@ for ($i = 0; $i <= count($listeControles) - 1; $i++) {
     print("</td>
                                         </tr>");
 }
-echo '
+?>
+
                             </tbody>
                         </table>
             
                     </section>
-                </main>';
+                </main>

@@ -58,7 +58,7 @@ $NOM_FICHIER_LISTE_CONTROLES = "liste-controles.csv";
 // FRONT
 
 $CSS_FOLDER = $FRONT_FOLDER."css/";
-$IMG_FOLDER = $FRONT_FOLDER."img/";
+$IMG_FOLDER = $FRONT_FOLDER."images/";
 $JS_FOLDER = $FRONT_FOLDER."js/";
 
 // LIENS DES PAGES

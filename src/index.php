@@ -6,7 +6,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Controlo</title>
         <?php include("config.php"); ?>
-        <link href="<?php echo $CSS_FOLDER; ?>bootstrap.min.css" rel="stylesheet" >
+
+        <!-- CSS -->
+        <link href="<?php echo $CSS_FOLDER; ?>bootstrap.min.css" rel="stylesheet">
+        <link href="<?php echo $CSS_FOLDER; ?>datatables.bootstrap5.css" rel="stylesheet">
+
+        <!-- Javascript -->
+        <script src="<?php echo $JS_FOLDER; ?>jquery.min.js"></script>
+        <script src="<?php echo $JS_FOLDER; ?>jquery.dataTables.min.js"></script>
+        <script src="<?php echo $JS_FOLDER; ?>bootstrap.bundle.min.js"></script>
+        <script src="<?php echo $JS_FOLDER; ?>datatables.bootstrap5.js"></script>
+
     </head>
 
     <body>
@@ -44,7 +54,7 @@
                 <br>
                 <?php
                 // Ce switch:
-                $i ='controle';
+                $i = 'controle';
                 switch ($i) {
                     case 'controle':
                         // echo "<h1> Affichage Controle </h1>";
@@ -57,13 +67,8 @@
                         echo "i égal 2";
                         break;
                 }
-
-                function afficherControle(){
-                    include("config.php");
-                    
-                }
                 ?>
-                
+
             </div>
         </div>
 
@@ -71,10 +76,7 @@
             Controlo | Mentions Légales | Politique de Confidentialité
         </footer>
 
-        <!-- Javascript -->
-        <script src="<?php echo $JS_FOLDER; ?>jquery.min.js"></script>
-        <script src="<?php echo $JS_FOLDER; ?>bootstrap.bundle.min.js">
-        </script>
+
     </body>
 
     </html>
