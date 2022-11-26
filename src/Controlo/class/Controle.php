@@ -1,12 +1,26 @@
 <?php
 /**
+ * @file Controle.php
+ * @author Samuel HENTRICS LOISTINE <samuel.hentrics@gmail.com>
+ * @brief Spécification de la classe Controle
+ * @details Represente une Plan par son nom long, court, sa date, son heure tiers-temps,
+ * son heure non tiers-temps, sa durée totale (TT), ses Promotion, ses Salle,
+ * ses PlanDePlacement
+ * 
+ * @version 1.0
+ * @date 2022-11-26
+ * 
+ * 
+ */
+
+/**
  * @brief Classe Controle permettant de définir un contrôle
  */
 class Controle
 {
     // Variables
     /**
-     * Nom long du Controle
+     * @brief Nom long du Controle
      *
      * @var string
      */
@@ -14,56 +28,56 @@ class Controle
     private $nomLong;
 
     /**
-     * Nom court du Controle
+     * @brief Nom court du Controle
      *
      * @var string
      */
     private $nomCourt;
 
     /**
-     * Date de quand se passe le Controle
+     * @brief Date de quand se passe le Controle
      *
      * @var string
      */
     private $date;
 
     /**
-     * Durée totale du Controle (tiers temps compris) exprimée en minutes
+     * @brief Durée totale du Controle (tiers temps compris) exprimée en minutes
      *
      * @var int
      */
     private $duree;
 
     /**
-     * Heure à laquelle les tiers-temps débutent leur Controle
+     * @brief Heure à laquelle les tiers-temps débutent leur Controle
      *
      * @var string
      */
     private $heureTT;
 
     /**
-     * Heure à laquelle les non tiers-temps débutent leur Controle
+     * @brief Heure à laquelle les non tiers-temps débutent leur Controle
      *
      * @var string
      */
     private $heureNonTT;
 
     /**
-     * Liste des promotions qui participent à ce Controle
+     * @brief Liste des Promotion qui participent à ce Controle
      *
      * @var array
      */
     private $mesPromotions = array();
 
     /**
-     * Liste des salles où se déroulent le Controle
+     * @brief Liste des Salle où se déroulent le Controle
      *
      * @var array
      */
     private $mesSalles = array();
 
     /**
-     * Liste des plans de placement générés par le Controle
+     * @brief Liste des PlanDePlacement générée par le Controle
      *
      * @var array
      */
@@ -72,7 +86,7 @@ class Controle
     // Encapsulation
 
     /**
-     * Retourne le nom long du Controle
+     * @brief Retourne le nom long du Controle
      *
      * @return string
      */
@@ -82,7 +96,7 @@ class Controle
     }
 
     /**
-     * Permet d'affecter un nom long à un Controle
+     * @brief Permet d'affecter un nom long à un Controle
      *
      * @param string $nouveauNomLong Nom long du contrôle à affecter
      */
@@ -92,7 +106,7 @@ class Controle
     }
 
     /**
-     * Retourne le nom court du Controle
+     * @brief Retourne le nom court du Controle
      *
      * @return string
      */
@@ -102,7 +116,7 @@ class Controle
     }
 
     /**
-     * Permet d'affecter un nom court à un Controle
+     * @brief Permet d'affecter un nom court à un Controle
      *
      * @param string $nouveauNomCourt Nom court du contrôle à affecter
      */
@@ -112,7 +126,7 @@ class Controle
     }
 
     /**
-     * Retourne la date du Controle
+     * @brief Retourne la date du Controle
      *
      * @return string
      */
@@ -122,7 +136,7 @@ class Controle
     }
 
     /**
-     * Permet d'affecter une date à un Controle
+     * @brief Permet d'affecter une date à un Controle
      *
      * @param string $nouvelleDate Date du contrôle à affecter
      */
@@ -132,7 +146,7 @@ class Controle
     }
 
     /**
-     * Retourne la durée totale (tiers-temps compris) du Controle
+     * @brief Retourne la durée totale (tiers-temps compris) du Controle
      *
      * @return string
      */
@@ -142,7 +156,7 @@ class Controle
     }
 
     /**
-     * Permet d'affecter une durée à un Controle
+     * @brief Permet d'affecter une durée à un Controle
      *
      * @param int $nouvelleDuree Durée totale du contrôle à affecter
      */
@@ -152,7 +166,7 @@ class Controle
     }
 
     /**
-     * Retourne l'heure de quand commence un étudiant non tiers-temps
+     * @brief Retourne l'heure de quand commence un étudiant non tiers-temps
      *
      * @return string 
      */
@@ -162,7 +176,7 @@ class Controle
     }
 
     /**
-     * Permet d'affecter l'heure du début du Controle pour un étudiant non tiers-temps
+     * @brief Permet d'affecter l'heure du début du Controle pour un étudiant non tiers-temps
      *
      * @param string $nouvelleHeureNonTT Heure non tiers temps du contrôle à affecter
      */
@@ -172,7 +186,7 @@ class Controle
     }
 
     /**
-     * Retourne l'heure de quand commence un étudiant tiers-temps
+     * @brief Retourne l'heure de quand commence un étudiant tiers-temps
      *
      * @return string 
      */
@@ -182,7 +196,7 @@ class Controle
     }
 
     /**
-     * Permet d'affecter l'heure du début du Controle pour un étudiant tiers-temps
+     * @brief Permet d'affecter l'heure du début du Controle pour un étudiant tiers-temps
      *
      * @param string $nouvelleHeureTT Heure tiers-temps du contrôle à affecter
      */
@@ -195,7 +209,7 @@ class Controle
 
 
     /**
-     * Permet d'ajouter une Promotion à la liste de promotions participant au Controle
+     * @brief Permet d'ajouter une Promotion à la liste de promotions participant au Controle
      *
      * @param Promotion $unePromotion Promotion participant au contrôle à ajouter
      */
@@ -207,7 +221,7 @@ class Controle
     }
 
     /**
-     * Permet de supprimer une Promotion de la liste de promotions participant au Controle
+     * @brief Permet de supprimer une Promotion de la liste de promotions participant au Controle
      *
      * @param Promotion $unePromotion Promotion participant au contrôle à supprimer
      */
@@ -219,7 +233,7 @@ class Controle
     }
 
     /**
-     * Retourne les Promotion du Controle
+     * @brief Retourne les Promotion du Controle
      *
      * @return array
      */
@@ -228,7 +242,7 @@ class Controle
     }
 
     /**
-     * Permet d'ajouter une Salle à la liste des salles du Controle
+     * @brief Permet d'ajouter une Salle à la liste des salles du Controle
      *
      * @param Salle $uneSalle Salle participant au contrôle à ajouter
      */
@@ -240,7 +254,7 @@ class Controle
     }
 
     /**
-     * Permet de supprimer une Salle de la liste des salles du Controle
+     * @brief Permet de supprimer une Salle de la liste des salles du Controle
      *
      * @param Salle $uneSalle Salle participant au contrôle à supprimer
      */
@@ -252,7 +266,7 @@ class Controle
     }
 
     /**
-     * Retourne la liste des Salle affectés au Controle
+     * @brief Retourne la liste des Salle affectés au Controle
      *
      */
     public function getMesSalles(){
@@ -260,7 +274,7 @@ class Controle
     }
 
     /**
-     * Permet d'ajouter un PlanDePlacement à la liste des plans de placement du Controle
+     * @brief Permet d'ajouter un PlanDePlacement à la liste des plans de placement du Controle
      *
      * @param PlanDePlacement $unPlanDePlacement Plan de Placement du contrôle à ajouter
      */
@@ -272,7 +286,7 @@ class Controle
     }
 
     /**
-     * Permet de supprimer un PlanDePlacement de la liste des plans de placement du Controle
+     * @brief Permet de supprimer un PlanDePlacement de la liste des plans de placement du Controle
      *
      * @param PlanDePlacement $unPlanDePlacement Plan de Placement du contrôle à supprimer
      */
@@ -290,7 +304,7 @@ class Controle
     // METHODES SPECIFIQUES
     
     /**
-     * Retourne la durée totale pour un étudiant non tiers temps
+     * @brief Retourne la durée totale pour un étudiant non tiers temps
      *
      * @return int
      */
