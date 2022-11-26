@@ -1,8 +1,9 @@
 <?php
 
 
+DEFINE("CHEMIN_LISTE_SALLES", $CSV_SALLES.$NOM_FICHIER_LISTE_SALLES);
+include($CLASS_FOLDER.$FICHIER_SALLE_PHP);
 
-$CHEMIN_LISTE_SALLES = "../../../Salles/liste-salles.csv";
 
 /**
  * Cette fonction permet de créer une liste de salles
@@ -12,7 +13,7 @@ $CHEMIN_LISTE_SALLES = "../../../Salles/liste-salles.csv";
 
 function creerListeSalles()
 {
-    $monFichier = fopen($CHEMIN_LISTE_SALLES, "r");
+    $monFichier = fopen(CHEMIN_LISTE_SALLES, "r");
 
     // Récupérer les données du CSV dans un tableau
 
