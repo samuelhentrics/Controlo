@@ -1,6 +1,6 @@
 <?php
 /**
- * Classe Salle permettant de définir le nom de la Salle, son plan et son voisin s'il existe
+ * @brief Classe Salle permettant de définir le nom de la Salle, son Plan et son voisin s'il existe
  */
 class Salle
 {

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Classe ContraintesEspacement permettant de définir les contraintes d'espacement
+ * @brief Classe ContraintesEspacement permettant de définir les contraintes d'espacement
  */
 class ContraintesEspacement
 {

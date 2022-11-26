@@ -1,6 +1,6 @@
 <?php
 /**
- * Classe Promotion permettant de définir une promotion
+ * @brief Classe Promotion permettant de définir une Promotion
  */
 class Promotion
 {

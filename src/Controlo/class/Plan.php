@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plan d'une Salle composée de plusieurs zones
+ * @brief Plan d'une Salle composée de plusieurs Zone
  */
 class Plan{
 

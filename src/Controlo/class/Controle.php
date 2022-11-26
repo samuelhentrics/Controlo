@@ -1,6 +1,6 @@
 <?php
 /**
- * Classe Controle permettant de définir un contrôle
+ * @brief Classe Controle permettant de définir un contrôle
  */
 class Controle
 {

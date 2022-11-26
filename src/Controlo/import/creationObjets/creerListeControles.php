@@ -5,7 +5,7 @@
 DEFINE("CHEMIN_LISTE_CONTROLES", $CSV_CONTROLES_FOLDER_NAME.$LISTE_CONTROLES_FILE_NAME);
 include($CLASS_PATH.$CLASS_CONTROLE_FILE_NAME);
 /**
- * Cette fonction retourne la liste des contrôles sans les liens
+ * @brief Cette fonction retourne la liste des contrôles sans les liens
  *
  * @return array
  */
