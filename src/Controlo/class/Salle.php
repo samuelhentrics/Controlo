@@ -1,5 +1,17 @@
 <?php
 /**
+ * @file Salle.php
+ * @author Samuel HENTRICS LOISTINE <samuel.hentrics@gmail.com>
+ * @brief Spécification de la classe Salle
+ * @details Represente une Salle par son nom et son Plan
+ * 
+ * @version 1.0
+ * @date 2022-11-26
+ * 
+ * 
+ */
+
+/**
  * @brief Classe Salle permettant de définir le nom de la Salle, son Plan et son voisin s'il existe
  */
 class Salle
@@ -8,21 +20,21 @@ class Salle
     //VARIABLES
 
     /**
-     * Nom de la Salle
+     * @brief Nom de la Salle
      *
      * @var string
      */
     private $nom;
 
     /**
-     * Plan appartenant à la Salle
+     * @brief Plan appartenant à la Salle
      *
      * @var Plan
      */
     private $monPlan;
 
     /**
-     * Voisin de la Salle s'il en existe un (Salle double)
+     * @brief Voisin de la Salle s'il en existe un (Salle double)
      *
      * @var Salle
      */
@@ -31,7 +43,7 @@ class Salle
     //ENCAPSULATION
 
     /**
-     * Retourne le nom de la Salle
+     * @brief Retourne le nom de la Salle
      *
      * @return string
      */
@@ -41,7 +53,7 @@ class Salle
     }
 
     /**
-     * Affecte un nom à la Salle
+     * @brief Affecte un nom à la Salle
      *
      * @param string $nouveauNom
      */
@@ -51,7 +63,7 @@ class Salle
     }
 
     /**
-     * Retourne le Plan de la Salle
+     * @brief Retourne le Plan de la Salle
      *
      * @return Plan
      */
@@ -61,7 +73,7 @@ class Salle
     }
 
     /**
-     * Affecte un Plan à la Salle
+     * @brief Affecte un Plan à la Salle
      *
      * @param Plan $nouveauPlan
      */
@@ -72,7 +84,7 @@ class Salle
     }
 
     /**
-     * Retourne le voisin de la Salle s'il existe
+     * @brief Retourne le voisin de la Salle s'il existe
      *
      * @return Salle
      */
@@ -82,7 +94,7 @@ class Salle
     }
 
     /**
-     * Affecte un voisin à la Salle
+     * @brief Affecte un voisin à la Salle
      *
      * @param Salle $nouveauVoisin
      */
@@ -92,7 +104,7 @@ class Salle
     }
 
     /**
-     * Permet de lier un voisin à une Salle
+     * @brief Permet de lier un voisin à une Salle
      *
      * @param Salle $unVoisin
      */
@@ -106,7 +118,7 @@ class Salle
     }
 
     /**
-     * Permet de délier le voisin actuellement lié à la Salle
+     * @brief Permet de délier le voisin actuellement lié à la Salle
      *
      */
     public function delierVoisin(){
