@@ -1,5 +1,15 @@
 <?php
-
+/**
+ * @file Plan.php
+ * @author Samuel HENTRICS LOISTINE <samuel.hentrics@gmail.com>
+ * @brief Spécification de la classe Plan
+ * @details Represente une Plan par son plan
+ * 
+ * @version 1.0
+ * @date 2022-11-26
+ * 
+ * 
+ */
 /**
  * @brief Plan d'une Salle composée de plusieurs Zone
  */
@@ -8,7 +18,7 @@ class Plan{
     // ATTRIBUTS
 
     /**
-     * Liste d'une liste de Zone (tableau à double dimension)
+     * @brief Liste d'une liste de Zone (tableau à double dimension)
      *
      * @var array
      */
@@ -17,7 +27,7 @@ class Plan{
     // ENCAPSULATION
 
     /**
-     * Retourne le plan composé de Zone d'un objet Plan
+     * @brief Retourne le plan composé de Zone d'un objet Plan
      *
      * @return array
      */
@@ -26,7 +36,7 @@ class Plan{
     }
 
     /**
-     * Affecte un Plan à un plan de Zone
+     * @brief Affecte un Plan à un plan de Zone
      *
      * @param array $unPlan Plan d'une Salle
      */
@@ -37,7 +47,7 @@ class Plan{
     // Méthodes spécifiques
 
     /**
-     * Ajoute une Zone au Plan
+     * @brief Ajoute une Zone au Plan
      *
      * @param Zone $uneZone Zone d'une Salle
      */
@@ -48,18 +58,17 @@ class Plan{
     }
 
     /**
-     * Supprime une Zone à une ligne et une colonne
+     * @brief Supprime une Zone à une ligne et une colonne
      *
      * @param int $numLigne Numéro de ligne de la Zone
      * @param int $numCol   Numéro de colonne de la Zone
-     * @return void
      */
     public function delierUneZone($numLigne, $numCol){
         $this->monPlan[$numLigne][$numCol] = null;
     }
 
     /**
-     * Retourne le nombre de rangées du Plan (= nombre de lignes)
+     * @brief Retourne le nombre de rangées du Plan (= nombre de lignes)
      *
      * @return int
      */
@@ -68,7 +77,7 @@ class Plan{
     }
 
     /**
-     * Retourne le nombre de colonnes du Plan
+     * @brief Retourne le nombre de colonnes du Plan
      *
      * @return void
      */
@@ -77,7 +86,7 @@ class Plan{
     }
 
     /**
-     * Retourne le nombre de Zone de type place sur une ligne
+     * @brief Retourne le nombre de Zone de type place sur une ligne
      *
      * @return int
      */
