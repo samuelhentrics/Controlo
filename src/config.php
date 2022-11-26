@@ -63,9 +63,9 @@ $JS_FOLDER = $FRONT_FOLDER."js/";
 
 // LIENS DES PAGES
 
-$CONTROLES = $PATH."Controles/";
-$ETUDIANTS = $PATH."Etudiants/";
-$SALLES = $PATH."Salles/";
+$CONTROLES = $PATH."index.php?page=controles";
+$ETUDIANTS = $PATH."index.php?page=etudiants";
+$SALLES = $PATH."index.php?page=salles";
 
 //fonction
 $FONCTION_DIR = $RESSOURCES_FOLDER."import/";

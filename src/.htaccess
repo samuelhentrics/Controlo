@@ -1,3 +1,4 @@
-# Redirection pour les pages principales Controles/
-RewriteEngine On
-RewriteRule ^Controles$ /src/index.php [L]
+# Redirection pour les pages principales
+# (x = /Controles, /Etudiants, /Salles) -> index.php?page=x
+
+# Pas encore programmé

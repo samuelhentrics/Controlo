@@ -20,62 +20,36 @@
     </head>
 
     <body>
-        <header>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">
-                        <img src="<?php echo $IMG_FOLDER . 'logo.png'; ?>" alt="Logo de Controlo" height="24" class="d-inline-block align-text-top">
-                        Controlo
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarColor01">
-                        <ul class="navbar-nav me-auto">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="<?php echo $PATH; ?>">Accueil</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?php echo $CONTROLES; ?>">Controles</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?php echo $ETUDIANTS; ?>">Etudiants</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?php echo $SALLES; ?>">Salles</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
+        <?php include($BACK_FOLDER."header.php"); ?>
+
         <div class="container">
             <div class="col-12">
                 <br>
                 <?php
-                // Ce switch:
-                $i = 'controle';
-                switch ($i) {
-                    case 'controle':
-                        // echo "<h1> Affichage Controle </h1>";
-                        include($BACK_FOLDER . "Controles.php");
-                        break;
-                    case 1:
-                        echo "i égal 1";
-                        break;
-                    case 2:
-                        echo "i égal 2";
-                        break;
+                if (isset($_GET['page'])) {
+                    $page = $_GET['page'];
+                    if ($page == "controles") {
+                        include($BACK_FOLDER."controles.php");
+                    }
+                    else if ($page == "etudiants") {
+                        include($BACK_FOLDER."etudiants.php");
+                    }
+                    else if ($page == "salles") {
+                        include($BACK_FOLDER."salles.php");
+                    }
+                    else {
+                        include($BACK_FOLDER."accueil.php");
+                    }
+                } else {
+                    include($BACK_FOLDER."accueil.php");
                 }
+
                 ?>
 
             </div>
         </div>
 
-        <footer>
-            Controlo | Mentions Légales | Politique de Confidentialité
-        </footer>
-
+        <?php include($BACK_FOLDER."footer.php"); ?>
 
     </body>
 
