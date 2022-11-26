@@ -1,6 +1,6 @@
 <section>
     <h1>Plan de la salle <?php print($_GET["salle"]); ?></h1>
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered">
         <?php
                 include($FONCTION_CREER_PLAN_SALLE);
 
