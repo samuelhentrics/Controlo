@@ -23,9 +23,9 @@
     <a href="https://github.com/samuelhentrics/S3.01A-Developpement-d-application-et-Gestion-de-projet/tree/master/docs"><strong>Voir les documents »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/samuelhentrics/S3.01A-Developpement-d-application-et-Gestion-de-projet/issues/1">Reporter un bug</a>
+    <a href="https://github.com/samuelhentrics/S3.01A-Developpement-d-application-et-Gestion-de-projet/issues/">Reporter un bug</a>
     ·
-    <a href="https://github.com/samuelhentrics/S3.01A-Developpement-d-application-et-Gestion-de-projet/issues/2">Proposer des fonctionnalités</a>
+    <a href="https://github.com/samuelhentrics/S3.01A-Developpement-d-application-et-Gestion-de-projet/discussions/6">Proposer des fonctionnalités</a>
   </p>
 </div>
 
@@ -37,6 +37,9 @@
   <ol>
     <li>
       <a href="#a-propos-du-projet">A propos du projet</a>
+    </li>
+    <li>
+      <a href="#pitch-de-la-fonctionnalité-retenu">Pitch de la fonctionnalité retenue</a>
     </li>
     <li>
       <a href="#hierarchie-du-projet">Hiérarchie du projet</a>
@@ -54,7 +57,7 @@
 
 L'application que nous développons est une application web. Celle-ci permet gérer le placement des étudiants lors des contrôles à travers la création de plans de placement et de feuilles d’émargements, elle a un but professionnel puisqu'elle s'adresse à l'administration du département informatique de l'IUT de Bayonne et du Pays Basque. 
 
-## Pitch de la fonctionnalité retenu
+## Pitch de la fonctionnalité retenue
 
 La fonctionnalité que nous avons retenue pour notre application est le placement automatique des étudiants. Celui-ci se base sur des plans de salles qui seront fournis en CSV où on va venir appliquer de nombreuses contraintes qui définiront le placement :
 - Le nombre de places séparant les étudiants
