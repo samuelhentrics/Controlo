@@ -30,7 +30,7 @@
                 </thead>
                 <tbody>
                     <?php
-                    include($FONCTION_CREER_LISTE_SALLES);
+                    include($FONCTION_CREER_LISTE_SALLES_PATH);
 
                     $listeSalles = creerListeSalles();
 

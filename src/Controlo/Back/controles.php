@@ -34,8 +34,8 @@
                 <tbody>
 
                     <?php
-            include($FONCTION_CREER_LISTE_CONTROLES);
-            include($FONCTION_AJOUTER_MINUTES_HEURE);
+            include($FONCTION_CREER_LISTE_CONTROLES_PATH);
+            include($FONCTION_AJOUTER_MINUTES_HEURE_PATH);
 
             $listeControles = creerListeControles();
 
