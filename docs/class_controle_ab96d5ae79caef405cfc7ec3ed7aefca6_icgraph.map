@@ -1,0 +1,4 @@
+<map id="setHeureTT" name="setHeureTT">
+<area shape="rect" id="node1" title="Permet d&#39;affecter l&#39;heure du début du Controle pour un étudiant tiers&#45;temps." coords="144,5,232,31"/>
+<area shape="rect" id="node2" href="$class_controle.html#aee8ae86407065c23eac118e61004fbed" title="Constructeur du Controle." coords="5,5,96,31"/>
+</map>

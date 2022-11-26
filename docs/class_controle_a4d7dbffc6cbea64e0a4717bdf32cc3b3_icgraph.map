@@ -1,0 +1,4 @@
+<map id="getNomLong" name="getNomLong">
+<area shape="rect" id="node1" title="Retourne le nom long du Controle." coords="189,5,284,31"/>
+<area shape="rect" id="node2" href="$class_controle.html#a47d831ba2434d317951e61b64d169993" title="Retourne vrai si le Controle a toutes les informations, faux sinon." coords="5,5,141,31"/>
+</map>

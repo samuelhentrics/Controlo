@@ -1,0 +1,9 @@
+<map id="__construct" name="__construct">
+<area shape="rect" id="node1" title="Constructeur du Controle." coords="5,129,96,155"/>
+<area shape="rect" id="node2" href="$class_controle.html#a1768457ddad126963457c641d0aba117" title="Permet d&#39;affecter une date à un Controle." coords="166,5,233,31"/>
+<area shape="rect" id="node3" href="$class_controle.html#ab7bcae4b4c25ccd7ece197c31cf20353" title="Permet d&#39;affecter une durée à un Controle." coords="162,55,237,80"/>
+<area shape="rect" id="node4" href="$class_controle.html#a50d1808aeadfe4d51cf306841fd83c2f" title="Permet d&#39;affecter l&#39;heure du début du Controle pour un étudiant non tiers&#45;temps." coords="144,104,255,129"/>
+<area shape="rect" id="node5" href="$class_controle.html#ab96d5ae79caef405cfc7ec3ed7aefca6" title="Permet d&#39;affecter l&#39;heure du début du Controle pour un étudiant tiers&#45;temps." coords="155,153,243,179"/>
+<area shape="rect" id="node6" href="$class_controle.html#ac6dcf23a518441f3b0e9cf579c0130fb" title="Permet d&#39;affecter un nom court à un Controle." coords="150,203,249,228"/>
+<area shape="rect" id="node7" href="$class_controle.html#a3c3c21a4570486fbf54a3157d6d9f46c" title="Permet d&#39;affecter un nom long à un Controle." coords="152,252,247,277"/>
+</map>

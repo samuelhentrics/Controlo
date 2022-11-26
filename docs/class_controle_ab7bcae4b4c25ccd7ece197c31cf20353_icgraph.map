@@ -1,0 +1,4 @@
+<map id="setDuree" name="setDuree">
+<area shape="rect" id="node1" title="Permet d&#39;affecter une durée à un Controle." coords="144,5,219,31"/>
+<area shape="rect" id="node2" href="$class_controle.html#aee8ae86407065c23eac118e61004fbed" title="Constructeur du Controle." coords="5,5,96,31"/>
+</map>

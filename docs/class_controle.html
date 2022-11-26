@@ -9,10 +9,16 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -20,9 +26,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">Controlo
+   <div id="projectname">Controlo<span id="projectnumber">&#160;v1.0</span>
    </div>
+   <div id="projectbrief">Placer vos étudiants lors de vos contrôles</div>
   </td>
  </tr>
  </tbody>
@@ -46,6 +54,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('class_controle.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -67,7 +92,6 @@ $(function() {
 </div>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Fonctions membres publiques</a>  </div>
@@ -149,6 +173,9 @@ Fonctions membres publiques</h2></td></tr>
 <tr class="memitem:a5ed8416d4dadcd6d9e05b58369e6f532"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controle.html#a5ed8416d4dadcd6d9e05b58369e6f532">getDureeNonTT</a> ()</td></tr>
 <tr class="memdesc:a5ed8416d4dadcd6d9e05b58369e6f532"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne la durée totale pour un étudiant non tiers temps.  <a href="class_controle.html#a5ed8416d4dadcd6d9e05b58369e6f532">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a5ed8416d4dadcd6d9e05b58369e6f532"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47d831ba2434d317951e61b64d169993"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controle.html#a47d831ba2434d317951e61b64d169993">controleInfoComplet</a> ()</td></tr>
+<tr class="memdesc:a47d831ba2434d317951e61b64d169993"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne vrai si le <a class="el" href="class_controle.html" title="Classe Controle permettant de définir un contrôle.">Controle</a> a toutes les informations, faux sinon.  <a href="class_controle.html#a47d831ba2434d317951e61b64d169993">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a47d831ba2434d317951e61b64d169993"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p >Classe <a class="el" href="class_controle.html" title="Classe Controle permettant de définir un contrôle.">Controle</a> permettant de définir un contrôle. </p>
@@ -215,6 +242,20 @@ Fonctions membres publiques</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_controle_aee8ae86407065c23eac118e61004fbed_cgraph.png" border="0" usemap="#aclass_controle_aee8ae86407065c23eac118e61004fbed_cgraph" alt=""/></div>
+<map name="aclass_controle_aee8ae86407065c23eac118e61004fbed_cgraph" id="aclass_controle_aee8ae86407065c23eac118e61004fbed_cgraph">
+<area shape="rect" title="Constructeur du Controle." coords="5,129,96,155"/>
+<area shape="rect" href="class_controle.html#a1768457ddad126963457c641d0aba117" title="Permet d&#39;affecter une date à un Controle." coords="166,5,233,31"/>
+<area shape="rect" href="class_controle.html#ab7bcae4b4c25ccd7ece197c31cf20353" title="Permet d&#39;affecter une durée à un Controle." coords="162,55,237,80"/>
+<area shape="rect" href="class_controle.html#a50d1808aeadfe4d51cf306841fd83c2f" title="Permet d&#39;affecter l&#39;heure du début du Controle pour un étudiant non tiers&#45;temps." coords="144,104,255,129"/>
+<area shape="rect" href="class_controle.html#ab96d5ae79caef405cfc7ec3ed7aefca6" title="Permet d&#39;affecter l&#39;heure du début du Controle pour un étudiant tiers&#45;temps." coords="155,153,243,179"/>
+<area shape="rect" href="class_controle.html#ac6dcf23a518441f3b0e9cf579c0130fb" title="Permet d&#39;affecter un nom court à un Controle." coords="150,203,249,228"/>
+<area shape="rect" href="class_controle.html#a3c3c21a4570486fbf54a3157d6d9f46c" title="Permet d&#39;affecter un nom long à un Controle." coords="152,252,247,277"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -242,6 +283,15 @@ Fonctions membres publiques</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_controle_aad1348289b9a21a11d01c0d3a7d2263a_cgraph.png" border="0" usemap="#aclass_controle_aad1348289b9a21a11d01c0d3a7d2263a_cgraph" alt=""/></div>
+<map name="aclass_controle_aad1348289b9a21a11d01c0d3a7d2263a_cgraph" id="aclass_controle_aad1348289b9a21a11d01c0d3a7d2263a_cgraph">
+<area shape="rect" title="Permet d&#39;ajouter un PlanDePlacement à la liste des plans de placement du Controle." coords="5,5,171,31"/>
+<area shape="rect" href="class_controle.html#a38b37bb62363cceb31aa1f5015c766d9" title="Retourne la liste des Salle affectés au Controle." coords="219,5,320,31"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -268,6 +318,15 @@ Fonctions membres publiques</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_controle_a6846fafe7b51ccfbd5cf81441cd97733_cgraph.png" border="0" usemap="#aclass_controle_a6846fafe7b51ccfbd5cf81441cd97733_cgraph" alt=""/></div>
+<map name="aclass_controle_a6846fafe7b51ccfbd5cf81441cd97733_cgraph" id="aclass_controle_a6846fafe7b51ccfbd5cf81441cd97733_cgraph">
+<area shape="rect" title="Permet d&#39;ajouter une Promotion à la liste de promotions participant au Controle." coords="5,5,125,31"/>
+<area shape="rect" href="class_controle.html#ae3c56c69f74e5e6957ba0d2d0ed6a704" title="Retourne les Promotion du Controle." coords="173,5,304,31"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -294,6 +353,51 @@ Fonctions membres publiques</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_controle_a58c6881b9c583c475e3438ee27fc3fb0_cgraph.png" border="0" usemap="#aclass_controle_a58c6881b9c583c475e3438ee27fc3fb0_cgraph" alt=""/></div>
+<map name="aclass_controle_a58c6881b9c583c475e3438ee27fc3fb0_cgraph" id="aclass_controle_a58c6881b9c583c475e3438ee27fc3fb0_cgraph">
+<area shape="rect" title="Permet d&#39;ajouter une Salle à la liste des salles du Controle." coords="5,5,96,31"/>
+<area shape="rect" href="class_controle.html#a38b37bb62363cceb31aa1f5015c766d9" title="Retourne la liste des Salle affectés au Controle." coords="144,5,245,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a47d831ba2434d317951e61b64d169993" name="a47d831ba2434d317951e61b64d169993"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47d831ba2434d317951e61b64d169993">&#9670;&#160;</a></span>controleInfoComplet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">controleInfoComplet </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retourne vrai si le <a class="el" href="class_controle.html" title="Classe Controle permettant de définir un contrôle.">Controle</a> a toutes les informations, faux sinon. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>boolean </dd></dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_controle_a47d831ba2434d317951e61b64d169993_cgraph.png" border="0" usemap="#aclass_controle_a47d831ba2434d317951e61b64d169993_cgraph" alt=""/></div>
+<map name="aclass_controle_a47d831ba2434d317951e61b64d169993_cgraph" id="aclass_controle_a47d831ba2434d317951e61b64d169993_cgraph">
+<area shape="rect" title="Retourne vrai si le Controle a toutes les informations, faux sinon." coords="5,179,141,204"/>
+<area shape="rect" href="class_controle.html#a24d89b0ad05ea2e33626b1fc8ed59bc3" title="Retourne la date du Controle." coords="221,5,288,31"/>
+<area shape="rect" href="class_controle.html#a8738c3c8e09642c9f8f1239e9bfc1c91" title="Retourne la durée totale (tiers&#45;temps compris) du Controle." coords="217,55,292,80"/>
+<area shape="rect" href="class_controle.html#a2ce5a36c993fe121331d5b8fadeadbb7" title="Retourne l&#39;heure de quand commence un étudiant non tiers&#45;temps." coords="199,104,310,129"/>
+<area shape="rect" href="class_controle.html#a75e6fc5895af79aeabaa272582588bc1" title="Retourne l&#39;heure de quand commence un étudiant tiers&#45;temps." coords="211,153,299,179"/>
+<area shape="rect" href="class_controle.html#ae3c56c69f74e5e6957ba0d2d0ed6a704" title="Retourne les Promotion du Controle." coords="189,203,320,228"/>
+<area shape="rect" href="class_controle.html#a38b37bb62363cceb31aa1f5015c766d9" title="Retourne la liste des Salle affectés au Controle." coords="204,252,305,277"/>
+<area shape="rect" href="class_controle.html#aaa31b4696e33d5fbd22c7813f9a52908" title="Retourne le nom court du Controle." coords="205,301,304,327"/>
+<area shape="rect" href="class_controle.html#a4d7dbffc6cbea64e0a4717bdf32cc3b3" title="Retourne le nom long du Controle." coords="207,351,302,376"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -314,6 +418,15 @@ Fonctions membres publiques</h2></td></tr>
 
 <p>Retourne la date du <a class="el" href="class_controle.html" title="Classe Controle permettant de définir un contrôle.">Controle</a>. </p>
 <dl class="section return"><dt>Renvoie</dt><dd>string </dd></dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_controle_a24d89b0ad05ea2e33626b1fc8ed59bc3_icgraph.png" border="0" usemap="#aclass_controle_a24d89b0ad05ea2e33626b1fc8ed59bc3_icgraph" alt=""/></div>
+<map name="aclass_controle_a24d89b0ad05ea2e33626b1fc8ed59bc3_icgraph" id="aclass_controle_a24d89b0ad05ea2e33626b1fc8ed59bc3_icgraph">
+<area shape="rect" title="Retourne la date du Controle." coords="189,5,256,31"/>
+<area shape="rect" href="class_controle.html#a47d831ba2434d317951e61b64d169993" title="Retourne vrai si le Controle a toutes les informations, faux sinon." coords="5,5,141,31"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -334,6 +447,15 @@ Fonctions membres publiques</h2></td></tr>
 
 <p>Retourne la durée totale (tiers-temps compris) du <a class="el" href="class_controle.html" title="Classe Controle permettant de définir un contrôle.">Controle</a>. </p>
 <dl class="section return"><dt>Renvoie</dt><dd>string </dd></dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_controle_a8738c3c8e09642c9f8f1239e9bfc1c91_icgraph.png" border="0" usemap="#aclass_controle_a8738c3c8e09642c9f8f1239e9bfc1c91_icgraph" alt=""/></div>
+<map name="aclass_controle_a8738c3c8e09642c9f8f1239e9bfc1c91_icgraph" id="aclass_controle_a8738c3c8e09642c9f8f1239e9bfc1c91_icgraph">
+<area shape="rect" title="Retourne la durée totale (tiers&#45;temps compris) du Controle." coords="189,5,264,31"/>
+<area shape="rect" href="class_controle.html#a47d831ba2434d317951e61b64d169993" title="Retourne vrai si le Controle a toutes les informations, faux sinon." coords="5,5,141,31"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -374,6 +496,15 @@ Fonctions membres publiques</h2></td></tr>
 
 <p>Retourne l'heure de quand commence un étudiant non tiers-temps. </p>
 <dl class="section return"><dt>Renvoie</dt><dd>string </dd></dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_controle_a2ce5a36c993fe121331d5b8fadeadbb7_icgraph.png" border="0" usemap="#aclass_controle_a2ce5a36c993fe121331d5b8fadeadbb7_icgraph" alt=""/></div>
+<map name="aclass_controle_a2ce5a36c993fe121331d5b8fadeadbb7_icgraph" id="aclass_controle_a2ce5a36c993fe121331d5b8fadeadbb7_icgraph">
+<area shape="rect" title="Retourne l&#39;heure de quand commence un étudiant non tiers&#45;temps." coords="189,5,300,31"/>
+<area shape="rect" href="class_controle.html#a47d831ba2434d317951e61b64d169993" title="Retourne vrai si le Controle a toutes les informations, faux sinon." coords="5,5,141,31"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -394,6 +525,15 @@ Fonctions membres publiques</h2></td></tr>
 
 <p>Retourne l'heure de quand commence un étudiant tiers-temps. </p>
 <dl class="section return"><dt>Renvoie</dt><dd>string </dd></dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_controle_a75e6fc5895af79aeabaa272582588bc1_icgraph.png" border="0" usemap="#aclass_controle_a75e6fc5895af79aeabaa272582588bc1_icgraph" alt=""/></div>
+<map name="aclass_controle_a75e6fc5895af79aeabaa272582588bc1_icgraph" id="aclass_controle_a75e6fc5895af79aeabaa272582588bc1_icgraph">
+<area shape="rect" title="Retourne l&#39;heure de quand commence un étudiant tiers&#45;temps." coords="189,5,277,31"/>
+<area shape="rect" href="class_controle.html#a47d831ba2434d317951e61b64d169993" title="Retourne vrai si le Controle a toutes les informations, faux sinon." coords="5,5,141,31"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -414,6 +554,17 @@ Fonctions membres publiques</h2></td></tr>
 
 <p>Retourne les <a class="el" href="class_promotion.html" title="Classe Promotion permettant de définir une Promotion.">Promotion</a> du <a class="el" href="class_controle.html" title="Classe Controle permettant de définir un contrôle.">Controle</a>. </p>
 <dl class="section return"><dt>Renvoie</dt><dd>array </dd></dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_controle_ae3c56c69f74e5e6957ba0d2d0ed6a704_icgraph.png" border="0" usemap="#aclass_controle_ae3c56c69f74e5e6957ba0d2d0ed6a704_icgraph" alt=""/></div>
+<map name="aclass_controle_ae3c56c69f74e5e6957ba0d2d0ed6a704_icgraph" id="aclass_controle_ae3c56c69f74e5e6957ba0d2d0ed6a704_icgraph">
+<area shape="rect" title="Retourne les Promotion du Controle." coords="192,55,323,80"/>
+<area shape="rect" href="class_controle.html#a6846fafe7b51ccfbd5cf81441cd97733" title="Permet d&#39;ajouter une Promotion à la liste de promotions participant au Controle." coords="15,5,135,31"/>
+<area shape="rect" href="class_controle.html#a47d831ba2434d317951e61b64d169993" title="Retourne vrai si le Controle a toutes les informations, faux sinon." coords="7,55,143,80"/>
+<area shape="rect" href="class_controle.html#a5f7813270fd0d412095e0c0d34e3e902" title="Permet de supprimer une Promotion de la liste de promotions participant au Controle." coords="5,104,144,129"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -433,6 +584,18 @@ Fonctions membres publiques</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Retourne la liste des <a class="el" href="class_salle.html" title="Classe Salle permettant de définir le nom de la Salle, son Plan et son voisin s&#39;il existe.">Salle</a> affectés au <a class="el" href="class_controle.html" title="Classe Controle permettant de définir un contrôle.">Controle</a>. </p>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_controle_a38b37bb62363cceb31aa1f5015c766d9_icgraph.png" border="0" usemap="#aclass_controle_a38b37bb62363cceb31aa1f5015c766d9_icgraph" alt=""/></div>
+<map name="aclass_controle_a38b37bb62363cceb31aa1f5015c766d9_icgraph" id="aclass_controle_a38b37bb62363cceb31aa1f5015c766d9_icgraph">
+<area shape="rect" title="Retourne la liste des Salle affectés au Controle." coords="219,80,320,105"/>
+<area shape="rect" href="class_controle.html#aad1348289b9a21a11d01c0d3a7d2263a" title="Permet d&#39;ajouter un PlanDePlacement à la liste des plans de placement du Controle." coords="5,5,171,31"/>
+<area shape="rect" href="class_controle.html#a58c6881b9c583c475e3438ee27fc3fb0" title="Permet d&#39;ajouter une Salle à la liste des salles du Controle." coords="43,55,133,80"/>
+<area shape="rect" href="class_controle.html#a47d831ba2434d317951e61b64d169993" title="Retourne vrai si le Controle a toutes les informations, faux sinon." coords="20,104,156,129"/>
+<area shape="rect" href="class_controle.html#ac38dc04214f5104f9182eed69fe5e01b" title="Permet de supprimer une Salle de la liste des salles du Controle." coords="34,153,142,179"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -453,6 +616,15 @@ Fonctions membres publiques</h2></td></tr>
 
 <p>Retourne le nom court du <a class="el" href="class_controle.html" title="Classe Controle permettant de définir un contrôle.">Controle</a>. </p>
 <dl class="section return"><dt>Renvoie</dt><dd>string </dd></dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_controle_aaa31b4696e33d5fbd22c7813f9a52908_icgraph.png" border="0" usemap="#aclass_controle_aaa31b4696e33d5fbd22c7813f9a52908_icgraph" alt=""/></div>
+<map name="aclass_controle_aaa31b4696e33d5fbd22c7813f9a52908_icgraph" id="aclass_controle_aaa31b4696e33d5fbd22c7813f9a52908_icgraph">
+<area shape="rect" title="Retourne le nom court du Controle." coords="189,5,288,31"/>
+<area shape="rect" href="class_controle.html#a47d831ba2434d317951e61b64d169993" title="Retourne vrai si le Controle a toutes les informations, faux sinon." coords="5,5,141,31"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -473,6 +645,15 @@ Fonctions membres publiques</h2></td></tr>
 
 <p>Retourne le nom long du <a class="el" href="class_controle.html" title="Classe Controle permettant de définir un contrôle.">Controle</a>. </p>
 <dl class="section return"><dt>Renvoie</dt><dd>string </dd></dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_controle_a4d7dbffc6cbea64e0a4717bdf32cc3b3_icgraph.png" border="0" usemap="#aclass_controle_a4d7dbffc6cbea64e0a4717bdf32cc3b3_icgraph" alt=""/></div>
+<map name="aclass_controle_a4d7dbffc6cbea64e0a4717bdf32cc3b3_icgraph" id="aclass_controle_a4d7dbffc6cbea64e0a4717bdf32cc3b3_icgraph">
+<area shape="rect" title="Retourne le nom long du Controle." coords="189,5,284,31"/>
+<area shape="rect" href="class_controle.html#a47d831ba2434d317951e61b64d169993" title="Retourne vrai si le Controle a toutes les informations, faux sinon." coords="5,5,141,31"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -499,6 +680,15 @@ Fonctions membres publiques</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_controle_a1768457ddad126963457c641d0aba117_icgraph.png" border="0" usemap="#aclass_controle_a1768457ddad126963457c641d0aba117_icgraph" alt=""/></div>
+<map name="aclass_controle_a1768457ddad126963457c641d0aba117_icgraph" id="aclass_controle_a1768457ddad126963457c641d0aba117_icgraph">
+<area shape="rect" title="Permet d&#39;affecter une date à un Controle." coords="144,5,211,31"/>
+<area shape="rect" href="class_controle.html#aee8ae86407065c23eac118e61004fbed" title="Constructeur du Controle." coords="5,5,96,31"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -525,6 +715,15 @@ Fonctions membres publiques</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_controle_ab7bcae4b4c25ccd7ece197c31cf20353_icgraph.png" border="0" usemap="#aclass_controle_ab7bcae4b4c25ccd7ece197c31cf20353_icgraph" alt=""/></div>
+<map name="aclass_controle_ab7bcae4b4c25ccd7ece197c31cf20353_icgraph" id="aclass_controle_ab7bcae4b4c25ccd7ece197c31cf20353_icgraph">
+<area shape="rect" title="Permet d&#39;affecter une durée à un Controle." coords="144,5,219,31"/>
+<area shape="rect" href="class_controle.html#aee8ae86407065c23eac118e61004fbed" title="Constructeur du Controle." coords="5,5,96,31"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -551,6 +750,15 @@ Fonctions membres publiques</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_controle_a50d1808aeadfe4d51cf306841fd83c2f_icgraph.png" border="0" usemap="#aclass_controle_a50d1808aeadfe4d51cf306841fd83c2f_icgraph" alt=""/></div>
+<map name="aclass_controle_a50d1808aeadfe4d51cf306841fd83c2f_icgraph" id="aclass_controle_a50d1808aeadfe4d51cf306841fd83c2f_icgraph">
+<area shape="rect" title="Permet d&#39;affecter l&#39;heure du début du Controle pour un étudiant non tiers&#45;temps." coords="144,5,255,31"/>
+<area shape="rect" href="class_controle.html#aee8ae86407065c23eac118e61004fbed" title="Constructeur du Controle." coords="5,5,96,31"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -577,6 +785,15 @@ Fonctions membres publiques</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_controle_ab96d5ae79caef405cfc7ec3ed7aefca6_icgraph.png" border="0" usemap="#aclass_controle_ab96d5ae79caef405cfc7ec3ed7aefca6_icgraph" alt=""/></div>
+<map name="aclass_controle_ab96d5ae79caef405cfc7ec3ed7aefca6_icgraph" id="aclass_controle_ab96d5ae79caef405cfc7ec3ed7aefca6_icgraph">
+<area shape="rect" title="Permet d&#39;affecter l&#39;heure du début du Controle pour un étudiant tiers&#45;temps." coords="144,5,232,31"/>
+<area shape="rect" href="class_controle.html#aee8ae86407065c23eac118e61004fbed" title="Constructeur du Controle." coords="5,5,96,31"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -603,6 +820,15 @@ Fonctions membres publiques</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_controle_ac6dcf23a518441f3b0e9cf579c0130fb_icgraph.png" border="0" usemap="#aclass_controle_ac6dcf23a518441f3b0e9cf579c0130fb_icgraph" alt=""/></div>
+<map name="aclass_controle_ac6dcf23a518441f3b0e9cf579c0130fb_icgraph" id="aclass_controle_ac6dcf23a518441f3b0e9cf579c0130fb_icgraph">
+<area shape="rect" title="Permet d&#39;affecter un nom court à un Controle." coords="144,5,243,31"/>
+<area shape="rect" href="class_controle.html#aee8ae86407065c23eac118e61004fbed" title="Constructeur du Controle." coords="5,5,96,31"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -629,6 +855,15 @@ Fonctions membres publiques</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_controle_a3c3c21a4570486fbf54a3157d6d9f46c_icgraph.png" border="0" usemap="#aclass_controle_a3c3c21a4570486fbf54a3157d6d9f46c_icgraph" alt=""/></div>
+<map name="aclass_controle_a3c3c21a4570486fbf54a3157d6d9f46c_icgraph" id="aclass_controle_a3c3c21a4570486fbf54a3157d6d9f46c_icgraph">
+<area shape="rect" title="Permet d&#39;affecter un nom long à un Controle." coords="144,5,239,31"/>
+<area shape="rect" href="class_controle.html#aee8ae86407065c23eac118e61004fbed" title="Constructeur du Controle." coords="5,5,96,31"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -681,6 +916,15 @@ Fonctions membres publiques</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_controle_a5f7813270fd0d412095e0c0d34e3e902_cgraph.png" border="0" usemap="#aclass_controle_a5f7813270fd0d412095e0c0d34e3e902_cgraph" alt=""/></div>
+<map name="aclass_controle_a5f7813270fd0d412095e0c0d34e3e902_cgraph" id="aclass_controle_a5f7813270fd0d412095e0c0d34e3e902_cgraph">
+<area shape="rect" title="Permet de supprimer une Promotion de la liste de promotions participant au Controle." coords="5,5,144,31"/>
+<area shape="rect" href="class_controle.html#ae3c56c69f74e5e6957ba0d2d0ed6a704" title="Retourne les Promotion du Controle." coords="192,5,323,31"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -707,6 +951,15 @@ Fonctions membres publiques</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_controle_ac38dc04214f5104f9182eed69fe5e01b_cgraph.png" border="0" usemap="#aclass_controle_ac38dc04214f5104f9182eed69fe5e01b_cgraph" alt=""/></div>
+<map name="aclass_controle_ac38dc04214f5104f9182eed69fe5e01b_cgraph" id="aclass_controle_ac38dc04214f5104f9182eed69fe5e01b_cgraph">
+<area shape="rect" title="Permet de supprimer une Salle de la liste des salles du Controle." coords="5,5,113,31"/>
+<area shape="rect" href="class_controle.html#a38b37bb62363cceb31aa1f5015c766d9" title="Retourne la liste des Salle affectés au Controle." coords="161,5,263,31"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -714,9 +967,13 @@ Fonctions membres publiques</h2></td></tr>
 <li>src/Controlo/class/<a class="el" href="_controle_8php.html">Controle.php</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_controle.html">Controle</a></li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
+  </ul>
+</div>
 </body>
 </html>

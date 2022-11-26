@@ -1,0 +1,4 @@
+<map id="setInfoPrise" name="setInfoPrise">
+<area shape="rect" id="node1" title="Affecte vrai/faux si une prise est proche d&#39;une Zone place uniquement." coords="5,5,96,31"/>
+<area shape="rect" id="node2" href="$class_zone.html#a830b5c75df72b32396701bc563fbe3c7" title="Retourne le type de la Zone." coords="144,5,212,31"/>
+</map>

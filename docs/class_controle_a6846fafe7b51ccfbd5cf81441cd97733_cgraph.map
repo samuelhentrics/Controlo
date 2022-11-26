@@ -1,0 +1,4 @@
+<map id="ajouterPromotion" name="ajouterPromotion">
+<area shape="rect" id="node1" title="Permet d&#39;ajouter une Promotion à la liste de promotions participant au Controle." coords="5,5,125,31"/>
+<area shape="rect" id="node2" href="$class_controle.html#ae3c56c69f74e5e6957ba0d2d0ed6a704" title="Retourne les Promotion du Controle." coords="173,5,304,31"/>
+</map>

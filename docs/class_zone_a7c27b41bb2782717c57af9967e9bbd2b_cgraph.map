@@ -1,0 +1,4 @@
+<map id="lierPlan" name="lierPlan">
+<area shape="rect" id="node1" title="Lie la Zone dans le Plan d&#39;une Salle." coords="5,5,71,31"/>
+<area shape="rect" id="node2" href="$class_zone.html#a62781b1d4b018ae2ba78e97b2b9d3ebf" title="Affecte un Plan à la Zone." coords="119,5,209,31"/>
+</map>

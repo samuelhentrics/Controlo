@@ -1,0 +1,6 @@
+<map id="getType" name="getType">
+<area shape="rect" id="node1" title="Retourne le type de la Zone." coords="260,31,328,56"/>
+<area shape="rect" id="node2" href="$class_zone.html#aa02cce035676cda667ed229679d2ce39" title="Affecte vrai/faux si une prise est proche d&#39;une Zone place uniquement." coords="121,5,212,31"/>
+<area shape="rect" id="node4" href="$class_zone.html#a867ea273d7ef3d1855adee24ad80de82" title="Affecte un numéro à une place (uniquement s&#39;il s&#39;agit d&#39;une place). On récupére uniquement les nombre..." coords="124,55,209,80"/>
+<area shape="rect" id="node3" href="$class_zone.html#a844c8013abc8d7c322fab93de2e18565" title="Permet d&#39;affecter un type à une Zone." coords="5,31,73,56"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="delierVoisin" name="delierVoisin">
+<area shape="rect" id="node1" title="Permet de délier le voisin actuellement lié à la Salle." coords="128,5,217,31"/>
+<area shape="rect" id="node2" href="$class_salle.html#a3bb8976360a8cbb4e93d68b0603a0935" title="Permet de lier un voisin à une Salle." coords="5,5,80,31"/>
+</map>

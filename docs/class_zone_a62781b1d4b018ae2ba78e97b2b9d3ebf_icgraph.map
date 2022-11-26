@@ -1,0 +1,5 @@
+<map id="setMonPlan" name="setMonPlan">
+<area shape="rect" id="node1" title="Affecte un Plan à la Zone." coords="132,31,223,56"/>
+<area shape="rect" id="node2" href="$class_zone.html#ae16c59612f1df9e90c731068435e5dbf" title="Delie la Zone du Plan courant d&#39;une Salle." coords="5,5,84,31"/>
+<area shape="rect" id="node3" href="$class_zone.html#a7c27b41bb2782717c57af9967e9bbd2b" title="Lie la Zone dans le Plan d&#39;une Salle." coords="12,55,77,80"/>
+</map>

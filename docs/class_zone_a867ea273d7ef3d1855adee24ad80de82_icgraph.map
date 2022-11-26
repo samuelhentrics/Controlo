@@ -1,0 +1,4 @@
+<map id="setNumero" name="setNumero">
+<area shape="rect" id="node1" title="Affecte un numéro à une place (uniquement s&#39;il s&#39;agit d&#39;une place). On récupére uniquement les nombre..." coords="121,5,207,31"/>
+<area shape="rect" id="node2" href="$class_zone.html#a844c8013abc8d7c322fab93de2e18565" title="Permet d&#39;affecter un type à une Zone." coords="5,5,73,31"/>
+</map>
