@@ -1,9 +1,18 @@
 <?php
+/**
+ * @file        config.php
+ * @brief       Contient les variables d'environnement pour la bonne configuration du projet
+ * @author      Samuel HENTRICS LOISTINE <samuel.hentrics@gmail.com>, Benjamin PEYRE
+ * @version     0.1
+ * @date        26/11/2022
+ */
+
+
 
 if (! function_exists('retrouverCheminApp'))
 {
     /**
-     * Fonction permettant de retrouver le chemin jusqu'au nom du dossier de l'application
+     * @brief Fonction permettant de retrouver le chemin jusqu'au nom du dossier de l'application
      *
      * @return string
      */
@@ -32,8 +41,8 @@ if (! function_exists('retrouverCheminApp'))
 }
 
 /**
- * Contient le chemin vers le dossier du projet
- * ex : http://localhost/src (où src est le chemin du projet)
+ * @brief Contient le chemin vers le dossier du projet
+ * @note ex : http://localhost/src (où src est le chemin du projet)
  */
 $PATH = 'http://'.$_SERVER['HTTP_HOST'].retrouverCheminApp();
 
@@ -52,41 +61,41 @@ $PATH = 'http://'.$_SERVER['HTTP_HOST'].retrouverCheminApp();
 // -----------------------------------------
 
 /**
- * Nom du dossier où se retrouvent les CSV (partie Contrôles)
+ * @brief Nom du dossier où se retrouvent les CSV (partie Contrôles)
  * (La liste des controles)
- * ex: Controles/
+ * @note ex: Controles/
  */
 $CSV_CONTROLES_FOLDER_NAME = "Controles/";
 
 /**
- * Nom du dossier où se retrouvent les CSV (partie Etudiants)
+ * @brief Nom du dossier où se retrouvent les CSV (partie Etudiants)
  * (La liste des étudiants dans chaque fichier d'une promotion)
- * ex : Etudiants/
+ * @note ex : Etudiants/
  */
 $CSV_ETUDIANTS_FOLDER_NAME = "Etudiants/";
 
 /**
- * Nom du dossier où se retrouvent les CSV (partie Salles)
+ * @brief Nom du dossier où se retrouvent les CSV (partie Salles)
  * (La liste des salles et des plans de salle)
- * ex : Salles/
+ * @note ex : Salles/
  */
 $CSV_SALLES_FOLDER_NAME = "Salles/";
 
 /**
- * Lien complet pour accéder au dossier CSV (Controles)
- * ex : http://localhost/src/Controles
+ * @brief Lien complet pour accéder au dossier CSV (Controles)
+ * @note ex : http://localhost/src/Controles
  */
 $CSV_CONTROLES_PATH = $PATH.$CSV_CONTROLES_FOLDER_NAME;
 
 /**
- * Lien complet pour accéder au dossier CSV (Etudiants)
- * ex : http://localhost/src/Etudiants
+ * @brief Lien complet pour accéder au dossier CSV (Etudiants)
+ * @note ex : http://localhost/src/Etudiants
  */
 $CSV_ETUDIANTS_PATH = $PATH.$CSV_ETUDIANTS_FOLDER_NAME;
 
 /**
- * Lien complet pour accéder au dossier CSV (Salles)
- * ex : http://localhost/src/Salles
+ * @brief Lien complet pour accéder au dossier CSV (Salles)
+ * @note ex : http://localhost/src/Salles
  */
 $CSV_SALLES_PATH = $PATH.$CSV_SALLES_FOLDER_NAME;
 
@@ -109,14 +118,14 @@ $CSV_SALLES_PATH = $PATH.$CSV_SALLES_FOLDER_NAME;
 
 
 /**
- * Nom du dossier où se trouvent les plans de placement générés
- * ex : PlansPlacement/
+ * @brief Nom du dossier où se trouvent les plans de placement générés
+ * @note ex : PlansPlacement/
  */
 $PLANS_DE_PLACEMENT_FOLDER_NAME = "PlansPlacement/";
 
 /**
- * Lien complet pour accéder au dossier des plans de placement
- * ex : http://localhost/src/PlansPlacement
+ * @brief Lien complet pour accéder au dossier des plans de placement
+ * @note ex : http://localhost/src/PlansPlacement
  */
 $PLANS_DE_PLACEMENT_PATH = $PATH.$PLANS_DE_PLACEMENT_FOLDER_NAME;
 
@@ -136,59 +145,59 @@ $PLANS_DE_PLACEMENT_PATH = $PATH.$PLANS_DE_PLACEMENT_FOLDER_NAME;
 // -----------------------------------------
 
 /**
- * Nom du dossier où se retrouvent les ressources (back/front...) 
- * ex : Controlo/
+ * @brief Nom du dossier où se retrouvent les ressources (back/front...) 
+ * @note ex : Controlo/
  */
 $RESSOURCES_FOLDER_NAME = "Controlo/";
 
 
 /**
- * Nom du dossier où se trouve le dossier Back
- * ex : Back/
+ * @brief Nom du dossier où se trouve le dossier Back
+ * @note ex : Back/
  */
 $BACK_FOLDER_NAME = "Back/";
 
 /**
- * Nom du dossier où se trouve le dossier Front
- * ex : Front/
+ * @brief Nom du dossier où se trouve le dossier Front
+ * @note ex : Front/
  */
 $FRONT_FOLDER_NAME = "Front/";
 
 /**
- * Lien complet (sans l'adresse du serveur) où se trouve le dossier Back
- * ex: Controlo/Back/
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve le dossier Back
+ * @note ex: Controlo/Back/
  */
 $BACK_PATH = $RESSOURCES_FOLDER_NAME.$BACK_FOLDER_NAME;
 
 /**
- * Lien complet (sans l'adresse du serveur) où se trouve le dossier Front
- * ex: Controlo/Front/
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve le dossier Front
+ * @note ex: Controlo/Front/
  */
 $FRONT_PATH = $RESSOURCES_FOLDER_NAME.$FRONT_FOLDER_NAME;
 
 
 /**
- * Nom du dossier où se retrouvent les classes
- * ex : class/
+ * @brief Nom du dossier où se retrouvent les classes
+ * @note ex : class/
  */
 $CLASS_FOLDER_NAME = "class/";
 
 /**
- * Nom du dossier où se retrouvent les fonctions
- * ex : import/
+ * @brief Nom du dossier où se retrouvent les fonctions
+ * @note ex : import/
  */
 $IMPORT_FOLDER_NAME = "import/";
 
 
 /**
- * Lien complet (sans l'adresse du serveur) où se trouve le dossier des classes
- * ex : Controlo/class/
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve le dossier des classes
+ * @note ex : Controlo/class/
  */
 $CLASS_PATH = $RESSOURCES_FOLDER_NAME.$CLASS_FOLDER_NAME;
 
 /**
- * Lien complet (sans l'adresse du serveur) où se trouve le dossier des fonctions
- * ex : Controlo/import/
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve le dossier des fonctions
+ * @note ex : Controlo/import/
  */
 $IMPORT_PATH = $RESSOURCES_FOLDER_NAME.$IMPORT_FOLDER_NAME;
 
@@ -207,68 +216,68 @@ $IMPORT_PATH = $RESSOURCES_FOLDER_NAME.$IMPORT_FOLDER_NAME;
 // -----------------------------------------
 
 /**
- * Nom du fichier de la classe Controle
- * ex : Controle.php
+ * @brief Nom du fichier de la classe Controle
+ * @note ex : Controle.php
  */
 $CLASS_CONTROLE_FILE_NAME = "Controle.php";
 
 /**
- * Nom du fichier de la classe Salle
- * ex : Salle.php
+ * @brief Nom du fichier de la classe Salle
+ * @note ex : Salle.php
  */
 $CLASS_SALLE_FILE_NAME = "Salle.php";
 
 /**
- * Nom du fichier de la classe Plan
- * ex : Plan.php
+ * @brief Nom du fichier de la classe Plan
+ * @note ex : Plan.php
  */
 $CLASS_PLAN_FILE_NAME = "Plan.php";
 
 /**
- * Nom du fichier de la classe Zone
- * ex : Zone.php
+ * @brief Nom du fichier de la classe Zone
+ * @note ex : Zone.php
  */
 $CLASS_ZONE_FILE_NAME = "Zone.php";
 
 /**
- * Nom du fichier de la classe ContraintesEspacement
- * ex : ContraintesEspacement.php
+ * @brief Nom du fichier de la classe ContraintesEspacement
+ * @note ex : ContraintesEspacement.php
  */
 $CLASS_CONTRAINTES_ESPACEMENT_FILE_NAME = "ContraintesEspacement.php";
 
 /**
- * Nom du fichier de la classe ContraintesGenerales
- * ex : ContraintesGenerales.php
+ * @brief Nom du fichier de la classe ContraintesGenerales
+ * @note ex : ContraintesGenerales.php
  */
 $CLASS_CONTRAINTES_GENERALES_FILE_NAME = "ContraintesGenerales.php";
 
 /**
- * Nom du fichier de la classe Controles
- * ex : Controles.php
+ * @brief Nom du fichier de la classe Controles
+ * @note ex : Controles.php
  */
 $CLASS_CONTROLES_FILE_NAME = "Controles.php";
 
 /**
- * Nom du fichier de la classe Etudiants
- * ex : Etudiants.php
+ * @brief Nom du fichier de la classe Etudiants
+ * @note ex : Etudiants.php
  */
 $CLASS_ETUDIANTS_FILE_NAME = "Etudiants.php";
 
 /**
- * Nom du fichier de la classe PlanDePlacement
- * ex : PlanDePlacement.php
+ * @brief Nom du fichier de la classe PlanDePlacement
+ * @note ex : PlanDePlacement.php
  */
 $CLASS_PLAN_PLACEMENT_FILE_NAME = "PlanDePlacement.php";
 
 /**
- * Nom du fichier de la classe Promotion
- * ex : Promotion.php
+ * @brief Nom du fichier de la classe Promotion
+ * @note ex : Promotion.php
  */
 $CLASS_PROMOTION_FILE_NAME = "Promotion.php";
 
 /**
- * Nom du fichier de la classe UnPlacement
- * ex : UnPlacement.php
+ * @brief Nom du fichier de la classe UnPlacement
+ * @note ex : UnPlacement.php
  */
 $CLASS_UN_PLACEMENT_FILE_NAME = "UnPlacement.php";
 
@@ -285,7 +294,16 @@ $CLASS_UN_PLACEMENT_FILE_NAME = "UnPlacement.php";
 // NOM FICHIER CSV
 // -----------------------------------------
 
+/**
+ * @brief Nom du fichier de la liste des contrôles
+ * @note ex: liste-controles.csv
+ */
 $LISTE_CONTROLES_FILE_NAME = "liste-controles.csv";
+
+/**
+ * @brief Nom du fichier de la liste des salles
+ * @note ex: liste-salles.csv
+ */
 $LISTE_SALLES_FILE_NAME = "liste-salles.csv";
 
 
@@ -306,41 +324,41 @@ $LISTE_SALLES_FILE_NAME = "liste-salles.csv";
 
 
 /**
- * Nom du dossier css
- * ex : css/
+ * @brief Nom du dossier css
+ * @note ex : css/
  */
 $CSS_FOLDER_NAME = "css/";
 
 /**
- * Nom du dossier images
- * ex : images/
+ * @brief Nom du dossier images
+ * @note ex : images/
  */
 $IMG_FOLDER_NAME = "images/";
 
 
 /**
- * Nom du dossier javascript
- * ex : js/
+ * @brief Nom du dossier javascript
+ * @note ex : js/
  */
 $JS_FOLDER_NAME = "js/";
 
 
 /**
- * Lien complet (sans l'adresse du serveur) où se trouve le dossier css
- * ex : Controlo/Front/css
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve le dossier css
+ * @note ex : Controlo/Front/css
  */
 $CSS_PATH = $FRONT_PATH.$CSS_FOLDER_NAME;
 
 /**
- * Lien complet (sans l'adresse du serveur) où se trouve le dossier image
- * ex : Controlo/Front/images
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve le dossier image
+ * @note ex : Controlo/Front/images
  */
 $IMG_PATH = $FRONT_PATH.$IMG_FOLDER_NAME;
 
 
 /**
- * Lien complet (sans l'adresse du serveur) où se trouve le dossier js
- * ex : Controlo/Front/js
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve le dossier js
+ * @note ex : Controlo/Front/js
  */
 $JS_PATH = $FRONT_PATH.$JS_FOLDER_NAME;
 
@@ -362,67 +380,67 @@ $JS_PATH = $FRONT_PATH.$JS_FOLDER_NAME;
 // -----------------------------------------
 
 /**
- * Nom du fichier où se trouve la fonction ajouterMinutesHeure
- * ex : ajouterMinutesHeure.php
+ * @brief Nom du fichier où se trouve la fonction ajouterMinutesHeure
+ * @note ex : ajouterMinutesHeure.php
  */
 $FONCTION_AJOUTER_MINUTES_HEURE_FILE_NAME = "ajouterMinutesHeure.php";
 
 /**
- * Lien complet (sans l'adresse du serveur) où se trouve la fonction ajouterMinutesHeure
- * ex : Controlo/import/ajouterMinutesHeure.php
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve la fonction ajouterMinutesHeure
+ * @note ex : Controlo/import/ajouterMinutesHeure.php
  */
 $FONCTION_AJOUTER_MINUTES_HEURE_PATH = $IMPORT_PATH.$FONCTION_AJOUTER_MINUTES_HEURE_FILE_NAME;
 
 
 /**
- * Nom du dossier où se trouve les fonctions de création d'objets
- * ex: creationObjets/
+ * @brief Nom du dossier où se trouve les fonctions de création d'objets
+ * @note ex: creationObjets/
  */
 $OBJECT_CREATION_FOLDER_NAME = "creationObjets/";
 
 
 /**
- * Lien complet (sans l'adresse du serveur) où se trouve le dossier de création d'objets
- * ex : Controlo/import/creationObjets/
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve le dossier de création d'objets
+ * @note ex : Controlo/import/creationObjets/
  */
 $OBJECT_CREATION_PATH = $IMPORT_PATH.$OBJECT_CREATION_FOLDER_NAME;
 
 
 /**
- * Nom du fichier où se trouve la fonction de création de la liste des contrôles
- * ex: creerListeControles.php
+ * @brief Nom du fichier où se trouve la fonction de création de la liste des contrôles
+ * @note ex: creerListeControles.php
  */
 $FONCTION_CREER_LISTE_CONTROLES_FILE_NAME = "creerListeControles.php";
 
 /**
- * Lien complet (sans l'adresse du serveur) où se trouve la fonction de création de la liste des contrôles
- * ex : Controlo/creationObjets/creerListeControles.php
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve la fonction de création de la liste des contrôles
+ * @note ex : Controlo/creationObjets/creerListeControles.php
  */
 $FONCTION_CREER_LISTE_CONTROLES_PATH = $OBJECT_CREATION_PATH.$FONCTION_CREER_LISTE_CONTROLES_FILE_NAME;
 
 /**
- * Nom du fichier où se trouve la fonction de création de la liste des salles
- * ex: creerListeSalles.php
+ * @brief Nom du fichier où se trouve la fonction de création de la liste des salles
+ * @note ex: creerListeSalles.php
  */
 $FONCTION_CREER_LISTE_SALLES_FILE_NAME = "creerListeSalles.php";
 
 
 /**
- * Lien complet (sans l'adresse du serveur) où se trouve la fonction de création de la liste des salles
- * ex : Controlo/creationObjets/creerListeSalles.php
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve la fonction de création de la liste des salles
+ * @note ex : Controlo/creationObjets/creerListeSalles.php
  */
 $FONCTION_CREER_LISTE_SALLES_PATH = $OBJECT_CREATION_PATH.$FONCTION_CREER_LISTE_SALLES_FILE_NAME;
 
 /**
- * Nom du fichier où se trouve la fonction de création de la liste des salles
- * ex: creerPlanSalle.php
+ * @brief Nom du fichier où se trouve la fonction de création de la liste des salles
+ * @note ex: creerPlanSalle.php
  */
 $FONCTION_CREER_PLAN_SALLE_FILE_NAME = "creerPlanSalle.php";
 
 
  /**
- * Lien complet (sans l'adresse du serveur) où se trouve la fonction de création d'un plan de salle
- * ex : Controlo/creationObjets/creerPlanSalle.php
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve la fonction de création d'un plan de salle
+ * @note ex : Controlo/creationObjets/creerPlanSalle.php
  */
 $FONCTION_CREER_PLAN_SALLE_PATH = $OBJECT_CREATION_PATH.$FONCTION_CREER_PLAN_SALLE_FILE_NAME;
 
@@ -439,20 +457,20 @@ $FONCTION_CREER_PLAN_SALLE_PATH = $OBJECT_CREATION_PATH.$FONCTION_CREER_PLAN_SAL
 // -----------------------------------------
 
 /**
- * Lien complet vers la page de la liste des contrôles
- * ex : http://localhost/src/index.php?page=controles
+ * @brief Lien complet vers la page de la liste des contrôles
+ * @note ex : http://localhost/src/index.php?page=controles
  */
 $PAGE_CONTROLES_PATH = $PATH."index.php?page=controles";
 
 /**
- * Lien complet vers la page de la liste des etudiants
- * ex : http://localhost/src/index.php?page=etudiants
+ * @brief Lien complet vers la page de la liste des etudiants
+ * @note ex : http://localhost/src/index.php?page=etudiants
  */
 $PAGE_ETUDIANTS_PATH = $PATH."index.php?page=etudiants";
 
 /**
- * Lien complet vers la page de la liste des salles
- * ex : http://localhost/src/index.php?page=salles
+ * @brief Lien complet vers la page de la liste des salles
+ * @note ex : http://localhost/src/index.php?page=salles
  */
 $PAGE_SALLES_PATH = $PATH."index.php?page=salles";
 
