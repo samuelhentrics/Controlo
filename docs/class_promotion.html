@@ -106,12 +106,13 @@ $(document).ready(function(){initNavTree('class_promotion.html',''); initResizab
 Fonctions membres publiques</h2></td></tr>
 <tr class="memitem:a184f2299ee4553fa0782ea87c9aed362"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_promotion.html#a184f2299ee4553fa0782ea87c9aed362">getNom</a> ()</td></tr>
 <tr class="separator:a184f2299ee4553fa0782ea87c9aed362"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0c0ad3b904d2d44459be950bb141d8a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_promotion.html#ae0c0ad3b904d2d44459be950bb141d8a">__construct</a> ($nom)</td></tr>
+<tr class="separator:ae0c0ad3b904d2d44459be950bb141d8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab201700398afc6a24a45bd7cd40c3cb5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_promotion.html#ab201700398afc6a24a45bd7cd40c3cb5">setNom</a> ($nouveauNom)</td></tr>
 <tr class="separator:ab201700398afc6a24a45bd7cd40c3cb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1bf4b4ae789c4ddfbb720d1121d13cf2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_promotion.html#a1bf4b4ae789c4ddfbb720d1121d13cf2">ajouterControle</a> ($unControle)</td></tr>
-<tr class="separator:a1bf4b4ae789c4ddfbb720d1121d13cf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a860fa544b34cf048cbfd1470f10bce7d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_promotion.html#a860fa544b34cf048cbfd1470f10bce7d">supprimerControle</a> ($unControle)</td></tr>
-<tr class="separator:a860fa544b34cf048cbfd1470f10bce7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c6c7dfb59d21b3cac549b2812200653"><td class="memItemLeft" align="right" valign="top"><a id="a5c6c7dfb59d21b3cac549b2812200653" name="a5c6c7dfb59d21b3cac549b2812200653"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>getMesEtudiants</b> ()</td></tr>
+<tr class="separator:a5c6c7dfb59d21b3cac549b2812200653"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3313addd7f7105e39ddb83828dc493b7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_promotion.html#a3313addd7f7105e39ddb83828dc493b7">ajouterEtudiant</a> ($unEtudiant)</td></tr>
 <tr class="separator:a3313addd7f7105e39ddb83828dc493b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a638a9b5e5ee3390955dda7eed2cdf90f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_promotion.html#a638a9b5e5ee3390955dda7eed2cdf90f">supprimerEtudiant</a> ($unEtudiant)</td></tr>
@@ -119,32 +120,42 @@ Fonctions membres publiques</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p >Classe <a class="el" href="class_promotion.html" title="Classe Promotion permettant de définir une Promotion.">Promotion</a> permettant de définir une <a class="el" href="class_promotion.html" title="Classe Promotion permettant de définir une Promotion.">Promotion</a>. </p>
-</div><h2 class="groupheader">Documentation des fonctions membres</h2>
-<a id="a1bf4b4ae789c4ddfbb720d1121d13cf2" name="a1bf4b4ae789c4ddfbb720d1121d13cf2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1bf4b4ae789c4ddfbb720d1121d13cf2">&#9670;&#160;</a></span>ajouterControle()</h2>
+</div><h2 class="groupheader">Documentation des constructeurs et destructeur</h2>
+<a id="ae0c0ad3b904d2d44459be950bb141d8a" name="ae0c0ad3b904d2d44459be950bb141d8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0c0ad3b904d2d44459be950bb141d8a">&#9670;&#160;</a></span>__construct()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ajouterControle </td>
+          <td class="memname">__construct </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$unControle</em></td><td>)</td>
+          <td class="paramname"><em>$nom</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Permet d'ajouter un contrôle à la liste des contrôles dont la promotion va participer</p>
+<p >Constructeur de la classe <a class="el" href="class_promotion.html" title="Classe Promotion permettant de définir une Promotion.">Promotion</a></p>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramtype"><a class="el" href="class_controle.html" title="Classe Controle permettant de définir un contrôle.">Controle</a></td><td class="paramname">$unControle</td><td></td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$nom</td><td>Nom de la promotion </td></tr>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_promotion_ae0c0ad3b904d2d44459be950bb141d8a_cgraph.png" border="0" usemap="#aclass_promotion_ae0c0ad3b904d2d44459be950bb141d8a_cgraph" alt=""/></div>
+<map name="aclass_promotion_ae0c0ad3b904d2d44459be950bb141d8a_cgraph" id="aclass_promotion_ae0c0ad3b904d2d44459be950bb141d8a_cgraph">
+<area shape="rect" title=" " coords="5,5,96,31"/>
+<area shape="rect" href="class_promotion.html#ab201700398afc6a24a45bd7cd40c3cb5" title=" " coords="144,5,211,31"/>
+</map>
+</div>
 
 </div>
 </div>
+<h2 class="groupheader">Documentation des fonctions membres</h2>
 <a id="a3313addd7f7105e39ddb83828dc493b7" name="a3313addd7f7105e39ddb83828dc493b7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3313addd7f7105e39ddb83828dc493b7">&#9670;&#160;</a></span>ajouterEtudiant()</h2>
 
@@ -211,31 +222,15 @@ Fonctions membres publiques</h2></td></tr>
   </table>
   </dd>
 </dl>
-
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_promotion_ab201700398afc6a24a45bd7cd40c3cb5_icgraph.png" border="0" usemap="#aclass_promotion_ab201700398afc6a24a45bd7cd40c3cb5_icgraph" alt=""/></div>
+<map name="aclass_promotion_ab201700398afc6a24a45bd7cd40c3cb5_icgraph" id="aclass_promotion_ab201700398afc6a24a45bd7cd40c3cb5_icgraph">
+<area shape="rect" title=" " coords="144,5,211,31"/>
+<area shape="rect" href="class_promotion.html#ae0c0ad3b904d2d44459be950bb141d8a" title=" " coords="5,5,96,31"/>
+</map>
 </div>
-</div>
-<a id="a860fa544b34cf048cbfd1470f10bce7d" name="a860fa544b34cf048cbfd1470f10bce7d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a860fa544b34cf048cbfd1470f10bce7d">&#9670;&#160;</a></span>supprimerControle()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">supprimerControle </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$unControle</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Permet de supprimer un contrôle à la liste des contrôles dont la promotion va participer</p>
-<dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramtype"><a class="el" href="class_controle.html" title="Classe Controle permettant de définir un contrôle.">Controle</a></td><td class="paramname">$unControle</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>

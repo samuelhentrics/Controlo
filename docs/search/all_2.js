@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['ajoutercontrole_0',['ajouterControle',['../class_promotion.html#a1bf4b4ae789c4ddfbb720d1121d13cf2',1,'Promotion']]],
-  ['ajouteretudiant_1',['ajouterEtudiant',['../class_promotion.html#a3313addd7f7105e39ddb83828dc493b7',1,'Promotion']]],
-  ['ajouterplandeplacement_2',['ajouterPlanDePlacement',['../class_controle.html#aad1348289b9a21a11d01c0d3a7d2263a',1,'Controle']]],
-  ['ajouterpromotion_3',['ajouterPromotion',['../class_controle.html#a6846fafe7b51ccfbd5cf81441cd97733',1,'Controle']]],
-  ['ajoutersalle_4',['ajouterSalle',['../class_controle.html#a58c6881b9c583c475e3438ee27fc3fb0',1,'Controle']]]
+  ['back_5ffolder_5fname_0',['BACK_FOLDER_NAME',['../config_8php.html#a06a98917b735c21c1944f7d9c53fd8e1',1,'config.php']]],
+  ['back_5fpath_1',['BACK_PATH',['../config_8php.html#aea5c4969abb8ffb41a45a3f777a2d7c7',1,'config.php']]]
 ];

@@ -24,6 +24,7 @@
 */
 var menudata={children:[
 {text:"Page principale",url:"index.html"},
+{text:"Pages associées",url:"pages.html"},
 {text:"Structures de données",url:"annotated.html",children:[
 {text:"Structures de données",url:"annotated.html"},
 {text:"Index des structures de données",url:"classes.html"},
@@ -48,8 +49,23 @@ var menudata={children:[
 {text:"Liste des fichiers",url:"files.html"},
 {text:"Variables globale",url:"globals.html",children:[
 {text:"Tout",url:"globals.html",children:[
-{text:"$",url:"globals.html#index__24"},
-{text:"c",url:"globals.html#index_c"}]},
+{text:"b",url:"globals.html#index_b"},
+{text:"c",url:"globals.html#index_c"},
+{text:"f",url:"globals.html#index_f"},
+{text:"i",url:"globals.html#index_i"},
+{text:"j",url:"globals.html#index_j"},
+{text:"l",url:"globals.html#index_l"},
+{text:"o",url:"globals.html#index_o"},
+{text:"p",url:"globals.html#index_p"},
+{text:"r",url:"globals.html#index_r"}]},
 {text:"Fonctions",url:"globals_func.html"},
 {text:"Variables",url:"globals_vars.html",children:[
-{text:"$",url:"globals_vars.html#index__24"}]}]}]}]}
+{text:"b",url:"globals_vars.html#index_b"},
+{text:"c",url:"globals_vars.html#index_c"},
+{text:"f",url:"globals_vars.html#index_f"},
+{text:"i",url:"globals_vars.html#index_i"},
+{text:"j",url:"globals_vars.html#index_j"},
+{text:"l",url:"globals_vars.html#index_l"},
+{text:"o",url:"globals_vars.html#index_o"},
+{text:"p",url:"globals_vars.html#index_p"},
+{text:"r",url:"globals_vars.html#index_r"}]}]}]}]}

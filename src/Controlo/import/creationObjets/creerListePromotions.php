@@ -1,10 +1,21 @@
 <?php
+/**
+ * @file creerListePromotions.php
+ * @author Samuel HENTRICS LOISTINE <samuel.hentrics@gmail.com>
+ * @brief Spécification de la fonction creerListeControles
+ * @todo Fonction detecterTT, detecterOrdi, detecterDemissionnaire
+ * 
+ * @version 1.0
+ * @date 2022-11-26
+ * 
+ * 
+ */
 
 include(CLASS_PATH.CLASS_PROMOTION_FILE_NAME);
 include(CLASS_PATH.CLASS_ETUDIANT_FILE_NAME);
 
 /**
- * Fonction permettant d'obtenir la liste de toutes les promotions
+ * @brief Fonction permettant d'obtenir la liste de toutes les promotions
  *
  * @return array $listePromotions
  *
@@ -34,6 +45,12 @@ function creerListePromotions(){
 
 }
 
+/**
+ * @brief Fonction permettant de créer une promotion à partir de son nom
+ *
+ * @param string $nomPromotion Nom de la promotion
+ * @return Promotion $unePromotion 
+ */
 function creerUnePromotion($nomPromotion){
     $monFichier = fopen(CSV_ETUDIANTS_FOLDER_NAME.$nomPromotion.".csv", "r");
 

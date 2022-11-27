@@ -18,9 +18,8 @@ var searchData=
   ['setnumligne_15',['setNumLigne',['../class_zone.html#a98e1ef6111175ebe8a1657a2b72c2043',1,'Zone']]],
   ['setplan_16',['setPlan',['../class_plan.html#a490112eaf221dc8b9992720e13ebe94d',1,'Plan']]],
   ['settype_17',['setType',['../class_zone.html#a844c8013abc8d7c322fab93de2e18565',1,'Zone']]],
-  ['supprimercontrole_18',['supprimerControle',['../class_promotion.html#a860fa544b34cf048cbfd1470f10bce7d',1,'Promotion']]],
-  ['supprimeretudiant_19',['supprimerEtudiant',['../class_promotion.html#a638a9b5e5ee3390955dda7eed2cdf90f',1,'Promotion']]],
-  ['supprimerplandeplacement_20',['supprimerPlanDePlacement',['../class_controle.html#a3a380a6acfe980032614ce7e402d0ad9',1,'Controle']]],
-  ['supprimerpromotion_21',['supprimerPromotion',['../class_controle.html#a5f7813270fd0d412095e0c0d34e3e902',1,'Controle']]],
-  ['supprimersalle_22',['supprimerSalle',['../class_controle.html#ac38dc04214f5104f9182eed69fe5e01b',1,'Controle']]]
+  ['supprimeretudiant_18',['supprimerEtudiant',['../class_promotion.html#a638a9b5e5ee3390955dda7eed2cdf90f',1,'Promotion']]],
+  ['supprimerplandeplacement_19',['supprimerPlanDePlacement',['../class_controle.html#a3a380a6acfe980032614ce7e402d0ad9',1,'Controle']]],
+  ['supprimerpromotion_20',['supprimerPromotion',['../class_controle.html#a5f7813270fd0d412095e0c0d34e3e902',1,'Controle']]],
+  ['supprimersalle_21',['supprimerSalle',['../class_controle.html#ac38dc04214f5104f9182eed69fe5e01b',1,'Controle']]]
 ];

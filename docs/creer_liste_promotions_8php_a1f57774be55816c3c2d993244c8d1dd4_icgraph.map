@@ -1,0 +1,4 @@
+<map id="creerUnePromotion" name="creerUnePromotion">
+<area shape="rect" id="node1" title="Fonction permettant de créer une promotion à partir de son nom." coords="199,5,332,31"/>
+<area shape="rect" id="node2" href="$creer_liste_promotions_8php.html#a3393f2f77a34c196e3410ba4be5f08f7" title="Fonction permettant d&#39;obtenir la liste de toutes les promotions." coords="5,5,151,31"/>
+</map>
