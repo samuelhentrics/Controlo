@@ -6,7 +6,7 @@
             <h1>Plan de la salle <?php print($_GET["salle"]); ?></h1>
             <table class="table table-striped table-bordered">
                 <?php
-                include($FONCTION_CREER_PLAN_SALLE_PATH);
+                include(FONCTION_CREER_PLAN_SALLE_PATH);
 
                 $plan = creerPlanSalle($_GET["salle"])->getPlan();
 

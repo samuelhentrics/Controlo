@@ -3,7 +3,7 @@
         <br>
 
         <script>
-        var lien = "<?php echo $JS_PATH ?>";
+        var lien = "<?php echo JS_PATH ?>";
         $(document).ready(function() {
             $('#salles').DataTable({
                 "language": {
@@ -30,7 +30,7 @@
                 </thead>
                 <tbody>
                     <?php
-                    include($FONCTION_CREER_LISTE_SALLES_PATH);
+                    include(FONCTION_CREER_LISTE_SALLES_PATH);
 
                     $listeSalles = creerListeSalles();
 

@@ -3,7 +3,7 @@
         <br>
 
         <script>
-        var lien = "<?php echo $JS_PATH ?>";
+        var lien = "<?php echo JS_PATH ?>";
         $(document).ready(function() {
             $('#controles').DataTable({
                 "language": {
@@ -34,8 +34,8 @@
                 <tbody>
 
                     <?php
-            include($FONCTION_CREER_LISTE_CONTROLES_PATH);
-            include($FONCTION_AJOUTER_MINUTES_HEURE_PATH);
+            include(FONCTION_CREER_LISTE_CONTROLES_PATH);
+            include(FONCTION_AJOUTER_MINUTES_HEURE_PATH);
 
             $listeControles = creerListeControles();
 

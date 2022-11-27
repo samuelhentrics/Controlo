@@ -2,8 +2,8 @@
 
 
 
-include($CLASS_PATH.$CLASS_PLAN_FILE_NAME);
-include($CLASS_PATH.$CLASS_ZONE_FILE_NAME);
+include(CLASS_PATH.CLASS_PLAN_FILE_NAME);
+include(CLASS_PATH.CLASS_ZONE_FILE_NAME);
 
 /**
  * Retourne un Plan de Salle si cette Salle existe
@@ -13,8 +13,7 @@ include($CLASS_PATH.$CLASS_ZONE_FILE_NAME);
  */
 function creerPlanSalle($nomSalle)
 {
-    include("config.php");
-    $nomFichier = $CSV_SALLES_PATH . $nomSalle . ".csv";
+    $nomFichier = CSV_SALLES_PATH . $nomSalle . ".csv";
     $monFichier = fopen($nomFichier, "r");
 
     // Créer le plan de la salle en lisant le fichier CSV s'il existe
