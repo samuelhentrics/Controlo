@@ -6,6 +6,7 @@
         private $prenom;
         private $td;
         private $tp;
+        private $email;
         private $estTT;//est TierTemps
         private $aOrdi; //bool
         private $estDemissionaire;
@@ -13,12 +14,12 @@
 
 
         /* Member functions */
-        function setnom($nouveauNom)
+        function setNom($nouveauNom)
         {
             $this->nom = $nouveauNom;
         }
 
-        function getnom()
+        function getNom()
         {
             return $this->nom;
         }
@@ -45,6 +46,15 @@
             $this->tp = $nouveauTd;
         }
 
+        function getMail()
+        {
+            return $this->email;
+        }
+        function setMail($nouveauMail)
+        {
+            $this->email = $nouveauMail;
+        }
+
         function getTp()
         {
             return $this->tp;
@@ -58,21 +68,21 @@
         {
             return $this->estTT;
         }
-        function setAordi($bool)
+        function setAOrdi($bool)
         {
             $this->aOrdi = $bool;
         }
 
-        function getAordi()
+        function getAOrdi()
         {
             return $this->aOrdi;
         }
-        function setEstdemissionaire($bool)
+        function setEstDemissionaire($bool)
         {
             $this->estDemissionaire = $bool;
         }
 
-        function getEstdemissionaire()
+        function getEstDemissionaire()
         {
             return $this->estDemissionaire;
         }
