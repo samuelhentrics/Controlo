@@ -11,7 +11,13 @@
         private $aOrdi; //bool
         private $estDemissionaire;
 
-
+        function __construct($nom, $prenom, $td, $tp, $email) {
+            $this->setNom($nom);
+            $this->setPrenom($prenom);
+            $this->setTd($td);
+            $this->setTp($tp);
+            $this->setEmail($email);
+        }
 
         /* Member functions */
         function setNom($nouveauNom)
@@ -46,11 +52,11 @@
             $this->tp = $nouveauTd;
         }
 
-        function getMail()
+        function getEmail()
         {
             return $this->email;
         }
-        function setMail($nouveauMail)
+        function setEmail($nouveauMail)
         {
             $this->email = $nouveauMail;
         }

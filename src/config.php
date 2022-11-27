@@ -252,16 +252,10 @@ define("CLASS_CONTRAINTES_ESPACEMENT_FILE_NAME" , "ContraintesEspacement.php");
 define("CLASS_CONTRAINTES_GENERALES_FILE_NAME" , "ContraintesGenerales.php");
 
 /**
- * @brief Nom du fichier de la classe Controles
- * @note ex : Controles.php
- */
-define("CLASS_CONTROLES_FILE_NAME" , "Controles.php");
-
-/**
  * @brief Nom du fichier de la classe Etudiants
  * @note ex : Etudiants.php
  */
-define("CLASS_ETUDIANTS_FILE_NAME" , "Etudiants.php");
+define("CLASS_ETUDIANT_FILE_NAME" , "Etudiant.php");
 
 /**
  * @brief Nom du fichier de la classe PlanDePlacement
@@ -444,6 +438,18 @@ define("FONCTION_CREER_PLAN_SALLE_FILE_NAME" , "creerPlanSalle.php");
  */
 define("FONCTION_CREER_PLAN_SALLE_PATH" , OBJECT_CREATION_PATH.FONCTION_CREER_PLAN_SALLE_FILE_NAME);
 
+/**
+ * @brief Nom du fichier où se trouve la fonction de création de la liste des promotions
+ * @note ex: creerListePromotions.php
+ */
+define("FONCTION_CREER_LISTE_PROMOTIONS_FILE_NAME" , "creerListePromotions.php");
+
+
+ /**
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve la fonction de création de la liste des promotions
+ * @note ex : Controlo/creationObjets/creerListePromotions.php
+ */
+define("FONCTION_CREER_LISTE_PROMOTIONS_PATH" , OBJECT_CREATION_PATH.FONCTION_CREER_LISTE_PROMOTIONS_FILE_NAME);
 
 
 

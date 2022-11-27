@@ -13,13 +13,6 @@ class Promotion
     private $nom;
 
     /**
-     * Liste des contrôles dont la promotion va  participer
-     * 
-     * @var array
-     */
-    private $mesControles = array();
-
-    /**
      * Liste des Etudiants qui appartient à cette promotion
      * 
      * @var array
@@ -38,6 +31,20 @@ class Promotion
         return $this->nom;
     }
 
+    // Constructeur
+
+    /**
+     * Constructeur de la classe Promotion
+     *
+     * @param string $nom Nom de la promotion
+     */
+    public function __construct($nom)
+    {
+        $this->setNom($nom);
+    }
+
+
+
     /**
      * Permet d'affecter un nom à une Promotion
      * 
@@ -48,29 +55,11 @@ class Promotion
         $this->nom=$nouveauNom;
     }
 
-    // Méthodes usuelles
-    
-    /**
-     * Permet d'ajouter un contrôle à la liste des contrôles dont la promotion va participer
-     * 
-     * @param Controle $unControle
-     */
-    public function ajouterControle($unControle)
-    {
-        array_push($this->mesControles, $unControle);
+    public function getMesEtudiants(){
+        return $this->mesEtudiants;
     }
 
-    /**
-     * Permet de supprimer un contrôle à la liste des contrôles dont la promotion va participer
-     * 
-     * @param Controle $unControle
-     */
-    public function supprimerControle($unControle)
-    {
-        if (array_key_exists($unControle, $this->mesControles)) {
-            unset($this->mesControles[$unControle]);
-        }
-    }
+    // Méthodes usuelles
 
     /**
      * Permet d'ajouter un étudiant à la promotion
