@@ -9,7 +9,7 @@
         private $email;
         private $estTT;//est TierTemps
         private $aOrdi; //bool
-        private $estDemissionaire;
+        private $estDemissionnaire;
 
         function __construct($nom, $prenom, $td, $tp, $email) {
             $this->setNom($nom);
@@ -83,14 +83,14 @@
         {
             return $this->aOrdi;
         }
-        function setEstDemissionaire($bool)
+        function setEstDemissionnaire($bool)
         {
-            $this->estDemissionaire = $bool;
+            $this->estDemissionnaire = $bool;
         }
 
-        function getEstDemissionaire()
+        function getEstDemissionnaire()
         {
-            return $this->estDemissionaire;
+            return $this->estDemissionnaire;
         }
 
         

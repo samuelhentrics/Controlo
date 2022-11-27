@@ -84,21 +84,42 @@
 
                             // Tiers-temps Etudiant
                             print("
-                        <td>
-                            {$unEtudiant->getEstTT()}
-                        </td>");
+                        <td class=\"text-center\">");
+
+                        if($unEtudiant->getEstTT()){
+                            print("<i class=\"fa-solid fa-check\"></i>");
+                        }
+                        else{
+                            print("<i class=\"fa-solid fa-times\"></i>");
+                        }
+
+                        print("</td>");
 
                             // Ordinateur Etudiant
-                            print("
-                        <td>
-                            {$unEtudiant->getAOrdi()}
-                        </td>");
+                        print("
+                        <td class=\"text-center\">");
+    
+                        if($unEtudiant->getAOrdi()){
+                            print("<i class=\"fa-solid fa-check\"></i>");
+                        }
+                        else{
+                            print("<i class=\"fa-solid fa-times\"></i>");
+                        }
+    
+                        print("</td>");
 
                             // Démissionnaire Etudiant
                             print("
-                        <td>
-                            {$unEtudiant->getEstDemissionaire()}
-                        </td>
+                        <td class=\"text-center\">");
+
+                            if($unEtudiant->getEstDemissionnaire()){
+                                print("<i class=\"fa-solid fa-check\"></i>");
+                            }
+                            else{
+                                print("<i class=\"fa-solid fa-times\"></i>");
+                            }
+
+                        print("</td>
                         </tr>");
                         }
                     }
@@ -106,5 +127,6 @@
                 </tbody>
             </table>
         </section>
+        <br>
     </div>
 </div>

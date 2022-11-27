@@ -72,7 +72,7 @@ function creerUnePromotion($nomPromotion){
             // Traiter si l'étudiant dispose d'un ordinateur
             $unEtudiant->setAOrdi(false);
             // Traiter si l'étudiant est demissionaire
-            $unEtudiant->setEstDemissionaire(false);
+            $unEtudiant->setEstDemissionnaire(false);
 
             // Ajout de l'étudiant dans la liste des étudiants (clé de la liste = l'email de l'étudiant)
             $maPromotion->ajouterEtudiant($unEtudiant);
