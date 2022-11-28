@@ -14,6 +14,9 @@
 include(CLASS_PATH.CLASS_PROMOTION_FILE_NAME);
 include(CLASS_PATH.CLASS_ETUDIANT_FILE_NAME);
 
+
+
+
 /**
  * @brief Fonction permettant d'obtenir la liste de toutes les promotions
  *
@@ -66,6 +69,7 @@ function creerUnePromotion($nomPromotion){
         // Création d'une liste d'étudiants
         $uneListeEtudiants = array();
 
+
         // On enleve l'entete
         fgetcsv($monFichier, null, ";");
 
@@ -77,6 +81,7 @@ function creerUnePromotion($nomPromotion){
             $tdEtudiant = $data[4];
             $tpEtudiant = $data[5];
             $emailEtudiant = $data[11];
+            $status = $data[6];
 
             // Création d'un objet de type Controle avec les informations
             // de la ligne courante que l'on traite dans le CSV
@@ -84,23 +89,44 @@ function creerUnePromotion($nomPromotion){
           
             
             // Traiter si l'étudiant dispose d'un tiers temps
-            $unEtudiant->setEstTT(false);
-
+            $TABLEAUX_MOT_CLEE_TIERS_TEMPS = ["TiersTemps", "Tiers-temps"];
+            $unEtudiant->setEstTT(contientMot($status, $TABLEAUX_MOT_CLEE_TIERS_TEMPS));
+            
             // Traiter si l'étudiant dispose d'un ordinateur
-            $unEtudiant->setAOrdi(false);
+            $TABLEAUX_MOT_CLEE_ORDINATEUR = ["PC", "pc", "Ordinateur"];
+            $unEtudiant->setAOrdi(contientMot($status, $TABLEAUX_MOT_CLEE_ORDINATEUR));
             // Traiter si l'étudiant est demissionaire
-            $unEtudiant->setEstDemissionnaire(false);
+            $TABLEAUX_MOT_CLEE_DEMISSION = ["Demission", "DÃ©mission", "Démission"];
+            $unEtudiant->setEstDemissionnaire(contientMot($status,$TABLEAUX_MOT_CLEE_DEMISSION ));
 
             // Ajout de l'étudiant dans la liste des étudiants (clé de la liste = l'email de l'étudiant)
             $maPromotion->ajouterEtudiant($unEtudiant);
         }
-    }
+    }   
+    
+  
 
     fclose($monFichier);
 
     return $maPromotion;
 }
 
+function contientMot($unePhrase, $tableauMotClee)
+{
+    $bool = false;
+    
+    # TiersTemps
+    if (!empty($unePhrase))
+       
+        foreach ($tableauMotClee as $key => $unMotClee) {
+            if ($unePhrase === $unMotClee || strpos($unePhrase, $unMotClee) ) {
+                $bool= true;
+                break;
+            }
+        }
+
+    return $bool;
+}
 
 
 ?>
