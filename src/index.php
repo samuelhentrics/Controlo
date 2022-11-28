@@ -33,38 +33,38 @@
             if (isset($_GET['page'])) {
                 $page = $_GET['page'];
 
-                // Cas où l'utilisateur souhaite voir la liste des contrôles
-                if ($page == "controles") {
-                    include(BACK_PATH."controles.php");
-                }
-
-                // Cas où l'utilisateur souhaite voir la liste des étudiants
-                else if ($page == "etudiants") {
-                    include(BACK_PATH."etudiants.php");
-                }
-
-                // Cas où l'utilisateur souhaite voir la liste des salles
-                else if ($page == "salles") {
-
-                    // Ou plus précisement le plan d'une salle
-                    if (isset($_GET['salle'])) {
-                        include(BACK_PATH."planSalle.php");
-                    }
-
-                    else{
-                        include(BACK_PATH."salles.php");
-                    }
-                }
-
-                // Cas où la demande est incorrecte, on retourne un message 404
-                else {
-                    include(BACK_PATH."404.php");
+                switch ($page) {
+                    // Cas où l'utilisateur souhaite voir la liste des contrôles
+                    case 'controles':
+                        include(BACK_PATH."controles.php");
+                        # code...
+                        break;
+                        // Cas où l'utilisateur souhaite voir la liste des étudiants
+                    case 'etudiants':
+                        include(BACK_PATH."etudiants.php");
+                        break;
+                        // Cas où l'utilisateur souhaite voir la liste des salles
+                        case 'salles':
+                            if (isset($_GET['salle'])) {
+                                include(BACK_PATH."planSalle.php");
+                            }
+            
+                            // Ou plus précisement le plan d'une salle
+                            else{
+                                include(BACK_PATH."salles.php");
+                            }
+                        break;
+                    default:
+                    // Cas où la demande est incorrecte, on retourne un message 404
+                        include(BACK_PATH."404.php");
+                        # code...
+                        break;
                 }
             }
+            else 
             // Cas où l'utilisateur est sur la page d'accueil
-            else {
-                include(BACK_PATH."accueil.php");
-            }
+            include(BACK_PATH."accueil.php");
+
 
         ?>
 
