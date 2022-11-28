@@ -32,7 +32,7 @@
             // Traiter la demande de page
             if (isset($_GET['page'])) {
                 $page = $_GET['page'];
-
+ 
                 switch ($page) {
                     // Cas où l'utilisateur souhaite voir la liste des contrôles
                     case 'controles':
