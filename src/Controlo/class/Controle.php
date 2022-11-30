@@ -237,9 +237,7 @@ class Controle
      */
     public function ajouterPromotion($unePromotion)
     {
-        if (array_key_exists($unePromotion, $this->getMesPromotions())) {
-            array_push($this->mesPromotions, $unePromotion);
-        }
+        array_push($this->mesPromotions, $unePromotion);
     }
 
     /**

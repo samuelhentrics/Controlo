@@ -11,13 +11,28 @@
  */
 
 DEFINE("CHEMIN_LISTE_CONTROLES", CSV_CONTROLES_FOLDER_NAME.LISTE_CONTROLES_FILE_NAME);
-include(CLASS_PATH.CLASS_CONTROLE_FILE_NAME);
+
+
+// include(BACK_PATH."etudiants.php");
+// include("../creationObjets/creerListePromotions.php");
+//include fichier promotion() => listePromo = creeListePromo() 
+//$ mesPromo = array(); 
+// foreach listepromo => x ...  = push_back(mesPromo, x);
+
+
+
+
+
 /**
  * @brief Cette fonction retourne la liste des contrôles sans les liens
  *
  * @return array
  */
 function creerListeControles(){
+    include("Controlo/class/Controle.php");
+    include("Controlo/import/creationObjets/creerListePromotions.php");
+    $listePromo = creerListePromotions();
+
     $monFichier = fopen(CHEMIN_LISTE_CONTROLES, "r");
 
     // Créer la liste des controles en lisant le fichier CSV
@@ -52,8 +67,14 @@ function creerListeControles(){
 
             // Création d'un objet de type Controle avec les informations
             // de la ligne courante que l'on traite dans le CSV
-            $unControle = new Controle($leNomLong,$leNomCourt,$laDuree,
-            $laDate,$lHeureNonTT,$lHeureTT);
+            $unControle = new Controle($leNomLong,$leNomCourt,$laDuree,$laDate,$lHeureNonTT,$lHeureTT);
+
+            foreach ($listePromo as $nomPromo => $unePromo) {
+                if($nomPromo == $data[0]) {
+                    $unControle->ajouterPromotion($unePromo);
+                }
+            }
+            
           
             // Ajout du contrôle dans la liste des contrôles
             $listeControles[$i] = $unControle;

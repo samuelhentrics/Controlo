@@ -89,7 +89,15 @@
 
 
                 // Promotions du contrôles
-                print("Pas encore programmé");
+                $lesPromotions = $listeControles[$i]->getMesPromotions();
+                if ($lesPromotions != null) {
+                    foreach ($lesPromotions as $key => $promo) {
+                        print($promo->getNom());
+                    }
+                }
+                else{
+                    print("Aucune promotion");
+                }
                 print("
                     </td>
                     <td>
