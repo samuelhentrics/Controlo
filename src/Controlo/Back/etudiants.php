@@ -3,20 +3,19 @@
         <br>
 
         <script>
-            var lien = "<?php echo JS_PATH ?>";
-            $(document).ready(function() {
-                $('#etudiants').DataTable({
-                    "language": {
-                        "url": lien + "/French.json"
-                    },
+        var lien = "<?php echo JS_PATH ?>";
+        $(document).ready(function() {
+            $('#etudiants').DataTable({
+                "language": {
+                    "url": lien + "/French.json"
+                },
 
-                    order: [
-                        [0, 'asc'],
-                        [1, 'asc']
-                    ]
-
-                });
+                order: [
+                    [0, 'asc'],
+                    [1, 'asc']
+                ]
             });
+        });
         </script>
         <section>
             <h1>Liste des étudiants</h1>
@@ -87,10 +86,10 @@
                         <td class=\"text-center\">");
 
                         if($unEtudiant->getEstTT()){
-                            print("<i class=\"fa-solid fa-check\"></i>");
+                            print("<a style=\"display:none;\">Oui</a><i class=\"fa-solid fa-check\"></i>");
                         }
                         else{
-                            print("<i class=\"fa-solid fa-times\"></i>");
+                            print("<a style=\"display:none;\">Non</a><i class=\"fa-solid fa-times\"></i>");
                         }
 
                         print("</td>");
@@ -100,10 +99,10 @@
                         <td class=\"text-center\">");
     
                         if($unEtudiant->getAOrdi()){
-                            print("<i class=\"fa-solid fa-check\"></i>");
+                            print("<a style=\"display:none;\">Oui</a><i class=\"fa-solid fa-check\"></i>");
                         }
                         else{
-                            print("<i class=\"fa-solid fa-times\"></i>");
+                            print("<a style=\"display:none;\">Non</a><i class=\"fa-solid fa-times\"></i>");
                         }
     
                         print("</td>");
@@ -113,10 +112,10 @@
                         <td class=\"text-center\">");
 
                             if($unEtudiant->getEstDemissionnaire()){
-                                print("<i class=\"fa-solid fa-check\"></i>");
+                                print("<a style=\"display:none;\">Oui</a><i class=\"fa-solid fa-check\"></i>");
                             }
                             else{
-                                print("<i class=\"fa-solid fa-times\"></i>");
+                                print("<a style=\"display:none;\">Non</a><i class=\"fa-solid fa-times\"></i>");
                             }
 
                         print("</td>

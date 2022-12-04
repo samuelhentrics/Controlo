@@ -3,7 +3,6 @@
  * @file creerListePromotions.php
  * @author Samuel HENTRICS LOISTINE <samuel.hentrics@gmail.com>
  * @brief Spécification de la fonction creerListeControles
- * @todo Fonction detecterTT, detecterOrdi, detecterDemissionnaire
  * 
  * @version 1.0
  * @date 2022-11-26
@@ -75,29 +74,7 @@ function creerUnePromotion($nomPromotion){
 
         // Lecture du reste du CSV
         while ($data = fgetcsv($monFichier, null, ";")) {
-            // Création d'un contrôle de la ligne actuelle
-            $nomEtudiant = $data[0];
-            $prenomEtudiant = $data[1];
-            $tdEtudiant = $data[4];
-            $tpEtudiant = $data[5];
-            $emailEtudiant = $data[11];
-            $status = $data[6];
-
-            // Création d'un objet de type Controle avec les informations
-            // de la ligne courante que l'on traite dans le CSV
-            $unEtudiant = new Etudiant($nomEtudiant, $prenomEtudiant, $tdEtudiant, $tpEtudiant, $emailEtudiant);
-          
-            
-            // Traiter si l'étudiant dispose d'un tiers temps
-            $TABLEAUX_MOT_CLEE_TIERS_TEMPS = ["TiersTemps", "Tiers-temps"];
-            $unEtudiant->setEstTT(contientMot($status, $TABLEAUX_MOT_CLEE_TIERS_TEMPS));
-            
-            // Traiter si l'étudiant dispose d'un ordinateur
-            $TABLEAUX_MOT_CLEE_ORDINATEUR = ["PC", "pc", "Ordinateur"];
-            $unEtudiant->setAOrdi(contientMot($status, $TABLEAUX_MOT_CLEE_ORDINATEUR));
-            // Traiter si l'étudiant est demissionaire
-            $TABLEAUX_MOT_CLEE_DEMISSION = ["Demission", "DÃ©mission", "Démission"];
-            $unEtudiant->setEstDemissionnaire(contientMot($status,$TABLEAUX_MOT_CLEE_DEMISSION ));
+            $unEtudiant = creerEtudiant($data);
 
             // Ajout de l'étudiant dans la liste des étudiants (clé de la liste = l'email de l'étudiant)
             $maPromotion->ajouterEtudiant($unEtudiant);
@@ -111,6 +88,48 @@ function creerUnePromotion($nomPromotion){
     return $maPromotion;
 }
 
+
+/**
+ * 
+ * @brief Créer un étudiant grâce à une ligne du CSV traité
+ * @param Array $ligneCSV Ligne du CSV actuelle contenant les informations de l'étudiant actuel
+ * @return Etudiant Etudiant avec toutes ses informations nom, prenom...
+ */
+function creerEtudiant($ligneCSV){
+    // Création d'un contrôle de la ligne actuelle
+    $nomEtudiant = $ligneCSV[0];
+    $prenomEtudiant = $ligneCSV[1];
+    $tdEtudiant = $ligneCSV[4];
+    $tpEtudiant = $ligneCSV[5];
+    $emailEtudiant = $ligneCSV[11];
+    $status = $ligneCSV[6];
+
+    // Création d'un objet de type Controle avec les informations
+    // de la ligne courante que l'on traite dans le CSV
+    $unEtudiant = new Etudiant($nomEtudiant, $prenomEtudiant, $tdEtudiant, $tpEtudiant, $emailEtudiant);
+  
+    
+    // Traiter si l'étudiant dispose d'un tiers temps
+    $TABLEAUX_MOT_CLEE_TIERS_TEMPS = ["TiersTemps", "Tiers-temps"];
+    $unEtudiant->setEstTT(contientMot($status, $TABLEAUX_MOT_CLEE_TIERS_TEMPS));
+    
+    // Traiter si l'étudiant dispose d'un ordinateur
+    $TABLEAUX_MOT_CLEE_ORDINATEUR = ["PC", "pc", "Ordinateur"];
+    $unEtudiant->setAOrdi(contientMot($status, $TABLEAUX_MOT_CLEE_ORDINATEUR));
+    // Traiter si l'étudiant est demissionaire
+    $TABLEAUX_MOT_CLEE_DEMISSION = ["Demission", "DÃ©mission", "Démission"];
+    $unEtudiant->setEstDemissionnaire(contientMot($status,$TABLEAUX_MOT_CLEE_DEMISSION ));
+
+    return $unEtudiant;
+}
+
+
+/**
+ * Summary of contientMot
+ * @param String $unePhrase Phrase où l'on doit trouver un mot
+ * @param Array $tableauMotClee Tableau des mots qui doivent être identifié
+ * @return bool
+ */
 function contientMot($unePhrase, $tableauMotClee)
 {
     $bool = false;
