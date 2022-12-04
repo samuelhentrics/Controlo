@@ -39,22 +39,22 @@
 
             $listeControles = creerListeControles();
 
-            for ($i = 0; $i <= count($listeControles) - 1; $i++) {
+            for ($numControle = 0; $numControle <= count($listeControles) - 1; $numControle++) {
 
 
                 // Nom long du contrôle
                 print("
                     <tr>
                     <td>
-                        {$listeControles[$i]->getNomLong()}
+                        {$listeControles[$numControle]->getNomLong()}
                     </td>
                     <td>
                 ");
 
 
                 // Date du contrôle
-                if ($listeControles[$i]->getDate() != null) {
-                    print("{$listeControles[$i]->getDate()}");
+                if ($listeControles[$numControle]->getDate() != null) {
+                    print("{$listeControles[$numControle]->getDate()}");
                 } else {
                     print("Non définie");
                 }
@@ -65,8 +65,8 @@
 
 
                 // Heure Non TT
-                if ($listeControles[$i]->getHeureNonTT() != null) {
-                    echo $listeControles[$i]->getHeureNonTT(), "-", ajouterMinutesHeure($listeControles[$i]->getHeureNonTT(), $listeControles[$i]->getDureeNonTT());
+                if ($listeControles[$numControle]->getHeureNonTT() != null) {
+                    echo $listeControles[$numControle]->getHeureNonTT(), "-", ajouterMinutesHeure($listeControles[$numControle]->getHeureNonTT(), $listeControles[$numControle]->getDureeNonTT());
                 } else {
                     print("Non définie");
                 }
@@ -77,8 +77,8 @@
 
 
                 // Heure TT
-                if ($listeControles[$i]->getHeureTT() != null) {
-                    echo $listeControles[$i]->getHeureTT(), "-", ajouterMinutesHeure($listeControles[$i]->getHeureTT(), $listeControles[$i]->getDuree());
+                if ($listeControles[$numControle]->getHeureTT() != null) {
+                    echo $listeControles[$numControle]->getHeureTT(), "-", ajouterMinutesHeure($listeControles[$numControle]->getHeureTT(), $listeControles[$numControle]->getDuree());
                 } else {
                     print("Non définie");
                 }
@@ -89,7 +89,7 @@
 
 
                 // Promotions du contrôles
-                $lesPromotions = $listeControles[$i]->getMesPromotions();
+                $lesPromotions = $listeControles[$numControle]->getMesPromotions();
                 if ($lesPromotions != null) {
                     foreach ($lesPromotions as $key => $promo) {
                         print($promo->getNom());
@@ -106,9 +106,9 @@
 
                 // Bouton pour Générer
 
-                if ($listeControles[$i]->controleInfoComplet()){
+                if ($listeControles[$numControle]->controleInfoComplet()){
                     print("
-                    <a href=\"\">
+                    <a href=\"".PAGE_GENERATION_PATH."&numControle=$numControle\">
                         <i class=\"fa-solid fa-arrow-rotate-right text-dark\"></i>
                     </a>");
                 }

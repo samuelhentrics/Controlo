@@ -481,5 +481,11 @@ define("PAGE_ETUDIANTS_PATH" , PATH."index.php?page=etudiants");
  */
 define("PAGE_SALLES_PATH" , PATH."index.php?page=salles");
 
+/**
+ * @brief Lien complet vers la page de génération d'un controle
+ * @note ex : http://localhost/src/index.php?page=generer
+ */
+define("PAGE_GENERATION_PATH" , PATH."index.php?page=generer");
+
 
 ?>

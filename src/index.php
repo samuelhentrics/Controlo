@@ -39,25 +39,32 @@
                         include(BACK_PATH."controles.php");
                         # code...
                         break;
-                        // Cas où l'utilisateur souhaite voir la liste des étudiants
+
+                    case 'generer':
+                        include(BACK_PATH."generer.php");
+                        # code...
+                        break;
+
+
+                    // Cas où l'utilisateur souhaite voir la liste des étudiants
                     case 'etudiants':
                         include(BACK_PATH."etudiants.php");
                         break;
-                        // Cas où l'utilisateur souhaite voir la liste des salles
-                        case 'salles':
-                            if (isset($_GET['salle'])) {
-                                include(BACK_PATH."planSalle.php");
-                            }
-            
-                            // Ou plus précisement le plan d'une salle
-                            else{
-                                include(BACK_PATH."salles.php");
-                            }
+                    
+                    // Cas où l'utilisateur souhaite voir la liste des salles
+                    case 'salles':
+                        if (isset($_GET['salle'])) {
+                            include(BACK_PATH."planSalle.php");
+                        }
+                        // Ou plus précisement le plan d'une salle
+                        else{
+                            include(BACK_PATH."salles.php");
+                        }
                         break;
+
                     default:
                     // Cas où la demande est incorrecte, on retourne un message 404
                         include(BACK_PATH."404.php");
-                        # code...
                         break;
                 }
             }
