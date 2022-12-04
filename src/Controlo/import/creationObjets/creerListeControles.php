@@ -11,14 +11,8 @@
  */
 
 DEFINE("CHEMIN_LISTE_CONTROLES", CSV_CONTROLES_FOLDER_NAME.LISTE_CONTROLES_FILE_NAME);
-
-
-// include(BACK_PATH."etudiants.php");
-// include("../creationObjets/creerListePromotions.php");
-//include fichier promotion() => listePromo = creeListePromo() 
-//$ mesPromo = array(); 
-// foreach listepromo => x ...  = push_back(mesPromo, x);
-
+include(FONCTION_CREER_LISTE_PROMOTIONS_PATH);
+include(FONCTION_CREER_LISTE_SALLES_PATH);
 
 
 
@@ -30,8 +24,8 @@ DEFINE("CHEMIN_LISTE_CONTROLES", CSV_CONTROLES_FOLDER_NAME.LISTE_CONTROLES_FILE_
  */
 function creerListeControles(){
     include("Controlo/class/Controle.php");
-    include("Controlo/import/creationObjets/creerListePromotions.php");
-    $listePromo = creerListePromotions();
+    
+    
 
     $monFichier = fopen(CHEMIN_LISTE_CONTROLES, "r");
 
@@ -69,11 +63,11 @@ function creerListeControles(){
             // de la ligne courante que l'on traite dans le CSV
             $unControle = new Controle($leNomLong,$leNomCourt,$laDuree,$laDate,$lHeureNonTT,$lHeureTT);
 
-            foreach ($listePromo as $nomPromo => $unePromo) {
-                if($nomPromo == $data[0]) {
-                    $unControle->ajouterPromotion($unePromo);
-                }
-            }
+            // Création du lien entre les promotions et le contrôle
+            $unControle = creerRelationPromotionControle($unControle, $data[0]);
+
+            // Création du lien entre les salles et le contrôle
+            $unControle = creerRelationSalleControle($unControle, $data[10]);
             
           
             // Ajout du contrôle dans la liste des contrôles
@@ -86,6 +80,44 @@ function creerListeControles(){
     fclose($monFichier);
 
     return $listeControles;
+}
+
+
+function creerRelationPromotionControle($unControle, $lesPromos){
+    $listePromo = creerListePromotions();
+    
+    // On récupére la liste des promotions participants au contrôle
+    $listePromosControle = explode(",", $lesPromos);
+
+    // Pour chaque promotion, on essaye d'associer si possible la promotion
+    foreach($listePromosControle as $nomUnePromoControle){
+        foreach ($listePromo as $nomPromo => $unePromo) {
+            if($nomPromo == $nomUnePromoControle) {
+                $unControle->ajouterPromotion($unePromo);
+            }
+        }
+    }
+    
+
+    return $unControle;
+}
+
+function creerRelationSalleControle($unControle, $lesSalles){
+    $listeSalles = creerListeSalles();
+    
+    // On récupére la liste des promotions participants au contrôle
+    $listeSallesControle = explode(",", $lesSalles);
+
+    // Pour chaque promotion, on essaye d'associer si possible la promotion
+    foreach($listeSallesControle as $nomUneSalleControle){
+        foreach ($listeSalles as $nomSalle => $uneSalle) {
+            if($nomSalle == $nomUneSalleControle) {
+                $unControle->ajouterSalle($uneSalle);
+            }
+        }
+    }
+
+    return $unControle;
 }
 
 

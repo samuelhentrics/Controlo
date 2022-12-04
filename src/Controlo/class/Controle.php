@@ -244,6 +244,7 @@ class Controle
      * @brief Permet de supprimer une Promotion de la liste de promotions participant au Controle
      *
      * @param Promotion $unePromotion Promotion participant au contrôle à supprimer
+     * @todo Tester la fonction de suppression
      */
     public function supprimerPromotion($unePromotion)
     {
@@ -268,15 +269,14 @@ class Controle
      */
     public function ajouterSalle($uneSalle)
     {
-        if (array_key_exists($uneSalle, $this->getMesSalles())) {
-            array_push($this->getMesSalles(), $uneSalle);
-        }
+        array_push($this->mesSalles, $uneSalle);
     }
 
     /**
      * @brief Permet de supprimer une Salle de la liste des salles du Controle
      *
      * @param Salle $uneSalle Salle participant au contrôle à supprimer
+     * @todo Tester la fonction de suppression
      */
     public function supprimerSalle($uneSalle)
     {
@@ -297,18 +297,18 @@ class Controle
      * @brief Permet d'ajouter un PlanDePlacement à la liste des plans de placement du Controle
      *
      * @param PlanDePlacement $unPlanDePlacement Plan de Placement du contrôle à ajouter
+     * @todo Tester la fonction d'ajout
      */
     public function ajouterPlanDePlacement($unPlanDePlacement)
     {
-        if (array_key_exists($unPlanDePlacement, $this->getMesPlansDePlacement())) {
-            array_push($this->getMesSalles(), $unPlanDePlacement);
-        }
+        array_push($this->mesPlansDePlacement, $unPlanDePlacement);
     }
 
     /**
      * @brief Permet de supprimer un PlanDePlacement de la liste des plans de placement du Controle
      *
      * @param PlanDePlacement $unPlanDePlacement Plan de Placement du contrôle à supprimer
+     * @todo Tester la fonction de suppression
      */
     public function supprimerPlanDePlacement($unPlanDePlacement)
     {
