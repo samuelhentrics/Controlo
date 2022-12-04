@@ -34,7 +34,7 @@
 
                     $listeSalles = creerListeSalles();
 
-                    for ($i = 0; $i <= count($listeSalles) - 1; $i++) {
+                    foreach ($listeSalles as $nomSalle => $uneSalle) {
                         print("
                             <tr>
                             <td>
@@ -42,7 +42,7 @@
 
 
                         // Afficher le nom de la salle
-                        print("{$listeSalles[$i]->getNom()}");
+                        print("{$uneSalle->getNom()}");
                         print("
                             </td>
                             <td>
@@ -50,8 +50,8 @@
 
 
                         // Afficher le voisin de la salle
-                        if ($listeSalles[$i]->getMonVoisin() != null) {
-                            print("{$listeSalles[$i]->getMonVoisin()->getNom()}");
+                        if ($uneSalle->getMonVoisin() != null) {
+                            print("{$uneSalle->getMonVoisin()->getNom()}");
                         }
                         print("
                             </td>
@@ -60,10 +60,10 @@
 
 
                         // Afficher si le plan existe ou non
-                        if ($listeSalles[$i]->getMonPlan() != null) {
+                        if ($uneSalle->getMonPlan() != null) {
                             print("<i class=\"fa-solid fa-circle text-success\"></i> ");
                             print("- <a class=\"text-reset fw-bold text-decoration-none\"
-                                    href=\"".PAGE_SALLES_PATH."&salle={$listeSalles[$i]->getNom()}\">
+                                    href=\"".PAGE_SALLES_PATH."&salle={$uneSalle->getNom()}\">
                                     Aperçu
                                     <i class=\"fa-solid fa-arrow-right\"></i>
                                     </a>");

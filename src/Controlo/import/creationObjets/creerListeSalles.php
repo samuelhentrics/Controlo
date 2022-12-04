@@ -44,20 +44,24 @@ function creerListeSalles()
 
     // Création des objets de la classe Salle
     for ($j=0; $j<=count($tabCSV)-1; $j++){
+        // On récupére les informations importantes du CSV
+        $nomSalle = $tabCSV[$j][0];
+
         // Création de l'objet Salle
         $uneSalle = new Salle;
-        $uneSalle->setNom($tabCSV[$j][0]);
+        $uneSalle->setNom($nomSalle);
         
         // Création de la relation Plan-Salle si le plan existe
         $uneSalle = creerRelationSallePlan($uneSalle);
         
 
-        $listeSalles[$j] = $uneSalle;
+        $listeSalles[$nomSalle] = $uneSalle;
     }
 
     
     for ($numSalleChercheVoisin=0; $numSalleChercheVoisin<=count($tabCSV)-1; $numSalleChercheVoisin++){
         // Association des voisins des salles
+        $nomSalleChercheVoisin = $tabCSV[$numSalleChercheVoisin][0];
         $nomSalleVoisineAChercher = $tabCSV[$numSalleChercheVoisin][1];
 
         if ($nomSalleVoisineAChercher!=null){
@@ -66,10 +70,10 @@ function creerListeSalles()
 
             // Tentative de recherche du voisin si l'objet a été crée
             while($numSalleActuelle < count($listeSalles)){
-                $salleActuelle = $listeSalles[$numSalleActuelle];
+                $salleActuelle = $listeSalles[$tabCSV[$numSalleActuelle][0]];
 
                 if ($salleActuelle->getNom() == $nomSalleVoisineAChercher){
-                    $listeSalles[$numSalleChercheVoisin]->lierVoisin($listeSalles[$numSalleActuelle]);
+                    $listeSalles[$nomSalleChercheVoisin]->lierVoisin($listeSalles[$nomSalleVoisineAChercher]);
                     break;
                 }
 
