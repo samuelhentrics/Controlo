@@ -65,23 +65,18 @@ function creerUnePromotion($nomPromotion){
         // Création d'un objet Promotion
         $maPromotion = new Promotion($nomPromotion);
 
-        // Création d'une liste d'étudiants
-        $uneListeEtudiants = array();
-
-
-        // On enleve l'entete
+        // On enleve l'entete du CSV
         fgetcsv($monFichier, null, ";");
 
         // Lecture du reste du CSV
         while ($data = fgetcsv($monFichier, null, ";")) {
+            // On créer l'étudiant
             $unEtudiant = creerEtudiant($data);
 
             // Ajout de l'étudiant dans la liste des étudiants (clé de la liste = l'email de l'étudiant)
             $maPromotion->ajouterEtudiant($unEtudiant);
         }
     }   
-    
-  
 
     fclose($monFichier);
 
@@ -125,7 +120,7 @@ function creerEtudiant($ligneCSV){
 
 
 /**
- * Summary of contientMot
+ * @brief Permet de vérifier si un mot clé est dans une phrase
  * @param String $unePhrase Phrase où l'on doit trouver un mot
  * @param Array $tableauMotClee Tableau des mots qui doivent être identifié
  * @return bool

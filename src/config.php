@@ -7,7 +7,8 @@
  * @date        26/11/2022
  */
 
-
+// Désactive les informations d'erreur (pour le mode non-dev)
+//ini_set('display_errors','Off');
 
 if (! function_exists('retrouverCheminApp'))
 {

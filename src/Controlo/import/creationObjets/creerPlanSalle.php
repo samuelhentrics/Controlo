@@ -19,7 +19,7 @@ function creerPlanSalle($nomSalle)
     // Créer le plan de la salle en lisant le fichier CSV s'il existe
 
     if (!($monFichier)) {
-        print("Cette salle n'existe pas <br>");
+        return null;
         exit;
     } else {
         // Création d'un objet unPlan

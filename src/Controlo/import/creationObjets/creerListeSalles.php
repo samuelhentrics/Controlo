@@ -3,6 +3,7 @@
 
 DEFINE("CHEMIN_LISTE_SALLES", CSV_SALLES_PATH.LISTE_SALLES_FILE_NAME);
 include(CLASS_PATH.CLASS_SALLE_FILE_NAME);
+include(FONCTION_CREER_PLAN_SALLE_PATH);
 
 
 /**
@@ -43,34 +44,58 @@ function creerListeSalles()
 
     // Création des objets de la classe Salle
     for ($j=0; $j<=count($tabCSV)-1; $j++){
+        // Création de l'objet Salle
         $uneSalle = new Salle;
         $uneSalle->setNom($tabCSV[$j][0]);
+        
+        // Création de la relation Plan-Salle si le plan existe
+        $uneSalle = creerRelationSallePlan($uneSalle);
+        
+
         $listeSalles[$j] = $uneSalle;
     }
 
-    // Association des voisins des salles
-    for ($j=0; $j<=count($tabCSV)-1; $j++){
-        if ($tabCSV[$j][1]!=null){
-            // Création de la salle que l'on recherche
-            $uneSalleAChercher = new Salle;
-            $uneSalleAChercher->setNom($tabCSV[$j][1]);
+    
+    for ($numSalleChercheVoisin=0; $numSalleChercheVoisin<=count($tabCSV)-1; $numSalleChercheVoisin++){
+        // Association des voisins des salles
+        $nomSalleVoisineAChercher = $tabCSV[$numSalleChercheVoisin][1];
+
+        if ($nomSalleVoisineAChercher!=null){
+            // Initialisation d'un incrément
+            $numSalleActuelle = 0;
 
             // Tentative de recherche du voisin si l'objet a été crée
-            $indiceSalleListe = array_search($uneSalleAChercher, $listeSalles);
-            if($indiceSalleListe!=null){
-                $listeSalles[$j]->lierVoisin($listeSalles[$indiceSalleListe]);
+            while($numSalleActuelle < count($listeSalles)){
+                $salleActuelle = $listeSalles[$numSalleActuelle];
+
+                if ($salleActuelle->getNom() == $nomSalleVoisineAChercher){
+                    $listeSalles[$numSalleChercheVoisin]->lierVoisin($listeSalles[$numSalleActuelle]);
+                    break;
+                }
+
+                $numSalleActuelle++;
             }
-            
         }
     }
 
 
-
-    // Création des plans et association
-
-
-
     return $listeSalles;
 }
+
+
+function creerRelationSallePlan($uneSalle){
+    // On récupére le nom de la salle
+    $nomSalle = $uneSalle->getNom();
+
+    // On tente de créer le plan de la salle
+    $planDeLaSalle = creerPlanSalle($nomSalle);
+
+    // On met le plan de la Salle
+    $uneSalle->setMonPlan($planDeLaSalle);
+
+
+    return $uneSalle;
+}
+
 
 ?>
