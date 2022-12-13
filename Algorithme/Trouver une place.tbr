@@ -2,7 +2,7 @@
 <!DOCTYPE Tabula_Rasa>
 <Algorithme>
   <nom>Trouver une place</nom>
-  <date_creation>18/11/2022 09:13</date_creation>
+  <date_creation>13/12/2022 10:15</date_creation>
   <Elements>
     <Action>
       <Position>125;45</Position>
@@ -14,7 +14,7 @@
       <DetailsVideVisible>1</DetailsVideVisible>
       <Enfants>
         <Action>
-          <Position>213;198</Position>
+          <Position>161;198</Position>
           <StyleLien>1</StyleLien>
           <PreAssertion>?</PreAssertion>
           <PostAssertion>?</PostAssertion>
@@ -24,7 +24,7 @@
           <Enfants/>
         </Action>
         <Action>
-          <Position>301;310</Position>
+          <Position>284;203</Position>
           <StyleLien>1</StyleLien>
           <PreAssertion>?</PreAssertion>
           <PostAssertion>?</PostAssertion>
@@ -34,7 +34,7 @@
           <Enfants/>
         </Action>
         <Action>
-          <Position>406;210</Position>
+          <Position>409;204</Position>
           <StyleLien>2</StyleLien>
           <PreAssertion>?</PreAssertion>
           <PostAssertion>?</PostAssertion>
@@ -49,13 +49,13 @@
               <IterationFixe>1</IterationFixe>
               <Enfants>
                 <Iteration>
-                  <Position>644.5;456.5</Position>
+                  <Position>924.5;429.5</Position>
                   <StyleLien>1</StyleLien>
                   <Titre>Pour zoneLigne de 0 à count( controleChoisi→getMesSalles()[numSalle ]→getMesZones())</Titre>
                   <IterationFixe>1</IterationFixe>
                   <Enfants>
                     <Action>
-                      <Position>617;548</Position>
+                      <Position>897;521</Position>
                       <StyleLien>1</StyleLien>
                       <PreAssertion>?</PreAssertion>
                       <PostAssertion>?</PostAssertion>
@@ -65,7 +65,7 @@
                       <Enfants/>
                     </Action>
                     <Action>
-                      <Position>362;543</Position>
+                      <Position>642;516</Position>
                       <StyleLien>2</StyleLien>
                       <PreAssertion>?</PreAssertion>
                       <PostAssertion>?</PostAssertion>
@@ -74,7 +74,7 @@
                       <DetailsVideVisible>0</DetailsVideVisible>
                       <Enfants>
                         <Condition>
-                          <Position>371.5;662</Position>
+                          <Position>651.5;635</Position>
                           <StyleLien>1</StyleLien>
                           <estUnique>1</estUnique>
                           <operationsLogiques>
@@ -82,7 +82,7 @@
                               <Titre>trouve</Titre>
                               <Enfants>
                                 <Sortie>
-                                  <Position>375;784</Position>
+                                  <Position>658;759</Position>
                                 </Sortie>
                               </Enfants>
                             </operation>
@@ -95,7 +95,7 @@
                       </Enfants>
                     </Action>
                     <Action>
-                      <Position>514;548</Position>
+                      <Position>794;521</Position>
                       <StyleLien>1</StyleLien>
                       <PreAssertion>?</PreAssertion>
                       <PostAssertion>?</PostAssertion>
@@ -107,7 +107,7 @@
                   </Enfants>
                 </Iteration>
                 <Action>
-                  <Position>198;427</Position>
+                  <Position>396;432</Position>
                   <StyleLien>2</StyleLien>
                   <PreAssertion>?</PreAssertion>
                   <PostAssertion>?</PostAssertion>
@@ -116,7 +116,7 @@
                   <DetailsVideVisible>0</DetailsVideVisible>
                   <Enfants>
                     <Condition>
-                      <Position>207.5;536</Position>
+                      <Position>404.5;571</Position>
                       <StyleLien>1</StyleLien>
                       <estUnique>1</estUnique>
                       <operationsLogiques>
@@ -124,7 +124,7 @@
                           <Titre>trouve</Titre>
                           <Enfants>
                             <Sortie>
-                              <Position>209;659</Position>
+                              <Position>410;702</Position>
                             </Sortie>
                           </Enfants>
                         </operation>
