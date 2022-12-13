@@ -110,6 +110,7 @@ function creerRelationSalleControle($unControle, $lesSalles){
 
     // Pour chaque promotion, on essaye d'associer si possible la promotion
     foreach($listeSallesControle as $nomUneSalleControle){
+        $nomUneSalleControle = str_replace(" ", "", $nomUneSalleControle); 
         foreach ($listeSalles as $nomSalle => $uneSalle) {
             if($nomSalle == $nomUneSalleControle) {
                 $unControle->ajouterSalle($uneSalle);
