@@ -62,6 +62,7 @@
                         }
                         break;
 
+
                     default:
                     // Cas où la demande est incorrecte, on retourne un message 404
                         include(BACK_PATH."404.php");
