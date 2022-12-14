@@ -79,7 +79,7 @@ class Plan{
     /**
      * @brief Retourne le nombre de colonnes du Plan
      *
-     * @return void
+     * @return int
      */
     public function getNbColonnes(){
         return count($this->monPlan[0]);
