@@ -82,6 +82,61 @@ function creerListeControles(){
     return $listeControles;
 }
 
+function recupererUnControle($id){
+    include(CLASS_PATH.CLASS_CONTROLE_FILE_NAME);
+
+    $monFichier = fopen(CHEMIN_LISTE_CONTROLES, "r");
+
+    // Créer la liste des controles en lisant le fichier CSV
+
+    if (!($monFichier)) {
+        print("Impossible d'ouvrir le fichier \n");
+        exit;
+    } else {
+        // Création d'une liste vide
+        $leControle = null;
+        $i = 0;
+
+        // On enleve l'entete
+        fgetcsv($monFichier, null, ";");
+
+        // Lecture du reste du CSV
+        while ($data = fgetcsv($monFichier, null, ";")) {
+            if ($i == $id){
+                // Mettre la date au format YYYY-MM-DD si une date existe (pour datatables)
+                if ($data[7] != null){
+                    $data[7] = DateTime::createFromFormat('d/m/Y', $data[7]);
+                    $data[7] = $data[7]->format('Y-m-d');
+                }
+
+                // Création du contrôle de la ligne actuelle
+                $leNomLong = $data[3];
+                $leNomCourt = $data[4];
+                $laDuree = $data[6];
+                $laDate = $data[7];
+                $lHeureNonTT = $data[8];
+                $lHeureTT= $data[9];
+
+                // Création d'un objet de type Controle avec les informations
+                // de la ligne courante que l'on traite dans le CSV
+                $leControle = new Controle($leNomLong,$leNomCourt,$laDuree,$laDate,$lHeureNonTT,$lHeureTT);
+
+                // Création du lien entre les promotions et le contrôle
+                $leControle = creerRelationPromotionControle($leControle, $data[0]);
+
+                // Création du lien entre les salles et le contrôle
+                $leControle = creerRelationSalleControle($leControle, $data[10]);
+
+            }
+            $i++;
+        }
+
+    }
+
+    fclose($monFichier);
+
+    return $leControle;
+}
 
 function creerRelationPromotionControle($unControle, $lesPromos){
     $listePromo = creerListePromotions();

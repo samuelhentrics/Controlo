@@ -139,7 +139,7 @@ class PDF extends FPDF
 }
 
 // Récupérer le contrôle
-$unControle = creerListeControles()[0];
+$unControle = recupererUnControle(0);
 
 
 $plansDePlacement = array();
@@ -149,9 +149,10 @@ $plansDePlacement = array();
 // Création de l'entête pour chaque page
 //      Récupération des variables importantes pour l'entête
 $nomControle = $unControle->getNomLong();
+$nomCourtControle = $unControle->getNomCourt();
 
-$date = $unControle->getDate();
-$date = date('d/m/Y', strtotime($date));
+$dateControle = $unControle->getDate();
+$date = date('d/m/Y', strtotime($dateControle));
 
 $heureTT = str_replace(":", "h", $unControle->getHeureTT());
 
@@ -169,24 +170,41 @@ foreach ($unControle->getMesPromotions() as $numPromo => $unePromotion) {
 }
 $lesPromotions = substr($lesPromotions, 0, -2);
 
+
 $entete = '<u>Nom du contrôle</u> : ' . $nomControle . '<br>' .
     '<u>Promotion(s)</u> : ' . $lesPromotions . '<br>' .
     '<u>Date</u> : ' . $date . '            ' .
     '<u>Heure</u> : ' . $heureNonTT . ' (TT : ' . $heureTT . ')' . '            ' .
     '<u>Durée</u> : ' . $dureeNonTT . ' (TT : ' . $dureeTT . ')';
 
-// Instanciation de la classe dérivée
-$pdf = new PDF();
-$pdf->AliasNbPages();
+
+// Création du dossier dans le dossier des plans de placement
+$dateFormatDossier = date('Y-m-d', strtotime($dateControle));
+
+$nomFormatDossier = str_replace("-", "", $nomCourtControle);
+$nomFormatDossier = str_replace(".", "-", $nomFormatDossier);
+$nomFormatDossier = preg_replace ("/\s+/", " ", $nomFormatDossier);
+$nomFormatDossier = trim($nomFormatDossier);
+$nomFormatDossier = str_replace("/", "-", $nomFormatDossier);
+$nomFormatDossier = str_replace(" ", "-", $nomFormatDossier);
+
+$nomDossier = PLANS_DE_PLACEMENT_FOLDER_NAME . $dateFormatDossier . "_" . $nomFormatDossier."/";
+if(!file_exists($nomDossier)){
+    mkdir($nomDossier);
+}
 
 foreach ($unControle->getMesSalles() as $nomSalle => $uneSalle) {
+    // Instanciation de la classe dérivée
+    $pdf = new PDF();
+    $pdf->AliasNbPages();
+
     // Créer une nouvelle page
     $pdf->AddPage();
 
     // Titre de la page (Nom du contrôle)
     $pdf->SetFont('Arial', 'B', 15);
     $pdf->Cell(80);
-    $titre = utf8_decode($unControle->getNomCourt() . " - Contrôle");
+    $titre = utf8_decode($nomCourtControle . " - Contrôle");
     $pdf->Cell(30, 10, $titre, 0, 0, 'C');
     $pdf->Ln(15);
 
@@ -211,21 +229,26 @@ foreach ($unControle->getMesSalles() as $nomSalle => $uneSalle) {
     // Affichage de la nomenclature 
     $pdf->SetFont('Arial', 'U', 12);
     $pdf->Write(5, utf8_decode("Légende (X est un entier naturel) :"));
-    $pdf->Ln(5);
+    $pdf->Ln(10);
 
     $pdf->SetFont('Arial', '', 12);
 
     $pdf->Cell(20, 10, "T", 1, 0, "C");
+    $pdf->Cell(5, 10);
     $pdf->Cell(30, 10, "Tableau", 0, 0);
+    $pdf->Cell(5, 10);
 
     $pdf->Cell(20, 10, "E", 1, 0, "C");
-    $pdf->Cell(30, 10, "Place avec prise", 0, 0);
+    $pdf->Cell(5, 10);
+    $pdf->Cell(40, 10, "Place avec prise", 0, 0);
+    $pdf->Cell(5, 10);
 
     $pdf->Cell(20, 10, "X", 1, 0, "C");
+    $pdf->Cell(5, 10);
     $pdf->Cell(30, 10, "Place", 0, 0);
-    
 
-
+    $nomFichier = $dateFormatDossier . "_" . $nomFormatDossier . "_Plan_Placement_" .  $uneSalle->getNom() . ".pdf";
+    $pdf->Output($nomDossier. $nomFichier, 'F');
 }
 
-$pdf->Output();
+

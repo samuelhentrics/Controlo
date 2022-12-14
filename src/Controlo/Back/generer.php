@@ -3,7 +3,7 @@
 include(FONCTION_CREER_LISTE_CONTROLES_PATH);
 
 $numControle = $_GET["numControle"];
-$leControle = creerListeControles()[$numControle];
+$leControle = recupererUnControle($numControle);
 
 // print_r("<h1>".$leControle->getNomLong()."</h1>");
 
