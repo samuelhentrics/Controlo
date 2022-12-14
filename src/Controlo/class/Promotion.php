@@ -1,6 +1,7 @@
 <?php
 /**
  * @brief Classe Promotion permettant de définir une Promotion
+ * @todo Essayer supprimer etudiant
  */
 class Promotion
 {

@@ -139,7 +139,7 @@ class PDF extends FPDF
 }
 
 // Récupérer le contrôle
-$unControle = recupererUnControle(0);
+$unControle = recupererUnControle($_GET['id']);
 
 
 $plansDePlacement = array();
