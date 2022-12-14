@@ -2,22 +2,22 @@
 <!DOCTYPE Tabula_Rasa>
 <Algorithme>
   <nom>Placer étudiants par priorité</nom>
-  <date_creation>14/11/2022 15:21</date_creation>
+  <date_creation>13/12/2022 10:08</date_creation>
   <Elements>
     <Action>
-      <Position>157;47</Position>
+      <Position>548;26</Position>
       <StyleLien>2</StyleLien>
-      <PreAssertion>listeEtudiants,
-contraintesSallesControle,
+      <PreAssertion>listeEtudiants,&#xd;
+contraintesSallesControle,&#xd;
 controleChoisi</PreAssertion>
-      <PostAssertion>erreur,
+      <PostAssertion>erreur,&#xd;
 plansDePlacement</PostAssertion>
       <Titre>Placer étudiants par priorité</Titre>
       <DetailsVisible>1</DetailsVisible>
       <DetailsVideVisible>1</DetailsVideVisible>
       <Enfants>
         <Action>
-          <Position>25;234</Position>
+          <Position>151;218</Position>
           <StyleLien>1</StyleLien>
           <PreAssertion>?</PreAssertion>
           <PostAssertion>?</PostAssertion>
@@ -27,83 +27,84 @@ plansDePlacement</PostAssertion>
           <Enfants/>
         </Action>
         <Action>
-          <Position>180;200</Position>
+          <Position>306;184</Position>
           <StyleLien>2</StyleLien>
-          <PreAssertion>listeEtudiants,
-contraintesSallesControle,
-controleChoisi,
+          <PreAssertion>listeEtudiants,&#xd;
+contraintesSallesControle,&#xd;
+controleChoisi,&#xd;
 erreur</PreAssertion>
-          <PostAssertion>erreur,
+          <PostAssertion>erreur,&#xd;
 plansDePlacement</PostAssertion>
-          <Titre>Placer les étudiants avec
+          <Titre>Placer les étudiants avec&#xd;
 ordinateur et tiers temps</Titre>
           <DetailsVisible>1</DetailsVisible>
           <DetailsVideVisible>1</DetailsVideVisible>
           <Enfants>
             <Iteration>
-              <Position>436.5;332.5</Position>
+              <Position>562.5;316.5</Position>
               <StyleLien>1</StyleLien>
               <Titre>?</Titre>
               <IterationFixe>0</IterationFixe>
               <Enfants>
                 <Action>
-                  <Position>-109;493</Position>
+                  <Position>17;477</Position>
                   <StyleLien>1</StyleLien>
                   <PreAssertion>listeEtudiants</PreAssertion>
                   <PostAssertion>unEtudiant</PostAssertion>
-                  <Titre>Récupérer un étudiant
-de la liste étant tiers
-temps ou un étudiant
+                  <Titre>Récupérer un étudiant&#xd;
+de la liste étant tiers&#xd;
+temps ou un étudiant&#xd;
 ayant un ordi</Titre>
                   <DetailsVisible>1</DetailsVisible>
                   <DetailsVideVisible>1</DetailsVideVisible>
                   <Enfants/>
                 </Action>
                 <Action>
-                  <Position>300;435</Position>
-                  <StyleLien>1</StyleLien>
-                  <PreAssertion>controleChoisi,
+                  <Position>601;413</Position>
+                  <StyleLien>2</StyleLien>
+                  <PreAssertion>controleChoisi,&#xd;
 erreur</PreAssertion>
-                  <PostAssertion>unePlace,
+                  <PostAssertion>unePlace,&#xd;
 erreur</PostAssertion>
                   <Titre>Trouver une place</Titre>
                   <DetailsVisible>1</DetailsVisible>
                   <DetailsVideVisible>1</DetailsVideVisible>
-                  <Enfants/>
+                  <Enfants>
+                    <Condition>
+                      <Position>693;593</Position>
+                      <StyleLien>0</StyleLien>
+                      <estUnique>0</estUnique>
+                      <operationsLogiques>
+                        <operation>
+                          <Titre>erreur  == false</Titre>
+                          <Enfants>
+                            <Action>
+                              <Position>449;763</Position>
+                              <StyleLien>1</StyleLien>
+                              <PreAssertion>unEtudiant,&#xd;
+unePlace</PreAssertion>
+                              <PostAssertion>plansDePlacement</PostAssertion>
+                              <Titre>Ajouter l'étudiant à la place</Titre>
+                              <DetailsVisible>1</DetailsVisible>
+                              <DetailsVideVisible>1</DetailsVideVisible>
+                              <Enfants/>
+                            </Action>
+                          </Enfants>
+                        </operation>
+                        <operation>
+                          <Titre>Sinon</Titre>
+                          <Enfants>
+                            <Sortie>
+                              <Position>884;705</Position>
+                            </Sortie>
+                          </Enfants>
+                        </operation>
+                      </operationsLogiques>
+                    </Condition>
+                  </Enfants>
                 </Action>
                 <Condition>
-                  <Position>579;556</Position>
-                  <StyleLien>0</StyleLien>
-                  <estUnique>0</estUnique>
-                  <operationsLogiques>
-                    <operation>
-                      <Titre>erreur  == false</Titre>
-                      <Enfants>
-                        <Action>
-                          <Position>335;726</Position>
-                          <StyleLien>1</StyleLien>
-                          <PreAssertion>unEtudiant,
-unePlace</PreAssertion>
-                          <PostAssertion>plansDePlacement</PostAssertion>
-                          <Titre>Ajouter l'étudiant à la place</Titre>
-                          <DetailsVisible>1</DetailsVisible>
-                          <DetailsVideVisible>1</DetailsVideVisible>
-                          <Enfants/>
-                        </Action>
-                      </Enfants>
-                    </operation>
-                    <operation>
-                      <Titre>Sinon</Titre>
-                      <Enfants>
-                        <Sortie>
-                          <Position>770;668</Position>
-                        </Sortie>
-                      </Enfants>
-                    </operation>
-                  </operationsLogiques>
-                </Condition>
-                <Condition>
-                  <Position>202;614</Position>
+                  <Position>424;571</Position>
                   <StyleLien>1</StyleLien>
                   <estUnique>1</estUnique>
                   <operationsLogiques>
@@ -111,7 +112,7 @@ unePlace</PreAssertion>
                       <Titre>unEtudiant = null</Titre>
                       <Enfants>
                         <Sortie>
-                          <Position>270;743</Position>
+                          <Position>457;679</Position>
                         </Sortie>
                       </Enfants>
                     </operation>
@@ -126,7 +127,7 @@ unePlace</PreAssertion>
           </Enfants>
         </Action>
         <Condition>
-          <Position>1113.5;225</Position>
+          <Position>1381.5;189</Position>
           <StyleLien>1</StyleLien>
           <estUnique>1</estUnique>
           <operationsLogiques>
@@ -134,28 +135,28 @@ unePlace</PreAssertion>
               <Titre>erreur == false</Titre>
               <Enfants>
                 <Action>
-                  <Position>892;395</Position>
+                  <Position>1136;377</Position>
                   <StyleLien>2</StyleLien>
-                  <PreAssertion>listeEtudiants,
-contraintesSallesControle,
+                  <PreAssertion>listeEtudiants,&#xd;
+contraintesSallesControle,&#xd;
 controleChoisi</PreAssertion>
-                  <PostAssertion>erreur,
+                  <PostAssertion>erreur,&#xd;
 plansDePlacement</PostAssertion>
                   <Titre>Placer le reste des étudiants</Titre>
                   <DetailsVisible>1</DetailsVisible>
                   <DetailsVideVisible>1</DetailsVideVisible>
                   <Enfants>
                     <Iteration>
-                      <Position>1161.5;522.5</Position>
+                      <Position>1401.5;505.5</Position>
                       <StyleLien>1</StyleLien>
                       <Titre>?</Titre>
                       <IterationFixe>0</IterationFixe>
                       <Enfants>
                         <Action>
-                          <Position>862;614</Position>
+                          <Position>988;598</Position>
                           <StyleLien>1</StyleLien>
                           <PreAssertion>listeEtudiants</PreAssertion>
-                          <PostAssertion>unEtudiant,
+                          <PostAssertion>unEtudiant,&#xd;
 erreurRecupEtud</PostAssertion>
                           <Titre>Récupérer un étudiant</Titre>
                           <DetailsVisible>1</DetailsVisible>
@@ -163,7 +164,7 @@ erreurRecupEtud</PostAssertion>
                           <Enfants/>
                         </Action>
                         <Condition>
-                          <Position>1222;730</Position>
+                          <Position>1348;714</Position>
                           <StyleLien>1</StyleLien>
                           <estUnique>1</estUnique>
                           <operationsLogiques>
@@ -171,7 +172,7 @@ erreurRecupEtud</PostAssertion>
                               <Titre>unEtudiant = null</Titre>
                               <Enfants>
                                 <Sortie>
-                                  <Position>1212;838</Position>
+                                  <Position>1338;822</Position>
                                 </Sortie>
                               </Enfants>
                             </operation>
@@ -182,18 +183,18 @@ erreurRecupEtud</PostAssertion>
                           </operationsLogiques>
                         </Condition>
                         <Action>
-                          <Position>1357;613</Position>
+                          <Position>1483;597</Position>
                           <StyleLien>2</StyleLien>
-                          <PreAssertion>controleChoisi,
+                          <PreAssertion>controleChoisi,&#xd;
 erreur</PreAssertion>
-                          <PostAssertion>unePlace,
+                          <PostAssertion>unePlace,&#xd;
 erreur</PostAssertion>
                           <Titre>Trouver une place</Titre>
                           <DetailsVisible>1</DetailsVisible>
                           <DetailsVideVisible>1</DetailsVideVisible>
                           <Enfants>
                             <Condition>
-                              <Position>1445;753</Position>
+                              <Position>1571;737</Position>
                               <StyleLien>0</StyleLien>
                               <estUnique>0</estUnique>
                               <operationsLogiques>
@@ -201,9 +202,9 @@ erreur</PostAssertion>
                                   <Titre>erreur  == false</Titre>
                                   <Enfants>
                                     <Action>
-                                      <Position>1166;919</Position>
+                                      <Position>1292;903</Position>
                                       <StyleLien>1</StyleLien>
-                                      <PreAssertion>unEtudiant,
+                                      <PreAssertion>unEtudiant,&#xd;
 unePlace</PreAssertion>
                                       <PostAssertion>plansDePlacement</PostAssertion>
                                       <Titre>Ajouter l'étudiant à la place</Titre>
@@ -217,7 +218,7 @@ unePlace</PreAssertion>
                                   <Titre>Sinon</Titre>
                                   <Enfants>
                                     <Sortie>
-                                      <Position>1670;883</Position>
+                                      <Position>1796;867</Position>
                                     </Sortie>
                                   </Enfants>
                                 </operation>

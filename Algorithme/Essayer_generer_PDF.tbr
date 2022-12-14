@@ -2,12 +2,12 @@
 <!DOCTYPE Tabula_Rasa>
 <Algorithme>
   <nom>Essayer générer PDF</nom>
-  <date_creation>14/11/2022 15:21</date_creation>
+  <date_creation>13/12/2022 10:08</date_creation>
   <Elements>
     <Action>
       <Position>455;46</Position>
       <StyleLien>2</StyleLien>
-      <PreAssertion>erreur,
+      <PreAssertion>erreur,&#xd;
 controleChoisi</PreAssertion>
       <PostAssertion>[pdf]</PostAssertion>
       <Titre>Essayer de générer PDF</Titre>
@@ -25,11 +25,11 @@ controleChoisi</PreAssertion>
                 <Action>
                   <Position>247;500</Position>
                   <StyleLien>1</StyleLien>
-                  <PreAssertion>controleChoisi,
+                  <PreAssertion>controleChoisi,&#xd;
 plansDePlacement</PreAssertion>
                   <PostAssertion>pdf</PostAssertion>
-                  <Titre>Générer les plans de
-placement au format
+                  <Titre>Générer les plans de&#xd;
+placement au format&#xd;
 PDF</Titre>
                   <DetailsVisible>1</DetailsVisible>
                   <DetailsVideVisible>1</DetailsVideVisible>

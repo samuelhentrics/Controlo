@@ -2,7 +2,7 @@
 <!DOCTYPE Tabula_Rasa>
 <Algorithme>
   <nom>Algorithme</nom>
-  <date_creation>14/11/2022 15:21</date_creation>
+  <date_creation>13/12/2022 10:08</date_creation>
   <Elements>
     <Action>
       <Position>697;8</Position>
@@ -48,7 +48,7 @@
           <StyleLien>1</StyleLien>
           <PreAssertion>contraintesGenControle, controleChoisi</PreAssertion>
           <PostAssertion>listeEtudiants</PostAssertion>
-          <Titre>Trier etudiants selon les
+          <Titre>Trier etudiants selon les&#xd;
 contraintes générales</Titre>
           <DetailsVisible>1</DetailsVisible>
           <DetailsVideVisible>1</DetailsVideVisible>
@@ -57,10 +57,10 @@ contraintes générales</Titre>
         <Action>
           <Position>885;155</Position>
           <StyleLien>1</StyleLien>
-          <PreAssertion>listeEtudiants,
-contraintesSallesControle,
+          <PreAssertion>listeEtudiants,&#xd;
+contraintesSallesControle,&#xd;
 controleChoisi</PreAssertion>
-          <PostAssertion>erreur,
+          <PostAssertion>erreur,&#xd;
 plansDePlacement</PostAssertion>
           <Titre>Placer etudiants par priorité</Titre>
           <DetailsVisible>1</DetailsVisible>
@@ -70,8 +70,8 @@ plansDePlacement</PostAssertion>
         <Action>
           <Position>1193;489</Position>
           <StyleLien>1</StyleLien>
-          <PreAssertion>erreur, 
-controleChoisi,
+          <PreAssertion>erreur, &#xd;
+controleChoisi,&#xd;
 plansDePlacement</PreAssertion>
           <PostAssertion>[pdf]</PostAssertion>
           <Titre>Essayer de generer PDF</Titre>
@@ -86,19 +86,19 @@ plansDePlacement</PreAssertion>
     <Entry>
       <Name>controleChoisi</Name>
       <Type>Controle</Type>
-      <Signification>Contrôle que l’utilisateur a choisi
+      <Signification>Contrôle que l’utilisateur a choisi&#xd;
 </Signification>
     </Entry>
     <Entry>
       <Name>contraintesGenControle</Name>
       <Type>ContraintesGenerales</Type>
-      <Signification>Contraintes générales que l’utilisateur a choisi pour le placement
+      <Signification>Contraintes générales que l’utilisateur a choisi pour le placement&#xd;
 </Signification>
     </Entry>
     <Entry>
       <Name>contraintesSallesControle</Name>
       <Type>ContraintesEspacement</Type>
-      <Signification>Tableau de contraintes d’espacement de chaque salle
+      <Signification>Tableau de contraintes d’espacement de chaque salle&#xd;
 </Signification>
     </Entry>
     <Entry>

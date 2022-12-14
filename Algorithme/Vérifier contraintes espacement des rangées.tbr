@@ -2,10 +2,10 @@
 <!DOCTYPE Tabula_Rasa>
 <Algorithme>
   <nom>Trouver une place</nom>
-  <date_creation>18/11/2022 09:13</date_creation>
+  <date_creation>13/12/2022 10:08</date_creation>
   <Elements>
     <Action>
-      <Position>1437;418</Position>
+      <Position>714;29</Position>
       <StyleLien>2</StyleLien>
       <PreAssertion>?</PreAssertion>
       <PostAssertion>?</PostAssertion>
@@ -14,7 +14,7 @@
       <DetailsVideVisible>0</DetailsVideVisible>
       <Enfants>
         <Condition>
-          <Position>1273.5;533</Position>
+          <Position>550.5;144</Position>
           <StyleLien>0</StyleLien>
           <estUnique>0</estUnique>
           <operationsLogiques>
@@ -22,13 +22,13 @@
               <Titre>zoneLigne %  listePDP[numSalle]→ mesContraintesEspacement→getNbRangees() == 0</Titre>
               <Enfants>
                 <Iteration>
-                  <Position>1527.5;636.5</Position>
+                  <Position>804.5;247.5</Position>
                   <StyleLien>1</StyleLien>
                   <Titre>Pour zoneColonne de 0 à count(controleChoisi→ getMesSalles()[numSalle ]→ getMesZones()[zoneLigne])</Titre>
                   <IterationFixe>1</IterationFixe>
                   <Enfants>
                     <Action>
-                      <Position>1199;733</Position>
+                      <Position>476;344</Position>
                       <StyleLien>1</StyleLien>
                       <PreAssertion>?</PreAssertion>
                       <PostAssertion>?</PostAssertion>
@@ -38,7 +38,7 @@
                       <Enfants/>
                     </Action>
                     <Condition>
-                      <Position>1655.5;742</Position>
+                      <Position>932.5;353</Position>
                       <StyleLien>1</StyleLien>
                       <estUnique>1</estUnique>
                       <operationsLogiques>
@@ -46,7 +46,7 @@
                           <Titre>unePlace→getType()=="place" </Titre>
                           <Enfants>
                             <Action>
-                              <Position>1263;869</Position>
+                              <Position>540;480</Position>
                               <StyleLien>1</StyleLien>
                               <PreAssertion>?</PreAssertion>
                               <PostAssertion>?</PostAssertion>
@@ -56,7 +56,7 @@
                               <Enfants/>
                             </Action>
                             <Condition>
-                              <Position>1486.5;883</Position>
+                              <Position>763.5;494</Position>
                               <StyleLien>1</StyleLien>
                               <estUnique>1</estUnique>
                               <operationsLogiques>
@@ -64,7 +64,7 @@
                                   <Titre>find(unePlace, listePDP[nomSalle]→ getMesZones()) == false</Titre>
                                   <Enfants>
                                     <Condition>
-                                      <Position>1360.5;1004</Position>
+                                      <Position>637.5;615</Position>
                                       <StyleLien>1</StyleLien>
                                       <estUnique>1</estUnique>
                                       <operationsLogiques>
@@ -72,7 +72,7 @@
                                           <Titre>(nbPlaces-1)% listePDP[numSalle] → getMesContraintesEspacement()→  getNombreDePlaces()</Titre>
                                           <Enfants>
                                             <Condition>
-                                              <Position>1524.5;1120</Position>
+                                              <Position>801.5;731</Position>
                                               <StyleLien>1</StyleLien>
                                               <estUnique>0</estUnique>
                                               <operationsLogiques>
@@ -80,7 +80,7 @@
                                                   <Titre>unEtudiant→aOrdi</Titre>
                                                   <Enfants>
                                                     <Condition>
-                                                      <Position>1283.5;1242</Position>
+                                                      <Position>560.5;853</Position>
                                                       <StyleLien>1</StyleLien>
                                                       <estUnique>1</estUnique>
                                                       <operationsLogiques>
@@ -88,7 +88,7 @@
                                                           <Titre>unePlace→getAUnePrise()</Titre>
                                                           <Enfants>
                                                             <Action>
-                                                              <Position>1144;1375</Position>
+                                                              <Position>421;986</Position>
                                                               <StyleLien>1</StyleLien>
                                                               <PreAssertion>?</PreAssertion>
                                                               <PostAssertion>?</PostAssertion>
@@ -98,7 +98,7 @@
                                                               <Enfants/>
                                                             </Action>
                                                             <Action>
-                                                              <Position>1209;1482</Position>
+                                                              <Position>486;1093</Position>
                                                               <StyleLien>1</StyleLien>
                                                               <PreAssertion>?</PreAssertion>
                                                               <PostAssertion>?</PostAssertion>
@@ -108,7 +108,7 @@
                                                               <Enfants/>
                                                             </Action>
                                                             <Action>
-                                                              <Position>1273;1372</Position>
+                                                              <Position>550;983</Position>
                                                               <StyleLien>1</StyleLien>
                                                               <PreAssertion>?</PreAssertion>
                                                               <PostAssertion>?</PostAssertion>
@@ -118,7 +118,7 @@
                                                               <Enfants/>
                                                             </Action>
                                                             <Sortie>
-                                                              <Position>1528;1535</Position>
+                                                              <Position>805;1146</Position>
                                                             </Sortie>
                                                           </Enfants>
                                                         </operation>
@@ -134,10 +134,10 @@
                                                   <Titre>Sinon</Titre>
                                                   <Enfants>
                                                     <Sortie>
-                                                      <Position>1754;1431</Position>
+                                                      <Position>1031;1042</Position>
                                                     </Sortie>
                                                     <Action>
-                                                      <Position>1777;1257</Position>
+                                                      <Position>1054;868</Position>
                                                       <StyleLien>1</StyleLien>
                                                       <PreAssertion>?</PreAssertion>
                                                       <PostAssertion>?</PostAssertion>
@@ -147,7 +147,7 @@
                                                       <Enfants/>
                                                     </Action>
                                                     <Action>
-                                                      <Position>1598;1369</Position>
+                                                      <Position>875;980</Position>
                                                       <StyleLien>1</StyleLien>
                                                       <PreAssertion>?</PreAssertion>
                                                       <PostAssertion>?</PostAssertion>
@@ -157,7 +157,7 @@
                                                       <Enfants/>
                                                     </Action>
                                                     <Action>
-                                                      <Position>1655;1257</Position>
+                                                      <Position>932;868</Position>
                                                       <StyleLien>1</StyleLien>
                                                       <PreAssertion>?</PreAssertion>
                                                       <PostAssertion>?</PostAssertion>
@@ -202,7 +202,7 @@
               <Titre>Sinon</Titre>
               <Enfants>
                 <Sortie>
-                  <Position>1826;666</Position>
+                  <Position>1103;277</Position>
                 </Sortie>
               </Enfants>
             </operation>
