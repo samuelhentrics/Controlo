@@ -1,10 +1,11 @@
-<form action="./aFaire.php" method="post">
+<?php print('<form action="'.BACK_PATH.'resultat.php" method="post">'); ?>
+
 <?php 
 include(FONCTION_CREER_LISTE_CONTROLES_PATH);
 
 $numControle = $_GET["numControle"];
 $leControle = recupererUnControle($numControle);
-
+// print_r($leControle);
 // print_r("<h1>".$leControle->getNomLong()."</h1>");
 
 
@@ -20,8 +21,8 @@ function faireContrainteSalles($leControle){
     foreach ($leControle->getMesSalles() as $key => $uneSalle) {
         print("<tr>");
         print("<td>".$uneSalle->getNom()."</td>");
-        print("<td> <input type='number' min='0' max='999' id='nbPlaceSeparant-".$uneSalle->getNom()."' placeholder=''></td>");
-        print("<td> <input type='number' min='0' max='999' id='nbRangeSeparant-".$uneSalle->getNom()."' placeholder=''></td>");
+        print("<td> <input type='number' name='nbPlaceSeparant' min='0' max='999' id='nbPlaceSeparant-".$uneSalle->getNom()."' value='0'></td>");
+        print("<td> <input type='number' name='nbRangeSeparant' min='0' max='999' id='nbRangeSeparant-".$uneSalle->getNom()."' value='0'></td>");
         print("</tr>");
     }
     print("</table>");
@@ -36,7 +37,7 @@ function faireContrainteSalles($leControle){
     </tr>
     <td>Etudiant separer par TD/TP différent</td>
     <td>
-        <select name="" id="">
+        <select name="typeSeparation" id="">
             <option value="TD">TD</option>
             <option value="TP">TP</option>
         </select>
@@ -44,7 +45,7 @@ function faireContrainteSalles($leControle){
     <tr>  
     <td>Etudiants placés par</td>
     <td>
-        <select name="" id="">
+        <select name="typePlacement" id="">
             <option value="aléatoire">aléatoire</option>
             <option value="ascendant">ascendant</option>
             <option value="descendant">descendant</option>
