@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<!DOCTYPE Tabula_Rasa>
+<Algorithme>
+  <nom>ALGOGENERAL</nom>
+  <date_creation>14/12/2022 10:40</date_creation>
+  <Elements>
+    <Action>
+      <Position>1438;29</Position>
+      <StyleLien>2</StyleLien>
+      <PreAssertion>unControle, contraintesGenerales, contraintesSallesChoisies</PreAssertion>
+      <PostAssertion>PDF</PostAssertion>
+      <Titre>Creation plan de placement</Titre>
+      <DetailsVisible>1</DetailsVisible>
+      <DetailsVideVisible>1</DetailsVideVisible>
+      <Enfants>
+        <Action>
+          <Position>776;216</Position>
+          <StyleLien>2</StyleLien>
+          <PreAssertion>unControle, contraintesGenerales</PreAssertion>
+          <PostAssertion>listeEtudianstOrdi, listeEtudianstTTSansOrdi, listeEtudiantRestant</PostAssertion>
+          <Titre>Tri</Titre>
+          <DetailsVisible>1</DetailsVisible>
+          <DetailsVideVisible>0</DetailsVideVisible>
+          <Enfants>
+            <Action>
+              <Position>7;366</Position>
+              <StyleLien>1</StyleLien>
+              <PreAssertion>∅</PreAssertion>
+              <PostAssertion>∅</PostAssertion>
+              <Titre>Trier selon les contraintes générales (ascendant, descendant, aléatoire)</Titre>
+              <DetailsVisible>1</DetailsVisible>
+              <DetailsVideVisible>1</DetailsVideVisible>
+              <Enfants/>
+            </Action>
+            <Action>
+              <Position>567;369</Position>
+              <StyleLien>1</StyleLien>
+              <PreAssertion>∅</PreAssertion>
+              <PostAssertion>∅</PostAssertion>
+              <Titre>Mettre les étudiants avec ordinateur dans une liste</Titre>
+              <DetailsVisible>1</DetailsVisible>
+              <DetailsVideVisible>1</DetailsVideVisible>
+              <Enfants/>
+            </Action>
+            <Action>
+              <Position>1006;369</Position>
+              <StyleLien>1</StyleLien>
+              <PreAssertion>∅</PreAssertion>
+              <PostAssertion>∅</PostAssertion>
+              <Titre>Mettre les etudiants Tiers-Temps sans ordi dans une liste</Titre>
+              <DetailsVisible>1</DetailsVisible>
+              <DetailsVideVisible>1</DetailsVideVisible>
+              <Enfants/>
+            </Action>
+            <Action>
+              <Position>1491;366</Position>
+              <StyleLien>1</StyleLien>
+              <PreAssertion>∅</PreAssertion>
+              <PostAssertion>∅</PostAssertion>
+              <Titre>Mettre les éudiants restants dans une liste</Titre>
+              <DetailsVisible>1</DetailsVisible>
+              <DetailsVideVisible>1</DetailsVideVisible>
+              <Enfants/>
+            </Action>
+          </Enfants>
+        </Action>
+        <Action>
+          <Position>2051;191</Position>
+          <StyleLien>2</StyleLien>
+          <PreAssertion>listeEtudianstOrdi, listeEtudianstTTSansOrdi, contraintesSallesChoisies</PreAssertion>
+          <PostAssertion>∅</PostAssertion>
+          <Titre>Placer les tiers-temps et les non tiers-temps avec ordinateur dans la première salle</Titre>
+          <DetailsVisible>1</DetailsVisible>
+          <DetailsVideVisible>1</DetailsVideVisible>
+          <Enfants>
+            <Action>
+              <Position>1949;334</Position>
+              <StyleLien>1</StyleLien>
+              <PreAssertion>∅</PreAssertion>
+              <PostAssertion>∅</PostAssertion>
+              <Titre>Placer étudiants avec ordi a coté des prises </Titre>
+              <DetailsVisible>1</DetailsVisible>
+              <DetailsVideVisible>1</DetailsVideVisible>
+              <Enfants/>
+            </Action>
+            <Action>
+              <Position>2396;334</Position>
+              <StyleLien>1</StyleLien>
+              <PreAssertion>∅</PreAssertion>
+              <PostAssertion>∅</PostAssertion>
+              <Titre>Placer étudiants sans ordi dans les premieres places</Titre>
+              <DetailsVisible>1</DetailsVisible>
+              <DetailsVideVisible>1</DetailsVideVisible>
+              <Enfants/>
+            </Action>
+          </Enfants>
+        </Action>
+        <Action>
+          <Position>2905;226</Position>
+          <StyleLien>1</StyleLien>
+          <PreAssertion>contraintesSallesChoisies,  listeEtudiantRestant,</PreAssertion>
+          <PostAssertion>∅</PostAssertion>
+          <Titre>Placer étudiants restants dans la meme salle</Titre>
+          <DetailsVisible>1</DetailsVisible>
+          <DetailsVideVisible>1</DetailsVideVisible>
+          <Enfants/>
+        </Action>
+        <Action>
+          <Position>3746;227</Position>
+          <StyleLien>1</StyleLien>
+          <PreAssertion>∅</PreAssertion>
+          <PostAssertion>PDF</PostAssertion>
+          <Titre>Générer PDF</Titre>
+          <DetailsVisible>1</DetailsVisible>
+          <DetailsVideVisible>1</DetailsVideVisible>
+          <Enfants/>
+        </Action>
+      </Enfants>
+    </Action>
+  </Elements>
+  <Dictionary/>
+</Algorithme>
