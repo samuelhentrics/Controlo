@@ -285,19 +285,34 @@ class Controle
      */
     public function ajouterSalle($uneSalle)
     {
-        array_push($this->mesSalles, $uneSalle);
+        if (! $this->existePromotion($uneSalle)){
+            array_push($this->mesSalles, $uneSalle);
+        }
     }
 
     /**
      * @brief Permet de supprimer une Salle de la liste des salles du Controle
      *
      * @param Salle $uneSalle Salle participant au contrôle à supprimer
-     * @todo Tester la fonction de suppression
      */
     public function supprimerSalle($uneSalle)
     {
-        if (array_key_exists($uneSalle, $this->getMesSalles())) {
-            unset($this->getMesSalles()[array_search($uneSalle, $this->getMesSalles())]);
+        if ($this->existeSalle($uneSalle)) {
+            unset($this->mesSalles[array_search($uneSalle, $this->mesSalles)]);
+        }
+    }
+
+        /**
+     * Retourne vrai si la Salle appartient au contrôle, Faux sinon
+     * @param mixed $uneSalle Salle qu'on veut verifier
+     * @return bool
+     */
+    public function existeSalle($uneSalle){
+        if (in_array($uneSalle, $this->getMesSalles())) {
+            return true;
+        }
+        else{
+            return false;
         }
     }
 
@@ -317,22 +332,41 @@ class Controle
      */
     public function ajouterPlanDePlacement($unPlanDePlacement)
     {
-        array_push($this->mesPlansDePlacement, $unPlanDePlacement);
+        if (! $this->existePromotion($unPlanDePlacement)){
+            array_push($this->mesPlansDePlacement, $unPlanDePlacement);
+        }
     }
 
     /**
      * @brief Permet de supprimer un PlanDePlacement de la liste des plans de placement du Controle
      *
      * @param PlanDePlacement $unPlanDePlacement Plan de Placement du contrôle à supprimer
-     * @todo Tester la fonction de suppression
      */
     public function supprimerPlanDePlacement($unPlanDePlacement)
     {
-        if (array_key_exists($unPlanDePlacement, $this->getMesPlansDePlacement())) {
-            unset($this->getMesPlansDePlacement()[array_search($unPlanDePlacement, $this->getMesPlansDePlacement())]);
+        if ($this->existeSalle($unPlanDePlacement)) {
+            unset($this->mesPlansDePlacement[array_search($unPlanDePlacement, $this->mesPlansDePlacement)]);
         }
     }
 
+    /**
+     * Retourne vrai si le PlanDePlacement est celui du Controle, faux sinon
+     * @param mixed $unPlanDePlacement Un PlanDePlacement
+     * @return bool
+     */
+    public function existePlanDePlacement($unPlanDePlacement){
+        if (in_array($unPlanDePlacement, $this->getMesPlansDePlacement())) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    /**
+     * Retourne la liste des PlanDePlacement
+     * @return array
+     */
     public function getMesPlansDePlacement(){
         return $this->mesPlansDePlacement;
     }
