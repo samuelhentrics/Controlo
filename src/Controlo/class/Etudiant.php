@@ -1,4 +1,19 @@
 <?php
+/**
+ * @file Etudiant.php
+ * @author Benjamin PEYRE, Samuel HENTRICS LOISTINE <samuel.hentrics@gmail.com>
+ * @brief Spécification de la classe Etudiant
+ * @details Represente une Etudiant par son nom, prenom, td, tp, mail et ses statuts
+ * 
+ * @version 1.0
+ * @date 2022-11-26
+ * 
+ */
+
+/**
+ * @brief Classe Etudiant permettant de définir un Etudiant
+ * par son nom, prenom, td, tp, mail et ses statuts
+ */
 class Etudiant
 {
 
@@ -80,74 +95,153 @@ class Etudiant
 
     /* Encapsulation */
 
+    /**
+     * Affecte un nom à l'Etudiant
+     * @param String $nouveauNom Nouveau nom de l'Etudiant
+     * @return void
+     */
     public function setNom($nouveauNom)
     {
         $this->nom = $nouveauNom;
     }
 
+    /**
+     * Retourne le nom de l'Etudiant
+     * @return String
+     */
     public function getNom()
     {
         return $this->nom;
     }
+
+    /**
+     * Affecte un nom à l'Etudiant
+     * @param String $nouveauPrenom Nouveau prénom de l'Etudiant
+     * @return void
+     */
     public function setPrenom($nouveauPrenom)
     {
         $this->prenom = $nouveauPrenom;
     }
 
+    /**
+     * Retourne le prénom de l'Etudiant
+     * @return String 
+     */
     public function getPrenom()
     {
         return $this->prenom;
     }
+
+    /**
+     * Affecte un TD à l'Etudiant
+     * @param int $nouveauTd Nouveau TD de l'Etudiant
+     * @return void
+     */
     public function setTd($nouveauTd)
     {
         $this->td = $nouveauTd;
     }
 
+    /**
+     * Retourne le TD de l'Etudiant
+     * @return int
+     */
     public function getTd()
     {
         return $this->td;
     }
-    public function setTp($nouveauTd)
+
+    /**
+     * Affecte un TP à l'Etudiant
+     * @param int $nouveauTP Nouveau TP de l'Etudiant
+     * @return void
+     */
+    public function setTp($nouveauTP)
     {
-        $this->tp = $nouveauTd;
+        $this->tp = $nouveauTP;
     }
 
-    public function getEmail()
+    /**
+     * Retourne le TP de l'Etudiant
+     * @return int
+     */
+    public function getTp()
     {
-        return $this->email;
+        return $this->tp;
     }
+
+    /**
+     * Affecte l'email de l'Etudiant
+     * @param String $nouveauMail Nouveau mail de l'Etudiant
+     * @return void
+     */
     public function setEmail($nouveauMail)
     {
         $this->email = $nouveauMail;
     }
 
-    public function getTp()
+    /**
+     * Retourne le mail de l'Etudiant
+     * @return string
+     */
+    public function getEmail()
     {
-        return $this->tp;
+        return $this->email;
     }
+
+    /**
+     * Affecter le statut tier-temps de l'Etudiant (Vrai si TT, Faux sinon)
+     * @param bool $bool
+     * @return void
+     */
     public function setEstTT($bool)
     {
         $this->estTT = $bool;
     }
 
+    /**
+     * Retourne si l'Etudiant dispose d'un tiers-temps (Retourne vrai si TT, Faux sinon)
+     * @return bool
+     */
     public function getEstTT()
     {
         return $this->estTT;
     }
+
+    /**
+     * Affecte le statut sur l'ordinateur de l'Etudiant (Vrai s'il en dispose, faux sinon)
+     * @param bool $bool
+     * @return void
+     */
     public function setAOrdi($bool)
     {
         $this->aOrdi = $bool;
     }
 
+    /**
+     * Retourne vrai si l'Etudiant a un ordinateur, Faux sinon
+     * @return bool
+     */
     public function getAOrdi()
     {
         return $this->aOrdi;
     }
+
+    /**
+     * Affecte le statut de l'Etudiant (démissionnaire ou non) (Vrai si démissionnaire, Faux sinon)
+     * @param bool $bool
+     * @return void
+     */
     public function setEstDemissionnaire($bool)
     {
         $this->estDemissionnaire = $bool;
     }
 
+    /**
+     * Retourne vrai si l'Etudiant est démissionnaire, faux sinon
+     * @return bool
+     */
     public function getEstDemissionnaire()
     {
         return $this->estDemissionnaire;

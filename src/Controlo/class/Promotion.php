@@ -1,6 +1,6 @@
 <?php
 /**
- * @file Salle.php
+ * @file Promotion.php
  * @author Samuel HENTRICS LOISTINE <samuel.hentrics@gmail.com>
  * @brief Spécification de la classe Promotion
  * @details Represente une Promotion par son nom et ses Etudiant
@@ -49,7 +49,7 @@ class Promotion
     // Encapsulation
 
     /**
-     * Retourne le nom de la promotion
+     * Retourne le nom de la Promotion
      * 
      * @return string
      */
@@ -68,6 +68,10 @@ class Promotion
         $this->nom=$nouveauNom;
     }
 
+    /**
+     * Retourne la liste des Etudiant
+     * @return array
+     */
     public function getMesEtudiants(){
         return $this->mesEtudiants;
     }
