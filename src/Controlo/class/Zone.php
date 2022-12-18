@@ -113,7 +113,7 @@ class Zone{
      * On récupére uniquement les nombres et non pas les caractères dans
      * la variable unNumero
      *
-     * @param int $unNumero
+     * @param int|null $unNumero
      */
     public function setNumero($unNumero){
         if ($this->getType()=="place"){
@@ -186,7 +186,7 @@ class Zone{
     /**
      * @brief Retourne le Plan de la Zone
      *
-     * @return void
+     * @return Plan
      */
     public function getMonPlan(){
         return $this->monPlan;
@@ -195,7 +195,7 @@ class Zone{
     /**
      * @brief Affecte un Plan à la Zone
      *
-     * @param Plan $unPlan
+     * @param Plan|null $unPlan
      */
     public function setMonPlan($unPlan){
         // délier avec le Plan (à faire)

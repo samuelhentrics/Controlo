@@ -238,19 +238,34 @@ class Controle
      */
     public function ajouterPromotion($unePromotion)
     {
-        array_push($this->mesPromotions, $unePromotion);
+        if (! $this->existePromotion($unePromotion)){
+            array_push($this->mesPromotions, $unePromotion);
+        }
     }
 
     /**
      * @brief Permet de supprimer une Promotion de la liste de promotions participant au Controle
      *
      * @param Promotion $unePromotion Promotion participant au contrôle à supprimer
-     * @todo Tester la fonction de suppression
      */
     public function supprimerPromotion($unePromotion)
     {
-        if (array_key_exists($unePromotion, $this->getMesPromotions())) {
-            unset($this->getMesPromotions()[array_search($unePromotion, $this->getMesPromotions())]);
+        if ($this->existePromotion($unePromotion)) {
+            unset($this->mesPromotions[array_search($unePromotion, $this->mesPromotions)]);
+        }
+    }
+
+    /**
+     * Retourne vrai si la Promotion appartient au contrôle, Faux sinon
+     * @param mixed $unePromotion
+     * @return bool
+     */
+    public function existePromotion($unePromotion){
+        if (in_array($unePromotion, $this->getMesPromotions())) {
+            return true;
+        }
+        else{
+            return false;
         }
     }
 

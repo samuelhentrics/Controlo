@@ -96,7 +96,7 @@ class Salle
     /**
      * @brief Affecte un voisin à la Salle
      *
-     * @param Salle $nouveauVoisin
+     * @param Salle|null $nouveauVoisin
      */
     private function setMonVoisin($nouveauVoisin)
     {
