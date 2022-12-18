@@ -9,7 +9,7 @@ class PlanDePlacement{
     public function getMaSalle(){
         return $this->maSalle;
     }
-    public function setMaSalle($unesalle){
+    public function setMaSalle($uneSalle){
         $this->maSalle = $uneSalle;
     }
 

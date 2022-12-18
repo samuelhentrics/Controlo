@@ -1,7 +1,20 @@
 <?php
+/**
+ * @file ContraintesEspacement.php
+ * @author Cédric ETCHEPARE
+ * @brief Spécification de la classe Contraintes Espacement
+ * @details Represente les contraintes d'espacement d'un contrôle pour une salle
+ * avec le nombre de rangées et de places d'espacement entre chaque étudiant
+ * 
+ * @version 1.0
+ * @date 2022-11-26
+ * 
+ */
+
 
 /**
  * @brief Classe ContraintesEspacement permettant de définir les contraintes d'espacement
+ * @todo Constructeur
  */
 class ContraintesEspacement
 {

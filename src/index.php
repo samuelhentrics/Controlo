@@ -62,6 +62,10 @@
                         }
                         break;
 
+                    // Mode développement
+                    case 'test':
+                        include(BACK_PATH."test.php");
+                        break;
 
                     default:
                     // Cas où la demande est incorrecte, on retourne un message 404

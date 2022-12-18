@@ -1,6 +1,20 @@
 <?php
 /**
+ * @file ContraintesGenerales.php
+ * @author Cédric ETCHEPARE
+ * @brief Spécification de la classe Contraintes Generales
+ * @details Represente les contraintes generales d'un contrôle
+ * avec la méthode de remplissage.
+ * 
+ * @version 1.0
+ * @date 2022-11-26
+ * 
+ */
+
+
+/**
  * @brief Classe ContraintesEspacement permettant de définir les contraintes d'espacement
+ * @todo Constructeur
  */
 class ContraintesGenerales
 {
