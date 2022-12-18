@@ -7,10 +7,8 @@
  * son heure non tiers-temps, sa durée totale (TT), ses Promotion, ses Salle,
  * ses PlanDePlacement
  * 
- * @version 1.0
- * @date 2022-11-26
- * @todo tester les suppressions relation (à refaire)
- * 
+ * @version 1.1
+ * @date 2022-12-18
  * 
  */
 
