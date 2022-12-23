@@ -9,7 +9,7 @@ include(CLASS_PATH.CLASS_ZONE_FILE_NAME);
  * Retourne un Plan de Salle si cette Salle existe
  *
  * @param string $nomSalle
- * @return Plan
+ * @return Plan|null
  */
 function creerPlanSalle($nomSalle)
 {
@@ -20,7 +20,6 @@ function creerPlanSalle($nomSalle)
 
     if (!($monFichier)) {
         return null;
-        exit;
     } else {
         // Création d'un objet unPlan
         $unPlan = new Plan;
