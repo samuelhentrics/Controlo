@@ -1,88 +1,86 @@
 <?php
-class UnPlacement{
+/**
+ * @file UnPlacement.php
+ * @author Cédric ETCHEPARE <etcheparecedric@gmail.com>
+ * @brief Spécification de la classe UnPlacement
+ * @details Represente un placement par sa Zone et son Etudiant
+ * 
+ * @version 1.0
+ * @date 2022-12-26
+ * 
+ * 
+ */
 
-    private $maZone = array();
-    private $monPDP = array();
-    private $mesEtudiants = array();
+/**
+ * @brief Classe UnPlacement permettant de définir la Zone du placement choisi et son Etudiant
+ */
+class UnPlacement
+{
+    //VARIABLES
 
-    public function getMaZone(){
+    /**
+     * @brief Zone du placement
+     *
+     * @var Zone
+     */
+
+    private $maZone;
+    
+    /**
+     * @brief Etudiant placé dans la Zone
+     *
+     * @var Etudiant
+     */
+    private $monEtudiant;
+
+
+
+    //ENCAPSULATION
+
+    /**
+     * @brief Retourne la zone de placement
+     *
+     * @return Zone
+     */
+    public function getMaZone()
+    {
         return $this->maZone;
     }
 
-    public function getMonPDP(){
-        return $this->monPDP;
-    }
 
-    public function getMesEtudiants(){
-        return $this->mesEtudiants;
-    }
-
-    public function existeZone($uneZone){
-        if (in_array($uneZone, $this->getMaZone())) {
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-    public function ajouterZone($uneZone)
+     /**
+     * @brief Affecte une zone de placement 
+     *
+     * @param Zone $nouvelleZone
+     */
+    public function setMaZone($nouvelleZone)
     {
-        if (!$this->existeZone($uneZone)) {
-            array_push($this->maZone, $uneZone);
-        }
+        $this->maZone = $nouvelleZone;
     }
 
-    public function supprimerZone($uneZone)
+
+    /**
+     * @brief Retourne l'étudiant placé dans la zone
+     *
+     * @return Etudiant
+     */
+    public function getMonEtudiant()
     {
-        if ($this->existeZone($uneZone)) {
-            unset($this->maZone[array_search($uneZone, $this->getMaZone())]);
-        }
+        return $this->monEtudiant;
     }
 
-    public function existePDP($unPDP){
-        if (in_array($unPDP, $this->getMonPDP())) {
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
 
-    public function ajouterPDP($unPDP)
+
+     /**
+     * @brief Affecte un étudiant dans la zone
+     *
+     * @param Etudiant $nouveauEtudiant
+     */
+    public function setMonEtudiant($nouveauEtudiant)
     {
-        if (!$this->existePDP($unPDP)) {
-            array_push($this->monPDP, $unPDP);
-        }
+        $this->monEtudiant = $nouveauEtudiant;
     }
 
-    public function supprimerPDP($unPDP)
-    {
-        if ($this->existePDP($unPDP)) {
-            unset($this->monPDP[array_search($unPDP, $this->getMonPDP())]);
-        }
-    }
-
-    public function existeEtudiant($unEtudiant){
-        if (in_array($unEtudiant, $this->getMesEtudiants())) {
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-    public function ajouterEtudiant($unEtudiant)
-    {
-        if (!$this->existeEtudiant($unEtudiant)) {
-            array_push($this->mesEtudiants, $unEtudiant);
-        }
-    }
-
-    public function supprimerEtudiant($unEtudiant)
-    {
-        if ($this->existeEtudiant($unEtudiant)) {
-            unset($this->mesEtudiants[array_search($unEtudiant, $this->getMesEtudiants())]);
-        }
-    }
 }
+
+?>
