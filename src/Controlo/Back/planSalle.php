@@ -8,7 +8,7 @@
                 <?php
                 include(FONCTION_CREER_PLAN_SALLE_PATH);
 
-                $plan = creerPlanSalle($_GET["salle"])->getPlan();
+                $plan = creerPlanSalle($_GET["salle"])->getMezZones();
 
                 for ($lig = 0; $lig <= count($plan) - 1; $lig++) {
                     print("<tr>");
