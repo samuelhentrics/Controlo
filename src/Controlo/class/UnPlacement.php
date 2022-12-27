@@ -38,7 +38,7 @@ class UnPlacement
     //ENCAPSULATION
 
     /**
-     * @brief Retourne la zone de placement
+     * @brief Retourne la Zone de placement
      *
      * @return Zone
      */
@@ -49,7 +49,7 @@ class UnPlacement
 
 
      /**
-     * @brief Affecte une zone de placement 
+     * @brief Affecte une Zone de placement 
      *
      * @param Zone $nouvelleZone
      */
@@ -60,7 +60,7 @@ class UnPlacement
 
 
     /**
-     * @brief Retourne l'étudiant placé dans la zone
+     * @brief Retourne l'Etudiant placé dans la Zone
      *
      * @return Etudiant
      */
@@ -72,7 +72,7 @@ class UnPlacement
 
 
      /**
-     * @brief Affecte un étudiant dans la zone
+     * @brief Affecte un Etudiant dans la Zone
      *
      * @param Etudiant $nouveauEtudiant
      */
