@@ -48,8 +48,7 @@ function creerListeSalles()
         $nomSalle = $tabCSV[$j][0];
 
         // Création de l'objet Salle
-        $uneSalle = new Salle;
-        $uneSalle->setNom($nomSalle);
+        $uneSalle = new Salle($nomSalle);
         
         // Création de la relation Plan-Salle si le plan existe
         $uneSalle = creerRelationSallePlan($uneSalle);
