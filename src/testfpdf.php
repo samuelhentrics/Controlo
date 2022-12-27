@@ -141,8 +141,9 @@ class PDF extends FPDF
 // Récupérer le contrôle
 $unControle = recupererUnControle($_GET['id']);
 
-
-$plansDePlacement = array();
+foreach ($unControle->getMesSalles() as $nomSalle => $uneSalle){
+    print($nomSalle);
+}
 
 
 

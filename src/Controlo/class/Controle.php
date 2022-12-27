@@ -284,7 +284,8 @@ class Controle
     public function ajouterSalle($uneSalle)
     {
         if (! $this->existePromotion($uneSalle)){
-            array_push($this->mesSalles, $uneSalle);
+            $nomSalle = $uneSalle->getNom();
+            $this->mesSalles[] = $uneSalle;
         }
     }
 
@@ -296,7 +297,8 @@ class Controle
     public function supprimerSalle($uneSalle)
     {
         if ($this->existeSalle($uneSalle)) {
-            unset($this->mesSalles[array_search($uneSalle, $this->mesSalles)]);
+            $nomSalle = $uneSalle->getNom();
+            unset($this->mesSalles[$nomSalle]);
         }
     }
 
@@ -306,7 +308,8 @@ class Controle
      * @return bool
      */
     public function existeSalle($uneSalle){
-        if (in_array($uneSalle, $this->getMesSalles())) {
+        $nomSalle = $uneSalle->getNom();
+        if (array_key_exists($nomSalle , $this->mesSalles)) {
             return true;
         }
         else{
