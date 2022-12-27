@@ -13,7 +13,7 @@
 <br />
 <br />
 <div align="center">
-  <!-- <img src="src/Controlo/Front/images/logo.png" alt="Logo" width="80" height="80" -->
+  <img src="src/Controlo/Front/images/logo.png" alt="Logo" width="80" height="80">
 
   <h3 align="center">Controlo - L'application de placement des étudiants lors des contrôles</h3>
 
