@@ -30,21 +30,21 @@ class PlanDePlacement{
     /**
      * @brief Contrôle
      *
-     * @var Conrtole
+     * @var Controle
      */
     private $monControle;
 
     /**
      * @brief contrainte générale
      *
-     * @var ContrainteGenerales
+     * @var ContraintesGenerales
      */
     private $maContrainteGenerale;
 
     /**
      * @brief contrainte d'espacement
      *
-     * @var ContrainteEspacement
+     * @var ContraintesEspacement
      */
     private $maContrainteEspacement;
 
@@ -101,7 +101,7 @@ class PlanDePlacement{
     /**
      * @brief Retourne la contrainte générale
      *
-     * @return ContrainteGenerales
+     * @return ContraintesGenerales
      */
     public function getMaContrainteGenerale(){
         return $this->maContrainteGenerale;
@@ -110,7 +110,7 @@ class PlanDePlacement{
     /**
      * @brief Affecte une contrainte générale
      *
-     * @param ContrainteGenerales $uneContrainteGenerale
+     * @param ContraintesGenerales $uneContrainteGenerale
      */
     public function setMaContrainteGenerale($uneContrainteGenerale)
     {
@@ -120,7 +120,7 @@ class PlanDePlacement{
     /**
      * @brief Retourne la contrainte d'espacement
      *
-     * @return ContrainteEspacement
+     * @return ContraintesEspacement
      */
     public function getMaContrainteEspacement(){
         return $this->maContrainteEspacement;
@@ -129,7 +129,7 @@ class PlanDePlacement{
     /**
      * @brief Affecte une contrainte d'espacement
      *
-     * @param ContrainteGEspacement $uneContrainteEspacement
+     * @param ContraintesEspacement $uneContrainteEspacement
      */
     public function setMaContrainteEspacement($uneContrainteEspacement)
     {
