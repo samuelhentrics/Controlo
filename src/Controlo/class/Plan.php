@@ -3,7 +3,7 @@
  * @file Plan.php
  * @author Samuel HENTRICS LOISTINE <samuel.hentrics@gmail.com>
  * @brief Spécification de la classe Plan
- * @details Represente une Plan par son plan
+ * @details Represente un Plan par ses Zone
  * 
  * @version 1.0
  * @date 2022-11-26
@@ -22,7 +22,7 @@ class Plan{
      *
      * @var array
      */
-    private $monPlan = array(array());
+    private $mesZones = array(array());
 
     // ENCAPSULATION
 
@@ -31,18 +31,10 @@ class Plan{
      *
      * @return array
      */
-    public function getPlan(){
-        return $this->monPlan;
+    public function getMezZones(){
+        return $this->mesZones;
     }
 
-    /**
-     * @brief Affecte un Plan à un plan de Zone
-     *
-     * @param array $unPlan Plan d'une Salle
-     */
-    public function setPlan($unPlan){
-        $this->monPlan = $unPlan;
-    }
 
     // Méthodes spécifiques
 
@@ -53,7 +45,7 @@ class Plan{
      */
     
     public function lierUneZone($uneZone){
-        $this->monPlan[$uneZone->getNumLigne()][$uneZone->getNumCol()] = $uneZone;
+        $this->mesZones[$uneZone->getNumLigne()][$uneZone->getNumCol()] = $uneZone;
         $uneZone->lierPlan($this);
     }
 
@@ -64,7 +56,7 @@ class Plan{
      * @param int $numCol   Numéro de colonne de la Zone
      */
     public function delierUneZone($numLigne, $numCol){
-        $this->monPlan[$numLigne][$numCol] = null;
+        $this->mesZones[$numLigne][$numCol] = null;
     }
 
     /**
@@ -73,7 +65,7 @@ class Plan{
      * @return int
      */
     public function getNbRangees(){
-        return count($this->monPlan);
+        return count($this->mesZones);
     }
 
     /**
@@ -82,7 +74,7 @@ class Plan{
      * @return int
      */
     public function getNbColonnes(){
-        return count($this->monPlan[0]);
+        return count($this->mesZones[0]);
     }
 
     /**
@@ -92,8 +84,8 @@ class Plan{
      */
     public function getNbPlacesLigne($numLigne){
         $nbPlaces = 0;
-        for ($numCol=0; $numCol <= count($this->monPlan[$numLigne])-1; $numCol++){
-            $uneZone = $this->monPlan[$numLigne][$numCol];
+        for ($numCol=0; $numCol <= count($this->mesZones[$numLigne])-1; $numCol++){
+            $uneZone = $this->mesZones[$numLigne][$numCol];
             if ($uneZone->getType()=="place"){
                 $nbPlaces++;
             }
