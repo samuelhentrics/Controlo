@@ -40,6 +40,17 @@ class Salle
      */
     private $monVoisin;
 
+    // CONSTRUCTEUR
+
+    /**
+     * Constructeur de la classe Salle
+     * @param mixed $nomSalle Nom de la Salle a attribué
+     */
+    public function __construct($nomSalle)
+    {
+        $this->setNom($nomSalle);
+    }
+
     //ENCAPSULATION
 
     /**

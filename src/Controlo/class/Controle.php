@@ -326,12 +326,12 @@ class Controle
      * @brief Permet d'ajouter un PlanDePlacement à la liste des plans de placement du Controle
      *
      * @param PlanDePlacement $unPlanDePlacement Plan de Placement du contrôle à ajouter
-     * @todo Tester la fonction d'ajout
      */
     public function ajouterPlanDePlacement($unPlanDePlacement)
     {
         if (! $this->existePromotion($unPlanDePlacement)){
-            array_push($this->mesPlansDePlacement, $unPlanDePlacement);
+            $nomSalle = $unPlanDePlacement->getMaSalle()->getNom();
+            $this->mesPlansDePlacement[$nomSalle] = $unPlanDePlacement;
         }
     }
 
@@ -343,7 +343,7 @@ class Controle
     public function supprimerPlanDePlacement($unPlanDePlacement)
     {
         if ($this->existeSalle($unPlanDePlacement)) {
-            unset($this->mesPlansDePlacement[array_search($unPlanDePlacement, $this->mesPlansDePlacement)]);
+            unset($this->mesPlansDePlacement[$unPlanDePlacement->getMaSalle()->getNom()]);
         }
     }
 
@@ -353,7 +353,8 @@ class Controle
      * @return bool
      */
     public function existePlanDePlacement($unPlanDePlacement){
-        if (in_array($unPlanDePlacement, $this->getMesPlansDePlacement())) {
+        $nomSalle = $unPlanDePlacement->getMaSalle()->getNom();
+        if (array_key_exists($nomSalle , $this->mesPlansDePlacement)) {
             return true;
         }
         else{

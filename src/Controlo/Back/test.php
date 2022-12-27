@@ -4,10 +4,26 @@ include_once(FONCTION_CREER_LISTE_CONTROLES_PATH);
 include_once(FONCTION_CREER_LISTE_PROMOTIONS_PATH);
 include_once(FONCTION_CREER_LISTE_CONTROLES_PATH);
 include_once(CLASS_PATH . CLASS_CONTROLE_FILE_NAME);
+include_once(CLASS_PATH . CLASS_PLAN_PLACEMENT_FILE_NAME);
+include_once(CLASS_PATH . CLASS_SALLE_FILE_NAME);
 
-controlePromo();
+controleSalle();
+
+function controleSalle(){
+    $controle1 = new Controle("R1.01 Blabla", "R1.01", 90, "2022-04-10", "09:00", "09:00");
+    $unPDP = new PlanDePlacement();
+    $uneSalle = new Salle("S124");
+
+    $unPDP->setMaSalle($uneSalle);
 
 
+    $controle1->ajouterPlanDePlacement($unPDP);
+
+
+    echo "<pre>";
+    print_r($controle1);
+    echo "</pre>";
+}
 
 
 function controlePromo(){
