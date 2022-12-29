@@ -1,35 +1,37 @@
 <div class="container">
-    <div class="col-12">
+    <div class="row">
+        <div class="col-12">
 
-        <?php print('<form action="' . BACK_PATH . 'resultat.php" method="post">'); ?>
+            <?php print('<form action="' . BACK_PATH . 'resultat.php" method="post">'); ?>
 
-        <?php
-        include(FONCTION_CREER_LISTE_CONTROLES_PATH);
+            <?php
+            include(FONCTION_CREER_LISTE_CONTROLES_PATH);
 
-        $numControle = $_GET["numControle"];
-        $leControle = recupererUnControle($numControle);
+            $numControle = $_GET["numControle"];
+            $leControle = recupererUnControle($numControle);
 
-        echo '<br>';
+            echo '<br>';
 
-        print("<h2>Placer automatiquement</h2>");
+            print("<h2>Placer automatiquement</h2>");
 
-        echo '<br>';
+            echo '<br>';
 
-        demanderContraintesSalles($leControle);
+            demanderContraintesSalles($leControle);
 
-        
-        demanderContraintesGenerales();
 
-        ?>
-        <br>
-        
-        <input type="submit" class="btn btn-primary btn-lg w-100" value="Générer"></button>
-        </form>
+            demanderContraintesGenerales();
 
-        <?php
+            ?>
+            <br>
 
-        function demanderContraintesGenerales(){
-            echo'
+            <input type="submit" class="btn btn-primary btn-lg w-100" value="Générer"></button>
+            </form>
+
+            <?php
+
+            function demanderContraintesGenerales()
+            {
+                echo '
             <h3>Contraintes générales</h3>
             <p>Etudiants separés par
                 <select name="typeSeparation" id="">
@@ -46,28 +48,29 @@
                 </select>
             </p>
             ';
-        }
+            }
 
-        function demanderContraintesSalles($leControle)
-        {
-            print("<h3>Contraintes par salles</h3>");
-            print('<table class="table table-striped table-bordered">');
-            print("<tr>
+            function demanderContraintesSalles($leControle)
+            {
+                print("<h3>Contraintes par salles</h3>");
+                print('<table class="table table-striped table-bordered">');
+                print("<tr>
                     <th>Salles</th>
                     <th>Nombre de place séparent les étudiants</th>
                     <th>Nombre de rangées séparent les étudiants</th>
                 </tr>");
-            foreach ($leControle->getMesSalles() as $key => $uneSalle) {
-                print("<tr>");
-                print("<td>" . $uneSalle->getNom() . "</td>");
-                print("<td> <input type='number' name='nbPlaceSeparant' min='0' max='999' id='nbPlaceSeparant-" . $uneSalle->getNom() . "' value='0'></td>");
-                print("<td> <input type='number' name='nbRangeSeparant' min='0' max='999' id='nbRangeSeparant-" . $uneSalle->getNom() . "' value='0'></td>");
-                print("</tr>");
+                foreach ($leControle->getMesSalles() as $key => $uneSalle) {
+                    print("<tr>");
+                    print("<td>" . $uneSalle->getNom() . "</td>");
+                    print("<td> <input type='number' name='nbPlaceSeparant' min='0' max='999' id='nbPlaceSeparant-" . $uneSalle->getNom() . "' value='0'></td>");
+                    print("<td> <input type='number' name='nbRangeSeparant' min='0' max='999' id='nbRangeSeparant-" . $uneSalle->getNom() . "' value='0'></td>");
+                    print("</tr>");
+                }
+                print("</table>");
             }
-            print("</table>");
-        }
 
-?>
+            ?>
 
+        </div>
     </div>
 </div>

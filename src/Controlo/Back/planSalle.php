@@ -15,13 +15,7 @@
                     for ($col = 0; $col <= count($plan[0]) - 1; $col++) {
                         $placeActuelle = $plan[$lig][$col];
 
-                        // Affichage d'une bordure s'il s'agit d'une table ou d'un tableau
-                        if($placeActuelle->getType() == "tableau" or $placeActuelle->getType() == "place" ){
-                            print("<td class='bordure'>");
-                        }
-                        else{
-                            print("<td>");
-                        }
+                        print("<td>");
 
                         // Affichage de la place ou de la mention tableau
                         if($placeActuelle->getType() == "tableau"){
@@ -33,6 +27,12 @@
                             if($placeActuelle->getInfoPrise()){
                                 print("E");
                             }
+                        }
+                        else{
+                            // Ajout d'un caractère ‎ afin de pouvoir avoir un
+                            // tableau ayant la même taille d'hauteur sur chaque case
+                            // (cause : bootstrap)
+                            print("‎");
                         }
                         print("</td>");
                     }
