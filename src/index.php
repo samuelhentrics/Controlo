@@ -40,8 +40,8 @@
                         # code...
                         break;
 
-                    case 'generer':
-                        include(BACK_PATH."generer.php");
+                    case 'choixGeneration':
+                        include(BACK_PATH."choixGeneration.php");
                         # code...
                         break;
 
