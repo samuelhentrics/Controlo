@@ -285,7 +285,7 @@ class Controle
     {
         if (! $this->existePromotion($uneSalle)){
             $nomSalle = $uneSalle->getNom();
-            $this->mesSalles[] = $uneSalle;
+            $this->mesSalles[$nomSalle] = $uneSalle;
         }
     }
 

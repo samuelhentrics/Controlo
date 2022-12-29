@@ -115,7 +115,7 @@ class PDF extends FPDF
         // Data
         foreach ($data as $row) {
             $this->Cell(20);
-            foreach ($row as $col){
+            foreach ($row as $col) {
                 $this->Cell(10, 5, $col, 1, 0, "C");
             }
             $this->Ln();
@@ -141,115 +141,134 @@ class PDF extends FPDF
 // Récupérer le contrôle
 $unControle = recupererUnControle($_GET['id']);
 
-foreach ($unControle->getMesSalles() as $nomSalle => $uneSalle){
-    print($nomSalle);
-}
-
-
-
-// Création de l'entête pour chaque page
-//      Récupération des variables importantes pour l'entête
-$nomControle = $unControle->getNomLong();
-$nomCourtControle = $unControle->getNomCourt();
-
-$dateControle = $unControle->getDate();
-$date = date('d/m/Y', strtotime($dateControle));
-
-$heureTT = str_replace(":", "h", $unControle->getHeureTT());
-
-$heureNonTT = str_replace(":", "h", $unControle->getHeureNonTT());
-
-$dureeTT = $unControle->getDuree();
-$dureeTT = sprintf("%02dh%02d", floor($dureeTT / 60), ($dureeTT % 60));
-
-$dureeNonTT = $unControle->getDureeNonTT();
-$dureeNonTT = sprintf("%02dh%02d", floor($dureeNonTT / 60), ($dureeNonTT % 60));
-
-$lesPromotions = "";
-foreach ($unControle->getMesPromotions() as $numPromo => $unePromotion) {
-    $lesPromotions .= $unePromotion->getNom() . " - ";
-}
-$lesPromotions = substr($lesPromotions, 0, -2);
-
-
-$entete = '<u>Nom du contrôle</u> : ' . $nomControle . '<br>' .
-    '<u>Promotion(s)</u> : ' . $lesPromotions . '<br>' .
-    '<u>Date</u> : ' . $date . '            ' .
-    '<u>Heure</u> : ' . $heureNonTT . ' (TT : ' . $heureTT . ')' . '            ' .
-    '<u>Durée</u> : ' . $dureeNonTT . ' (TT : ' . $dureeTT . ')';
-
-
-// Création du dossier dans le dossier des plans de placement
-$dateFormatDossier = date('Y-m-d', strtotime($dateControle));
-
-$nomFormatDossier = str_replace("-", "", $nomCourtControle);
-$nomFormatDossier = str_replace(".", "-", $nomFormatDossier);
-$nomFormatDossier = preg_replace ("/\s+/", " ", $nomFormatDossier);
-$nomFormatDossier = trim($nomFormatDossier);
-$nomFormatDossier = str_replace("/", "-", $nomFormatDossier);
-$nomFormatDossier = str_replace(" ", "-", $nomFormatDossier);
-
-$nomDossier = PLANS_DE_PLACEMENT_FOLDER_NAME . $dateFormatDossier . "_" . $nomFormatDossier."/";
-if(!file_exists($nomDossier)){
-    mkdir($nomDossier);
-}
-
 foreach ($unControle->getMesSalles() as $nomSalle => $uneSalle) {
-    // Instanciation de la classe dérivée
-    $pdf = new PDF();
-    $pdf->AliasNbPages();
+    $unPDP = new PlanDePlacement();
+    
+    $unePlace = new Zone();
+    $unePlace->setNumero(1);
+    $unePlace->setType("place");
 
-    // Créer une nouvelle page
-    $pdf->AddPage();
+    $unEtudiant = new Etudiant("TEST", "TEST", 1, 2, "helloworld@gmail.com");
 
-    // Titre de la page (Nom du contrôle)
-    $pdf->SetFont('Arial', 'B', 15);
-    $pdf->Cell(80);
-    $titre = utf8_decode($nomCourtControle . " - Contrôle");
-    $pdf->Cell(30, 10, $titre, 0, 0, 'C');
-    $pdf->Ln(15);
+    $unPlacement = new UnPlacement();
+    $unPlacement->setMonEtudiant($unEtudiant);
 
-    // Affichage de l'entête
-    $pdf->SetFont('Arial', '', 12);
-    $pdf->WriteHTML(utf8_decode($entete));
-    $pdf->Ln(15);
+    $unPDP->ajouterPlacement($unPlacement);
 
-    // Affichage du nom de la salle
-    $pdf->SetFont('Arial', 'U', 13);
-    $pdf->Cell(80);
-    $titre = utf8_decode("Salle " . $uneSalle->getNom());
-    $pdf->Cell(30, 10, $titre, 0, 0, 'C');
-    $pdf->Ln(15);
-
-    // Affichage du plan de la salle
-    $pdf->SetFont('Arial', '', 12);
-    $data=$pdf->LoadData(CSV_SALLES_PATH.$uneSalle->getNom().".csv");
-    $pdf->BasicTable($data);
-    $pdf->Ln(15);
-
-    // Affichage de la nomenclature 
-    $pdf->SetFont('Arial', 'U', 12);
-    $pdf->Write(5, utf8_decode("Légende (X est un entier naturel) :"));
-    $pdf->Ln(10);
-
-    $pdf->SetFont('Arial', '', 12);
-
-    $pdf->Cell(20, 10, "T", 1, 0, "C");
-    $pdf->Cell(5, 10);
-    $pdf->Cell(30, 10, "Tableau", 0, 0);
-    $pdf->Cell(5, 10);
-
-    $pdf->Cell(20, 10, "E", 1, 0, "C");
-    $pdf->Cell(5, 10);
-    $pdf->Cell(40, 10, "Place avec prise", 0, 0);
-    $pdf->Cell(5, 10);
-
-    $pdf->Cell(20, 10, "X", 1, 0, "C");
-    $pdf->Cell(5, 10);
-    $pdf->Cell(30, 10, "Place", 0, 0);
-
-    $nomFichier = $dateFormatDossier . "_" . $nomFormatDossier . "_Plan_Placement_" .  $uneSalle->getNom() . ".pdf";
-    $pdf->Output($nomDossier. $nomFichier, 'F');
+    $unControle->ajouterPlanDePlacement($unPDP);
 }
 
+genererPDP($unControle);
 
+
+function genererPDP($unControle)
+{
+    // Création de l'entête pour chaque page
+    //      Récupération des variables importantes pour l'entête
+    $nomControle = $unControle->getNomLong();
+    $nomCourtControle = $unControle->getNomCourt();
+
+    $dateControle = $unControle->getDate();
+    $date = date('d/m/Y', strtotime($dateControle));
+
+    $heureTT = str_replace(":", "h", $unControle->getHeureTT());
+
+    $heureNonTT = str_replace(":", "h", $unControle->getHeureNonTT());
+
+    $dureeTT = $unControle->getDuree();
+    $dureeTT = sprintf("%02dh%02d", floor($dureeTT / 60), ($dureeTT % 60));
+
+    $dureeNonTT = $unControle->getDureeNonTT();
+    $dureeNonTT = sprintf("%02dh%02d", floor($dureeNonTT / 60), ($dureeNonTT % 60));
+
+    $lesPromotions = "";
+    foreach ($unControle->getMesPromotions() as $numPromo => $unePromotion) {
+        $lesPromotions .= $unePromotion->getNom() . " - ";
+    }
+    $lesPromotions = substr($lesPromotions, 0, -2);
+
+
+    $entete = '<u>Nom du contrôle</u> : ' . $nomControle . '<br>' .
+        '<u>Promotion(s)</u> : ' . $lesPromotions . '<br>' .
+        '<u>Date</u> : ' . $date . '            ' .
+        '<u>Heure</u> : ' . $heureNonTT . ' (TT : ' . $heureTT . ')' . '            ' .
+        '<u>Durée</u> : ' . $dureeNonTT . ' (TT : ' . $dureeTT . ')';
+
+
+    // Création du dossier dans le dossier des plans de placement
+    $dateFormatDossier = date('Y-m-d', strtotime($dateControle));
+
+    $nomFormatDossier = str_replace("-", "", $nomCourtControle);
+    $nomFormatDossier = str_replace(".", "-", $nomFormatDossier);
+    $nomFormatDossier = preg_replace("/\s+/", " ", $nomFormatDossier);
+    $nomFormatDossier = trim($nomFormatDossier);
+    $nomFormatDossier = str_replace("/", "-", $nomFormatDossier);
+    $nomFormatDossier = str_replace(" ", "-", $nomFormatDossier);
+
+    $nomDossier = PLANS_DE_PLACEMENT_FOLDER_NAME . $dateFormatDossier . "_" . $nomFormatDossier . "/";
+    if (!file_exists($nomDossier)) {
+        mkdir($nomDossier);
+    }
+
+    foreach ($unControle->getMesSalles() as $nomSalle => $uneSalle) {
+        // Instanciation de la classe dérivée
+        $pdf = new PDF();
+        $pdf->AliasNbPages();
+        // Créer une nouvelle page
+        $pdf->AddPage();
+
+        // Titre de la page (Nom du contrôle)
+        $pdf->SetFont('Arial', 'B', 15);
+        $pdf->Cell(80);
+        $titre = utf8_decode($nomCourtControle . " - Contrôle");
+        $pdf->Cell(30, 10, $titre, 0, 0, 'C');
+        $pdf->Ln(15);
+
+        // Affichage de l'entête
+        $pdf->SetFont('Arial', '', 12);
+        $pdf->WriteHTML(utf8_decode($entete));
+        $pdf->Ln(15);
+
+        // Affichage du nom de la salle
+        $pdf->SetFont('Arial', 'U', 13);
+        $pdf->Cell(80);
+        $titre = utf8_decode("Salle " . $nomSalle);
+        $pdf->Cell(30, 10, $titre, 0, 0, 'C');
+        $pdf->Ln(15);
+
+        // Affichage du plan de la salle
+        $pdf->SetFont('Arial', '', 12);
+        $data = $pdf->LoadData(CSV_SALLES_PATH . $nomSalle . ".csv");
+        $pdf->BasicTable($data);
+        $pdf->Ln(15);
+
+        // Affichage de la nomenclature 
+        $pdf->SetFont('Arial', 'U', 12);
+        $pdf->Write(5, utf8_decode("Légende (X est un entier naturel) :"));
+        $pdf->Ln(10);
+
+        $pdf->SetFont('Arial', '', 12);
+
+        $pdf->Cell(20, 10, "T", 1, 0, "C");
+        $pdf->Cell(5, 10);
+        $pdf->Cell(30, 10, "Tableau", 0, 0);
+        $pdf->Cell(5, 10);
+
+        $pdf->Cell(20, 10, "E", 1, 0, "C");
+        $pdf->Cell(5, 10);
+        $pdf->Cell(40, 10, "Place avec prise", 0, 0);
+        $pdf->Cell(5, 10);
+
+        $pdf->Cell(20, 10, "X", 1, 0, "C");
+        $pdf->Cell(5, 10);
+        $pdf->Cell(30, 10, "Place", 0, 0);
+
+        // Plan de Placement de la salle actuelle
+        $pdpActuelle = $unControle->getMesPlansDePlacement()[$nomSalle];
+        print_r($pdpActuelle);
+
+
+        $nomFichier = $dateFormatDossier . "_" . $nomFormatDossier . "_Plan_Placement_" .  $nomSalle . ".pdf";
+        $pdf->Output($nomDossier . $nomFichier, 'F');
+    }
+}
