@@ -180,7 +180,7 @@ class PDF extends FPDF
  * @param Controle $unControle Controle auquel nous souhaitons générer un PlanDePlacement
  * @return void
  */
-function genererPDP($unControle)
+function genererPDF($unControle)
 {
     // Création de l'entête pour chaque page
     //      Récupération des variables importantes pour l'entête
