@@ -1,9 +1,7 @@
 <?php
 
-
-
-include(CLASS_PATH.CLASS_PLAN_FILE_NAME);
-include(CLASS_PATH.CLASS_ZONE_FILE_NAME);
+include_once(CLASS_PATH.CLASS_PLAN_FILE_NAME);
+include_once(CLASS_PATH.CLASS_ZONE_FILE_NAME);
 
 /**
  * Retourne un Plan de Salle si cette Salle existe

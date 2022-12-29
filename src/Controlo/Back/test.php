@@ -1,13 +1,58 @@
 <?php
 
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+//                                 INCLUSIONS
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 include_once(FONCTION_CREER_LISTE_CONTROLES_PATH);
 include_once(FONCTION_CREER_LISTE_PROMOTIONS_PATH);
-include_once(FONCTION_CREER_LISTE_CONTROLES_PATH);
 include_once(CLASS_PATH . CLASS_CONTROLE_FILE_NAME);
 include_once(CLASS_PATH . CLASS_PLAN_PLACEMENT_FILE_NAME);
 include_once(CLASS_PATH . CLASS_SALLE_FILE_NAME);
+include_once(IMPORT_PATH . "genererPDP.php");
 
-controleSalle();
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+//                                 APPEL DU TEST
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+
+genererPDPControle(1);
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+//                                 FONCTIONS
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+
+function genererPDPControle($id){
+    // Récupérer le contrôle que l'on souhaite
+    $unControle = recupererUnControle($id);
+
+    // Simulation de places et d'étudiants
+    foreach ($unControle->getMesSalles() as $nomSalle => $uneSalle) {
+        $unPDP = new PlanDePlacement();
+        for ($i = 1; $i < 21; $i++) {
+            $unePlace = new Zone();
+            $unePlace->setType("place");
+            $unePlace->setNumero($i);
+
+            $unEtudiant = new Etudiant("NOM" . $i, "PRENOM", 1, 2, "helloworld@gmail.com");
+
+            $unPlacement = new UnPlacement();
+            $unPlacement->setMonEtudiant($unEtudiant);
+            $unPlacement->setMaZone($unePlace);
+
+            $unPDP->ajouterPlacement($unPlacement);
+            $unPDP->setMaSalle($uneSalle);
+        }
+
+
+        $unControle->ajouterPlanDePlacement($unPDP);
+    }
+}
+
 
 function controleSalle(){
     $controle1 = new Controle("R1.01 Blabla", "R1.01", 90, "2022-04-10", "09:00", "09:00");

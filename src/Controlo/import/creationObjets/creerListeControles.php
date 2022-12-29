@@ -11,9 +11,9 @@
  */
 
 DEFINE("CHEMIN_LISTE_CONTROLES", CSV_CONTROLES_FOLDER_NAME.LISTE_CONTROLES_FILE_NAME);
-include(FONCTION_CREER_LISTE_PROMOTIONS_PATH);
-include(FONCTION_CREER_LISTE_SALLES_PATH);
-
+include_once(FONCTION_CREER_LISTE_PROMOTIONS_PATH);
+include_once(FONCTION_CREER_LISTE_SALLES_PATH);
+include_once(CLASS_PATH.CLASS_CONTROLE_FILE_NAME);
 
 
 
@@ -23,10 +23,6 @@ include(FONCTION_CREER_LISTE_SALLES_PATH);
  * @return array
  */
 function creerListeControles(){
-    include("Controlo/class/Controle.php");
-    
-    
-
     $monFichier = fopen(CHEMIN_LISTE_CONTROLES, "r");
 
     // Créer la liste des controles en lisant le fichier CSV
@@ -83,8 +79,6 @@ function creerListeControles(){
 }
 
 function recupererUnControle($id){
-    include(CLASS_PATH.CLASS_CONTROLE_FILE_NAME);
-
     $monFichier = fopen(CHEMIN_LISTE_CONTROLES, "r");
 
     // Créer la liste des controles en lisant le fichier CSV

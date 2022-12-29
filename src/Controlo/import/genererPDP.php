@@ -5,12 +5,11 @@
 //                                 INCLUSIONS
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
-include("config.php");
-include(IMPORT_PATH . "fpdf.php");
+include_once(IMPORT_PATH . "fpdf.php");
 
-include(FONCTION_CREER_LISTE_CONTROLES_PATH);
-include(CLASS_PATH.CLASS_PLAN_PLACEMENT_FILE_NAME);
-include(CLASS_PATH.CLASS_UN_PLACEMENT_FILE_NAME);
+include_once(FONCTION_CREER_LISTE_CONTROLES_PATH);
+include_once(CLASS_PATH.CLASS_PLAN_PLACEMENT_FILE_NAME);
+include_once(CLASS_PATH.CLASS_UN_PLACEMENT_FILE_NAME);
 
 
 // ----------------------------------------------------------------------------
@@ -172,43 +171,15 @@ class PDF extends FPDF
 
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
-//                                 TESTS
-// ----------------------------------------------------------------------------
-// ----------------------------------------------------------------------------
-
-// Récupérer le contrôle
-$unControle = recupererUnControle($_GET['id']);
-
-foreach ($unControle->getMesSalles() as $nomSalle => $uneSalle) {
-    $unPDP = new PlanDePlacement();
-    for ($i=0; $i < 20; $i++) { 
-        $unePlace = new Zone();
-        $unePlace->setType("place");
-        $unePlace->setNumero($i);
-
-        $unEtudiant = new Etudiant("NOM".$i, "PRENOM", 1, 2, "helloworld@gmail.com");
-
-        $unPlacement = new UnPlacement();
-        $unPlacement->setMonEtudiant($unEtudiant);
-        $unPlacement->setMaZone($unePlace);
-        
-        $unPDP->ajouterPlacement($unPlacement);
-        $unPDP->setMaSalle($uneSalle);
-    } 
-    
-
-    $unControle->ajouterPlanDePlacement($unPDP);
-}
-
-genererPDP($unControle);
-
-
-// ----------------------------------------------------------------------------
-// ----------------------------------------------------------------------------
 //                             FONCTION PRINCIPALE
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 
+/**
+ * Fonction permettant de générer les PDF des PlanDePlacement d'un Controle donnée
+ * @param Controle $unControle Controle auquel nous souhaitons générer un PlanDePlacement
+ * @return void
+ */
 function genererPDP($unControle)
 {
     // Création de l'entête pour chaque page
@@ -318,6 +289,8 @@ function genererPDP($unControle)
 
         $arrayPlaces = array();
 
+        // Récupérer sous forme de liste ( (NUM_PLACE), (NOM_ETUDIANT) ) la liste
+        // des places attribués dans arrayPlaces
         foreach($listePlacementsPDP as $i => $unPlacement){
 
             $place = $unPlacement->getMaZone();
@@ -333,11 +306,12 @@ function genererPDP($unControle)
             array_push($arrayPlaces, $infoUnePlace);
         }
 
-        // Affichage du tableau avec les infos
+        // Affichage du tableau avec les infos sur les étudiants et leurs places
         $header = array(utf8_decode("N° Place"), utf8_decode("Étudiant"));
         $pdf->BasicTable($header, $arrayPlaces);
         $pdf->Ln(15);
 
+        // Enregistrer le PDF du PlanDePlacement actuel dans le dossier
         $nomFichier = $dateFormatDossier . "_" . $nomFormatDossier . "_Plan_Placement_" .  $nomSalle . ".pdf";
         $pdf->Output($nomDossier . $nomFichier, 'F');
     }
