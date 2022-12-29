@@ -1,13 +1,23 @@
 <?php
 
-// Include config
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+//                                 INCLUSIONS
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 include("config.php");
-
-
-// Include classe controle, salle...
-include(FONCTION_CREER_LISTE_CONTROLES_PATH);
 include(IMPORT_PATH . "fpdf.php");
 
+include(FONCTION_CREER_LISTE_CONTROLES_PATH);
+include(CLASS_PATH.CLASS_PLAN_PLACEMENT_FILE_NAME);
+include(CLASS_PATH.CLASS_UN_PLACEMENT_FILE_NAME);
+
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+//                      PARAMETRES SUPPLEMENTAIRES PDF
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 class PDF extends FPDF
 {
     /*
@@ -110,7 +120,29 @@ class PDF extends FPDF
     }
 
     // Simple table
-    function BasicTable($data)
+    function BasicTable($header,$data)
+    {
+        //En-tête
+        $taille = 20;
+        foreach($header as $col){
+            $this->Cell($taille,7,$col,1);
+            $taille *= 8; 
+        }
+        $this->Ln();
+        //Données
+        foreach($data as $row)
+        {
+            $taille = 20;
+            foreach($row as $col){
+                $this->Cell($taille,6,$col,1);
+                $taille *= 8; 
+            }
+            $this->Ln();
+        }
+    }
+
+    // Table spéciale Salle
+    function Salle($data)
     {
         // Data
         foreach ($data as $row) {
@@ -138,28 +170,44 @@ class PDF extends FPDF
     }
 }
 
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+//                                 TESTS
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+
 // Récupérer le contrôle
 $unControle = recupererUnControle($_GET['id']);
 
 foreach ($unControle->getMesSalles() as $nomSalle => $uneSalle) {
     $unPDP = new PlanDePlacement();
+    for ($i=0; $i < 20; $i++) { 
+        $unePlace = new Zone();
+        $unePlace->setType("place");
+        $unePlace->setNumero($i);
+
+        $unEtudiant = new Etudiant("NOM".$i, "PRENOM", 1, 2, "helloworld@gmail.com");
+
+        $unPlacement = new UnPlacement();
+        $unPlacement->setMonEtudiant($unEtudiant);
+        $unPlacement->setMaZone($unePlace);
+        
+        $unPDP->ajouterPlacement($unPlacement);
+        $unPDP->setMaSalle($uneSalle);
+    } 
     
-    $unePlace = new Zone();
-    $unePlace->setNumero(1);
-    $unePlace->setType("place");
-
-    $unEtudiant = new Etudiant("TEST", "TEST", 1, 2, "helloworld@gmail.com");
-
-    $unPlacement = new UnPlacement();
-    $unPlacement->setMonEtudiant($unEtudiant);
-
-    $unPDP->ajouterPlacement($unPlacement);
 
     $unControle->ajouterPlanDePlacement($unPDP);
 }
 
 genererPDP($unControle);
 
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+//                             FONCTION PRINCIPALE
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
 function genererPDP($unControle)
 {
@@ -239,7 +287,7 @@ function genererPDP($unControle)
         // Affichage du plan de la salle
         $pdf->SetFont('Arial', '', 12);
         $data = $pdf->LoadData(CSV_SALLES_PATH . $nomSalle . ".csv");
-        $pdf->BasicTable($data);
+        $pdf->Salle($data);
         $pdf->Ln(15);
 
         // Affichage de la nomenclature 
@@ -262,11 +310,33 @@ function genererPDP($unControle)
         $pdf->Cell(20, 10, "X", 1, 0, "C");
         $pdf->Cell(5, 10);
         $pdf->Cell(30, 10, "Place", 0, 0);
+        $pdf->Ln(15);
 
         // Plan de Placement de la salle actuelle
         $pdpActuelle = $unControle->getMesPlansDePlacement()[$nomSalle];
-        print_r($pdpActuelle);
+        $listePlacementsPDP = $pdpActuelle->getMesPlacements();
 
+        $arrayPlaces = array();
+
+        foreach($listePlacementsPDP as $i => $unPlacement){
+
+            $place = $unPlacement->getMaZone();
+            $etudiant = $unPlacement->getMonEtudiant();
+
+            $numeroPlace = $place->getNumero();
+            $nomCompletEtudiant = $etudiant->getNom() . " " . $etudiant->getPrenom();
+
+            $infoUnePlace = array();
+            array_push($infoUnePlace, $numeroPlace);
+            array_push($infoUnePlace, $nomCompletEtudiant);
+
+            array_push($arrayPlaces, $infoUnePlace);
+        }
+
+        // Affichage du tableau avec les infos
+        $header = array(utf8_decode("N° Place"), utf8_decode("Étudiant"));
+        $pdf->BasicTable($header, $arrayPlaces);
+        $pdf->Ln(15);
 
         $nomFichier = $dateFormatDossier . "_" . $nomFormatDossier . "_Plan_Placement_" .  $nomSalle . ".pdf";
         $pdf->Output($nomDossier . $nomFichier, 'F');
