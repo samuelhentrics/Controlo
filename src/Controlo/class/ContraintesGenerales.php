@@ -72,7 +72,7 @@ class ContraintesGenerales
      */
     public function setAlgoRemplissage($nouveauAlgoRemplissage)
     {
-        if ($nouveauAlgoRemplissage = "aléatoire" or $nouveauAlgoRemplissage == "ascendant" or $nouveauAlgoRemplissage == "descendant") {
+        if ($nouveauAlgoRemplissage == "aléatoire" or $nouveauAlgoRemplissage == "ascendant" or $nouveauAlgoRemplissage == "descendant") {
             $this->algoRemplissage = $nouveauAlgoRemplissage;
         } else {
             $this->algoRemplissage = "ascendant";
