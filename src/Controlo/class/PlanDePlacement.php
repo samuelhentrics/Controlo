@@ -22,45 +22,54 @@ class PlanDePlacement
     //Variables
 
     /**
-     * @brief salle
+     * @brief Salle relié au PlanDePlacement
      *
      * @var Salle
      */
     private $maSalle;
 
     /**
-     * @brief Contrôle
-     *
-     * @var Controle
-     */
-    private $monControle;
-
-    /**
-     * @brief contrainte générale
+     * @brief ContraintesGenerales relié au PlanDePlacement
      *
      * @var ContraintesGenerales
      */
     private $maContrainteGenerale;
 
     /**
-     * @brief contrainte d'espacement
+     * @brief ContraintesEspacement relié au PlanDePlacement
      *
      * @var ContraintesEspacement
      */
     private $maContrainteEspacement;
 
     /**
-     * @brief Les placements
+     * @brief Les placements relié au PlanDePlacement
      *
      * @var array
      */
     private $mesPlacements = array();
 
+    // Constructeur
+
+    /**
+     * @brief Constructeur du PlanDePlacement
+     * @param ContraintesGenerales $uneContrainteGenerale
+     * @param ContraintesEspacement $uneContrainteEspacement
+     * @param Salle $uneSalle
+     */
+    public function __construct($uneContrainteGenerale, $uneContrainteEspacement, $uneSalle){
+        $this->setMaContrainteGenerale($uneContrainteGenerale);
+        $this->setMaContrainteEspacement($uneContrainteEspacement);
+        $this->setMaSalle($uneSalle);
+    }
+
+
+
     //Encapsulation
 
 
     /**
-     * @brief Retourne la salle
+     * @brief Retourne la Salle relié au PlanDePlacement
      *
      * @return Salle
      */
@@ -70,7 +79,7 @@ class PlanDePlacement
     }
 
     /**
-     * @brief Affecte une salle
+     * @brief Affecte une Salle au PlanDePlacement
      *
      * @param Salle $uneSalle
      */
@@ -81,28 +90,7 @@ class PlanDePlacement
 
 
     /**
-     * @brief Retourne le contrôle
-     *
-     * @return Controle
-     */
-    public function getMonControle()
-    {
-        return $this->monControle;
-    }
-
-    /**
-     * @brief Affecte un contrôle
-     *
-     * @param Controle $unControle
-     */
-    public function setMonControle($unControle)
-    {
-        $this->monControle = $unControle;
-    }
-
-
-    /**
-     * @brief Retourne la contrainte générale
+     * @brief Retourne la ContraintesGenerales au PlanDePlacement
      *
      * @return ContraintesGenerales
      */
@@ -112,7 +100,7 @@ class PlanDePlacement
     }
 
     /**
-     * @brief Affecte une contrainte générale
+     * @brief Affecte une ContraintesGenerales au PlanDePlacement
      *
      * @param ContraintesGenerales $uneContrainteGenerale
      */
@@ -122,7 +110,7 @@ class PlanDePlacement
     }
 
     /**
-     * @brief Retourne la contrainte d'espacement
+     * @brief Retourne la ContraintesEspacement
      *
      * @return ContraintesEspacement
      */
@@ -132,7 +120,7 @@ class PlanDePlacement
     }
 
     /**
-     * @brief Affecte une contrainte d'espacement
+     * @brief Affecte une ContraintesEspacement
      *
      * @param ContraintesEspacement $uneContrainteEspacement
      */
@@ -143,7 +131,7 @@ class PlanDePlacement
 
 
     /**
-     * @brief Retourne les places
+     * @brief Retourne les UnPlacement
      *
      * @return array
      */
