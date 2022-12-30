@@ -20,11 +20,11 @@ $listeDeSalles = $unControle->getMesSalles();
 
 //ajout des contraintes au controle
 foreach ($listeDeSalles as $nom => $uneSalle) {
-    $nbPlaceSeparant = $_POST["nbPlaceSeparant-" . $nom];
-    $nbRangeeSeparant = $_POST["nbRangeeSeparant-" . $nom];
-    $contraintesSalle = new ContraintesEspacement($nbRangeeSeparant, $nbPlaceSeparant);
-    $unPDP = new PlanDePlacement($contraintesGenerales, $contraintesSalle, $uneSalle);
-    $unControle->ajouterPlanDePlacement($unPDP);
+  $nbPlaceSeparant = $_POST["nbPlaceSeparant-" . $nom];
+  $nbRangeeSeparant = $_POST["nbRangeeSeparant-" . $nom];
+  $contraintesSalle = new ContraintesEspacement($nbRangeeSeparant, $nbPlaceSeparant);
+  $unPDP = new PlanDePlacement($contraintesGenerales, $contraintesSalle, $uneSalle);
+  $unControle->ajouterPlanDePlacement($unPDP);
 
 }
 //recuperer la listes des promotions 
@@ -35,24 +35,25 @@ $listeOrdi = array();
 $listeEtud = array();
 
 foreach ($listePromos as $key => $unePromo) {
-    $listeTTSansOrdi = array_merge($listeTTSansOrdi, $unePromo->recupererListeEtudiantsTTSansOrdi());
-    $listeOrdi = array_merge($listeOrdi, $unePromo->recupererListeEtudiantsOrdi());
-    $listeEtud = array_merge($listeEtud, $unePromo->recupererListeEtudiantsNonTT());
+  $listeTTSansOrdi = array_merge($listeTTSansOrdi, $unePromo->recupererListeEtudiantsTTSansOrdi());
+  $listeOrdi = array_merge($listeOrdi, $unePromo->recupererListeEtudiantsOrdi());
+  $listeEtud = array_merge($listeEtud, $unePromo->recupererListeEtudiantsNonTT());
 
 }
-function trieListes($array, $algo) {
+function trieListes($array, $algo)
+{
   switch ($algo) {
     case 'aléatoire':
       shuffle($array);
       break;
     case 'descendant':
-      usort($array, function($a, $b) {
+      usort($array, function ($a, $b) {
         return strcmp($b->getNom(), $a->getNom());
       });
       break;
     //ascendant
     default:
-      usort($array, function($a, $b) {
+      usort($array, function ($a, $b) {
         return strcmp($a->getNom(), $b->getNom());
       });
       break;
@@ -63,15 +64,67 @@ function trieListes($array, $algo) {
 $listeTTSansOrdi = trieListes($listeTTSansOrdi, $contraintesGenerales->getAlgoRemplissage());
 $listeOrdi = trieListes($listeOrdi, $contraintesGenerales->getAlgoRemplissage());
 $listeEtud = trieListes($listeEtud, $contraintesGenerales->getAlgoRemplissage());
+/*echo '<pre>';
+print_r($unControle->getMesPlansDePlacement()["S124"]->getMaSalle()->getMonPlan()->getMesZones());
+echo '</pre>';*/
+// $listeMesZones = $unControle->getMesPlansDePlacement()["S124"]->getMaSalle()->getMonPlan()->getMesZones();
+$listeMesZones = $unControle->getMesSalles()["S124"]->getMonPlan()->getMesZones();
+function nbPlaceDispo($listeMesZones)
+{
+  $returnArray = array();
+  $totalPlace = 0;
+  $totalPrise = 0;
+  foreach ($listeMesZones as $uneZone) {
+      foreach ($uneZone as $unePosition) {
+        if ($unePosition->getType() === "place") {
+          $totalPlace++;
+        }
+      if ($unePosition->getInfoPrise())
+        $totalPrise = $totalPrise + 1;
 
-// var_dump($listeTTSansOrdi);
+      }
+  }
+  $returnArray["totalPrise"] = $totalPrise;
+  $returnArray["totalPlace"] = $totalPlace;
+  return $returnArray;
+}
 
+foreach ($unControle->getMesSalles() as $key => $uneSalle) {
+  print($uneSalle->getNom() . " info: ");
+print_r(nbPlaceDispo($uneSalle->getMonPlan()->getMesZones()));
+  print(" <br> ");
+}
+// var_dump($listeMesZones);
+
+// print( . "<- nombre de place <br>");
+//debut du placement
+// print($uneSalle->getNom()." $unControle->getMesSalles()["S124"]->getMonPlan()->getMesZones() . "<br>");
+foreach ($unControle->getMesSalles() as $nomSalle => $uneSalle) {
+  for ($i = 1; $i < 21; $i++) {
+    $unePlace = new Zone();
+    $unePlace->setType("place");
+    $unePlace->setNumero($i);
+
+    $unEtudiant = new Etudiant("NOM" . $i, "PRENOM", 1, 2, "helloworld@gmail.com");
+
+    $unPlacement = new UnPlacement();
+    $unPlacement->setMonEtudiant($unEtudiant);
+    $unPlacement->setMaZone($unePlace);
+
+    $unPDP->ajouterPlacement($unPlacement);
+    $unPDP->setMaSalle($uneSalle);
+  }
+
+  // echo "<h2>Génération des PDP en PDF</h2>";
+  $unControle->ajouterPlanDePlacement($unPDP);
+  // echo "ok";
+}
 // genererPDF($unControle);
 //aaficher controle
 // var_dump( $unControle);
 
 print("contrle id: " . $_GET["id"] . "<br>")
-    ?>
+  ?>
 <html>page resultat
 
 </html>
