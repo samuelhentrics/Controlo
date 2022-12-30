@@ -132,14 +132,12 @@ function contientMot($unePhrase, $tableauMotClee)
 
     # TiersTemps
     if (!empty($unePhrase))
-
-        foreach ($tableauMotClee as $key => $unMotClee) {
-            if ($unePhrase === $unMotClee || strpos($unePhrase, $unMotClee)) {
+        foreach ($tableauMotClee as $keyword) {
+            if (preg_match('/\b' . preg_quote($keyword, '/') . '\b/i', $unePhrase)) {
                 $bool = true;
-                break;
+                break;    
             }
         }
-
     return $bool;
 }
 
