@@ -40,59 +40,37 @@ foreach ($listePromos as $key => $unePromo) {
     $listeEtud = array_merge($listeEtud, $unePromo->recupererListeEtudiantsNonTT());
 
 }
-
-//trie des listes en fonctions du choix utilisateur
-switch ($contraintesGenerales->getAlgoRemplissage()) {
+function trieListes($array, $algo) {
+  switch ($algo) {
     case 'aléatoire':
-        trieAlea();
-        break;
+      shuffle($array);
+      break;
     case 'descendant':
-        trieDesc();
-        break;
+      usort($array, function($a, $b) {
+        return strcmp($b->getNom(), $a->getNom());
+      });
+      break;
+    //ascendant
     default:
-        trieAsce();
-        echo "filtre acscendant";
-        break;
-}
-var_dump($listeTTSansOrdi);
-function trieAlea()
-{
-   shuffle($listeTTSansOrdi);
-   shuffle($listeOrdi);
-   shuffle($listeEtud);
-}
-function trieDesc()
-{
-        usort($listeTTSansOrdi, function ($a, $b) {
-            return strcmp($b->getNom(), $a->getNom());
-        });
-        usort($listeOrdi, function ($a, $b) {
-            return strcmp($b->getNom(), $a->getNom());
-        });
-        usort($listeEtud, function ($a, $b) {
-            return strcmp($b->getNom(), $a->getNom());
-        });
-}
-function trieAsce()
-{
-        usort($listeTTSansOrdi, function ($a, $b) {
-            return strcmp($a->getNom(), $b->getNom());
-        });
-        usort($listeOrdi, function ($a, $b) {
-            return strcmp($a->getNom(), $b->getNom());
-        });
-        usort($listeEtud, function ($a, $b) {
-            return strcmp($a->getNom(), $b->getNom());
-        });
+      usort($array, function($a, $b) {
+        return strcmp($a->getNom(), $b->getNom());
+      });
+      break;
+  }
+  return $array;
 }
 
+$listeTTSansOrdi = trieListes($listeTTSansOrdi, $contraintesGenerales->getAlgoRemplissage());
+$listeOrdi = trieListes($listeOrdi, $contraintesGenerales->getAlgoRemplissage());
+$listeEtud = trieListes($listeEtud, $contraintesGenerales->getAlgoRemplissage());
+
+// var_dump($listeTTSansOrdi);
 
 // genererPDF($unControle);
 //aaficher controle
 // var_dump( $unControle);
 
 print("contrle id: " . $_GET["id"] . "<br>")
-    // include("test.php");
     ?>
 <html>page resultat
 
