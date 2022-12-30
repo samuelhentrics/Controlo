@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12">
 
-            <?php print('<form action="' . BACK_PATH . 'resultat.php" method="post">'); ?>
+            <?php print('<form action="' . PAGE_RESULTAT."&id=".$_GET["numControle"] . '" method="post">'); ?>
 
             <?php
             include(FONCTION_CREER_LISTE_CONTROLES_PATH);
@@ -18,9 +18,7 @@
 
             demanderContraintesSalles($leControle);
 
-
             demanderContraintesGenerales();
-
             ?>
             <br>
 
