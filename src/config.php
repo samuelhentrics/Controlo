@@ -487,5 +487,11 @@ define("PAGE_SALLES_PATH" , PATH."index.php?page=salles");
  */
 define("PAGE_CHOIX_GENERATION_PATH" , PATH."index.php?page=choixGeneration");
 
+/**
+ * @brief Lien complet vers la page resultat
+ * @note ex : http://localhost/src/index.php?page=resultat
+ */
+define("PAGE_RESULTAT" , PATH."index.php?page=resultat");
+
 
 ?>

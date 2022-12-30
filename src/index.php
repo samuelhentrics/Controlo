@@ -68,6 +68,10 @@
                     case 'test':
                         include(BACK_PATH."test.php");
                         break;
+                    // Mode développement
+                    case 'resultat':
+                        include(BACK_PATH."resultat.php");
+                        break;
 
                     default:
                     // Cas où la demande est incorrecte, on retourne un message 404
