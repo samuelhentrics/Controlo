@@ -117,6 +117,35 @@ class Promotion
             unset($this->mesEtudiants[array_search($unEtudiant, $this->getMesEtudiants())]);
         }
     }
+    public function recupererListeEtudiantsNonTT()
+    {
+        $liste = array();
+
+        foreach ($this->getMesEtudiants() as $key => $unEtudiant) {
+            if (!$unEtudiant->getEstTT())
+                array_push($liste, $unEtudiant);
+        }
+        return $liste;
+    }
+    public function recupererListeEtudiantsTTSansOrdi()
+    {
+        $liste = array();
+        foreach ($this->getMesEtudiants() as $key => $unEtudiant) {
+            if ($unEtudiant->getEstTT() && !$unEtudiant->getAOrdi())
+                array_push($liste, $unEtudiant);
+        }
+        return $liste;
+    }
+    public function recupererListeEtudiantsOrdi()
+    {
+        $liste = array();
+        foreach ($this->getMesEtudiants() as $key => $unEtudiant) {
+            if ($unEtudiant->getAOrdi())
+                array_push($liste, $unEtudiant);
+        }
+        return $liste;
+    }
+
 
 }
 ?>
