@@ -53,9 +53,9 @@ class PlanDePlacement
 
     /**
      * @brief Constructeur du PlanDePlacement
-     * @param ContraintesGenerales $uneContrainteGenerale
-     * @param ContraintesEspacement $uneContrainteEspacement
-     * @param Salle $uneSalle
+     * @param ContraintesGenerales $uneContrainteGenerale ContraintesGenerales pour le Controle
+     * @param ContraintesEspacement $uneContrainteEspacement ContraintesEspacements pour la Salle
+     * @param Salle $uneSalle Salle du PlanDePlacement
      */
     public function __construct($uneContrainteGenerale, $uneContrainteEspacement, $uneSalle){
         $this->setMaContrainteGenerale($uneContrainteGenerale);
