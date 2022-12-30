@@ -12,11 +12,13 @@
         <link href="<?php echo CSS_PATH; ?>datatables.bootstrap5.css" rel="stylesheet">
 
         <!-- Javascript -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="<?php echo JS_PATH; ?>bootstrap.min.js"></script>
         <script src="<?php echo JS_PATH; ?>jquery.min.js"></script>
         <script src="<?php echo JS_PATH; ?>jquery.dataTables.min.js"></script>
-        <script src="<?php echo JS_PATH; ?>bootstrap.bundle.min.js"></script>
         <script src="<?php echo JS_PATH; ?>datatables.bootstrap5.js"></script>
         <script src="https://kit.fontawesome.com/1c7be7f624.js" crossorigin="anonymous"></script>
+        
 
     </head>
 
