@@ -32,7 +32,7 @@ class Plan
      *
      * @return array
      */
-    public function getMezZones()
+    public function getMesZones()
     {
         return $this->mesZones;
     }
