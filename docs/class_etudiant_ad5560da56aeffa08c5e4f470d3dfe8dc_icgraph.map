@@ -1,0 +1,4 @@
+<map id="setTp" name="setTp">
+<area shape="rect" id="node1" title="Affecte un TP à l&#39;Etudiant." coords="144,5,199,31"/>
+<area shape="rect" id="node2" href="$class_etudiant.html#ab3ec47ffcfc40f1361ae72f2de8fdcb4" title="Constructeur de la classe Etudiant." coords="5,5,96,31"/>
+</map>

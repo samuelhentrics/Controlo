@@ -1,4 +1,4 @@
 <map id="ajouterSalle" name="ajouterSalle">
 <area shape="rect" id="node1" title="Permet d&#39;ajouter une Salle à la liste des salles du Controle." coords="5,5,96,31"/>
-<area shape="rect" id="node2" href="$class_controle.html#a38b37bb62363cceb31aa1f5015c766d9" title="Retourne la liste des Salle affectés au Controle." coords="144,5,245,31"/>
+<area shape="rect" id="node2" href="$class_controle.html#a43747ac887189cc073acb230ffc3b074" title="Retourne vrai si la Salle appartient au contrôle, Faux sinon." coords="144,5,231,31"/>
 </map>

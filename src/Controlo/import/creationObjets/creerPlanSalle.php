@@ -1,10 +1,22 @@
 <?php
+/**
+ * @file creerPlanSalle.php
+ * @author Samuel HENTRICS LOISTINE <samuel.hentrics@gmail.com>
+ * @brief Fichier contenant les fonctions nécéssaires pour créer 
+ * un Plan d'une Salle
+ * 
+ * @version 1.0
+ * @date 2022-11-26
+ * 
+ * 
+ */
 
-include_once(CLASS_PATH.CLASS_PLAN_FILE_NAME);
-include_once(CLASS_PATH.CLASS_ZONE_FILE_NAME);
+
+include_once(CLASS_PATH . CLASS_PLAN_FILE_NAME);
+include_once(CLASS_PATH . CLASS_ZONE_FILE_NAME);
 
 /**
- * Retourne un Plan de Salle si cette Salle existe
+ * @brief Retourne un Plan de Salle si cette Salle existe
  *
  * @param string $nomSalle
  * @return Plan|null

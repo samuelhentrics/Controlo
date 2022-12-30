@@ -1,0 +1,4 @@
+<map id="supprimerPlanDePlacement" name="supprimerPlanDePlacement">
+<area shape="rect" id="node1" title="Permet de supprimer un PlanDePlacement de la liste des plans de placement du Controle." coords="5,5,188,31"/>
+<area shape="rect" id="node2" href="$class_controle.html#ad5ec5b88feb553b60a50837c42a460c9" title=" " coords="236,5,397,31"/>
+</map>

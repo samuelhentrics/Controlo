@@ -1,0 +1,4 @@
+<map id="creerRelationSallePlan" name="creerRelationSallePlan">
+<area shape="rect" id="node1" title="Fonction mettant en relation une Salle avec son Plan s&#39;il existe." coords="5,5,159,31"/>
+<area shape="rect" id="node2" href="$creer_plan_salle_8php.html#a4dc3fec461fd5022c4e0f39c3b11355d" title="Retourne un Plan de Salle si cette Salle existe." coords="207,5,313,31"/>
+</map>

@@ -1,4 +1,15 @@
 <?php
+/**
+ * @file genererPDF.php
+ * @author Samuel HENTRICS LOISTINE <samuel.hentrics@gmail.com>
+ * @brief Fichier contenant la fonction genererPDF qui
+ * genere plusieurs PDF à partir des PlanDePlacement d'un Controle
+ * 
+ * @version 1.0
+ * @date 2022-12-29
+ * 
+ * 
+ */
 
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
@@ -8,8 +19,8 @@
 include_once(IMPORT_PATH . "fpdf.php");
 
 include_once(FONCTION_CREER_LISTE_CONTROLES_PATH);
-include_once(CLASS_PATH.CLASS_PLAN_PLACEMENT_FILE_NAME);
-include_once(CLASS_PATH.CLASS_UN_PLACEMENT_FILE_NAME);
+include_once(CLASS_PATH . CLASS_PLAN_PLACEMENT_FILE_NAME);
+include_once(CLASS_PATH . CLASS_UN_PLACEMENT_FILE_NAME);
 
 
 // ----------------------------------------------------------------------------
@@ -119,22 +130,21 @@ class PDF extends FPDF
     }
 
     // Simple table
-    function BasicTable($header,$data)
+    function BasicTable($header, $data)
     {
         //En-tête
         $taille = 20;
-        foreach($header as $col){
-            $this->Cell($taille,7,$col,1);
-            $taille *= 8; 
+        foreach ($header as $col) {
+            $this->Cell($taille, 7, $col, 1);
+            $taille *= 8;
         }
         $this->Ln();
         //Données
-        foreach($data as $row)
-        {
+        foreach ($data as $row) {
             $taille = 20;
-            foreach($row as $col){
-                $this->Cell($taille,6,$col,1);
-                $taille *= 8; 
+            foreach ($row as $col) {
+                $this->Cell($taille, 6, $col, 1);
+                $taille *= 8;
             }
             $this->Ln();
         }
@@ -176,7 +186,7 @@ class PDF extends FPDF
 // ----------------------------------------------------------------------------
 
 /**
- * Fonction permettant de générer les PDF des PlanDePlacement d'un Controle donnée
+ * @brief Fonction permettant de générer les PDF des PlanDePlacement d'un Controle donnée
  * @param Controle $unControle Controle auquel nous souhaitons générer un PlanDePlacement
  * @return void
  */
@@ -291,7 +301,7 @@ function genererPDF($unControle)
 
         // Récupérer sous forme de liste ( (NUM_PLACE), (NOM_ETUDIANT) ) la liste
         // des places attribués dans arrayPlaces
-        foreach($listePlacementsPDP as $i => $unPlacement){
+        foreach ($listePlacementsPDP as $i => $unPlacement) {
 
             $place = $unPlacement->getMaZone();
             $etudiant = $unPlacement->getMonEtudiant();
@@ -312,7 +322,7 @@ function genererPDF($unControle)
         $pdf->Ln(15);
 
         // Enregistrer le PDF du PlanDePlacement actuel dans le dossier
-        $nomFichier = $dateFormatDossier . "_" . $nomFormatDossier . "_Plan_Placement_" .  $nomSalle . ".pdf";
+        $nomFichier = $dateFormatDossier . "_" . $nomFormatDossier . "_Plan_Placement_" . $nomSalle . ".pdf";
         $pdf->Output($nomDossier . $nomFichier, 'F');
     }
 }

@@ -44,6 +44,7 @@ var config_8php =
     [ "LISTE_SALLES_FILE_NAME", "config_8php.html#a01f5daf62cec03f9dacf9d9b55ea2c45", null ],
     [ "OBJECT_CREATION_FOLDER_NAME", "config_8php.html#a7a10c0a2c220cf7efd56010fcb43827e", null ],
     [ "OBJECT_CREATION_PATH", "config_8php.html#a607910ffff68c38fecf70f9fafd92836", null ],
+    [ "PAGE_CHOIX_GENERATION_PATH", "config_8php.html#a27410c2e29ec3a502752a73d1edd601e", null ],
     [ "PAGE_CONTROLES_PATH", "config_8php.html#a79d4b4e432b780da7e140d7f10b55c49", null ],
     [ "PAGE_ETUDIANTS_PATH", "config_8php.html#a7eab4dc084c587b4244d0f10940898f7", null ],
     [ "PAGE_SALLES_PATH", "config_8php.html#a0446833453b24da66b1bfe6fe332aabe", null ],

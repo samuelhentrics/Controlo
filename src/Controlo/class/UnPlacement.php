@@ -25,7 +25,7 @@ class UnPlacement
      */
 
     private $maZone;
-    
+
     /**
      * @brief Etudiant placé dans la Zone
      *
@@ -48,7 +48,7 @@ class UnPlacement
     }
 
 
-     /**
+    /**
      * @brief Affecte une Zone de placement 
      *
      * @param Zone $nouvelleZone
@@ -69,9 +69,7 @@ class UnPlacement
         return $this->monEtudiant;
     }
 
-
-
-     /**
+    /**
      * @brief Affecte un Etudiant dans la Zone
      *
      * @param Etudiant $nouveauEtudiant

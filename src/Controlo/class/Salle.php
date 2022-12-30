@@ -7,7 +7,6 @@
  * 
  * @version 1.0
  * @date 2022-11-26
- * @todo constructeur
  * 
  */
 
@@ -43,8 +42,8 @@ class Salle
     // CONSTRUCTEUR
 
     /**
-     * Constructeur de la classe Salle
-     * @param mixed $nomSalle Nom de la Salle a attribué
+     * @brief Constructeur de la classe Salle
+     * @param string $nomSalle Nom de la Salle a attribué
      */
     public function __construct($nomSalle)
     {
@@ -119,8 +118,9 @@ class Salle
      *
      * @param Salle $unVoisin
      */
-    public function lierVoisin($unVoisin){
-        if ($unVoisin!=null){
+    public function lierVoisin($unVoisin)
+    {
+        if ($unVoisin != null) {
             $this->delierVoisin();
             $unVoisin->delierVoisin();
             $this->setMonVoisin($unVoisin);
@@ -132,11 +132,12 @@ class Salle
      * @brief Permet de délier le voisin actuellement lié à la Salle
      *
      */
-    public function delierVoisin(){
-        if ($this->monVoisin != null){
+    public function delierVoisin()
+    {
+        if ($this->monVoisin != null) {
             $this->monVoisin->setMonVoisin(null);
             $this->setMonVoisin(null);
-        } 
+        }
     }
 
 }

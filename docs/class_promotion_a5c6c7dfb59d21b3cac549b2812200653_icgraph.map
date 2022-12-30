@@ -1,0 +1,6 @@
+<map id="getMesEtudiants" name="getMesEtudiants">
+<area shape="rect" id="node1" title="Retourne la liste des Etudiant." coords="333,31,453,56"/>
+<area shape="rect" id="node2" href="$class_promotion.html#a58cd4a0e17582957a89d0e35e5dc4b7c" title="Fonction permettant de vérifier si un étudiant existe dans la promotion Retourne vrai s&#39;il existe dan..." coords="180,5,285,31"/>
+<area shape="rect" id="node4" href="$class_promotion.html#a638a9b5e5ee3390955dda7eed2cdf90f" title="Permet de supprimer un Etudiant de la Promotion." coords="5,55,132,80"/>
+<area shape="rect" id="node3" href="$class_promotion.html#a3313addd7f7105e39ddb83828dc493b7" title="Permet d&#39;ajouter un étudiant à la promotion." coords="14,5,123,31"/>
+</map>

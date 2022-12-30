@@ -94,7 +94,8 @@ class Controle
      * @param string $uneHeureNonTT Heure non tiers-temps (au format HH:MM)
      * @param string $uneHeureTT Heure tiers-temps (au format HH:MM)
      */
-    function __construct($unNomLong, $unNomCourt, $uneDuree, $uneDate, $uneHeureNonTT, $uneHeureTT) {
+    function __construct($unNomLong, $unNomCourt, $uneDuree, $uneDate, $uneHeureNonTT, $uneHeureTT)
+    {
         $this->setNomLong($unNomLong);
         $this->setNomCourt($unNomCourt);
         $this->setDuree($uneDuree);
@@ -236,7 +237,7 @@ class Controle
      */
     public function ajouterPromotion($unePromotion)
     {
-        if (! $this->existePromotion($unePromotion)){
+        if (!$this->existePromotion($unePromotion)) {
             array_push($this->mesPromotions, $unePromotion);
         }
     }
@@ -255,14 +256,14 @@ class Controle
 
     /**
      * Retourne vrai si la Promotion appartient au contrôle, Faux sinon
-     * @param mixed $unePromotion
+     * @param Promotion $unePromotion
      * @return bool
      */
-    public function existePromotion($unePromotion){
+    public function existePromotion($unePromotion)
+    {
         if (in_array($unePromotion, $this->getMesPromotions())) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -272,7 +273,8 @@ class Controle
      *
      * @return array
      */
-    public function getMesPromotions(){
+    public function getMesPromotions()
+    {
         return $this->mesPromotions;
     }
 
@@ -283,7 +285,7 @@ class Controle
      */
     public function ajouterSalle($uneSalle)
     {
-        if (! $this->existePromotion($uneSalle)){
+        if (!$this->existeSalle($uneSalle)) {
             $nomSalle = $uneSalle->getNom();
             $this->mesSalles[$nomSalle] = $uneSalle;
         }
@@ -302,17 +304,17 @@ class Controle
         }
     }
 
-        /**
-     * Retourne vrai si la Salle appartient au contrôle, Faux sinon
-     * @param mixed $uneSalle Salle qu'on veut verifier
+    /**
+     * @brief Retourne vrai si la Salle appartient au contrôle, Faux sinon
+     * @param Salle $uneSalle Salle qu'on veut verifier
      * @return bool
      */
-    public function existeSalle($uneSalle){
+    public function existeSalle($uneSalle)
+    {
         $nomSalle = $uneSalle->getNom();
-        if (array_key_exists($nomSalle , $this->mesSalles)) {
+        if (array_key_exists($nomSalle, $this->mesSalles)) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -321,7 +323,8 @@ class Controle
      * @brief Retourne la liste des Salle affectés au Controle
      *
      */
-    public function getMesSalles(){
+    public function getMesSalles()
+    {
         return $this->mesSalles;
     }
 
@@ -332,7 +335,7 @@ class Controle
      */
     public function ajouterPlanDePlacement($unPlanDePlacement)
     {
-        if (! $this->existePromotion($unPlanDePlacement)){
+        if (!$this->existePlanDePlacement($unPlanDePlacement)) {
             $nomSalle = $unPlanDePlacement->getMaSalle()->getNom();
             $this->mesPlansDePlacement[$nomSalle] = $unPlanDePlacement;
         }
@@ -345,22 +348,22 @@ class Controle
      */
     public function supprimerPlanDePlacement($unPlanDePlacement)
     {
-        if ($this->existeSalle($unPlanDePlacement)) {
+        if ($this->existePlanDePlacement($unPlanDePlacement)) {
             unset($this->mesPlansDePlacement[$unPlanDePlacement->getMaSalle()->getNom()]);
         }
     }
 
     /**
      * Retourne vrai si le PlanDePlacement est celui du Controle, faux sinon
-     * @param mixed $unPlanDePlacement Un PlanDePlacement
+     * @param PlanDePlacement $unPlanDePlacement Un PlanDePlacement
      * @return bool
      */
-    public function existePlanDePlacement($unPlanDePlacement){
+    public function existePlanDePlacement($unPlanDePlacement)
+    {
         $nomSalle = $unPlanDePlacement->getMaSalle()->getNom();
-        if (array_key_exists($nomSalle , $this->mesPlansDePlacement)) {
+        if (array_key_exists($nomSalle, $this->mesPlansDePlacement)) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -369,19 +372,21 @@ class Controle
      * Retourne la liste des PlanDePlacement
      * @return array
      */
-    public function getMesPlansDePlacement(){
+    public function getMesPlansDePlacement()
+    {
         return $this->mesPlansDePlacement;
     }
 
     // METHODES SPECIFIQUES
-    
+
     /**
      * @brief Retourne la durée totale pour un étudiant non tiers temps
      *
      * @return int
      */
-    public function getDureeNonTT(){
-        return ($this->duree)*3/4;
+    public function getDureeNonTT()
+    {
+        return ($this->duree) * 3 / 4;
     }
 
     /**
@@ -389,14 +394,16 @@ class Controle
      *
      * @return boolean
      */
-    public function controleInfoComplet(){
-        if($this->getNomLong()!=null and $this->getNomCourt()!=null
-            and $this->getDate()!= null and $this->getDuree()!=null
-            and $this->getHeureTT()!=null and $this->getHeureNonTT()!=null
-            and $this->getMesPromotions()!=null and $this->getMesSalles()!=null){
-                return true;
-        }
-        else{
+    public function controleInfoComplet()
+    {
+        if (
+            $this->getNomLong() != null and $this->getNomCourt() != null
+            and $this->getDate() != null and $this->getDuree() != null
+            and $this->getHeureTT() != null and $this->getHeureNonTT() != null
+            and $this->getMesPromotions() != null and $this->getMesSalles() != null
+        ) {
+            return true;
+        } else {
             return false;
         }
     }

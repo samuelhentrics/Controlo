@@ -1,0 +1,5 @@
+<map id="ajouterEtudiant" name="ajouterEtudiant">
+<area shape="rect" id="node1" title="Permet d&#39;ajouter un étudiant à la promotion." coords="5,5,115,31"/>
+<area shape="rect" id="node2" href="$class_promotion.html#a58cd4a0e17582957a89d0e35e5dc4b7c" title="Fonction permettant de vérifier si un étudiant existe dans la promotion Retourne vrai s&#39;il existe dan..." coords="163,5,268,31"/>
+<area shape="rect" id="node3" href="$class_promotion.html#a5c6c7dfb59d21b3cac549b2812200653" title="Retourne la liste des Etudiant." coords="316,5,436,31"/>
+</map>
