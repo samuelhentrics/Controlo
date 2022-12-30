@@ -155,6 +155,7 @@ function creerRelationPromotionControle($unControle, $lesPromos)
     // Pour chaque promotion (chaîne de caractère), on essaye d'associer
     // si possible la promotion (objet)
     foreach ($listePromosControle as $nomUnePromoControle) {
+        $nomUnePromoControle = trim($nomUnePromoControle);// solution au espace pour recuperer plusieurs promo
         foreach ($listePromo as $nomPromo => $unePromo) {
             if ($nomPromo == $nomUnePromoControle) {
                 $unControle->ajouterPromotion($unePromo);
