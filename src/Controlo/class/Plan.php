@@ -13,7 +13,8 @@
 /**
  * @brief Plan d'une Salle composée de plusieurs Zone
  */
-class Plan{
+class Plan
+{
 
     // ATTRIBUTS
 
@@ -31,7 +32,8 @@ class Plan{
      *
      * @return array
      */
-    public function getMezZones(){
+    public function getMezZones()
+    {
         return $this->mesZones;
     }
 
@@ -43,8 +45,9 @@ class Plan{
      *
      * @param Zone $uneZone Zone d'une Salle
      */
-    
-    public function lierUneZone($uneZone){
+
+    public function lierUneZone($uneZone)
+    {
         $this->mesZones[$uneZone->getNumLigne()][$uneZone->getNumCol()] = $uneZone;
         $uneZone->lierPlan($this);
     }
@@ -55,7 +58,8 @@ class Plan{
      * @param int $numLigne Numéro de ligne de la Zone
      * @param int $numCol   Numéro de colonne de la Zone
      */
-    public function delierUneZone($numLigne, $numCol){
+    public function delierUneZone($numLigne, $numCol)
+    {
         $this->mesZones[$numLigne][$numCol] = null;
     }
 
@@ -64,7 +68,8 @@ class Plan{
      *
      * @return int
      */
-    public function getNbRangees(){
+    public function getNbRangees()
+    {
         return count($this->mesZones);
     }
 
@@ -73,7 +78,8 @@ class Plan{
      *
      * @return int
      */
-    public function getNbColonnes(){
+    public function getNbColonnes()
+    {
         return count($this->mesZones[0]);
     }
 
@@ -82,11 +88,12 @@ class Plan{
      *
      * @return int
      */
-    public function getNbPlacesLigne($numLigne){
+    public function getNbPlacesLigne($numLigne)
+    {
         $nbPlaces = 0;
-        for ($numCol=0; $numCol <= count($this->mesZones[$numLigne])-1; $numCol++){
+        for ($numCol = 0; $numCol <= count($this->mesZones[$numLigne]) - 1; $numCol++) {
             $uneZone = $this->mesZones[$numLigne][$numCol];
-            if ($uneZone->getType()=="place"){
+            if ($uneZone->getType() == "place") {
                 $nbPlaces++;
             }
         }

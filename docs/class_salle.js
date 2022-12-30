@@ -1,5 +1,6 @@
 var class_salle =
 [
+    [ "__construct", "class_salle.html#a78b0e13c323964cb35184b2938ee78eb", null ],
     [ "delierVoisin", "class_salle.html#a8443adab3b181da21a4d74061060396a", null ],
     [ "getMonPlan", "class_salle.html#a8f3f86da556fa5fbfddda7679650c784", null ],
     [ "getMonVoisin", "class_salle.html#aab37447e427191960cff8c04f80d68e9", null ],

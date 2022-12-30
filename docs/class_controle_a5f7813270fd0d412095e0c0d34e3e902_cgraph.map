@@ -1,4 +1,5 @@
 <map id="supprimerPromotion" name="supprimerPromotion">
 <area shape="rect" id="node1" title="Permet de supprimer une Promotion de la liste de promotions participant au Controle." coords="5,5,144,31"/>
-<area shape="rect" id="node2" href="$class_controle.html#ae3c56c69f74e5e6957ba0d2d0ed6a704" title="Retourne les Promotion du Controle." coords="192,5,323,31"/>
+<area shape="rect" id="node2" href="$class_controle.html#a535213a155fabb99c68db44e3e54f373" title=" " coords="192,5,308,31"/>
+<area shape="rect" id="node3" href="$class_controle.html#ae3c56c69f74e5e6957ba0d2d0ed6a704" title="Retourne les Promotion du Controle." coords="356,5,487,31"/>
 </map>

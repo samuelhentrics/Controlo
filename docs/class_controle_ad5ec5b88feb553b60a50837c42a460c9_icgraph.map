@@ -1,0 +1,5 @@
+<map id="existePlanDePlacement" name="existePlanDePlacement">
+<area shape="rect" id="node1" title=" " coords="236,31,397,56"/>
+<area shape="rect" id="node2" href="$class_controle.html#aad1348289b9a21a11d01c0d3a7d2263a" title="Permet d&#39;ajouter un PlanDePlacement à la liste des plans de placement du Controle." coords="14,5,179,31"/>
+<area shape="rect" id="node3" href="$class_controle.html#a3a380a6acfe980032614ce7e402d0ad9" title="Permet de supprimer un PlanDePlacement de la liste des plans de placement du Controle." coords="5,55,188,80"/>
+</map>

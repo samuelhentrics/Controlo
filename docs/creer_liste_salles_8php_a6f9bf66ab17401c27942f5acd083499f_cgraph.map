@@ -1,0 +1,5 @@
+<map id="creerListeSalles" name="creerListeSalles">
+<area shape="rect" id="node1" title="Retourne la liste de toutes les Salle." coords="5,5,120,31"/>
+<area shape="rect" id="node2" href="$creer_liste_salles_8php.html#ab0e4f08199a4bc47ffe140e4c8d1fcc2" title="Fonction mettant en relation une Salle avec son Plan s&#39;il existe." coords="168,5,321,31"/>
+<area shape="rect" id="node3" href="$creer_plan_salle_8php.html#a4dc3fec461fd5022c4e0f39c3b11355d" title="Retourne un Plan de Salle si cette Salle existe." coords="369,5,476,31"/>
+</map>

@@ -20,14 +20,14 @@ class Promotion
     // Variables
 
     /**
-     * Nom de la promotion
+     * @brief Nom de la promotion
      * 
      * @var string
      */
     private $nom;
 
     /**
-     * Liste des Etudiants qui appartient à cette promotion
+     * @brief Liste des Etudiants qui appartient à cette promotion
      * 
      * @var array
      */
@@ -36,7 +36,7 @@ class Promotion
     // Constructeur
 
     /**
-     * Constructeur de la classe Promotion
+     * @brief Constructeur de la classe Promotion
      *
      * @param string $nom Nom de la promotion
      */
@@ -49,7 +49,7 @@ class Promotion
     // Encapsulation
 
     /**
-     * Retourne le nom de la Promotion
+     * @brief Retourne le nom de la Promotion
      * 
      * @return string
      */
@@ -59,42 +59,43 @@ class Promotion
     }
 
     /**
-     * Permet d'affecter un nom à une Promotion
+     * @brief Permet d'affecter un nom à une Promotion
      * 
      * @param string $nouveauNom
      */
     public function setNom($nouveauNom)
     {
-        $this->nom=$nouveauNom;
+        $this->nom = $nouveauNom;
     }
 
     /**
-     * Retourne la liste des Etudiant
+     * @brief Retourne la liste des Etudiant
      * @return array
      */
-    public function getMesEtudiants(){
+    public function getMesEtudiants()
+    {
         return $this->mesEtudiants;
     }
 
     // Méthodes usuelles
 
     /**
-     * Fonction permettant de vérifier si un étudiant existe dans la promotion
+     * @brief Fonction permettant de vérifier si un étudiant existe dans la promotion
      * Retourne vrai s'il existe dans la liste, faux sinon
      * @param Etudiant $unEtudiant Etudiant recherché
      * @return bool Information si l'étudiant est dans la liste
      */
-    public function existeEtudiant($unEtudiant){
+    public function existeEtudiant($unEtudiant)
+    {
         if (in_array($unEtudiant, $this->getMesEtudiants())) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
     /**
-     * Permet d'ajouter un étudiant à la promotion
+     * @brief Permet d'ajouter un étudiant à la promotion
      * 
      * @param Etudiant $unEtudiant
      */
@@ -106,7 +107,7 @@ class Promotion
     }
 
     /**
-     * Permet de supprimer un Etudiant de la Promotion
+     * @brief Permet de supprimer un Etudiant de la Promotion
      * 
      * @param Etudiant $unEtudiant
      */

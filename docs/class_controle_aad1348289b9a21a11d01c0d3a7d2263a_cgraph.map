@@ -1,4 +1,4 @@
 <map id="ajouterPlanDePlacement" name="ajouterPlanDePlacement">
 <area shape="rect" id="node1" title="Permet d&#39;ajouter un PlanDePlacement à la liste des plans de placement du Controle." coords="5,5,171,31"/>
-<area shape="rect" id="node2" href="$class_controle.html#a38b37bb62363cceb31aa1f5015c766d9" title="Retourne la liste des Salle affectés au Controle." coords="219,5,320,31"/>
+<area shape="rect" id="node2" href="$class_controle.html#ad5ec5b88feb553b60a50837c42a460c9" title=" " coords="219,5,380,31"/>
 </map>

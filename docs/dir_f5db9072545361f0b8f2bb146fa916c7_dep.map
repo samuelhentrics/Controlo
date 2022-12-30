@@ -1,5 +1,6 @@
 <map id="src/Controlo/import" name="src/Controlo/import">
-<area shape="rect" id="node2" href="dir_2dbb0a7a13ea96b6bfe8deecb58e1a5c.html" title="creationObjets" coords="37,63,144,88"/>
-<area shape="rect" id="clust2" href="dir_f5db9072545361f0b8f2bb146fa916c7.html" coords="27,52,237,99"/>
-<area shape="rect" id="clust1" href="dir_0219e3f6040368f21360b5e8bfe40506.html" title="Controlo" coords="16,16,248,109"/>
+<area shape="rect" id="node2" href="dir_2dbb0a7a13ea96b6bfe8deecb58e1a5c.html" title="creationObjets" coords="104,63,211,88"/>
+<area shape="rect" id="node3" href="dir_f4929e5d719e59b69bb5e1b129808412.html" title="font" coords="37,63,80,88"/>
+<area shape="rect" id="clust2" href="dir_f5db9072545361f0b8f2bb146fa916c7.html" coords="27,52,304,99"/>
+<area shape="rect" id="clust1" href="dir_0219e3f6040368f21360b5e8bfe40506.html" title="Controlo" coords="16,16,315,109"/>
 </map>

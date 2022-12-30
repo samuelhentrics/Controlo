@@ -1,0 +1,5 @@
+<map id="creerUnePromotion" name="creerUnePromotion">
+<area shape="rect" id="node1" title="Fonction permettant de créer une promotion à partir de son nom." coords="5,5,139,31"/>
+<area shape="rect" id="node2" href="$creer_liste_promotions_8php.html#a9692fae97307002c54a58aa6c70136a1" title="Créer un étudiant grâce à une ligne du CSV traité" coords="187,5,285,31"/>
+<area shape="rect" id="node3" href="$creer_liste_promotions_8php.html#a715db07b13868ab6dde178e061ef4569" title="Permet de vérifier si un mot clé est dans une phrase." coords="333,5,424,31"/>
+</map>

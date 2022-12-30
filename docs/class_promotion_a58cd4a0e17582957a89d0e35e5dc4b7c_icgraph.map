@@ -1,0 +1,5 @@
+<map id="existeEtudiant" name="existeEtudiant">
+<area shape="rect" id="node1" title="Fonction permettant de vérifier si un étudiant existe dans la promotion Retourne vrai s&#39;il existe dan..." coords="180,31,285,56"/>
+<area shape="rect" id="node2" href="$class_promotion.html#a3313addd7f7105e39ddb83828dc493b7" title="Permet d&#39;ajouter un étudiant à la promotion." coords="14,5,123,31"/>
+<area shape="rect" id="node3" href="$class_promotion.html#a638a9b5e5ee3390955dda7eed2cdf90f" title="Permet de supprimer un Etudiant de la Promotion." coords="5,55,132,80"/>
+</map>

@@ -12,11 +12,12 @@
  * 
  */
 
- /**
+/**
  * @brief Classe PlanDePlacement permettant de définir la sallen le contrôle, la contrainte 
  * générale, la contrainte d'éspacement choisis et ses placements.
  */
-class PlanDePlacement{
+class PlanDePlacement
+{
 
     //Variables
 
@@ -63,7 +64,8 @@ class PlanDePlacement{
      *
      * @return Salle
      */
-    public function getMaSalle(){
+    public function getMaSalle()
+    {
         return $this->maSalle;
     }
 
@@ -83,7 +85,8 @@ class PlanDePlacement{
      *
      * @return Controle
      */
-    public function getMonControle(){
+    public function getMonControle()
+    {
         return $this->monControle;
     }
 
@@ -103,7 +106,8 @@ class PlanDePlacement{
      *
      * @return ContraintesGenerales
      */
-    public function getMaContrainteGenerale(){
+    public function getMaContrainteGenerale()
+    {
         return $this->maContrainteGenerale;
     }
 
@@ -122,7 +126,8 @@ class PlanDePlacement{
      *
      * @return ContraintesEspacement
      */
-    public function getMaContrainteEspacement(){
+    public function getMaContrainteEspacement()
+    {
         return $this->maContrainteEspacement;
     }
 
@@ -142,7 +147,8 @@ class PlanDePlacement{
      *
      * @return array
      */
-    public function getMesPlacements(){
+    public function getMesPlacements()
+    {
         return $this->mesPlacements;
     }
 
@@ -150,22 +156,22 @@ class PlanDePlacement{
     // Méthodes usuelles
 
     /**
-     * Fonction permettant de vérifier si une place existe dans la lise des places
+     * @brief Fonction permettant de vérifier si une place existe dans la lise des places
      * Retourne vrai s'il existe dans la liste, faux sinon
      * @param UnPlacement $unPlacement place recherché
      * @return bool Information si la place est dans la liste
      */
-    public function existePlacement($unPlacement){
+    public function existePlacement($unPlacement)
+    {
         if (in_array($unPlacement, $this->getMesPlacements())) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
     /**
-     * Permet d'ajouter une place à la liste
+     * @brief Permet d'ajouter une place à la liste
      * 
      * @param UnPlacement $unPlacement
      */
@@ -177,7 +183,7 @@ class PlanDePlacement{
     }
 
     /**
-     * Permet de supprimer une place de la liste
+     * @brief Permet de supprimer une place de la liste
      * 
      * @param UnPlacement $unPlacement
      */
@@ -188,4 +194,4 @@ class PlanDePlacement{
         }
     }
 
- }
+}

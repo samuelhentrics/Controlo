@@ -1,0 +1,5 @@
+<map id="supprimerPlacement" name="supprimerPlacement">
+<area shape="rect" id="node1" title="Permet de supprimer une place de la liste." coords="5,31,147,56"/>
+<area shape="rect" id="node2" href="$class_plan_de_placement.html#a53fd065823346797c1dba1ec41c9e57b" title="Fonction permettant de vérifier si une place existe dans la lise des places Retourne vrai s&#39;il existe..." coords="195,5,313,31"/>
+<area shape="rect" id="node3" href="$class_plan_de_placement.html#a6c0e25492769fb64834a45da8e005682" title="Retourne les places." coords="361,31,496,56"/>
+</map>

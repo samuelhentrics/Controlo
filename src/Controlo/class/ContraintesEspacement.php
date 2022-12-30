@@ -2,7 +2,7 @@
 /**
  * @file ContraintesEspacement.php
  * @author Cédric ETCHEPARE
- * @brief Spécification de la classe Contraintes Espacement
+ * @brief Spécification de la classe ContraintesEspacement
  * @details Represente les contraintes d'espacement d'un contrôle pour une salle
  * avec le nombre de rangées et de places d'espacement entre chaque étudiant
  * 
@@ -21,14 +21,14 @@ class ContraintesEspacement
 
     //VARIABLES
     /**
-     * Nombre de rangées espaçant chaque Etudiant dans une Salle
+     * @brief Nombre de rangées espaçant chaque Etudiant dans une Salle
      * 
      * @var int
      */
     private $nbRangs;
 
     /**
-     * Nombre de places espaçant chaque Etudiant dans une Salle
+     * @brief Nombre de places espaçant chaque Etudiant dans une Salle
      * 
      * @var int
      */
@@ -59,7 +59,7 @@ class ContraintesEspacement
     //ENCAPSULATION
 
     /**
-     * Retourne le nombre de rangs séparant les étudiants dans une Salle pour un
+     * @brief Retourne le nombre de rangs séparant les étudiants dans une Salle pour un
      * PlanDePlacement d'un Controle
      * 
      * @return int
@@ -70,7 +70,7 @@ class ContraintesEspacement
     }
 
     /**
-     * Permet d'affecter le nombre de rangs séparant les étudiants dans une Salle pour un
+     * @brief Permet d'affecter le nombre de rangs séparant les étudiants dans une Salle pour un
      * PlanDePlacement d'un Controle
      * 
      * @param int $nouveauNbRangs Nombre de rangées qui sépare les étudiants
@@ -81,7 +81,7 @@ class ContraintesEspacement
     }
 
     /**
-     * Retourne le nombre de places séparant les étudiants dans une Salle pour un
+     * @brief Retourne le nombre de places séparant les étudiants dans une Salle pour un
      * PlanDePlacement d'un Controle
      * 
      * @return int
@@ -92,7 +92,7 @@ class ContraintesEspacement
     }
 
     /**
-     * Permet d'affecter le nombre de places séparant les étudiants dans une Salle pour un
+     * @brief Permet d'affecter le nombre de places séparant les étudiants dans une Salle pour un
      * PlanDePlacement d'un Controle
      * 
      * @param int $nouveauNbPlaces Nombre de places qui sépare les étudiants

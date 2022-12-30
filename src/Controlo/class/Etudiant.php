@@ -20,37 +20,37 @@ class Etudiant
     /* Attributs */
 
     /**
-     * Nom de l'étudiant
-     * @var String
+     * @brief Nom de l'Etudiant
+     * @var string
      */
     private $nom;
 
     /**
-     * Prenom de l'étudiant
-     * @var String
+     * @brief Prenom de l'Etudiant
+     * @var string
      */
     private $prenom;
 
     /**
-     * TD de l'étudiant
+     * @brief TD de l'Etudiant
      * @var int
      */
     private $td;
 
     /**
-     * TP de l'étudiant
-     * @var mixed
+     * @brief TP de l'Etudiant
+     * @var int
      */
     private $tp;
 
     /**
-     * Mail de l'étudiant
-     * @var mixed
+     * @brief Mail de l'Etudiant
+     * @var string
      */
     private $email;
 
     /**
-     * Informe si l'étudiant dispose d'un tiers temps
+     * @brief Informe si l'Etudiant dispose d'un tiers temps
      * Vrai s'il en dispose
      * Faux sinon
      * @var bool
@@ -58,18 +58,19 @@ class Etudiant
     private $estTT;
 
     /**
-     * Informe si l'étudiant dispose d'un ordinateur
+     * @brief Informe si l'Etudiant dispose d'un ordinateur
      * Vrai s'il en dispose
      * Faux sinon
      * @var bool
      */
-    
+
     private $aOrdi;
 
     /**
-     * Informe si l'étudiant est demissionnaire
+     * @brief Informe si l'Etudiant est demissionnaire
      * Vrai s'il est démissionnaire
      * Faux sinon
+     * @var bool
      */
     private $estDemissionnaire;
 
@@ -77,7 +78,7 @@ class Etudiant
     /* CONSTRUCTEUR */
 
     /**
-     * Constructeur de la classe Etudiant
+     * @brief Constructeur de la classe Etudiant
      * @param string $nom Nom de l'étudiant
      * @param string $prenom Prénom de l'étudiant
      * @param int $td TD de l'étudiant
@@ -96,8 +97,8 @@ class Etudiant
     /* Encapsulation */
 
     /**
-     * Affecte un nom à l'Etudiant
-     * @param String $nouveauNom Nouveau nom de l'Etudiant
+     * @brief Affecte un nom à l'Etudiant
+     * @param string $nouveauNom Nouveau nom de l'Etudiant
      * @return void
      */
     public function setNom($nouveauNom)
@@ -106,8 +107,8 @@ class Etudiant
     }
 
     /**
-     * Retourne le nom de l'Etudiant
-     * @return String
+     * @brief Retourne le nom de l'Etudiant
+     * @return string
      */
     public function getNom()
     {
@@ -115,8 +116,8 @@ class Etudiant
     }
 
     /**
-     * Affecte un nom à l'Etudiant
-     * @param String $nouveauPrenom Nouveau prénom de l'Etudiant
+     * @brief Affecte un nom à l'Etudiant
+     * @param string $nouveauPrenom Nouveau prénom de l'Etudiant
      * @return void
      */
     public function setPrenom($nouveauPrenom)
@@ -125,8 +126,8 @@ class Etudiant
     }
 
     /**
-     * Retourne le prénom de l'Etudiant
-     * @return String 
+     * @brief Retourne le prénom de l'Etudiant
+     * @return string 
      */
     public function getPrenom()
     {
@@ -134,7 +135,7 @@ class Etudiant
     }
 
     /**
-     * Affecte un TD à l'Etudiant
+     * @brief Affecte un TD à l'Etudiant
      * @param int $nouveauTd Nouveau TD de l'Etudiant
      * @return void
      */
@@ -144,7 +145,7 @@ class Etudiant
     }
 
     /**
-     * Retourne le TD de l'Etudiant
+     * @brief Retourne le TD de l'Etudiant
      * @return int
      */
     public function getTd()
@@ -153,7 +154,7 @@ class Etudiant
     }
 
     /**
-     * Affecte un TP à l'Etudiant
+     * @brief Affecte un TP à l'Etudiant
      * @param int $nouveauTP Nouveau TP de l'Etudiant
      * @return void
      */
@@ -163,7 +164,7 @@ class Etudiant
     }
 
     /**
-     * Retourne le TP de l'Etudiant
+     * @brief Retourne le TP de l'Etudiant
      * @return int
      */
     public function getTp()
@@ -172,8 +173,8 @@ class Etudiant
     }
 
     /**
-     * Affecte l'email de l'Etudiant
-     * @param String $nouveauMail Nouveau mail de l'Etudiant
+     * @brief Affecte l'email de l'Etudiant
+     * @param string $nouveauMail Nouveau mail de l'Etudiant
      * @return void
      */
     public function setEmail($nouveauMail)
@@ -182,7 +183,7 @@ class Etudiant
     }
 
     /**
-     * Retourne le mail de l'Etudiant
+     * @brief Retourne le mail de l'Etudiant
      * @return string
      */
     public function getEmail()
@@ -191,7 +192,7 @@ class Etudiant
     }
 
     /**
-     * Affecter le statut tier-temps de l'Etudiant (Vrai si TT, Faux sinon)
+     * @brief Affecter le statut tier-temps de l'Etudiant (Vrai si TT, Faux sinon)
      * @param bool $bool
      * @return void
      */
@@ -201,7 +202,7 @@ class Etudiant
     }
 
     /**
-     * Retourne si l'Etudiant dispose d'un tiers-temps (Retourne vrai si TT, Faux sinon)
+     * @brief Retourne si l'Etudiant dispose d'un tiers-temps (Retourne vrai si TT, Faux sinon)
      * @return bool
      */
     public function getEstTT()
@@ -210,7 +211,7 @@ class Etudiant
     }
 
     /**
-     * Affecte le statut sur l'ordinateur de l'Etudiant (Vrai s'il en dispose, faux sinon)
+     * @brief Affecte le statut sur l'ordinateur de l'Etudiant (Vrai s'il en dispose, faux sinon)
      * @param bool $bool
      * @return void
      */
@@ -220,7 +221,7 @@ class Etudiant
     }
 
     /**
-     * Retourne vrai si l'Etudiant a un ordinateur, Faux sinon
+     * @brief Retourne vrai si l'Etudiant a un ordinateur, Faux sinon
      * @return bool
      */
     public function getAOrdi()
@@ -229,7 +230,7 @@ class Etudiant
     }
 
     /**
-     * Affecte le statut de l'Etudiant (démissionnaire ou non) (Vrai si démissionnaire, Faux sinon)
+     * @brief Affecte le statut de l'Etudiant (démissionnaire ou non) (Vrai si démissionnaire, Faux sinon)
      * @param bool $bool
      * @return void
      */
@@ -239,7 +240,7 @@ class Etudiant
     }
 
     /**
-     * Retourne vrai si l'Etudiant est démissionnaire, faux sinon
+     * @brief Retourne vrai si l'Etudiant est démissionnaire, faux sinon
      * @return bool
      */
     public function getEstDemissionnaire()
