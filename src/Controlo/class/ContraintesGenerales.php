@@ -34,6 +34,25 @@ class ContraintesGenerales
      */
     private $coteACote;
 
+
+    // Constructeur
+
+    /**
+     * @brief Constructeur de ContraintesGenerales
+     *
+     * @param string $unAlgoRemplissage Ordre de tri des étudiants pour le placement.
+     * @param string $unCoteACote Information sur qui peut rester à coté d'un Etudiant
+     */
+    function __construct($unAlgoRemplissage, $unCoteACote)
+    {
+        $this->setAlgoRemplissage($unAlgoRemplissage);
+        $this->setCoteACote($unCoteACote);
+    }
+
+
+
+
+
     //ENCAPSULATION
 
     /**

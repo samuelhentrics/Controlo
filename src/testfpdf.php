@@ -142,7 +142,7 @@ class PDF extends FPDF
 $unControle = recupererUnControle($_GET['id']);
 
 
-$plansDePlacement = array();
+
 
 
 

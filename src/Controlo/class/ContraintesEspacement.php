@@ -33,6 +33,28 @@ class ContraintesEspacement
      * @var int
      */
     private $nbPlaces;
+    
+
+    // Constructeur
+
+    /**
+     * @brief Constructeur de ContraintesEspacement
+     *
+     * @param int $unNbDeRang Nombre de rang dans la Salle
+     * @param int $unNbDePlaces Nombre de place dans la Salle
+     */
+    function __construct($unNbDeRang, $unNbDePlaces)
+    {
+        $this->setNbRangs($unNbDeRang);
+        $this->setNbPlaces($unNbDePlaces);
+    }
+
+
+
+
+
+
+
 
     //ENCAPSULATION
 
