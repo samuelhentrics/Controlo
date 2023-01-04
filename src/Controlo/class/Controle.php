@@ -392,7 +392,7 @@ class Controle
     /**
      * @brief Retourne vrai si le Controle a toutes les informations, faux sinon
      *
-     * @return boolean
+     * @return bool
      */
     public function controleInfoComplet()
     {

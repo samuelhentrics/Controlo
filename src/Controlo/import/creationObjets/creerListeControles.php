@@ -142,7 +142,8 @@ function recupererUnControle($id)
 /**
  * @brief Retourne un Controle en le mettant en relation avec une liste de nom de Promotion
  * @param Controle $unControle Controle que nous souhaitons mettre en relation avec $lesPromos
- * @param array $lesPromos Les Promotion qui doivent être mis en relation avec $unControle (liste de string)
+ * @param string $lesPromos Les Promotion qui doivent être mis en relation avec $unControle
+ * (chaine de carateres avec le nom des promotions séparées par des virgules)
  * @return Controle
  */
 function creerRelationPromotionControle($unControle, $lesPromos)
@@ -170,7 +171,8 @@ function creerRelationPromotionControle($unControle, $lesPromos)
 /**
  * @brief Retourne un Controle en le mettant en relation avec une liste de nom de Salle
  * @param Controle $unControle Controle que nous souhaitons mettre en relation avec $lesSalles
- * @param array $lesSalles Les Salles qui doivent être mis en relation avec $unControle (liste de string)
+ * @param string $lesSalles Les Salles qui doivent être mis en relation avec $unControle
+ * (chaine de caractères avec le nom des salles séparées par des virgules)
  * @return Controle
  */
 function creerRelationSalleControle($unControle, $lesSalles)

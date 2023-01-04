@@ -32,7 +32,9 @@ function genererPDPControle($id){
 
     // Simulation de places et d'étudiants
     foreach ($unControle->getMesSalles() as $nomSalle => $uneSalle) {
-        $unPDP = new PlanDePlacement();
+        $uneContrainteGenerale = new ContraintesGenerales("aléatoire","td");
+        $uneContrainteEspacement = new ContraintesEspacement(1,2);
+        $unPDP = new PlanDePlacement($uneContrainteGenerale, $uneContrainteEspacement, $uneSalle);
         for ($i = 1; $i < 21; $i++) {
             $unePlace = new Zone();
             $unePlace->setType("place");
@@ -58,9 +60,12 @@ function genererPDPControle($id){
 
 
 function controlePDP(){
-    $controle1 = new Controle("R1.01 Blabla", "R1.01", 90, "2022-04-10", "09:00", "09:00");
-    $unPDP = new PlanDePlacement();
+    $uneContrainteGenerale = new ContraintesGenerales("aléatoire","td");
+    $uneContrainteEspacement = new ContraintesEspacement(1,2);
     $uneSalle = new Salle("S124");
+    $controle1 = new Controle("R1.01 Blabla", "R1.01", 90, "2022-04-10", "09:00", "09:00");
+    $unPDP = new PlanDePlacement($uneContrainteGenerale, $uneContrainteEspacement, $uneSalle);
+    
 
     $unPDP->setMaSalle($uneSalle);
 
