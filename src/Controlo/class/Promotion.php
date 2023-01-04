@@ -117,33 +117,50 @@ class Promotion
             unset($this->mesEtudiants[array_search($unEtudiant, $this->getMesEtudiants())]);
         }
     }
+
+    /**
+     * @brief Retourne la liste des Etudiant non tiers-temps dans la Promotion
+     * @return array Liste des Etudiant non tiers-temps
+     */
     public function recupererListeEtudiantsNonTT()
     {
-        $liste = array();
-
+        $listeEtudiantsNonTT = array();
         foreach ($this->getMesEtudiants() as $key => $unEtudiant) {
-            if (!$unEtudiant->getEstTT())
-                array_push($liste, $unEtudiant);
+            if (!$unEtudiant->getEstTT()){
+                array_push($listeEtudiantsNonTT, $unEtudiant);
+            }
         }
-        return $liste;
+        return $listeEtudiantsNonTT;
     }
+
+    /**
+     * @brief Retourne la liste des Etudiant tiers-temps sans ordinateur dans la Promotion
+     * @return array Liste des Etudiant tiers-temps sans ordinateur
+     */
     public function recupererListeEtudiantsTTSansOrdi()
     {
-        $liste = array();
+        $listeEtudiantsTTSansOrdi = array();
         foreach ($this->getMesEtudiants() as $key => $unEtudiant) {
-            if ($unEtudiant->getEstTT() && !$unEtudiant->getAOrdi())
-                array_push($liste, $unEtudiant);
+            if ($unEtudiant->getEstTT() && !$unEtudiant->getAOrdi()){
+                array_push($listeEtudiantsTTSansOrdi, $unEtudiant);
+            }
         }
-        return $liste;
+        return $listeEtudiantsTTSansOrdi;
     }
+
+    /**
+     * @brief Retourne la liste des Etudiant avec ordinateur dans la Promotion
+     * @return array Liste des Etudiant avec ordinateur
+     */
     public function recupererListeEtudiantsOrdi()
     {
-        $liste = array();
+        $listeEtudiantsOrdi = array();
         foreach ($this->getMesEtudiants() as $key => $unEtudiant) {
-            if ($unEtudiant->getAOrdi())
-                array_push($liste, $unEtudiant);
+            if ($unEtudiant->getAOrdi()){
+                array_push($listeEtudiantsOrdi, $unEtudiant);
+            }
         }
-        return $liste;
+        return $listeEtudiantsOrdi;
     }
 
 

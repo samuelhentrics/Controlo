@@ -1,5 +1,5 @@
 <map id="ajouterPlacement" name="ajouterPlacement">
 <area shape="rect" id="node1" title="Permet d&#39;ajouter une place à la liste." coords="5,5,128,31"/>
 <area shape="rect" id="node2" href="$class_plan_de_placement.html#a53fd065823346797c1dba1ec41c9e57b" title="Fonction permettant de vérifier si une place existe dans la lise des places Retourne vrai s&#39;il existe..." coords="176,5,295,31"/>
-<area shape="rect" id="node3" href="$class_plan_de_placement.html#a6c0e25492769fb64834a45da8e005682" title="Retourne les places." coords="343,5,477,31"/>
+<area shape="rect" id="node3" href="$class_plan_de_placement.html#a6c0e25492769fb64834a45da8e005682" title="Retourne les UnPlacement." coords="343,5,477,31"/>
 </map>

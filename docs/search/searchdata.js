@@ -4,8 +4,7 @@ var indexSectionsWithContent =
   1: "cefpsuz",
   2: "acegpsuz",
   3: "_acdeglrs",
-  4: "bcfijlopr",
-  5: "l"
+  4: "bcfijlopr"
 };
 
 var indexSectionNames =
@@ -14,8 +13,7 @@ var indexSectionNames =
   1: "classes",
   2: "files",
   3: "functions",
-  4: "variables",
-  5: "pages"
+  4: "variables"
 };
 
 var indexSectionLabels =
@@ -24,7 +22,6 @@ var indexSectionLabels =
   1: "Structures de données",
   2: "Fichiers",
   3: "Fonctions",
-  4: "Variables",
-  5: "Pages"
+  4: "Variables"
 };
 

@@ -14,7 +14,6 @@
 
 /**
  * @brief Classe ContraintesEspacement permettant de définir les contraintes d'espacement
- * @todo Constructeur
  */
 class ContraintesEspacement
 {
