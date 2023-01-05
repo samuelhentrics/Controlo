@@ -39,18 +39,84 @@ function trieListes($liste, $algo)
   return $liste;
 }
 
+/**
+ * @brief Place les étudiants dans les salles du contrôle
+ * @param array $listeEtudiants Liste d'étudiants à placer
+ * @param Controle $unControle Contrôle où l'on doit placer les étudiants
+ * @param string $type Type d'élèves à placer
+ * @param bool $erreur Erreur de placement
+ * @return void
+ */
+function placerEtudiants(&$listeEtudiants, &$unControle, $type, &$erreur)
+{
+  // Récupérer la liste des Salles du Controle
+  $listeSalles = $unControle->getMesSalles();
+
+  // Récupérer la liste des PlansDePlacement du Controle
+  $listePDP = $unControle->getMesPlansDePlacement();
+
+  // Partir dans l'idée que l'on a pas trouvé de place pour l'étudiant
+  $erreur = true;
+
+  // Trouver une place dans une des salles pour le premier étudiant
+  foreach ($listeSalles as $nom => $uneSalle) {
+    // Récupération du plan de placement de la salle
+    $unPDP = $listePDP[$nom];
+
+    // Récupérer les contraintes d'espacement de la salle
+    $contraintesSalle = $unPDP->getMaContrainteEspacement();
+
+    // Récupérer le nombre de rangées d'espacement et le nombre de places d'espacement
+    $nbRangeesSeparant = $contraintesSalle->getNbRangs();
+    $nbPlacesSeparant = $contraintesSalle->getNbPlaces();
+
+    // Récupérer le Plan de la Salle
+    $planSalle = $uneSalle->getMonPlan();
+
+    // Récupérer le Plan de la Salle avec uniquement les places libres
+    $planSalleLibre = $planSalle->planAvecPlacesUniquement();
+    echo '<pre>';
+    print_r($planSalleLibre);
+    echo '</pre>';
+
+
+    // Trouver une place pour chaque étudiant
+    foreach ($listeEtudiants as $unEtudiant) {
+      
+      foreach($planSalle as $uneRangee) {
+        foreach($uneRangee as $unePlace) {
+          if($planSalleLibre->existeUneZone) {
+            $unePlace->setMonEtudiant($unEtudiant);
+          }
+        }
+      }
+      
+    }
+
+
+    
+
+    // Quitter la boucle si la liste des étudiants est vide
+    if (empty($listeEtudiants)) {
+      $erreur = false;
+      break;
+    }
+  }
+}
+
+
 
 /* ----------------------------------------------------------------
-   ----------------------------------------------------------------
-   ------------------------ Initialisation ------------------------
-   ----------------------------------------------------------------
-   ----------------------------------------------------------------*/
+----------------------------------------------------------------
+------------------------ Initialisation ------------------------
+----------------------------------------------------------------
+----------------------------------------------------------------*/
 
 // -- Récupération du contrôle passé en paramètre
 $unControle = recupererUnControle($_GET["id"]);
 
 // -- Récupération des contraintes générales
-$typePlacement =$_POST["typePlacement"];
+$typePlacement = $_POST["typePlacement"];
 $typeSeparation = $_POST["typeSeparation"];
 
 // -- Création des contraintes générales
@@ -103,22 +169,20 @@ $listeEtud = trieListes($listeEtud, $contraintesGenerales->getAlgoRemplissage())
 // -- Création d'un indicateur d'erreur
 $erreur = false;
 
-
-
 /* ----------------------------------------------------------------
-   ----------------------------------------------------------------
-   -------------------- Placement des étudiants -------------------
-   ----------------------------------------------------------------
-   ----------------------------------------------------------------*/
+----------------------------------------------------------------
+-------------------- Placement des étudiants -------------------
+----------------------------------------------------------------
+----------------------------------------------------------------*/
 
-while(true){
+while (true) {
   // Cas où les listes sont vides on sort de la boucle
   if (empty($listeTTSansOrdi) && empty($listeOrdi) && empty($listeEtud)) {
     break;
   }
 
   // Placement des étudiants avec ordinateur
-  
+
 
   // Sortir en cas d'erreur
   if ($erreur) {
@@ -126,7 +190,7 @@ while(true){
   }
 
   // Placement des étudiants tiers-temps sans ordinateur
-
+  placerEtudiants($listeTTSansOrdi, $unControle, "TTSansOrdi", $erreur);
 
   // Sortir en cas d'erreur
   if ($erreur) {
@@ -140,22 +204,21 @@ while(true){
   if ($erreur) {
     break;
   }
-
+  break;
 }
 
 /* ----------------------------------------------------------------
-   ----------------------------------------------------------------
-   ---------------- Génération des PDF si possible ----------------
-   ----------------------------------------------------------------
-   ----------------------------------------------------------------*/
+----------------------------------------------------------------
+---------------- Génération des PDF si possible ----------------
+----------------------------------------------------------------
+----------------------------------------------------------------*/
 
 // Tentative de génération des PDF
 if (!$erreur) {
   // Génération des PDF
   genererPDF($unControle);
   print("Génération des PDF réussie<br><br>");
-}
-else{
+} else {
   // Affichage d'un message d'erreur
   print("Erreur lors du placement des étudiants<br><br>");
 }
@@ -175,14 +238,14 @@ function nbPlaceDispo($listeMesZones)
   $totalPlace = 0;
   $totalPrise = 0;
   foreach ($listeMesZones as $uneZone) {
-      foreach ($uneZone as $unePosition) {
-        if ($unePosition->getType() === "place") {
-          $totalPlace++;
-        }
+    foreach ($uneZone as $unePosition) {
+      if ($unePosition->getType() === "place") {
+        $totalPlace++;
+      }
       if ($unePosition->getInfoPrise())
         $totalPrise = $totalPrise + 1;
 
-      }
+    }
   }
   $returnArray["totalPrise"] = $totalPrise;
   $returnArray["totalPlace"] = $totalPlace;
@@ -191,7 +254,7 @@ function nbPlaceDispo($listeMesZones)
 
 foreach ($unControle->getMesSalles() as $key => $uneSalle) {
   print($uneSalle->getNom() . " info: ");
-print_r(nbPlaceDispo($uneSalle->getMonPlan()->getMesZones()));
+  print_r(nbPlaceDispo($uneSalle->getMonPlan()->getMesZones()));
   print(" <br> ");
 }
 // var_dump($listeMesZones);

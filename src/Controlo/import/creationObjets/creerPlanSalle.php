@@ -68,7 +68,7 @@ function creerPlanSalle($nomSalle)
                 $uneZone->setNumero($texteZone);
 
                 // Ajouter la Zone dans le Plan
-                $unPlan->lierUneZone($uneZone);
+                $unPlan->ajouterUneZone($uneZone);
             }
             $numLigne++;
         }

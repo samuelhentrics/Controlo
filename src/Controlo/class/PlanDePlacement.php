@@ -166,7 +166,8 @@ class PlanDePlacement
     public function ajouterPlacement($unPlacement)
     {
         if (!$this->existePlacement($unPlacement)) {
-            array_push($this->mesPlacements, $unPlacement);
+            $maZone = $unPlacement->getMaZone();
+            $this->mesPlacements[$maZone->getNumLigne()][$maZone->getNumCol()] = $unPlacement;
         }
     }
 
@@ -178,7 +179,8 @@ class PlanDePlacement
     public function supprimerPlacement($unPlacement)
     {
         if ($this->existePlacement($unPlacement)) {
-            unset($this->mesPlacements[array_search($unPlacement, $this->getMesPlacements())]);
+            $maZone = $unPlacement->getMaZone();
+            unset($this->mesPlacements[$maZone->getNumLigne()][$maZone->getNumCol()]);
         }
     }
 

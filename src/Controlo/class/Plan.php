@@ -41,12 +41,25 @@ class Plan
     // Méthodes spécifiques
 
     /**
+     * @brief Retourne vrai s'il existe une Zone dans le Plan
+     * @param Zone $uneZone Zone d'une Salle
+     * @return bool
+     */
+    function existeUneZone($uneZone){
+        $existe = false;
+        if ($this->mesZones[$uneZone->getNumLigne()][$uneZone->getNumCol()] == $uneZone) {
+            $existe = true;
+        }
+        return $existe;
+    }
+
+    /**
      * @brief Ajoute une Zone au Plan
      *
      * @param Zone $uneZone Zone d'une Salle
      */
 
-    public function lierUneZone($uneZone)
+    public function ajouterUneZone($uneZone)
     {
         $this->mesZones[$uneZone->getNumLigne()][$uneZone->getNumCol()] = $uneZone;
         $uneZone->lierPlan($this);
@@ -58,7 +71,7 @@ class Plan
      * @param int $numLigne Numéro de ligne de la Zone
      * @param int $numCol   Numéro de colonne de la Zone
      */
-    public function delierUneZone($numLigne, $numCol)
+    public function supprimerUneZone($numLigne, $numCol)
     {
         $this->mesZones[$numLigne][$numCol] = null;
     }
@@ -98,5 +111,23 @@ class Plan
             }
         }
         return $nbPlaces;
+    }
+
+    /**
+     * @brief Retourne un Plan contenant uniquement les Zones de type place
+     * @return Plan 
+     */
+    public function planAvecPlacesUniquement(){
+        $plan = new Plan();
+        for ($numLigne = 0; $numLigne <= count($this->mesZones) - 1; $numLigne++) {
+            for ($numCol = 0; $numCol <= count($this->mesZones[$numLigne]) - 1; $numCol++) {
+                $uneZone = $this->mesZones[$numLigne][$numCol];
+                if ($uneZone->getType() == "place") {
+                    $plan->ajouterUneZone($uneZone);
+                }
+            }
+        }
+
+        return $plan;
     }
 }
