@@ -309,18 +309,16 @@ function genererPDF($unControle)
                 $etudiant = $unPlacement->getMonEtudiant();
 
                 $numeroPlace = $place->getNumero();
-                // Afficher (Prise) si la place est une prise
+                // Afficher (E) si la place est une prise
                 if ($place->getInfoPrise()) {
-                    $pdf->SetFont('Arial', 'B', 12);
-                    $numeroPlace .= " (Prise)";
-                    $pdf->SetFont('Arial', '', 12);
+                    $numeroPlace .= "E";
                 }
 
                 $nomCompletEtudiant = $etudiant->getNom() . " " . $etudiant->getPrenom();
-                // Ajouter (Tiers-temps) si l'étudiant a un tiers-temps ou
-                // (Tiers-temps + Ordi) si l'étudiant a un tiers-temps et un ordinateur
+                // Ajouter (TT) si l'étudiant a un tiers-temps ou
+                // (TT + Ordi) si l'étudiant a un tiers-temps et un ordinateur
                 if ($etudiant->getEstTT()) {
-                    $nomCompletEtudiant .= " (Tiers-temps";
+                    $nomCompletEtudiant .= " (TT";
                     if ($etudiant->getAOrdi()) {
                         $nomCompletEtudiant .= " + Ordi";
                     }
