@@ -73,7 +73,6 @@ function placerEtudiants(&$listeEtudiants, &$unControle, $type, &$erreur)
     // Récupérer le Plan de la Salle avec uniquement les places libres
     $planSalleLibre = $planSalle->planAvecPlacesUniquement();
 
-
     // Parcourir chaque étudiant pour leur trouver une place
     foreach ($listeEtudiants as $unEtudiant) {
       $trouve = false;
@@ -103,8 +102,11 @@ function placerEtudiants(&$listeEtudiants, &$unControle, $type, &$erreur)
                 $placement->setMonEtudiant($unEtudiant);
                 $placement->setMaZone($unePlace);
                 $unPDP->ajouterPlacement($placement);
-                unset($unEtudiant, $listeEtudiants);
+
+                unset($listeEtudiants[array_search($unEtudiant, $listeEtudiants)]);
+
                 $trouve = true;
+                // afficher i puis le nom de l'étudiant puis a été ajouté à la salle
                 break;
               }
             }
@@ -128,10 +130,11 @@ function placerEtudiants(&$listeEtudiants, &$unControle, $type, &$erreur)
         }
       }
 
-
+      // Quitter la boucle si une place n'a pas été trouvée sinon continuer
       if ($trouve) {
         $unControle->ajouterPlanDePlacement($unPDP);
-      } else {
+      }
+      else {
         $erreur = true;
         break;
       }
