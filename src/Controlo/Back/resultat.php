@@ -9,65 +9,165 @@ include_once(IMPORT_PATH . "genererPDF.php");
 ?>
 
 <?php
-//recup controle
+
+/**
+ * @brief Trie les listes d'étudiants
+ * @param array $liste Liste d'étudiants
+ * @param string $algo Algorithme de tri
+ * @return array
+ */
+function trieListes($liste, $algo)
+{
+  switch ($algo) {
+    case 'aléatoire':
+      // Mélange la liste d'étudiants
+      shuffle($liste);
+      break;
+    case 'descendant':
+      // Trie la liste d'étudiants par ordre alphabétique descendant
+      usort($liste, function ($a, $b) {
+        return strcmp($b->getNom(), $a->getNom());
+      });
+      break;
+    default:
+      // Trie la liste d'étudiants par ordre alphabétique ascendant
+      usort($liste, function ($a, $b) {
+        return strcmp($a->getNom(), $b->getNom());
+      });
+      break;
+  }
+  return $liste;
+}
+
+
+/* ----------------------------------------------------------------
+   ----------------------------------------------------------------
+   ------------------------ Initialisation ------------------------
+   ----------------------------------------------------------------
+   ----------------------------------------------------------------*/
+
+// -- Récupération du contrôle passé en paramètre
 $unControle = recupererUnControle($_GET["id"]);
-//recupe contraintes saisie par l'utilisateur
-$contraintesGenerales = new ContraintesGenerales($_POST["typePlacement"], $_POST["typeSeparation"]);
+
+// -- Récupération des contraintes générales
+$typePlacement =$_POST["typePlacement"];
+$typeSeparation = $_POST["typeSeparation"];
+
+// -- Création des contraintes générales
+$contraintesGenerales = new ContraintesGenerales($typePlacement, $typeSeparation);
+
+// -- Récupération des Salles du contrôle
 $listeDeSalles = $unControle->getMesSalles();
 
-
-
-
-//ajout des contraintes au controle
+// -- Création des plans de placement pour chaque salle
 foreach ($listeDeSalles as $nom => $uneSalle) {
+  // Récupération des contraintes d'espacement
   $nbPlaceSeparant = $_POST["nbPlaceSeparant-" . $nom];
   $nbRangeeSeparant = $_POST["nbRangeeSeparant-" . $nom];
+
+  // Création des contraintes d'espacement
   $contraintesSalle = new ContraintesEspacement($nbRangeeSeparant, $nbPlaceSeparant);
+
+  // Création du plan de placement
   $unPDP = new PlanDePlacement($contraintesGenerales, $contraintesSalle, $uneSalle);
+
+  // Ajout du plan de placement au contrôle
   $unControle->ajouterPlanDePlacement($unPDP);
 
 }
-//recuperer la listes des promotions 
+
+// -- Récupération des promotions du contrôle
 $listePromos = $unControle->getMesPromotions();
 
+// -- Création des listes d'étudiants
 $listeTTSansOrdi = array();
 $listeOrdi = array();
 $listeEtud = array();
 
+// -- Récupération des étudiants des promotions
 foreach ($listePromos as $key => $unePromo) {
+  // Récupération des étudiants de la promotion et ajout dans les listes d'étudiants correspondantes
   $listeTTSansOrdi = array_merge($listeTTSansOrdi, $unePromo->recupererListeEtudiantsTTSansOrdi());
   $listeOrdi = array_merge($listeOrdi, $unePromo->recupererListeEtudiantsOrdi());
   $listeEtud = array_merge($listeEtud, $unePromo->recupererListeEtudiantsNonTT());
 
 }
-function trieListes($array, $algo)
-{
-  switch ($algo) {
-    case 'aléatoire':
-      shuffle($array);
-      break;
-    case 'descendant':
-      usort($array, function ($a, $b) {
-        return strcmp($b->getNom(), $a->getNom());
-      });
-      break;
-    //ascendant
-    default:
-      usort($array, function ($a, $b) {
-        return strcmp($a->getNom(), $b->getNom());
-      });
-      break;
-  }
-  return $array;
-}
 
+
+
+// -- Trie les listes d'étudiants
 $listeTTSansOrdi = trieListes($listeTTSansOrdi, $contraintesGenerales->getAlgoRemplissage());
 $listeOrdi = trieListes($listeOrdi, $contraintesGenerales->getAlgoRemplissage());
 $listeEtud = trieListes($listeEtud, $contraintesGenerales->getAlgoRemplissage());
-/*echo '<pre>';
-print_r($unControle->getMesPlansDePlacement()["S124"]->getMaSalle()->getMonPlan()->getMesZones());
-echo '</pre>';*/
-// $listeMesZones = $unControle->getMesPlansDePlacement()["S124"]->getMaSalle()->getMonPlan()->getMesZones();
+
+// -- Création d'un indicateur d'erreur
+$erreur = false;
+
+
+
+/* ----------------------------------------------------------------
+   ----------------------------------------------------------------
+   -------------------- Placement des étudiants -------------------
+   ----------------------------------------------------------------
+   ----------------------------------------------------------------*/
+
+while(true){
+  // Cas où les listes sont vides on sort de la boucle
+  if (empty($listeTTSansOrdi) && empty($listeOrdi) && empty($listeEtud)) {
+    break;
+  }
+
+  // Placement des étudiants avec ordinateur
+  
+
+  // Sortir en cas d'erreur
+  if ($erreur) {
+    break;
+  }
+
+  // Placement des étudiants tiers-temps sans ordinateur
+
+
+  // Sortir en cas d'erreur
+  if ($erreur) {
+    break;
+  }
+
+  // Placement des étudiants sans ordinateur ni tiers-temps
+
+
+  // Sortir en cas d'erreur
+  if ($erreur) {
+    break;
+  }
+
+}
+
+/* ----------------------------------------------------------------
+   ----------------------------------------------------------------
+   ---------------- Génération des PDF si possible ----------------
+   ----------------------------------------------------------------
+   ----------------------------------------------------------------*/
+
+// Tentative de génération des PDF
+if (!$erreur) {
+  // Génération des PDF
+  genererPDF($unControle);
+  print("Génération des PDF réussie<br><br>");
+}
+else{
+  // Affichage d'un message d'erreur
+  print("Erreur lors du placement des étudiants<br><br>");
+}
+
+
+
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// Mode développement
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+
 $listeMesZones = $unControle->getMesSalles()["S124"]->getMonPlan()->getMesZones();
 function nbPlaceDispo($listeMesZones)
 {
