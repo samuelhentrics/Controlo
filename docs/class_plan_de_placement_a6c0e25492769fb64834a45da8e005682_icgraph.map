@@ -1,6 +1,7 @@
 <map id="getMesPlacements" name="getMesPlacements">
 <area shape="rect" id="node1" title="Retourne les UnPlacement." coords="361,31,496,56"/>
-<area shape="rect" id="node2" href="$class_plan_de_placement.html#a53fd065823346797c1dba1ec41c9e57b" title="Fonction permettant de vérifier si une place existe dans la lise des places Retourne vrai s&#39;il existe..." coords="195,5,313,31"/>
-<area shape="rect" id="node4" href="$class_plan_de_placement.html#aa9ea9cbeac21879bb3216d8273a3ea3f" title="Permet de supprimer une place de la liste." coords="5,55,147,80"/>
-<area shape="rect" id="node3" href="$class_plan_de_placement.html#a5cae7ee212d8b7dee5013ce169197629" title="Permet d&#39;ajouter une place à la liste." coords="15,5,137,31"/>
+<area shape="rect" id="node2" href="$class_plan_de_placement.html#a7d7ab86ce280fbf407ff7c78ea7bd3ca" title="Retourne vrai si la place existe dans la liste des Placement." coords="209,5,299,31"/>
+<area shape="rect" id="node3" href="$class_plan_de_placement.html#a53fd065823346797c1dba1ec41c9e57b" title="Fonction permettant de vérifier si UnPlacement existe dans la liste des Placement Retourne vrai s&#39;il ..." coords="195,55,313,80"/>
+<area shape="rect" id="node4" href="$class_plan_de_placement.html#a5cae7ee212d8b7dee5013ce169197629" title="Permet d&#39;ajouter une place à la liste." coords="15,29,137,55"/>
+<area shape="rect" id="node5" href="$class_plan_de_placement.html#aa9ea9cbeac21879bb3216d8273a3ea3f" title="Permet de supprimer une place de la liste." coords="5,79,147,104"/>
 </map>

@@ -1,0 +1,4 @@
+<map id="recupererListeEtudiantsNonTT" name="recupererListeEtudiantsNonTT">
+<area shape="rect" id="node1" title="Retourne la liste des Etudiant non tiers&#45;temps dans la Promotion." coords="5,5,201,31"/>
+<area shape="rect" id="node2" href="$class_promotion.html#a5c6c7dfb59d21b3cac549b2812200653" title="Retourne la liste des Etudiant." coords="249,5,369,31"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="__construct" name="__construct">
+<area shape="rect" id="node1" title="Constructeur de ContraintesGenerales." coords="5,31,96,56"/>
+<area shape="rect" id="node2" href="$class_contraintes_generales.html#a42d0e9e8cb068af264fdd56ad19b8e17" title="Affecte un algo de remplissage aux ContraintesGenerales." coords="144,5,285,31"/>
+<area shape="rect" id="node3" href="$class_contraintes_generales.html#a7244525457feec96f81f5d2c7d08fffe" title="Permet d&#39;affecter l&#39;information qui identifie qui peut rester à coté d&#39;un étudiant." coords="163,55,266,80"/>
+</map>

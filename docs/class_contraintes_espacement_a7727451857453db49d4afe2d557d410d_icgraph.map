@@ -1,0 +1,4 @@
+<map id="setNbRangs" name="setNbRangs">
+<area shape="rect" id="node1" title="Permet d&#39;affecter le nombre de rangs séparant les étudiants dans une Salle pour un PlanDePlacement d&#39;..." coords="144,5,237,31"/>
+<area shape="rect" id="node2" href="$class_contraintes_espacement.html#a45d80099d6068332708daedbfb194d87" title="Constructeur de ContraintesEspacement." coords="5,5,96,31"/>
+</map>

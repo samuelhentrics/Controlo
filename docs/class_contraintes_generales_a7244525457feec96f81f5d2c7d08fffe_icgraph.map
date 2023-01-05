@@ -1,0 +1,4 @@
+<map id="setCoteACote" name="setCoteACote">
+<area shape="rect" id="node1" title="Permet d&#39;affecter l&#39;information qui identifie qui peut rester à coté d&#39;un étudiant." coords="144,5,247,31"/>
+<area shape="rect" id="node2" href="$class_contraintes_generales.html#a12c2af7a45f22ce5646a80e0fe8e0cb3" title="Constructeur de ContraintesGenerales." coords="5,5,96,31"/>
+</map>

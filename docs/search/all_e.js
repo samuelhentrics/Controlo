@@ -35,5 +35,6 @@ var searchData=
   ['supprimerplacement_32',['supprimerPlacement',['../class_plan_de_placement.html#aa9ea9cbeac21879bb3216d8273a3ea3f',1,'PlanDePlacement']]],
   ['supprimerplandeplacement_33',['supprimerPlanDePlacement',['../class_controle.html#a3a380a6acfe980032614ce7e402d0ad9',1,'Controle']]],
   ['supprimerpromotion_34',['supprimerPromotion',['../class_controle.html#a5f7813270fd0d412095e0c0d34e3e902',1,'Controle']]],
-  ['supprimersalle_35',['supprimerSalle',['../class_controle.html#ac38dc04214f5104f9182eed69fe5e01b',1,'Controle']]]
+  ['supprimersalle_35',['supprimerSalle',['../class_controle.html#ac38dc04214f5104f9182eed69fe5e01b',1,'Controle']]],
+  ['supprimerunezone_36',['supprimerUneZone',['../class_plan.html#ae402d979af1760804a59088a558733ad',1,'Plan']]]
 ];

@@ -162,7 +162,7 @@ class PlanDePlacement
     }
 
     /**
-     * @brief Fonction permettant de vérifier si une place existe dans la lise des places
+     * @brief Fonction permettant de vérifier si UnPlacement existe dans la liste des Placement
      * Retourne vrai s'il existe dans la liste, faux sinon
      * @param UnPlacement $unPlacement place recherché
      * @return bool Information si la place est dans la liste
@@ -189,7 +189,6 @@ class PlanDePlacement
     {
         if (!$this->existePlacement($unPlacement)) {
             $maZone = $unPlacement->getMaZone();
-            echo $maZone->getNumero() . "<br>";
             $this->mesPlacements[$maZone->getNumLigne()][$maZone->getNumCol()] = $unPlacement;
         }
     }

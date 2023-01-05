@@ -9,10 +9,11 @@ var searchData=
   ['pdf_6',['PDF',['../class_p_d_f.html',1,'']]],
   ['plan_7',['Plan',['../class_plan.html',1,'']]],
   ['plan_2ephp_8',['Plan.php',['../_plan_8php.html',1,'']]],
-  ['plandeplacement_9',['PlanDePlacement',['../class_plan_de_placement.html',1,'']]],
-  ['plandeplacement_2ephp_10',['PlanDePlacement.php',['../_plan_de_placement_8php.html',1,'']]],
-  ['plans_5fde_5fplacement_5ffolder_5fname_11',['PLANS_DE_PLACEMENT_FOLDER_NAME',['../config_8php.html#ad939f102982d9162e99977a79c8551f8',1,'config.php']]],
-  ['plans_5fde_5fplacement_5fpath_12',['PLANS_DE_PLACEMENT_PATH',['../config_8php.html#a20674288a550136e04d20670c2f8c885',1,'config.php']]],
-  ['promotion_13',['Promotion',['../class_promotion.html',1,'']]],
-  ['promotion_2ephp_14',['Promotion.php',['../_promotion_8php.html',1,'']]]
+  ['planavecplacesuniquement_9',['planAvecPlacesUniquement',['../class_plan.html#a11e6496026f9fec5b397e0ac3aa47857',1,'Plan']]],
+  ['plandeplacement_10',['PlanDePlacement',['../class_plan_de_placement.html',1,'']]],
+  ['plandeplacement_2ephp_11',['PlanDePlacement.php',['../_plan_de_placement_8php.html',1,'']]],
+  ['plans_5fde_5fplacement_5ffolder_5fname_12',['PLANS_DE_PLACEMENT_FOLDER_NAME',['../config_8php.html#ad939f102982d9162e99977a79c8551f8',1,'config.php']]],
+  ['plans_5fde_5fplacement_5fpath_13',['PLANS_DE_PLACEMENT_PATH',['../config_8php.html#a20674288a550136e04d20670c2f8c885',1,'config.php']]],
+  ['promotion_14',['Promotion',['../class_promotion.html',1,'']]],
+  ['promotion_2ephp_15',['Promotion.php',['../_promotion_8php.html',1,'']]]
 ];

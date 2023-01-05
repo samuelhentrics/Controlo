@@ -37,6 +37,7 @@ var menudata={children:[
 {text:"e",url:"functions.html#index_e"},
 {text:"g",url:"functions.html#index_g"},
 {text:"l",url:"functions.html#index_l"},
+{text:"p",url:"functions.html#index_p"},
 {text:"r",url:"functions.html#index_r"},
 {text:"s",url:"functions.html#index_s"}]},
 {text:"Fonctions",url:"functions_func.html",children:[
@@ -47,6 +48,7 @@ var menudata={children:[
 {text:"e",url:"functions_func.html#index_e"},
 {text:"g",url:"functions_func.html#index_g"},
 {text:"l",url:"functions_func.html#index_l"},
+{text:"p",url:"functions_func.html#index_p"},
 {text:"r",url:"functions_func.html#index_r"},
 {text:"s",url:"functions_func.html#index_s"}]}]}]},
 {text:"Fichiers",url:"files.html",children:[

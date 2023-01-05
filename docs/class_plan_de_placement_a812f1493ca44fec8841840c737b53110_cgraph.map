@@ -1,0 +1,6 @@
+<map id="__construct" name="__construct">
+<area shape="rect" id="node1" title="Constructeur du PlanDePlacement." coords="5,55,96,80"/>
+<area shape="rect" id="node2" href="$class_plan_de_placement.html#afb455528680e3a039b9105feb9a64f25" title="Affecte une ContraintesEspacement." coords="144,5,335,31"/>
+<area shape="rect" id="node3" href="$class_plan_de_placement.html#abc23cc54d2c4eab812b84759d7e58d02" title="Affecte une ContraintesGenerales au PlanDePlacement." coords="155,55,324,80"/>
+<area shape="rect" id="node4" href="$class_plan_de_placement.html#ac576dd4586fd7ef763ede97a57cc33fb" title="Affecte une Salle au PlanDePlacement." coords="196,104,283,129"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="existePlace" name="existePlace">
+<area shape="rect" id="node1" title="Retourne vrai si la place existe dans la liste des Placement." coords="5,5,96,31"/>
+<area shape="rect" id="node2" href="$class_plan_de_placement.html#a6c0e25492769fb64834a45da8e005682" title="Retourne les UnPlacement." coords="144,5,279,31"/>
+</map>

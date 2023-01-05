@@ -1,0 +1,5 @@
+<map id="__construct" name="__construct">
+<area shape="rect" id="node1" title="Constructeur de ContraintesEspacement." coords="5,31,96,56"/>
+<area shape="rect" id="node2" href="$class_contraintes_espacement.html#ac7b8b0b998294e1523c9c3a1322cf10c" title="Permet d&#39;affecter le nombre de places séparant les étudiants dans une Salle pour un PlanDePlacement d..." coords="144,5,240,31"/>
+<area shape="rect" id="node3" href="$class_contraintes_espacement.html#a7727451857453db49d4afe2d557d410d" title="Permet d&#39;affecter le nombre de rangs séparant les étudiants dans une Salle pour un PlanDePlacement d&#39;..." coords="145,55,239,80"/>
+</map>
