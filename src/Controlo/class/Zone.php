@@ -218,7 +218,7 @@ class Zone{
      */
     public function delierPlan(){
         if($this->monPlan != null){
-            $this->monPlan->delierUneZone($this->numLigne, $this->numCol);
+            $this->monPlan->supprimerUneZone($this->numLigne, $this->numCol);
             $this->setMonPlan(null);
         }
     }

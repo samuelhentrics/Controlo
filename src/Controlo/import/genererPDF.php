@@ -301,19 +301,22 @@ function genererPDF($unControle)
 
         // Récupérer sous forme de liste ( (NUM_PLACE), (NOM_ETUDIANT) ) la liste
         // des places attribués dans arrayPlaces
-        foreach ($listePlacementsPDP as $i => $unPlacement) {
 
-            $place = $unPlacement->getMaZone();
-            $etudiant = $unPlacement->getMonEtudiant();
+        foreach ($listePlacementsPDP as $ligne) {
+            foreach($ligne as $unPlacement) {
 
-            $numeroPlace = $place->getNumero();
-            $nomCompletEtudiant = $etudiant->getNom() . " " . $etudiant->getPrenom();
+                $place = $unPlacement->getMaZone();
+                $etudiant = $unPlacement->getMonEtudiant();
 
-            $infoUnePlace = array();
-            array_push($infoUnePlace, $numeroPlace);
-            array_push($infoUnePlace, $nomCompletEtudiant);
+                $numeroPlace = $place->getNumero();
+                $nomCompletEtudiant = $etudiant->getNom() . " " . $etudiant->getPrenom();
 
-            array_push($arrayPlaces, $infoUnePlace);
+                $infoUnePlace = array();
+                array_push($infoUnePlace, $numeroPlace);
+                array_push($infoUnePlace, $nomCompletEtudiant);
+
+                array_push($arrayPlaces, $infoUnePlace);
+            }
         }
 
         // Affichage du tableau avec les infos sur les étudiants et leurs places

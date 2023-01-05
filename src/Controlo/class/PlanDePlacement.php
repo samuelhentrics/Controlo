@@ -144,6 +144,24 @@ class PlanDePlacement
     // Méthodes usuelles
 
     /**
+     * @brief Retourne vrai si la place existe dans la liste des Placement
+     * @param mixed $unePlace Place recherché
+     * @return bool
+     */
+    public function existePlace($unePlace){
+        $mesPlacements = $this->getMesPlacements();
+
+        foreach($mesPlacements as $numLigne => $ligne){
+            foreach($ligne as $numCol => $col){
+                if($unePlace == $mesPlacements[$numLigne][$numCol]->getMaZone()){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
      * @brief Fonction permettant de vérifier si une place existe dans la lise des places
      * Retourne vrai s'il existe dans la liste, faux sinon
      * @param UnPlacement $unPlacement place recherché
@@ -151,11 +169,15 @@ class PlanDePlacement
      */
     public function existePlacement($unPlacement)
     {
-        if (in_array($unPlacement, $this->getMesPlacements())) {
-            return true;
-        } else {
-            return false;
+        $mesPlacements = $this->getMesPlacements();
+        foreach($mesPlacements as $numLigne => $ligne){
+            foreach($ligne as $numCol => $col){
+                if($unPlacement == $mesPlacements[$numLigne][$numCol]){
+                    return true;
+                }
+            }
         }
+        return false;
     }
 
     /**
@@ -167,6 +189,7 @@ class PlanDePlacement
     {
         if (!$this->existePlacement($unPlacement)) {
             $maZone = $unPlacement->getMaZone();
+            echo $maZone->getNumero() . "<br>";
             $this->mesPlacements[$maZone->getNumLigne()][$maZone->getNumCol()] = $unPlacement;
         }
     }

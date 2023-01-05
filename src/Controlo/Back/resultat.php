@@ -55,9 +55,6 @@ function placerEtudiants(&$listeEtudiants, &$unControle, $type, &$erreur)
   // Récupérer la liste des PlansDePlacement du Controle
   $listePDP = $unControle->getMesPlansDePlacement();
 
-  // Partir dans l'idée que l'on a pas trouvé de place pour l'étudiant
-  $erreur = true;
-
   // Trouver une place dans une des salles pour le premier étudiant
   foreach ($listeSalles as $nom => $uneSalle) {
     // Récupération du plan de placement de la salle
@@ -75,25 +72,40 @@ function placerEtudiants(&$listeEtudiants, &$unControle, $type, &$erreur)
 
     // Récupérer le Plan de la Salle avec uniquement les places libres
     $planSalleLibre = $planSalle->planAvecPlacesUniquement();
-    echo '<pre>';
-    print_r($planSalleLibre);
-    echo '</pre>';
 
 
     // Trouver une place pour chaque étudiant
     foreach ($listeEtudiants as $unEtudiant) {
-      
-      foreach($planSalle as $uneRangee) {
-        foreach($uneRangee as $unePlace) {
-          if($planSalleLibre->existeUneZone) {
-            $unePlace->setMonEtudiant($unEtudiant);
+      $trouve = false;
+      foreach($planSalleLibre->getMesZones() as $uneLigne) {
+        foreach($uneLigne as $unePlace) {
+          if(!$unPDP->existePlace($unePlace)) {
+            $placement = new UnPlacement();
+            $placement->setMonEtudiant($unEtudiant);
+            $placement->setMaZone($unePlace);
+            $unPDP->ajouterPlacement($placement);
+            unset($unEtudiant, $listeEtudiants);
+            $trouve=true;
+            break;
           }
         }
+
+        if($trouve) {
+          break;
+        }
+      }
+
+      
+      if($trouve){
+        $unControle->ajouterPlanDePlacement($unPDP); 
+      }
+      else{
+        $erreur = true;
+        break;
       }
       
+      
     }
-
-
     
 
     // Quitter la boucle si la liste des étudiants est vide
@@ -182,7 +194,7 @@ while (true) {
   }
 
   // Placement des étudiants avec ordinateur
-
+  placerEtudiants($listeOrdi, $unControle, "TTSansOrdi", $erreur);
 
   // Sortir en cas d'erreur
   if ($erreur) {
@@ -198,12 +210,15 @@ while (true) {
   }
 
   // Placement des étudiants sans ordinateur ni tiers-temps
-
+  placerEtudiants($listeEtud, $unControle, "TTSansOrdi", $erreur);
 
   // Sortir en cas d'erreur
   if ($erreur) {
     break;
   }
+
+  
+
   break;
 }
 
@@ -231,63 +246,63 @@ if (!$erreur) {
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 
-$listeMesZones = $unControle->getMesSalles()["S124"]->getMonPlan()->getMesZones();
-function nbPlaceDispo($listeMesZones)
-{
-  $returnArray = array();
-  $totalPlace = 0;
-  $totalPrise = 0;
-  foreach ($listeMesZones as $uneZone) {
-    foreach ($uneZone as $unePosition) {
-      if ($unePosition->getType() === "place") {
-        $totalPlace++;
-      }
-      if ($unePosition->getInfoPrise())
-        $totalPrise = $totalPrise + 1;
+// $listeMesZones = $unControle->getMesSalles()["S124"]->getMonPlan()->getMesZones();
+// function nbPlaceDispo($listeMesZones)
+// {
+//   $returnArray = array();
+//   $totalPlace = 0;
+//   $totalPrise = 0;
+//   foreach ($listeMesZones as $uneZone) {
+//     foreach ($uneZone as $unePosition) {
+//       if ($unePosition->getType() === "place") {
+//         $totalPlace++;
+//       }
+//       if ($unePosition->getInfoPrise())
+//         $totalPrise = $totalPrise + 1;
 
-    }
-  }
-  $returnArray["totalPrise"] = $totalPrise;
-  $returnArray["totalPlace"] = $totalPlace;
-  return $returnArray;
-}
+//     }
+//   }
+//   $returnArray["totalPrise"] = $totalPrise;
+//   $returnArray["totalPlace"] = $totalPlace;
+//   return $returnArray;
+// }
 
-foreach ($unControle->getMesSalles() as $key => $uneSalle) {
-  print($uneSalle->getNom() . " info: ");
-  print_r(nbPlaceDispo($uneSalle->getMonPlan()->getMesZones()));
-  print(" <br> ");
-}
-// var_dump($listeMesZones);
+// foreach ($unControle->getMesSalles() as $key => $uneSalle) {
+//   print($uneSalle->getNom() . " info: ");
+//   print_r(nbPlaceDispo($uneSalle->getMonPlan()->getMesZones()));
+//   print(" <br> ");
+// }
+// // var_dump($listeMesZones);
 
-// print( . "<- nombre de place <br>");
-//debut du placement
-// print($uneSalle->getNom()." $unControle->getMesSalles()["S124"]->getMonPlan()->getMesZones() . "<br>");
-foreach ($unControle->getMesSalles() as $nomSalle => $uneSalle) {
-  for ($i = 1; $i < 21; $i++) {
-    $unePlace = new Zone();
-    $unePlace->setType("place");
-    $unePlace->setNumero($i);
+// // print( . "<- nombre de place <br>");
+// //debut du placement
+// // print($uneSalle->getNom()." $unControle->getMesSalles()["S124"]->getMonPlan()->getMesZones() . "<br>");
+// foreach ($unControle->getMesSalles() as $nomSalle => $uneSalle) {
+//   for ($i = 1; $i < 21; $i++) {
+//     $unePlace = new Zone();
+//     $unePlace->setType("place");
+//     $unePlace->setNumero($i);
 
-    $unEtudiant = new Etudiant("NOM" . $i, "PRENOM", 1, 2, "helloworld@gmail.com");
+//     $unEtudiant = new Etudiant("NOM" . $i, "PRENOM", 1, 2, "helloworld@gmail.com");
 
-    $unPlacement = new UnPlacement();
-    $unPlacement->setMonEtudiant($unEtudiant);
-    $unPlacement->setMaZone($unePlace);
+//     $unPlacement = new UnPlacement();
+//     $unPlacement->setMonEtudiant($unEtudiant);
+//     $unPlacement->setMaZone($unePlace);
 
-    $unPDP->ajouterPlacement($unPlacement);
-    $unPDP->setMaSalle($uneSalle);
-  }
+//     $unPDP->ajouterPlacement($unPlacement);
+//     $unPDP->setMaSalle($uneSalle);
+//   }
 
-  // echo "<h2>Génération des PDP en PDF</h2>";
-  $unControle->ajouterPlanDePlacement($unPDP);
-  // echo "ok";
-}
-// genererPDF($unControle);
-//aaficher controle
-// var_dump( $unControle);
+//   // echo "<h2>Génération des PDP en PDF</h2>";
+//   $unControle->ajouterPlanDePlacement($unPDP);
+//   // echo "ok";
+// }
+// // genererPDF($unControle);
+// //aaficher controle
+// // var_dump( $unControle);
 
-print("contrle id: " . $_GET["id"] . "<br>")
-  ?>
+// print("contrle id: " . $_GET["id"] . "<br>")
+//   ?>
 <html>page resultat
 
 </html>
