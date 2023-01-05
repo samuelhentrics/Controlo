@@ -74,39 +74,71 @@ function placerEtudiants(&$listeEtudiants, &$unControle, $type, &$erreur)
     $planSalleLibre = $planSalle->planAvecPlacesUniquement();
 
 
-    // Trouver une place pour chaque étudiant
+    // Parcourir chaque étudiant pour leur trouver une place
     foreach ($listeEtudiants as $unEtudiant) {
       $trouve = false;
-      foreach($planSalleLibre->getMesZones() as $uneLigne) {
-        foreach($uneLigne as $unePlace) {
-          if(!$unPDP->existePlace($unePlace)) {
-            $placement = new UnPlacement();
-            $placement->setMonEtudiant($unEtudiant);
-            $placement->setMaZone($unePlace);
-            $unPDP->ajouterPlacement($placement);
-            unset($unEtudiant, $listeEtudiants);
-            $trouve=true;
-            break;
+
+      // Initialiser le numéro de ligne
+      $numeroLigne = $nbRangeesSeparant;
+
+      // Trouver une place pour l'étudiant
+      foreach ($planSalleLibre->getMesZones() as $uneLigne) {
+
+        // Vérifier qu'on est sur une ligne acceptable
+        if ($numeroLigne % ($nbRangeesSeparant + 1) == 0) {
+
+          // Initialiser un numero de colonne
+          $numeroColonne = $nbPlacesSeparant;
+
+          // Parcourir chaque place de la ligne
+          foreach ($uneLigne as $unePlace) {
+
+            // Vérifier qu'on est sur une colonne acceptable
+            if ($numeroColonne % ($nbPlacesSeparant + 1) == 0) {
+
+              // Véfifier que la place n'est pas prise
+              if (!$unPDP->existePlace($unePlace)) {
+                // Si la place est disponible, l'attribuer à l'étudiant
+                $placement = new UnPlacement();
+                $placement->setMonEtudiant($unEtudiant);
+                $placement->setMaZone($unePlace);
+                $unPDP->ajouterPlacement($placement);
+                unset($unEtudiant, $listeEtudiants);
+                $trouve = true;
+                break;
+              }
+            }
+
+            // Incrémenter le numéro de colonne
+            $numeroColonne++;
+
+
+
           }
+
+
+
         }
 
-        if($trouve) {
+        // Incrémenter le numéro de ligne
+        $numeroLigne++;
+
+        if ($trouve) {
           break;
         }
       }
 
-      
-      if($trouve){
-        $unControle->ajouterPlanDePlacement($unPDP); 
-      }
-      else{
+
+      if ($trouve) {
+        $unControle->ajouterPlanDePlacement($unPDP);
+      } else {
         $erreur = true;
         break;
       }
-      
-      
+
+
     }
-    
+
 
     // Quitter la boucle si la liste des étudiants est vide
     if (empty($listeEtudiants)) {
@@ -217,7 +249,7 @@ while (true) {
     break;
   }
 
-  
+
 
   break;
 }

@@ -76,7 +76,7 @@ class ContraintesEspacement
      */
     public function setNbRangs($nouveauNbRangs)
     {
-        $this->nbRangs = $nouveauNbRangs;
+        $this->nbRangs = intval($nouveauNbRangs);
     }
 
     /**
@@ -98,7 +98,7 @@ class ContraintesEspacement
      */
     public function setNbPlaces($nouveauNbPlaces)
     {
-        $this->nbPlaces = $nouveauNbPlaces;
+        $this->nbPlaces = intval($nouveauNbPlaces);
     }
 
 }
