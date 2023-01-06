@@ -60,8 +60,8 @@
                 foreach ($leControle->getMesSalles() as $key => $uneSalle) {
                     print("<tr>");
                     print("<td>" . $uneSalle->getNom() . "</td>");
-                    print("<td> <input type='number' id='nbPlaceSeparant' min='0' max='999' name='nbPlaceSeparant-" . $uneSalle->getNom() . "' value='0'></td>");
-                    print("<td> <input type='number' id='nbRangeeSeparant' min='0' max='999' name='nbRangeeSeparant-" . $uneSalle->getNom() . "' value='0'></td>");
+                    print("<td> <input type='number' id='nbPlaceSeparant' min='0' max='999' value=1 name='nbPlaceSeparant-" . $uneSalle->getNom() . "' value='0'></td>");
+                    print("<td> <input type='number' id='nbRangeeSeparant' min='0' max='999' value=0    name='nbRangeeSeparant-" . $uneSalle->getNom() . "' value='0'></td>");
                     print("</tr>");
                 }
                 print("</table>");
