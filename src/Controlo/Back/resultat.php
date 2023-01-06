@@ -216,7 +216,7 @@ $listeOrdi = array();
 $listeEtud = array();
 
 // -- Récupération des étudiants des promotions
-foreach ($listePromos as $key => $unePromo) {
+foreach ($listePromos as $unePromo) {
   // Récupération des étudiants de la promotion et ajout dans les listes d'étudiants correspondantes
   $listeTTSansOrdi = array_merge($listeTTSansOrdi, $unePromo->recupererListeEtudiantsTTSansOrdi());
   $listeOrdi = array_merge($listeOrdi, $unePromo->recupererListeEtudiantsOrdi());
