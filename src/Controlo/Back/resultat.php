@@ -285,6 +285,7 @@ while (true) {
 if (!$erreur) {
   // Génération des PDF
   genererPDF($unControle);
+
   print("Génération des PDF réussie<br><br>");
 } else {
   // Affichage d'un message d'erreur
