@@ -316,13 +316,16 @@ function genererPDF($unControle)
 
                 $nomCompletEtudiant = $etudiant->getNom() . " " . $etudiant->getPrenom();
                 // Ajouter (TT) si l'étudiant a un tiers-temps ou
-                // (TT + Ordi) si l'étudiant a un tiers-temps et un ordinateur
-                if ($etudiant->getEstTT()) {
-                    $nomCompletEtudiant .= " (TT";
-                    if ($etudiant->getAOrdi()) {
-                        $nomCompletEtudiant .= " + Ordi";
-                    }
-                    $nomCompletEtudiant .= ")";
+                // (TT + Ordi) si l'étudiant a un tiers-temps et un ordinateur ou
+                // (Ordi) si l'étudiant a un ordi
+                if ($etudiant->getEstTT() and $etudiant->getAOrdi()) {
+                    $nomCompletEtudiant .= " (TT + Ordi)";
+                }
+                elseif($etudiant->getAOrdi()){
+                    $nomCompletEtudiant .= " (Ordi)";
+                }
+                elseif($etudiant->getEstTT()){
+                    $nomCompletEtudiant .= " (TT)";
                 }
 
 
