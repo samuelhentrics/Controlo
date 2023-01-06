@@ -47,7 +47,7 @@ function trieListes($liste, $algo)
  * @param bool $erreur Erreur de placement
  * @return void
  */
-function placerEtudiants(&$listeEtudiants, &$unControle, $type, &$erreur)
+function placerEtudiants(&$listeEtudiants, &$unControle, &$erreur)
 {
   // Récupérer la liste des Salles du Controle
   $listeSalles = $unControle->getMesSalles();
@@ -95,8 +95,25 @@ function placerEtudiants(&$listeEtudiants, &$unControle, $type, &$erreur)
             // Vérifier qu'on est sur une colonne acceptable
             if ($numeroColonne % ($nbPlacesSeparant + 1) == 0) {
 
-              // Véfifier que la place n'est pas prise
+              // Vérifier que la place n'est pas prise
               if (!$unPDP->existePlace($unePlace)) {
+
+                // Vérifier que la place a une prise si l'on dispose d'un ordinateur
+                if ($unEtudiant->getAOrdi()) {
+                  if ($unePlace->getInfoPrise()) {
+                    $trouve = true;
+                  }
+                }
+
+                // Cas où l'Etudiant n'a pas besoin d'une prise
+                else {
+                  $trouve = true;
+                }
+              }
+
+
+              // Véfifier que la place n'est pas prise
+              if ($trouve) {
                 // Si la place est disponible, l'attribuer à l'étudiant
                 $placement = new UnPlacement();
                 $placement->setMonEtudiant($unEtudiant);
@@ -105,10 +122,12 @@ function placerEtudiants(&$listeEtudiants, &$unControle, $type, &$erreur)
 
                 unset($listeEtudiants[array_search($unEtudiant, $listeEtudiants)]);
 
-                $trouve = true;
+
                 // afficher i puis le nom de l'étudiant puis a été ajouté à la salle
                 break;
               }
+
+
             }
 
             // Incrémenter le numéro de colonne
@@ -133,8 +152,7 @@ function placerEtudiants(&$listeEtudiants, &$unControle, $type, &$erreur)
       // Quitter la boucle si une place n'a pas été trouvée sinon continuer
       if ($trouve) {
         $unControle->ajouterPlanDePlacement($unPDP);
-      }
-      else {
+      } else {
         $erreur = true;
         break;
       }
@@ -229,7 +247,7 @@ while (true) {
   }
 
   // Placement des étudiants avec ordinateur
-  placerEtudiants($listeOrdi, $unControle, "TTSansOrdi", $erreur);
+  placerEtudiants($listeOrdi, $unControle, $erreur);
 
   // Sortir en cas d'erreur
   if ($erreur) {
@@ -237,7 +255,7 @@ while (true) {
   }
 
   // Placement des étudiants tiers-temps sans ordinateur
-  placerEtudiants($listeTTSansOrdi, $unControle, "TTSansOrdi", $erreur);
+  placerEtudiants($listeTTSansOrdi, $unControle, $erreur);
 
   // Sortir en cas d'erreur
   if ($erreur) {
@@ -245,7 +263,7 @@ while (true) {
   }
 
   // Placement des étudiants sans ordinateur ni tiers-temps
-  placerEtudiants($listeEtud, $unControle, "TTSansOrdi", $erreur);
+  placerEtudiants($listeEtud, $unControle, $erreur);
 
   // Sortir en cas d'erreur
   if ($erreur) {
@@ -273,7 +291,7 @@ if (!$erreur) {
   print("Erreur lors du placement des étudiants<br><br>");
 }
 
-   ?>
+?>
 <html>page resultat
 
 </html>
