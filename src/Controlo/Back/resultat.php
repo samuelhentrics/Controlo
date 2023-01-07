@@ -241,21 +241,22 @@ $erreur = false;
 ----------------------------------------------------------------*/
 
 while (true) {
-  // Cas où les listes sont vides on sort de la boucle
-  if (empty($listeTTSansOrdi) && empty($listeOrdi) && empty($listeEtud)) {
-    break;
-  }
 
   // Placement des étudiants avec ordinateur
-  placerEtudiants($listeOrdi, $unControle, $erreur);
+  if (!empty($listeOrdi)) {
+    placerEtudiants($listeOrdi, $unControle, $erreur);
+  }
 
   // Sortir en cas d'erreur
   if ($erreur) {
     break;
   }
 
-  // Placement des étudiants tiers-temps sans ordinateur
-  placerEtudiants($listeTTSansOrdi, $unControle, $erreur);
+  if (!empty($listeTTSansOrdi))){
+    // Placement des étudiants tiers-temps sans ordinateur
+    placerEtudiants($listeTTSansOrdi, $unControle, $erreur);
+  }
+  
 
   // Sortir en cas d'erreur
   if ($erreur) {
