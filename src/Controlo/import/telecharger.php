@@ -22,15 +22,17 @@ if(isset($_GET["id"])){
     $nomDossier = str_replace("/", "-", $nomDossier);
     $nomDossier = str_replace(" ", "-", $nomDossier);
 
-    $pathDossier = PLANS_DE_PLACEMENT_FOLDER_NAME . $dateFormatDossier . "_" . $nomDossier ;
+    $nomDossier = $dateFormatDossier . "_" . $nomDossier;
+
+    $pathDossier = PLANS_DE_PLACEMENT_FOLDER_NAME . $nomDossier ;
 
 
     // Créer un nouveau fichier ZIP
     $zip = new ZipArchive();
-    $zip_name = time().".zip"; // Attribuer un nom au fichier ZIP
+    $nomDossier = $nomDossier.".zip"; // Attribuer un nom au fichier ZIP
 
-    if($zip->open($zip_name, ZipArchive::CREATE)!==TRUE){
-    $error .= "Impossible d'ouvrir <$zip_name>\n";
+    if($zip->open($nomDossier, ZipArchive::CREATE)!==TRUE){
+        $error .= "Impossible d'ouvrir <$nomDossier>\n";
     }
 
     // Créer un iterateur de répertoire sur le dossier
@@ -43,10 +45,7 @@ if(isset($_GET["id"])){
 
     // Fermer le fichier ZIP et envoyer au client
     $zip->close();
-    header('Content-Type: application/zip');
-    header('Content-disposition: attachment; filename='.$zip_name);
-    header('Content-Length: ' . filesize($zip_name));
-    readfile($zip_name);
+    readfile($nomDossier);
 
     
 
