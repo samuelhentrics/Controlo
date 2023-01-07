@@ -253,10 +253,10 @@ while (true) {
   }
 
   // Placement des étudiants tiers-temps sans ordinateur
-  if (!empty($listeTTSansOrdi)){
+  if (!empty($listeTTSansOrdi)) {
     placerEtudiants($listeTTSansOrdi, $unControle, $erreur);
   }
-  
+
 
   // Sortir en cas d'erreur
   if ($erreur) {
@@ -264,10 +264,10 @@ while (true) {
   }
 
   // Placement des étudiants sans ordinateur ni tiers-temps
-  if (!empty($listeEtud)){
+  if (!empty($listeEtud)) {
     placerEtudiants($listeEtud, $unControle, $erreur);
   }
-  
+
   // Sortir en cas d'erreur
   if ($erreur) {
     break;
@@ -296,6 +296,3 @@ if (!$erreur) {
 }
 
 ?>
-<html>page resultat
-
-</html>
