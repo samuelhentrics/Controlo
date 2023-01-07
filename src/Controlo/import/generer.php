@@ -28,7 +28,7 @@ include_once(IMPORT_PATH . "genererPDF.php");
  * @param string $algo Algorithme de tri
  * @return array
  */
-function trieListes($liste, $algo)
+function trieListe($liste, $algo)
 {
   switch ($algo) {
     case 'aléatoire':
@@ -239,9 +239,9 @@ foreach ($listePromos as $unePromo) {
 
 
 // -- Trie les listes d'étudiants
-$listeTTSansOrdi = trieListes($listeTTSansOrdi, $contraintesGenerales->getAlgoRemplissage());
-$listeOrdi = trieListes($listeOrdi, $contraintesGenerales->getAlgoRemplissage());
-$listeEtud = trieListes($listeEtud, $contraintesGenerales->getAlgoRemplissage());
+$listeTTSansOrdi = trieListe($listeTTSansOrdi, $contraintesGenerales->getAlgoRemplissage());
+$listeOrdi = trieListe($listeOrdi, $contraintesGenerales->getAlgoRemplissage());
+$listeEtud = trieListe($listeEtud, $contraintesGenerales->getAlgoRemplissage());
 
 // -- Création d'un indicateur d'erreur
 $erreur = false;
@@ -252,43 +252,26 @@ $erreur = false;
 ----------------------------------------------------------------
 ----------------------------------------------------------------*/
 
-while (true) {
+// Placement des étudiants avec ordinateur
+if (!empty($listeOrdi)) {
+  placerEtudiants($listeOrdi, $unControle, $erreur);
+}
 
-  // Placement des étudiants avec ordinateur
-  if (!empty($listeOrdi)) {
-    placerEtudiants($listeOrdi, $unControle, $erreur);
-  }
-
-  // Sortir en cas d'erreur
-  if ($erreur) {
-    break;
-  }
-
+if (!$erreur) {
   // Placement des étudiants tiers-temps sans ordinateur
   if (!empty($listeTTSansOrdi)) {
     placerEtudiants($listeTTSansOrdi, $unControle, $erreur);
   }
+}
 
-
-  // Sortir en cas d'erreur
-  if ($erreur) {
-    break;
-  }
-
+if (!$erreur) {
   // Placement des étudiants sans ordinateur ni tiers-temps
   if (!empty($listeEtud)) {
     placerEtudiants($listeEtud, $unControle, $erreur);
   }
-
-  // Sortir en cas d'erreur
-  if ($erreur) {
-    break;
-  }
-
-
-
-  break;
 }
+
+
 
 /* ----------------------------------------------------------------
 ----------------------------------------------------------------
@@ -302,12 +285,11 @@ if (!$erreur) {
   genererPDF($unControle);
 
   // Rediriger l'utilisateur vers un message de succès
-  echo "<meta http-equiv='refresh' content='0;url=". PAGE_RESULTAT_PATH ."&succes=ok&id=".$_POST["id"]."'>";
-}
-else {
+  echo "<meta http-equiv='refresh' content='0;url=" . PAGE_RESULTAT_PATH . "&succes=ok&id=" . $_POST["id"] . "'>";
+} else {
 
   // Rediriger l'utilisateur vers un message d'erreur
-  echo "<meta http-equiv='refresh' content='0;url=". PAGE_RESULTAT_PATH ."&succes=erreur&id=".$_POST["id"]." '>";
+  echo "<meta http-equiv='refresh' content='0;url=" . PAGE_RESULTAT_PATH . "&succes=erreur&id=" . $_POST["id"] . " '>";
 }
 
 ?>
