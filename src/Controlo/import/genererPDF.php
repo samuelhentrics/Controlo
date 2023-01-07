@@ -235,6 +235,13 @@ function genererPDF($unControle)
     $nomFormatDossier = str_replace(" ", "-", $nomFormatDossier);
 
     $nomDossier = PLANS_DE_PLACEMENT_FOLDER_NAME . $dateFormatDossier . "_" . $nomFormatDossier . "/";
+
+    // Crée le dossier PlansPlacement s'il n'existe pas/plus
+    if(!file_exists(PLANS_DE_PLACEMENT_FOLDER_NAME)){
+        mkdir(PLANS_DE_PLACEMENT_FOLDER_NAME);
+    }
+
+    // Crée le dossier du contrôle s'il n'existe pas
     if (!file_exists($nomDossier)) {
         mkdir($nomDossier);
     }

@@ -81,7 +81,27 @@
 
                     // Demande de l'utilisateur a télécharger les PDP
                     case 'telechargement':
-                        include(IMPORT_PATH."telecharger.php");
+                        if (isset($_GET['id'])){
+                            $id = $_GET['id'];
+                            // Rediriger vers la page de téléchargement
+                            echo "<meta http-equiv='refresh' content='0;url=download.php?id=$id'>";
+
+                            echo '<script>
+                            $(document).ready(function () {
+                                //Handler for .ready() called.
+                                window.setTimeout(function () {
+                                    location.href = "'.PAGE_RESULTAT_PATH.'&succes=ok&id='.$id.'";
+                                }, 500);
+                            });
+                            
+                            </script>';
+
+                        }
+                        else{
+                            // Rediriger vers la page d'accueil
+                            echo "<meta http-equiv='refresh' content='0;url=index.php'>";
+                        }
+                        
                         break;
 
                     default:
