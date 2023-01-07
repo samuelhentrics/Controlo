@@ -1,6 +1,4 @@
 <?php
-header_remove();
-
 
 include_once(FONCTION_CREER_LISTE_CONTROLES_PATH);
 
