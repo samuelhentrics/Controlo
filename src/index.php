@@ -1,4 +1,4 @@
-    <!doctype html>
+<!doctype html>
     <html lang="fr">
 
     <head>
@@ -68,9 +68,20 @@
                     case 'test':
                         include(BACK_PATH."test.php");
                         break;
-                    // Mode développement
+
+                    // Générer les plans de placement
+                    case 'generer':
+                        include(IMPORT_PATH."generer.php");
+                        break;
+
+                    // Page de résultat de génération plans de placement
                     case 'resultat':
                         include(BACK_PATH."resultat.php");
+                        break;
+
+                    // Demande de l'utilisateur a télécharger les PDP
+                    case 'telechargement':
+                        include(IMPORT_PATH."telecharger.php");
                         break;
 
                     default:

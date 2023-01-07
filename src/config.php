@@ -488,10 +488,22 @@ define("PAGE_SALLES_PATH" , PATH."index.php?page=salles");
 define("PAGE_CHOIX_GENERATION_PATH" , PATH."index.php?page=choixGeneration");
 
 /**
+ * @brief Lien complet vers la page de génération (qui revoit directement vers la page resultat)
+ * @note ex : http://localhost/src/index.php?page=generer
+ */
+define("PAGE_GENERER_PATH" , PATH."index.php?page=generer");
+
+/**
  * @brief Lien complet vers la page resultat
  * @note ex : http://localhost/src/index.php?page=resultat
  */
-define("PAGE_RESULTAT" , PATH."index.php?page=resultat");
+define("PAGE_RESULTAT_PATH" , PATH."index.php?page=resultat");
+
+/**
+ * @brief Lien complet vers la page de téléchargement
+ * @note ex : http://localhost/src/index.php?page=telechargement
+ */
+define("PAGE_TELECHARGEMENT_PATH" , PATH."index.php?page=telechargement");
 
 
 ?>
