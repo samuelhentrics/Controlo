@@ -14,10 +14,10 @@
                         <a class="nav-link active" href="<?php echo PATH; ?>">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo PAGE_CONTROLES_PATH; ?>">Controles</a>
+                        <a class="nav-link" href="<?php echo PAGE_CONTROLES_PATH; ?>">Contrôles</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo PAGE_ETUDIANTS_PATH; ?>">Etudiants</a>
+                        <a class="nav-link" href="<?php echo PAGE_ETUDIANTS_PATH; ?>">Étudiants</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo PAGE_SALLES_PATH; ?>">Salles</a>
