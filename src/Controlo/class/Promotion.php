@@ -126,7 +126,7 @@ class Promotion
     {
         $listeEtudiantsNonTT = array();
         foreach ($this->getMesEtudiants() as $key => $unEtudiant) {
-            if (!$unEtudiant->getEstTT()){
+            if (!$unEtudiant->getEstTT() and !$unEtudiant->getAOrdi()){
                 array_push($listeEtudiantsNonTT, $unEtudiant);
             }
         }

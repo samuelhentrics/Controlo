@@ -32,21 +32,21 @@
             function demanderContraintesGenerales()
             {
                 echo '
-            <h3>Contraintes générales</h3>
-            <p>Etudiants separés par
+            <h3>Contrainte générale</h3>
+            <p>Trier les étudiants :
+                <select name="typePlacement" id="">
+                    <option value="aléatoire">de façon aléatoire</option>
+                    <option value="ascendant">de A à Z</option>
+                    <option value="descendant">de Z à A</option>
+                </select>
+            </p>
+            <p style="visibility: hidden">Etudiants separés par
                 <select name="typeSeparation" id="">
                     <option value="TD">TD</option>
                     <option value="TP">TP</option>
                 </select>
+            </p>
             
-            </p>
-            <p>Etudiants placés par
-                <select name="typePlacement" id="">
-                    <option value="aléatoire">aléatoire</option>
-                    <option value="ascendant">ascendant</option>
-                    <option value="descendant">descendant</option>
-                </select>
-            </p>
             ';
             }
 
@@ -56,14 +56,14 @@
                 print('<table class="table table-striped table-bordered">');
                 print("<tr>
                     <th>Salles</th>
-                    <th>Nombre de place séparent les étudiants</th>
-                    <th>Nombre de rangées séparent les étudiants</th>
+                    <th>Nombre de places séparant les étudiants</th>
+                    <th>Nombre de rangées séparant les étudiants</th>
                 </tr>");
                 foreach ($leControle->getMesSalles() as $key => $uneSalle) {
                     print("<tr>");
                     print("<td>" . $uneSalle->getNom() . "</td>");
-                    print("<td> <input type='number' id='nbPlaceSeparant' min='0' max='999' value=1 name='nbPlaceSeparant-" . $uneSalle->getNom() . "' value='0'></td>");
-                    print("<td> <input type='number' id='nbRangeeSeparant' min='0' max='999' value=0    name='nbRangeeSeparant-" . $uneSalle->getNom() . "' value='0'></td>");
+                    print("<td> <input type='number' id='nbPlacesSeparant' min='0' max='999' value=1 name='nbPlacesSeparant-" . $uneSalle->getNom() . "' value='0'></td>");
+                    print("<td> <input type='number' id='nbRangeesSeparant' min='0' max='999' value=0    name='nbRangeesSeparant-" . $uneSalle->getNom() . "' value='0'></td>");
                     print("</tr>");
                 }
                 print("</table>");

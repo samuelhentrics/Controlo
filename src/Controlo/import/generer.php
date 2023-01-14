@@ -22,6 +22,22 @@ include_once(CLASS_PATH . CLASS_PLAN_PLACEMENT_FILE_NAME);
 include_once(CLASS_PATH . CLASS_UN_PLACEMENT_FILE_NAME);
 include_once(IMPORT_PATH . "genererPDF.php");
 
+
+/**
+ * Retourne une liste d'étudiants sans les étudiants démissionnaire
+ * @param array $listeEtudiants Liste d'étudiants
+ * @return array Liste d'étudiants sans les étudiants démissionnaire
+ */
+function supprimerDemissionnaire($listeEtudiants){
+  foreach ($listeEtudiants as $key => $etudiant) {
+    if($etudiant->getEstDemissionnaire() == true){
+      unset($listeEtudiants[$key]);
+    }
+  }
+  $listeEtudiants = array_values($listeEtudiants);
+  return $listeEtudiants;
+}
+
 /**
  * @brief Trie les listes d'étudiants
  * @param array $liste Liste d'étudiants
@@ -31,7 +47,7 @@ include_once(IMPORT_PATH . "genererPDF.php");
 function trieListe($liste, $algo)
 {
   switch ($algo) {
-    case 'aléatoire':
+    case 'de façon aléatoire':
       // Mélange la liste d'étudiants
       shuffle($liste);
       break;
@@ -205,8 +221,8 @@ $listeDeSalles = $unControle->getMesSalles();
 // -- Création des plans de placement pour chaque salle
 foreach ($listeDeSalles as $nom => $uneSalle) {
   // Récupération des contraintes d'espacement
-  $nbPlaceSeparant = $_POST["nbPlaceSeparant-" . $nom];
-  $nbRangeeSeparant = $_POST["nbRangeeSeparant-" . $nom];
+  $nbPlaceSeparant = $_POST["nbPlacesSeparant-" . $nom];
+  $nbRangeeSeparant = $_POST["nbRangeesSeparant-" . $nom];
 
   // Création des contraintes d'espacement
   $contraintesSalle = new ContraintesEspacement($nbRangeeSeparant, $nbPlaceSeparant);
@@ -231,12 +247,16 @@ $listeEtud = array();
 foreach ($listePromos as $unePromo) {
   // Récupération des étudiants de la promotion et ajout dans les listes d'étudiants correspondantes
   $listeTTSansOrdi = array_merge($listeTTSansOrdi, $unePromo->recupererListeEtudiantsTTSansOrdi());
+  
   $listeOrdi = array_merge($listeOrdi, $unePromo->recupererListeEtudiantsOrdi());
   $listeEtud = array_merge($listeEtud, $unePromo->recupererListeEtudiantsNonTT());
 
 }
 
-
+// -- Supprimer les étudiants démissionnaires des listes
+$listeTTSansOrdi = supprimerDemissionnaire($listeTTSansOrdi);
+$listeOrdi = supprimerDemissionnaire($listeOrdi);
+$listeEtud = supprimerDemissionnaire($listeEtud);
 
 // -- Trie les listes d'étudiants
 $listeTTSansOrdi = trieListe($listeTTSansOrdi, $contraintesGenerales->getAlgoRemplissage());
@@ -279,15 +299,14 @@ if (!$erreur) {
 ----------------------------------------------------------------
 ----------------------------------------------------------------*/
 
+
 // Tentative de génération des PDF
 if (!$erreur) {
   // Génération des PDF
   genererPDF($unControle);
-
   // Rediriger l'utilisateur vers un message de succès
   echo "<meta http-equiv='refresh' content='0;url=" . PAGE_RESULTAT_PATH . "&succes=ok&id=" . $_POST["id"] . "'>";
 } else {
-
   // Rediriger l'utilisateur vers un message d'erreur
   echo "<meta http-equiv='refresh' content='0;url=" . PAGE_RESULTAT_PATH . "&succes=erreur&id=" . $_POST["id"] . " '>";
 }
