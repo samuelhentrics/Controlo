@@ -6,7 +6,6 @@ echo "<div class='container'>";
 echo "  <div class='col-12'>";
 
 
-
 if (isset($_GET['succes']) and isset($_GET['id'])) {
     $page = $_GET['succes'];
     $id = $_GET['id'];
@@ -17,11 +16,15 @@ if (isset($_GET['succes']) and isset($_GET['id'])) {
         // Cas où l'utilisateur souhaite voir la liste des contrôles
         case 'ok':
             // Afficher un message de confirmation en bootstrap
-            echo "<div class='alert alert-success' role='alert'>
-              <h4 class='alert-heading'>Plans générés</h4>
-              Les plans de placement pour le contrôle \"$controleNom\" ont été générés avec succès.<br>
-              Vous pouvez les télécharger en cliquant sur le bouton ci-dessous.<br><br>
-              <a href='". PAGE_TELECHARGEMENT_PATH ."&id=". $id ."' class='btn btn-primary'>Télécharger les plans</a>
+            echo "
+            <div class='alert alert-success' role='alert'>
+                <h4 class='alert-heading'>Plans générés</h4>
+                Les plans de placement pour le contrôle \"$controleNom\" ont été générés avec succès.<br>
+                Vous pouvez les télécharger en cliquant sur le bouton ci-dessous.<br><br>
+                <form>
+                    <input type='hidden' id='id' value='$id'>
+                    <button type='button' id='download-button' class='btn btn-primary btn-lg w-100'>Télécharger</button>
+                </form>
             </div>";
 
             break;
@@ -46,6 +49,19 @@ else {
 
 echo "  </div>";
 echo "</div>";
+echo '<script>
+document.getElementById("download-button").addEventListener("click", async function(){
+    let id = document.getElementById("id").value;
+    let response = await fetch("download.php?id="+id);
+    let file_name = response.headers.get("Content-Disposition").split("=")[1];
+    let blob = await response.blob();
+    let link = document.createElement("a");
+    link.href = window.URL.createObjectURL(blob);
+    link.download = file_name;
+    link.click();
+  });
+</script>
+';
 
 
 ?>

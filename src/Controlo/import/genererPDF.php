@@ -151,17 +151,26 @@ class PDF extends FPDF
     }
 
     // Table spéciale Salle
-    function Salle($data)
+    function Salle($plan, $listePlacesPrises)
     {
         // Data
-        foreach ($data as $row) {
+        foreach ($plan as $row) {
             $this->Cell(20);
             foreach ($row as $col) {
-                $this->Cell(10, 5, $col, 1, 0, "C");
+                if (in_array($col, $listePlacesPrises)) {
+                    $this->SetFillColor(175, 175, 175);
+                    $this->SetFont('Arial', 'B', 10);
+                    $this->Cell(10, 5, $col, 1, 0, "C", true);
+                    $this->SetFont('Arial', '', 10);
+                } else {
+                    $this->SetFillColor(255, 255, 255);
+                    $this->Cell(10, 5, $col, 1, 0, "C", true);
+                }
             }
             $this->Ln();
         }
     }
+
 
     /*
     ---------------------------------------------------------------
@@ -194,34 +203,49 @@ function genererPDF($unControle)
 {
     // Création de l'entête pour chaque page
     //      Récupération des variables importantes pour l'entête
-    $nomControle = $unControle->getNomLong();
+    $nomTotalControle = $unControle->getNomLong();
     $nomCourtControle = $unControle->getNomCourt();
 
+    // Prendre le code ressource du controle (partie avant le -)
+    $codeRessource = explode("-", $nomTotalControle)[0];
+    // Prendre le nom du contrôle
+    $premierTiret = strpos($nomTotalControle, "-");
+    $nomControle = substr($nomTotalControle, $premierTiret + 1);
+
+    // Récupération de la date du contrôle
     $dateControle = $unControle->getDate();
     $date = date('d/m/Y', strtotime($dateControle));
 
+    // Récupération de l'heure du contrôle
     $heureTT = str_replace(":", "h", $unControle->getHeureTT());
-
     $heureNonTT = str_replace(":", "h", $unControle->getHeureNonTT());
 
+    // Récupération de la durée du contrôle
     $dureeTT = $unControle->getDuree();
     $dureeTT = sprintf("%02dh%02d", floor($dureeTT / 60), ($dureeTT % 60));
-
     $dureeNonTT = $unControle->getDureeNonTT();
     $dureeNonTT = sprintf("%02dh%02d", floor($dureeNonTT / 60), ($dureeNonTT % 60));
 
+    if(count($unControle->getMesPromotions()) > 1) {
+        $affichagePromotion = "Promotions";
+    }
+    else{
+        $affichagePromotion = "Promotion";
+    }
+
+    // Récupération des promotions du contrôle
     $lesPromotions = "";
     foreach ($unControle->getMesPromotions() as $numPromo => $unePromotion) {
         $lesPromotions .= $unePromotion->getNom() . " - ";
     }
     $lesPromotions = substr($lesPromotions, 0, -2);
 
-
-    $entete = '<u>Nom du contrôle</u> : ' . $nomControle . '<br>' .
-        '<u>Promotion(s)</u> : ' . $lesPromotions . '<br>' .
-        '<u>Date</u> : ' . $date . '            ' .
-        '<u>Heure</u> : ' . $heureNonTT . ' (TT : ' . $heureTT . ')' . '            ' .
-        '<u>Durée</u> : ' . $dureeNonTT . ' (TT : ' . $dureeTT . ')';
+    // Création de l'entête
+    $entete = '<u>Nom du contrôle</u> : ' . $nomTotalControle . '<br>' .
+    '<u>'.$affichagePromotion.'</u> : ' . $lesPromotions . '<br>' .
+    '<u>Date</u> : ' . $date . '            ' .
+    '<u>Heure</u> : ' . $heureNonTT . ' (TT : ' . $heureTT . ')' . '            ' .
+    '<u>Durée</u> : ' . $dureeNonTT . ' (TT : ' . $dureeTT . ')';
 
 
     // Création du dossier dans le dossier des plans de placement
@@ -247,67 +271,16 @@ function genererPDF($unControle)
     }
 
     foreach ($unControle->getMesSalles() as $nomSalle => $uneSalle) {
-        // Instanciation de la classe dérivée
-        $pdf = new PDF();
-        $pdf->AliasNbPages();
-        // Créer une nouvelle page
-        $pdf->AddPage();
-
-        // Titre de la page (Nom du contrôle)
-        $pdf->SetFont('Arial', 'B', 15);
-        $pdf->Cell(80);
-        $titre = utf8_decode($nomCourtControle . " - Contrôle");
-        $pdf->Cell(30, 10, $titre, 0, 0, 'C');
-        $pdf->Ln(15);
-
-        // Affichage de l'entête
-        $pdf->SetFont('Arial', '', 12);
-        $pdf->WriteHTML(utf8_decode($entete));
-        $pdf->Ln(15);
-
-        // Affichage du nom de la salle
-        $pdf->SetFont('Arial', 'U', 13);
-        $pdf->Cell(80);
-        $titre = utf8_decode("Salle " . $nomSalle);
-        $pdf->Cell(30, 10, $titre, 0, 0, 'C');
-        $pdf->Ln(15);
-
-        // Affichage du plan de la salle
-        $pdf->SetFont('Arial', '', 12);
-        $data = $pdf->LoadData(CSV_SALLES_PATH . $nomSalle . ".csv");
-        $pdf->Salle($data);
-        $pdf->Ln(15);
-
-        // Affichage de la nomenclature 
-        $pdf->SetFont('Arial', 'U', 12);
-        $pdf->Write(5, utf8_decode("Légende (X est un entier naturel) :"));
-        $pdf->Ln(10);
-
-        $pdf->SetFont('Arial', '', 12);
-
-        $pdf->Cell(20, 10, "T", 1, 0, "C");
-        $pdf->Cell(5, 10);
-        $pdf->Cell(30, 10, "Tableau", 0, 0);
-        $pdf->Cell(5, 10);
-
-        $pdf->Cell(20, 10, "E", 1, 0, "C");
-        $pdf->Cell(5, 10);
-        $pdf->Cell(40, 10, "Place avec prise", 0, 0);
-        $pdf->Cell(5, 10);
-
-        $pdf->Cell(20, 10, "X", 1, 0, "C");
-        $pdf->Cell(5, 10);
-        $pdf->Cell(30, 10, "Place", 0, 0);
-        $pdf->Ln(15);
-
+        // Informations sur le PDP
         // Plan de Placement de la salle actuelle
         $pdpActuelle = $unControle->getMesPlansDePlacement()[$nomSalle];
         $listePlacementsPDP = $pdpActuelle->getMesPlacements();
 
-        $arrayPlaces = array();
+        $listePlaces = array();
+        $numeroPlacesPrises = array();
 
         // Récupérer sous forme de liste ( (NUM_PLACE), (NOM_ETUDIANT) ) la liste
-        // des places attribués dans arrayPlaces
+        // des places attribués dans listePlaces
 
         foreach ($listePlacementsPDP as $ligne) {
             foreach($ligne as $unPlacement) {
@@ -320,6 +293,10 @@ function genererPDF($unControle)
                 if ($place->getInfoPrise()) {
                     $numeroPlace .= "E";
                 }
+                
+                // Ajouter le numéro de place si celle-ci est prise
+                array_push($numeroPlacesPrises, $numeroPlace);
+
 
                 $nomCompletEtudiant = $etudiant->getNom() . " " . $etudiant->getPrenom();
                 // Ajouter (TT) si l'étudiant a un tiers-temps ou
@@ -340,16 +317,88 @@ function genererPDF($unControle)
                 array_push($infoUnePlace, $numeroPlace);
                 array_push($infoUnePlace, $nomCompletEtudiant);
 
-                $arrayPlaces[$place->getNumero()] = $infoUnePlace;
+                $listePlaces[$place->getNumero()] = $infoUnePlace;
             }
         }
 
         // Tri du tableau par numéro de place
-        ksort($arrayPlaces);
+        ksort($listePlaces);
+
+
+        // Instanciation de la classe dérivée
+        $pdf = new PDF();
+        $pdf->AliasNbPages();
+
+        // Créer une nouvelle page
+        $pdf->AddPage();
+
+        // Titre de la page (Nom du contrôle)
+        $pdf->SetFont('Arial', 'B', 15);
+        $pdf->Cell(80);
+        $titre = utf8_decode("Contrôle");
+        $pdf->Cell(30, 10, $titre, 0, 0, 'C');
+
+        // Deuxieme ligne (Code du contrôle)
+        $pdf->Ln(7);
+        $pdf->Cell(80);
+        $titre = utf8_decode($codeRessource);
+        $pdf->Cell(30, 10, $titre, 0, 0, 'C');
+
+        // Troisieme ligne (Nom du contrôle)
+        $pdf->Ln(7);
+        $pdf->Cell(80);
+        $titre = utf8_decode($nomControle);
+        $pdf->Cell(30, 10, $titre, 0, 0, 'C');
+
+        $pdf->Ln(15);
+
+        // Affichage de l'entête
+        $pdf->SetFont('Arial', '', 12);
+        $pdf->WriteHTML(utf8_decode($entete));
+        $pdf->Ln(15);
+
+        // Affichage du nom de la salle
+        $pdf->SetFont('Arial', 'U', 13);
+        $pdf->Cell(80);
+        $titre = utf8_decode("Salle " . $nomSalle);
+        $pdf->Cell(30, 10, $titre, 0, 0, 'C');
+        $pdf->Ln(15);
+
+        // Affichage du plan de la salle
+        $pdf->SetFont('Arial', '', 12);
+        $planSalle = $pdf->LoadData(CSV_SALLES_PATH . $nomSalle . ".csv");
+        $pdf->Salle($planSalle, $numeroPlacesPrises);
+        $pdf->Ln(15);
+
+        // Affichage de la nomenclature 
+        $pdf->SetFont('Arial', 'U', 12);
+        $pdf->Write(5, utf8_decode("Légende :"));
+        $pdf->Ln(10);
+
+        $pdf->SetFont('Arial', '', 12);
+
+        $pdf->Cell(20, 10, "T", 1, 0, "C");
+        $pdf->Cell(5, 10);
+        $pdf->Cell(30, 10, "Tableau", 0, 0);
+        $pdf->Cell(5, 10);
+
+        $pdf->Cell(20, 10, "E", 1, 0, "C");
+        $pdf->Cell(5, 10);
+        $pdf->Cell(40, 10, "Place avec prise", 0, 0);
+        $pdf->Cell(5, 10);
+
+        $pdf->SetFillColor(175, 175, 175);
+        $pdf->Cell(20, 10, "", 1, 0, "C", true);
+        $pdf->Cell(5, 10);
+        $pdf->Cell(30, 10, "Place", 0, 0);
+        $pdf->Ln(15);
+
+        // Nouvelle page
+        $pdf->AddPage();
 
         // Affichage du tableau avec les infos sur les étudiants et leurs places
         $header = array(utf8_decode("N° Place"), utf8_decode("Étudiant"));
-        $pdf->BasicTable($header, $arrayPlaces);
+        $pdf->BasicTable($header, $listePlaces);
         $pdf->Ln(15);
 
         // Enregistrer le PDF du PlanDePlacement actuel dans le dossier
