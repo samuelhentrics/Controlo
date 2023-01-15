@@ -384,13 +384,13 @@ function genererPDF($unControle)
 
         $pdf->Cell(20, 10, "E", 1, 0, "C");
         $pdf->Cell(5, 10);
-        $pdf->Cell(40, 10, "Place avec prise", 0, 0);
+        $pdf->Cell(35, 10, "Place avec prise", 0, 0);
         $pdf->Cell(5, 10);
 
         $pdf->SetFillColor(175, 175, 175);
         $pdf->Cell(20, 10, "", 1, 0, "C", true);
         $pdf->Cell(5, 10);
-        $pdf->Cell(30, 10, "Place", 0, 0);
+        $pdf->Cell(35, 10, utf8_decode("Place occupée"), 0, 0);
         $pdf->Ln(15);
 
         // Nouvelle page
