@@ -1,0 +1,11 @@
+<map id="infoManquant" name="infoManquant">
+<area shape="rect" id="node1" title="Retourne une chaîne de caractères informant des informations manquantes." coords="5,179,104,204"/>
+<area shape="rect" id="node2" href="$class_controle.html#a24d89b0ad05ea2e33626b1fc8ed59bc3" title="Retourne la date du Controle." coords="184,5,251,31"/>
+<area shape="rect" id="node3" href="$class_controle.html#a8738c3c8e09642c9f8f1239e9bfc1c91" title="Retourne la durée totale (tiers&#45;temps compris) du Controle." coords="180,55,255,80"/>
+<area shape="rect" id="node4" href="$class_controle.html#a2ce5a36c993fe121331d5b8fadeadbb7" title="Retourne l&#39;heure de quand commence un étudiant non tiers&#45;temps." coords="162,104,273,129"/>
+<area shape="rect" id="node5" href="$class_controle.html#a75e6fc5895af79aeabaa272582588bc1" title="Retourne l&#39;heure de quand commence un étudiant tiers&#45;temps." coords="173,153,261,179"/>
+<area shape="rect" id="node6" href="$class_controle.html#ae3c56c69f74e5e6957ba0d2d0ed6a704" title="Retourne les Promotion du Controle." coords="152,203,283,228"/>
+<area shape="rect" id="node7" href="$class_controle.html#a38b37bb62363cceb31aa1f5015c766d9" title="Retourne la liste des Salle affectés au Controle." coords="167,252,268,277"/>
+<area shape="rect" id="node8" href="$class_controle.html#aaa31b4696e33d5fbd22c7813f9a52908" title="Retourne le nom court du Controle." coords="168,301,267,327"/>
+<area shape="rect" id="node9" href="$class_controle.html#a4d7dbffc6cbea64e0a4717bdf32cc3b3" title="Retourne le nom long du Controle." coords="170,351,265,376"/>
+</map>

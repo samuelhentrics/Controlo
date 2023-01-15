@@ -96,9 +96,12 @@
                 // Promotions du contrôles
                 $lesPromotions = $listeControles[$numControle]->getMesPromotions();
                 if ($lesPromotions != null) {
+                    $affichagePromo = "";
                     foreach ($lesPromotions as $key => $promo) {
-                        print($promo->getNom());
+                        $affichagePromo .= $promo->getNom() . ", ";
                     }
+                    $affichagePromo = substr($affichagePromo, 0, -2);
+                    print($affichagePromo);
                 }
                 else{
                     print("Aucune promotion");

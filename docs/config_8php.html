@@ -260,9 +260,15 @@ Variables</h2></td></tr>
 <tr class="memitem:a27410c2e29ec3a502752a73d1edd601e"><td class="memItemLeft" align="right" valign="top">const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8php.html#a27410c2e29ec3a502752a73d1edd601e">PAGE_CHOIX_GENERATION_PATH</a> PATH.&quot;index.php?page=choixGeneration&quot;</td></tr>
 <tr class="memdesc:a27410c2e29ec3a502752a73d1edd601e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lien complet vers la page de xhoix de génération d'un controle.  <a href="config_8php.html#a27410c2e29ec3a502752a73d1edd601e">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a27410c2e29ec3a502752a73d1edd601e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2dd6e6ad4029a5f7b4dcca5aca91fb1d"><td class="memItemLeft" align="right" valign="top">const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8php.html#a2dd6e6ad4029a5f7b4dcca5aca91fb1d">PAGE_RESULTAT</a> PATH.&quot;index.php?page=resultat&quot;</td></tr>
-<tr class="memdesc:a2dd6e6ad4029a5f7b4dcca5aca91fb1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lien complet vers la page resultat.  <a href="config_8php.html#a2dd6e6ad4029a5f7b4dcca5aca91fb1d">Plus de détails...</a><br /></td></tr>
-<tr class="separator:a2dd6e6ad4029a5f7b4dcca5aca91fb1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc46955c0e0194f70dc4b8012e026e29"><td class="memItemLeft" align="right" valign="top">const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8php.html#acc46955c0e0194f70dc4b8012e026e29">PAGE_GENERER_PATH</a> PATH.&quot;index.php?page=generer&quot;</td></tr>
+<tr class="memdesc:acc46955c0e0194f70dc4b8012e026e29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lien complet vers la page de génération (qui revoit directement vers la page resultat)  <a href="config_8php.html#acc46955c0e0194f70dc4b8012e026e29">Plus de détails...</a><br /></td></tr>
+<tr class="separator:acc46955c0e0194f70dc4b8012e026e29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a834b088f7704c52fc2c964e2d51ee192"><td class="memItemLeft" align="right" valign="top">const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8php.html#a834b088f7704c52fc2c964e2d51ee192">PAGE_RESULTAT_PATH</a> PATH.&quot;index.php?page=resultat&quot;</td></tr>
+<tr class="memdesc:a834b088f7704c52fc2c964e2d51ee192"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lien complet vers la page resultat.  <a href="config_8php.html#a834b088f7704c52fc2c964e2d51ee192">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a834b088f7704c52fc2c964e2d51ee192"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ab849133595520f1c2c7462e08fef15"><td class="memItemLeft" align="right" valign="top">const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="config_8php.html#a4ab849133595520f1c2c7462e08fef15">PAGE_TELECHARGEMENT_PATH</a> PATH.&quot;index.php?page=telechargement&quot;</td></tr>
+<tr class="memdesc:a4ab849133595520f1c2c7462e08fef15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lien complet vers la page de téléchargement.  <a href="config_8php.html#a4ab849133595520f1c2c7462e08fef15">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a4ab849133595520f1c2c7462e08fef15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p >Contient les variables d'environnement pour la bonne configuration du projet. </p>
@@ -1069,14 +1075,31 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a2dd6e6ad4029a5f7b4dcca5aca91fb1d" name="a2dd6e6ad4029a5f7b4dcca5aca91fb1d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2dd6e6ad4029a5f7b4dcca5aca91fb1d">&#9670;&#160;</a></span>PAGE_RESULTAT</h2>
+<a id="acc46955c0e0194f70dc4b8012e026e29" name="acc46955c0e0194f70dc4b8012e026e29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc46955c0e0194f70dc4b8012e026e29">&#9670;&#160;</a></span>PAGE_GENERER_PATH</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const PAGE_RESULTAT PATH.&quot;index.php?page=resultat&quot;</td>
+          <td class="memname">const PAGE_GENERER_PATH PATH.&quot;index.php?page=generer&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lien complet vers la page de génération (qui revoit directement vers la page resultat) </p>
+<dl class="section note"><dt>Note</dt><dd>ex : <a href="http://localhost/src/index.php?page=generer">http://localhost/src/index.php?page=generer</a> </dd></dl>
+
+</div>
+</div>
+<a id="a834b088f7704c52fc2c964e2d51ee192" name="a834b088f7704c52fc2c964e2d51ee192"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a834b088f7704c52fc2c964e2d51ee192">&#9670;&#160;</a></span>PAGE_RESULTAT_PATH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const PAGE_RESULTAT_PATH PATH.&quot;index.php?page=resultat&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1100,6 +1123,23 @@ Variables</h2></td></tr>
 
 <p>Lien complet vers la page de la liste des salles. </p>
 <dl class="section note"><dt>Note</dt><dd>ex : <a href="http://localhost/src/index.php?page=salles">http://localhost/src/index.php?page=salles</a> </dd></dl>
+
+</div>
+</div>
+<a id="a4ab849133595520f1c2c7462e08fef15" name="a4ab849133595520f1c2c7462e08fef15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ab849133595520f1c2c7462e08fef15">&#9670;&#160;</a></span>PAGE_TELECHARGEMENT_PATH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const PAGE_TELECHARGEMENT_PATH PATH.&quot;index.php?page=telechargement&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lien complet vers la page de téléchargement. </p>
+<dl class="section note"><dt>Note</dt><dd>ex : <a href="http://localhost/src/index.php?page=telechargement">http://localhost/src/index.php?page=telechargement</a> </dd></dl>
 
 </div>
 </div>

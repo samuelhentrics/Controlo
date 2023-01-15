@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['plan_2ephp_0',['Plan.php',['../_plan_8php.html',1,'']]],
-  ['plandeplacement_2ephp_1',['PlanDePlacement.php',['../_plan_de_placement_8php.html',1,'']]],
-  ['promotion_2ephp_2',['Promotion.php',['../_promotion_8php.html',1,'']]]
+  ['generer_2ephp_0',['generer.php',['../generer_8php.html',1,'']]],
+  ['genererpdf_2ephp_1',['genererPDF.php',['../generer_p_d_f_8php.html',1,'']]]
 ];

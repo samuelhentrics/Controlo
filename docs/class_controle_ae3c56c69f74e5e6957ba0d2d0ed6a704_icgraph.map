@@ -1,7 +1,8 @@
 <map id="getMesPromotions" name="getMesPromotions">
-<area shape="rect" id="node1" title="Retourne les Promotion du Controle." coords="376,31,507,56"/>
+<area shape="rect" id="node1" title="Retourne les Promotion du Controle." coords="376,55,507,80"/>
 <area shape="rect" id="node2" href="$class_controle.html#a47d831ba2434d317951e61b64d169993" title="Retourne vrai si le Controle a toutes les informations, faux sinon." coords="192,5,328,31"/>
 <area shape="rect" id="node3" href="$class_controle.html#a535213a155fabb99c68db44e3e54f373" title=" " coords="202,55,318,80"/>
-<area shape="rect" id="node4" href="$class_controle.html#a6846fafe7b51ccfbd5cf81441cd97733" title="Permet d&#39;ajouter une Promotion à la liste de promotions participant au Controle." coords="15,29,135,55"/>
-<area shape="rect" id="node5" href="$class_controle.html#a5f7813270fd0d412095e0c0d34e3e902" title="Permet de supprimer une Promotion de la liste de promotions participant au Controle." coords="5,79,144,104"/>
+<area shape="rect" id="node6" href="$class_controle.html#a9ecf251a4e5250661ffb47554ac3bd2f" title="Retourne une chaîne de caractères informant des informations manquantes." coords="211,104,309,129"/>
+<area shape="rect" id="node4" href="$class_controle.html#a6846fafe7b51ccfbd5cf81441cd97733" title="Permet d&#39;ajouter une Promotion à la liste de promotions participant au Controle." coords="15,31,135,56"/>
+<area shape="rect" id="node5" href="$class_controle.html#a5f7813270fd0d412095e0c0d34e3e902" title="Permet de supprimer une Promotion de la liste de promotions participant au Controle." coords="5,80,144,105"/>
 </map>

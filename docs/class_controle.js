@@ -18,6 +18,7 @@ var class_controle =
     [ "getMesSalles", "class_controle.html#a38b37bb62363cceb31aa1f5015c766d9", null ],
     [ "getNomCourt", "class_controle.html#aaa31b4696e33d5fbd22c7813f9a52908", null ],
     [ "getNomLong", "class_controle.html#a4d7dbffc6cbea64e0a4717bdf32cc3b3", null ],
+    [ "infoManquant", "class_controle.html#a9ecf251a4e5250661ffb47554ac3bd2f", null ],
     [ "setDate", "class_controle.html#a1768457ddad126963457c641d0aba117", null ],
     [ "setDuree", "class_controle.html#ab7bcae4b4c25ccd7ece197c31cf20353", null ],
     [ "setHeureNonTT", "class_controle.html#a50d1808aeadfe4d51cf306841fd83c2f", null ],
