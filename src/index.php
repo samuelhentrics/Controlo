@@ -17,6 +17,7 @@
         <!-- Javascript -->
         <script src="<?php echo JS_PATH; ?>popper.min.js"></script>
         <script src="<?php echo JS_PATH; ?>bootstrap.min.js"></script>
+        <script src="<?php echo JS_PATH; ?>bootstrap.bundle.min.js"></script>
         <script src="<?php echo JS_PATH; ?>jquery.min.js"></script>
         <script src="<?php echo JS_PATH; ?>jquery.dataTables.min.js"></script>
         <script src="<?php echo JS_PATH; ?>datatables.bootstrap5.js"></script>       

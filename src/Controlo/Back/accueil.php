@@ -1,7 +1,7 @@
 <main class="flex-shrink-0">
   <div class="container">
     <h1 class="mt-5">Bienvenue sur Controlo</h1>
-    <p>Bienvenue sur Controlo, cette plateforme permet de générer actuellement des plans de placement pour des
+    <p>Bienvenue sur Controlo, cette plateforme permet de générer des plans de placement pour des
       contrôles.</p>
     
     <div id="accordion">

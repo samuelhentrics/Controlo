@@ -396,16 +396,44 @@ class Controle
      */
     public function controleInfoComplet()
     {
-        if (
-            $this->getNomLong() != null and $this->getNomCourt() != null
+        return ($this->getNomLong() != null and $this->getNomCourt() != null
             and $this->getDate() != null and $this->getDuree() != null
             and $this->getHeureTT() != null and $this->getHeureNonTT() != null
             and $this->getMesPromotions() != null and $this->getMesSalles() != null
-        ) {
-            return true;
-        } else {
-            return false;
+        );
+    }
+
+    /**
+     * @brief Retourne une chaîne de caractères informant des informations manquantes
+     * @return string
+     */
+    public function infoManquant(){
+        $infoManquant = "Manquant : <br>";
+        if ($this->getNomLong() == null){
+            $infoManquant .= "• Nom long<br>";
         }
+        if ($this->getNomCourt() == null){
+            $infoManquant .= "• Nom court<br>";
+        }
+        if ($this->getDate() == null){
+            $infoManquant .= "• Date<br>";
+        }
+        if ($this->getDuree() == null){
+            $infoManquant .= "• Durée<br>";
+        }
+        if ($this->getHeureTT() == null){
+            $infoManquant .= "• Heure début TT<br>";
+        }
+        if ($this->getHeureNonTT() == null){
+            $infoManquant .= "• Heure début non TT<br>";
+        }
+        if ($this->getMesPromotions() == null){
+            $infoManquant .= "• Promotions<br>";
+        }
+        if ($this->getMesSalles() == null){
+            $infoManquant .= "• Salles<br>";
+        }
+        return $infoManquant;
     }
 
 }

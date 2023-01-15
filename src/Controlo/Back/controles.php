@@ -17,6 +17,11 @@
 
             });
         });
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+        
         </script>
         <section>
             <h1>Liste des contrôles</h1>
@@ -113,7 +118,15 @@
                     </a>");
                 }
                 else{
-                    print("<i class=\"fa-solid fa-circle text-danger\"></i>");
+                    print('
+                    <i class="fa-solid fa-circle text-danger"
+                        data-toggle="tooltip"
+                        data-bs-html="true"
+                        title="'.$listeControles[$numControle]->infoManquant().'">
+                    </i>
+                    
+                    ');
+                    
                 }
                 
 
