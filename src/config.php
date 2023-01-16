@@ -482,6 +482,18 @@ define("PAGE_ETUDIANTS_PATH" , PATH."index.php?page=etudiants");
 define("PAGE_SALLES_PATH" , PATH."index.php?page=salles");
 
 /**
+ * @brief Lien complet vers la page de la politique de confidentialité
+ * @note ex : http://localhost/src/index.php?page=politiqueDeConfidentialite
+ */
+define("PAGE_POLITIQUEDECONFIDENTIALITE_PATH" , PATH."index.php?page=politiqueDeConfidentialite");
+
+/**
+ * @brief Lien complet vers la page de mentions légales
+ * @note ex : http://localhost/src/index.php?page=mentionsLegalss
+ */
+define("PAGE_MENTIONSLEGALES_PATH" , PATH."index.php?page=mentionsLegales");
+
+/**
  * @brief Lien complet vers la page de xhoix de génération d'un controle
  * @note ex : http://localhost/src/index.php?page=choixGeneration
  */
