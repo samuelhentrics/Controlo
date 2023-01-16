@@ -513,9 +513,8 @@ define("PAGE_RESULTAT_PATH" , PATH."index.php?page=resultat");
 
 /**
  * @brief Lien complet vers la page de téléchargement
- * @note ex : http://localhost/src/index.php?page=telechargement
+ * @note ex : http://localhost/src/index.php?page=manuelUtilisateur
  */
-define("PAGE_TELECHARGEMENT_PATH" , PATH."index.php?page=telechargement");
-
+define("PAGE_MANUELUTILISATEUR_PATH" , PATH."index.php?page=manuelUtilisateur");
 
 ?>

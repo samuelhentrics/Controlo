@@ -5,7 +5,8 @@
         <p class="text-muted">
           © 2022 Controlo | 
           <a class="text-reset" href="<?php echo PAGE_MENTIONSLEGALES_PATH; ?>">Mentions Légales</a> | 
-          <a class="text-reset" href="<?php echo PAGE_POLITIQUEDECONFIDENTIALITE_PATH; ?>">Politique de Confidentialité</a>
+          <a class="text-reset" href="<?php echo PAGE_POLITIQUEDECONFIDENTIALITE_PATH; ?>">Politique de Confidentialité</a> | 
+          <a class="text-reset" href="<?php echo PAGE_MANUELUTILISATEUR_PATH; ?>">Manuel Utilisateur</a>
         </p>
       </div>
       <div class="col-lg-3 d-flex justify-content-end">
