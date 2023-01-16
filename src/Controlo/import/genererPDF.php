@@ -201,7 +201,7 @@ class PDF extends FPDF
  */
 function genererPDF($unControle)
 {
-    // Création de l'entête pour chaque page
+    // Données de l'entête pour chaque page
     //      Récupération des variables importantes pour l'entête
     $nomTotalControle = $unControle->getNomLong();
     $nomCourtControle = $unControle->getNomCourt();
@@ -239,13 +239,6 @@ function genererPDF($unControle)
         $lesPromotions .= $unePromotion->getNom() . " - ";
     }
     $lesPromotions = substr($lesPromotions, 0, -2);
-
-    // Création de l'entête
-    $entete = '<u>Nom du contrôle</u> : ' . $nomTotalControle . '<br>' .
-    '<u>'.$affichagePromotion.'</u> : ' . $lesPromotions . '<br>' .
-    '<u>Date</u> : ' . $date . '            ' .
-    '<u>Heure</u> : ' . $heureNonTT . ' (TT : ' . $heureTT . ')' . '            ' .
-    '<u>Durée</u> : ' . $dureeNonTT . ' (TT : ' . $dureeTT . ')';
 
 
     // Création du dossier dans le dossier des plans de placement
@@ -351,6 +344,17 @@ function genererPDF($unControle)
         $pdf->Cell(30, 10, $titre, 0, 0, 'C');
 
         $pdf->Ln(15);
+
+        // Création de l'entête
+        $totalEtudiants = count($listePlaces);
+
+        $entete = '<u>Nom du contrôle</u> : ' . $nomTotalControle . '            '.
+        '<u>Nombre d\'étudiants</u> : ' . $totalEtudiants . '<br>' .
+        '<u>'.$affichagePromotion.'</u> : ' . $lesPromotions . '<br>'  .
+        '<u>Date</u> : ' . $date . '            ' .
+        '<u>Heure</u> : ' . $heureNonTT . ' (TT : ' . $heureTT . ')' . '            ' .
+        '<u>Durée</u> : ' . $dureeNonTT . ' (TT : ' . $dureeTT . ')';
+
 
         // Affichage de l'entête
         $pdf->SetFont('Arial', '', 12);
