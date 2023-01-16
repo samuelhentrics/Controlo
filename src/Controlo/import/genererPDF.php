@@ -348,9 +348,9 @@ function genererPDF($unControle)
         // Création de l'entête
         $totalEtudiants = count($listePlaces);
 
-        $entete = '<u>Nom du contrôle</u> : ' . $nomTotalControle . '            '.
-        '<u>Nombre d\'étudiants</u> : ' . $totalEtudiants . '<br>' .
-        '<u>'.$affichagePromotion.'</u> : ' . $lesPromotions . '<br>'  .
+        $entete = '<u>Nom du contrôle</u> : ' . $nomTotalControle . '<br>' .
+        '<u>'.$affichagePromotion.'</u> : ' . $lesPromotions . '            '.
+        '<u>Nombre d\'étudiants</u> : ' . $totalEtudiants . '<br>'  .
         '<u>Date</u> : ' . $date . '            ' .
         '<u>Heure</u> : ' . $heureNonTT . ' (TT : ' . $heureTT . ')' . '            ' .
         '<u>Durée</u> : ' . $dureeNonTT . ' (TT : ' . $dureeTT . ')';
