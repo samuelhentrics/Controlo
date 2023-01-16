@@ -135,12 +135,21 @@ function contientMot($unePhrase, $tableauMotClee)
         $i = 0;
         $max = count($tableauMotClee);
         while (true) {
-            if ($i == $max) break;
+            // Si on a parcouru tout le tableau, on sort de la boucle
+            if ($i == $max) {
+                break;
+            }
+
+            // On récupére le mot clé
             $key = $tableauMotClee[$i];
+
+            // On vérifie si le mot clé est dans la phrase
             if (preg_match('/\b' . preg_quote($key, '/') . '\b/i', $unePhrase)) {
                 $bool = true;
                 break;    
             }
+
+            // On incrémente le compteur
             $i++;            
         }
     }

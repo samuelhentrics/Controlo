@@ -83,8 +83,23 @@ function placerEtudiants(&$listeEtudiants, &$unControle, &$erreur)
   // Récupérer la liste des PlansDePlacement du Controle
   $listePDP = $unControle->getMesPlansDePlacement();
 
+  // Récupérer les noms de salles
+  $nomsSalles = array_keys($listeSalles);
+  $indiceSalle = 0;
+  $indiceSalleMax = count($nomsSalles);
+
   // Trouver une place dans une des salles pour le premier étudiant
-  foreach ($listeSalles as $nom => $uneSalle) {
+  while (true) {
+    // Vérifier si on a parcouru toutes les salles
+    if ($indiceSalle == $indiceSalleMax) {
+      $erreur = true;
+      return;
+    }
+
+    // Récupérer la salle
+    $nom = $nomsSalles[$indiceSalle];
+    $uneSalle = $listeSalles[$nom];
+
     // Récupération du plan de placement de la salle
     $unPDP = $listePDP[$nom];
 
@@ -101,16 +116,42 @@ function placerEtudiants(&$listeEtudiants, &$unControle, &$erreur)
     // Récupérer le Plan de la Salle avec uniquement les places libres
     $planSalleLibre = $planSalle->planAvecPlacesUniquement();
 
+    // Préparation info étudiant
+    $listeNumEtudiant = array_keys($listeEtudiants);
+    $indiceEtudiant = 0;
+    $indiceMaxEtudiant = count($listeEtudiants);
+
     // Parcourir chaque étudiant pour leur trouver une place
-    foreach ($listeEtudiants as $unEtudiant) {
+    while (true) {
+      // Sortir de la boucle si l'indice de l'étudiant est plus grand que le nombre d'étudiants
+      if ($indiceEtudiant == $indiceMaxEtudiant) {
+        break;
+      }
+
       $trouve = false;
+
+      // Récupérer l'étudiant
+      $numEtudiant = $listeNumEtudiant[$indiceEtudiant];
+      $unEtudiant = $listeEtudiants[$numEtudiant];
 
       // Initialiser le numéro de ligne
       $numeroLigne = $nbRangeesSeparant;
 
       // Trouver une place pour l'étudiant
-      foreach ($planSalleLibre->getMesZones() as $uneLigne) {
+      $lesZones = $planSalleLibre->getMesZones();
+      $listeNumLigne = array_keys($lesZones);
+      $indiceNumLigne = 0;
+      $indiceNumLigneMax = count($listeNumLigne);
 
+      while (true) {
+        // Sortir si ligne max
+        if ($indiceNumLigne == $indiceNumLigneMax) {
+          break;
+        }
+
+        // Récupérer le numéro de ligne
+        $numeroLigne = $listeNumLigne[$indiceNumLigne];
+        $uneLigne = $lesZones[$numeroLigne];
         // Vérifier qu'on est sur une ligne acceptable
         if ($numeroLigne % ($nbRangeesSeparant + 1) == 0) {
 
@@ -161,11 +202,7 @@ function placerEtudiants(&$listeEtudiants, &$unControle, &$erreur)
             // Incrémenter le numéro de colonne
             $numeroColonne++;
 
-
-
           }
-
-
 
         }
 
@@ -175,16 +212,21 @@ function placerEtudiants(&$listeEtudiants, &$unControle, &$erreur)
         if ($trouve) {
           break;
         }
+
+        $indiceNumLigne++;
       }
 
       // Quitter la boucle si une place n'a pas été trouvée sinon continuer
       if ($trouve) {
         $unControle->ajouterPlanDePlacement($unPDP);
-      } else {
+      }
+      else {
         $erreur = true;
         break;
       }
 
+      // Incrémenter l'indice de l'étudiant
+      $indiceEtudiant++;
 
     }
 
@@ -194,6 +236,9 @@ function placerEtudiants(&$listeEtudiants, &$unControle, &$erreur)
       $erreur = false;
       break;
     }
+
+    // Incrémenter l'indice de salle
+    $indiceSalle++;
   }
 }
 
