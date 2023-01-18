@@ -68,17 +68,17 @@
             <br>
         </div>
         <div class="tab-pane fade" id="v-pills-nomenclature" role="tabpanel" aria-labelledby="v-pills-nomenclature-tab" tabindex="0">
-            <h3>Informations nomenclature</h3>
+            <h3>Informations nomenclature</h3><br>
             <h4>Le fichier <?php echo LISTE_CONTROLES_FILE_NAME; ?></h4>
             <p>Il est important de rajouter les colonnes suivantes dans le fichier CSV exporté depuis le logiciel de scolarité :</p>
             <ul>
-                <li>Date</li>
-                <li>Heure</li>
-                <li>HeureTT</li>
-                <li>Salles</li>
-                <li>Surveillants</li>
+                <li><?php echo DATE_NOM_COLONNE_CONTROLE ?></li>
+                <li><?php echo HEURE_NOM_COLONNE_CONTROLE ?></li>
+                <li><?php echo HEURE_TT_NOM_COLONNE_CONTROLE ?></li>
+                <li><?php echo SALLES_NOM_COLONNE_CONTROLE ?></li>
+                <li><?php echo SURVEILLANTS_NOM_COLONNE_CONTROLE ?></li>
             </ul>
-            <p> Voici un tableau informatif sur les champs : 
+            <p> Voici un tableau informatif sur les <b>noms de champs obligatoires</b> dans le fichier : 
             <a class="btn btn-primary" data-bs-toggle="collapse" href="#tabControles" role="button" aria-expanded="false" aria-controls="tabControles">
                 Afficher/Réduire tableau
             </a>
@@ -87,27 +87,19 @@
                 <div class="card card-body">
                 <table class="table table-striped table-hover">
                     <tr>
-                        <td>Promotion</td>
+                        <td><?php echo PROMOTION_NOM_COLONNE_CONTROLE ?></td>
                         <td>Doit obligatoirement avoir le <b>même nom</b> que celui des <b>fichiers étudiants</b> exportés</td>
                     </tr>
                     <tr>
-                        <td>Semaine</td>
-                        <td>N’est pas intéressant pour notre application</td>
-                    </tr>
-                    <tr>
-                        <td>Code Apogee</td>
-                        <td>N’est pas intéressant pour notre application</td>
-                    </tr>
-                    <tr>
-                        <td>Module/Ressource nom Complet</td>
+                        <td><?php echo NOM_LONG_NOM_COLONNE_CONTROLE ?></td>
                         <td>Le code ressource et le nom du contrôle sont séparés par un -</td>
                     </tr>
                     <tr>
-                        <td>Modules/Ressource nom EDT</td>
+                        <td><?php echo NOM_COURT_NOM_COLONNE_CONTROLE ?></td>
                         <td>Le code ressource et le nom du contrôle sont séparés par un -</td>
                     </tr>
                     <tr>
-                        <td>Enseignant</td>
+                        <td><?php echo ENSEIGNANT_REF_NOM_COLONNE_CONTROLE ?></td>
                         <td>
                             Informe de l’enseignant tuteur/des enseignants tuteurs.<br>
                             En cas de plusieurs professeurs tuteurs, on utilise la nomenclature suivante :
@@ -116,32 +108,32 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Durée</td>
+                        <td><?php echo DUREE_NOM_COLONNE_CONTROLE ?></td>
                         <td>
                             Informe de la durée totale (tiers-temps compris).<br>
                             La durée est <b>exprimée en minutes</b>.
                         </td>
                     </tr>
                     <tr>
-                        <td>Date</td>
+                        <td><?php echo DATE_NOM_COLONNE_CONTROLE ?></td>
                         <td>
                             La date est exprimée <b>en JJ/MM/YYYY</b>
                         </td>
                     </tr>
                     <tr>
-                        <td>Heure</td>
+                        <td><?php echo HEURE_NOM_COLONNE_CONTROLE ?></td>
                         <td>
                             L’heure (non tiers-temps) à laquelle commence le contrôle est exprimée sous la forme <b>HH:MM</b>.
                         </td>
                     </tr>
                     <tr>
-                        <td>HeureTT</td>
+                        <td><?php echo HEURE_TT_NOM_COLONNE_CONTROLE ?></td>
                         <td>
                             L’heure (tiers-temps) à laquelle commence le contrôle est exprimée sous la forme <b>HH:MM</b>.
                         </td>
                     </tr>
                     <tr>
-                        <td>Salles</td>
+                        <td><?php echo SALLES_NOM_COLONNE_CONTROLE ?></td>
                         <td>
                             On sépare chaque salle par une virgule :<br>
                             <b>NOMSALLE1, NOMSALLE2, NOMSALLE3, NOMSALLE4</b><br>
@@ -149,12 +141,65 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Surveillants</td>
+                        <td><?php echo SURVEILLANTS_NOM_COLONNE_CONTROLE ?></td>
                         <td>
                             En cas d’un enseignant, on insère uniquement le nom du surveillant.<br>
                             Dans le cas de plusieurs enseignants, on utilise la virgule pour séparer les enseignants. On utilise la nomenclature suivante :<br>
                             <b>Nomprofesseur1, Nomprofesseur2</b>
 
+                        </td>
+                    </tr>
+                </table>
+                </div>
+            </div>
+
+
+
+
+            <h4>Les fichiers de Promotions</h4>
+            <p>Pour chaque fichier de promotion, un étudiant est caractérisé par <b>les champs suivants</b> :</p>
+            <a class="btn btn-primary" data-bs-toggle="collapse" href="#tabEtud" role="button" aria-expanded="false" aria-controls="tabEtud">
+                Afficher/Réduire tableau
+            </a>
+            </p>
+            <div class="collapse" id="tabEtud">
+                <div class="card card-body">
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <td><?php echo PRENOM_NOM_COLONNE_ETUDIANT ?></td>
+                        <td>Contient le nom de l'étudiant</td>
+                    </tr>
+                    <tr>
+                        <td><?php echo NOM_NOM_COLONNE_ETUDIANT ?></td>
+                        <td>Contient le prénom de l'étudiant</td>
+                    </tr>
+                    <tr>
+                        <td><?php echo TD_NOM_COLONNE_ETUDIANT ?></td>
+                        <td>Contient le TD de l'étudiant</td>
+                    </tr>
+                    <tr>
+                        <td><?php echo TP_NOM_COLONNE_ETUDIANT ?></td>
+                        <td>
+                            Contient le TP de l'étudiant
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><?php echo STATUTS_NOM_COLONNE_ETUDIANT ?></td>
+                        <td>
+                            Contient les informations sur l'étudiant.<br>
+                            Pour un étudiant tiers-temps les mots-clés détectés sont :<br>
+                            <b>TiersTemps | Tiers-temps</b><br><br>
+                            Pour un étudiant avec ordinateur les mots-clés détectés sont :<br>
+                            <b>Ordinateur | PC</b><br><br>
+                            Pour un étudiant démissionnaire les mots-clés détectés sont :<br>
+                            <b>Demission | DÃ©mission | Démission</b><br>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><?php echo MAIL_NOM_COLONNE_ETUDIANT ?></td>
+                        <td>
+                            Contient le mail de l'étudiant
                         </td>
                     </tr>
                 </table>

@@ -480,6 +480,8 @@ define("FONCTION_CREER_LISTE_PROMOTIONS_PATH" , OBJECT_CREATION_PATH.FONCTION_CR
  */
 define("PROMOTION_NOM_COLONNE_CONTROLE", "Promotion");
 
+define("ENSEIGNANT_REF_NOM_COLONNE_CONTROLE", "Enseignant");
+
 /** 
  * @brief Nom de la colonne contenant le nom long du contrôle
  * @note ex du contenu : R1.01 - Initiation au dÃ©veloppement (Partie  1)
@@ -523,6 +525,11 @@ define("HEURE_TT_NOM_COLONNE_CONTROLE", "HeureTT");
  */
 define("SALLES_NOM_COLONNE_CONTROLE", "Salles");
 
+/** 
+ * @brief Nom de la colonne contenant la liste des surveillants du contrôle
+ * @note ex du contenu : S124,S125,S126
+ */
+define("SURVEILLANTS_NOM_COLONNE_CONTROLE", "Surveillants");
 
 
 
