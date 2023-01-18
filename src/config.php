@@ -471,6 +471,107 @@ define("FONCTION_CREER_LISTE_PROMOTIONS_PATH" , OBJECT_CREATION_PATH.FONCTION_CR
 
 
 // -----------------------------------------
+// COLONNES DU CSV CONTROLE
+// -----------------------------------------
+
+/** 
+ * @brief Nom de la colonne contenant la promotion
+ * @note ex du contenu : Info semestre 1
+ */
+define("PROMOTION_NOM_COLONNE_CONTROLE", "Promotion");
+
+/** 
+ * @brief Nom de la colonne contenant le nom long du contrôle
+ * @note ex du contenu : R1.01 - Initiation au dÃ©veloppement (Partie  1)
+
+ */
+define("NOM_LONG_NOM_COLONNE_CONTROLE", "Module/Ressource nom Complet");
+
+/** 
+ * @brief Nom de la colonne contenant le nom court du contrôle
+ * @note ex du contenu : R1.01 - Initiation au dÃ©v.
+ */
+define("NOM_COURT_NOM_COLONNE_CONTROLE", "Modules/Ressource nom EDT");
+
+/** 
+ * @brief Nom de la colonne contenant la durée du contrôle (en minutes)
+ * @note ex du contenu : 120
+ */
+define("DUREE_NOM_COLONNE_CONTROLE", "Durée");
+
+/** 
+ * @brief Nom de la colonne contenant la date du contrôle
+ * @note ex du contenu : 28/09/2022
+ */
+define("DATE_NOM_COLONNE_CONTROLE", "Date");
+
+/** 
+ * @brief Nom de la colonne contenant l'heure de début du contrôle (pour les non TT)
+ * @note ex du contenu : 08:30
+ */
+define("HEURE_NOM_COLONNE_CONTROLE", "Heure");
+
+/** 
+ * @brief Nom de la colonne contenant l'heure de début du contrôle (pour les TT)
+ * @note ex du contenu : 08:30
+ */
+define("HEURE_TT_NOM_COLONNE_CONTROLE", "HeureTT");
+
+/** 
+ * @brief Nom de la colonne contenant la liste des salles du contrôle
+ * @note ex du contenu : S124,S125,S126
+ */
+define("SALLES_NOM_COLONNE_CONTROLE", "Salles");
+
+
+
+
+
+
+// -----------------------------------------
+// COLONNES DU CSV ETUDIANT
+// -----------------------------------------
+
+/** 
+ * @brief Nom de la colonne contenant le nom de l'étudiant
+ * @note ex du contenu : Dupont
+ */
+define("NOM_NOM_COLONNE_ETUDIANT", "Nom");
+
+/** 
+ * @brief Nom de la colonne contenant le prénom de l'étudiant
+ * @note ex du contenu : Jean
+ */
+define("PRENOM_NOM_COLONNE_ETUDIANT", "Prenom");
+
+/** 
+ * @brief Nom de la colonne contenant le TD de l'étudiant
+ * @note ex du contenu : 1
+ */
+define("TD_NOM_COLONNE_ETUDIANT", "Groupe TD");
+
+/** 
+ * @brief Nom de la colonne contenant le TP de l'étudiant
+ * @note ex du contenu : 1
+ */
+define("TP_NOM_COLONNE_ETUDIANT", "Groupe TP");
+
+/** 
+ * @brief Nom de la colonne contenant l'email de l'étudiant
+ * @note ex du contenu : shloistine@iutbayonne.univ-pau.fr
+ */
+define("MAIL_NOM_COLONNE_ETUDIANT", "Courriel");
+
+/** 
+ * @brief Nom de la colonne contenant les statuts de l'étudiant
+ * @note ex du contenu : Démissionnaire, Tiers-temps
+ */
+define("STATUTS_NOM_COLONNE_ETUDIANT", "Statuts");
+
+
+
+
+// -----------------------------------------
 // LIENS DES PAGES POUR LA NAVIGATION DU SITE
 // -----------------------------------------
 

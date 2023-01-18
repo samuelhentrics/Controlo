@@ -67,13 +67,16 @@ function creerUnePromotion($nomPromotion)
         // Création d'un objet Promotion
         $maPromotion = new Promotion($nomPromotion);
 
-        // On enleve l'entete du CSV
-        fgetcsv($monFichier, null, ";");
+        // Récupération de l'entête du CSV
+        $entete = fgetcsv($monFichier, null, ";");
 
         // Lecture du reste du CSV
-        while ($data = fgetcsv($monFichier, null, ";")) {
+        while ($uneLigne = fgetcsv($monFichier, null, ";")) {
+            // On récupére les informations de l'étudiant
+            $unEtudiantInfo = array_combine($entete, $uneLigne);
+
             // On créer l'étudiant
-            $unEtudiant = creerEtudiant($data);
+            $unEtudiant = creerEtudiant($unEtudiantInfo);
 
             // Ajout de l'étudiant dans la liste des étudiants (clé de la liste = l'email de l'étudiant)
             $maPromotion->ajouterEtudiant($unEtudiant);
@@ -88,18 +91,18 @@ function creerUnePromotion($nomPromotion)
 /**
  * 
  * @brief Créer un étudiant grâce à une ligne du CSV traité
- * @param array $ligneCSV Ligne du CSV actuelle contenant les informations de l'étudiant actuel
+ * @param array $unEtudiantInfo Ligne du CSV actuelle contenant les informations de l'étudiant actuel
  * @return Etudiant Etudiant avec toutes ses informations nom, prenom...
  */
-function creerEtudiant($ligneCSV)
+function creerEtudiant($unEtudiantInfo)
 {
     // Création d'un contrôle de la ligne actuelle
-    $nomEtudiant = $ligneCSV[0];
-    $prenomEtudiant = $ligneCSV[1];
-    $tdEtudiant = $ligneCSV[4];
-    $tpEtudiant = $ligneCSV[5];
-    $emailEtudiant = $ligneCSV[11];
-    $status = $ligneCSV[6];
+    $nomEtudiant = $unEtudiantInfo[NOM_NOM_COLONNE_ETUDIANT];
+    $prenomEtudiant = $unEtudiantInfo[PRENOM_NOM_COLONNE_ETUDIANT];
+    $tdEtudiant = $unEtudiantInfo[TD_NOM_COLONNE_ETUDIANT];
+    $tpEtudiant = $unEtudiantInfo[TP_NOM_COLONNE_ETUDIANT];
+    $emailEtudiant = $unEtudiantInfo[MAIL_NOM_COLONNE_ETUDIANT];
+    $statuts = $unEtudiantInfo[STATUTS_NOM_COLONNE_ETUDIANT];
 
     // Création d'un objet de type Controle avec les informations
     // de la ligne courante que l'on traite dans le CSV
@@ -108,14 +111,15 @@ function creerEtudiant($ligneCSV)
 
     // Traiter si l'étudiant dispose d'un tiers temps
     $TABLEAUX_MOT_CLEE_TIERS_TEMPS = ["TiersTemps", "Tiers-temps"];
-    $unEtudiant->setEstTT(contientMot($status, $TABLEAUX_MOT_CLEE_TIERS_TEMPS));
+    $unEtudiant->setEstTT(contientMot($statuts, $TABLEAUX_MOT_CLEE_TIERS_TEMPS));
 
     // Traiter si l'étudiant dispose d'un ordinateur
     $TABLEAUX_MOT_CLEE_ORDINATEUR = ["PC", "pc", "Ordinateur"];
-    $unEtudiant->setAOrdi(contientMot($status, $TABLEAUX_MOT_CLEE_ORDINATEUR));
+    $unEtudiant->setAOrdi(contientMot($statuts, $TABLEAUX_MOT_CLEE_ORDINATEUR));
+    
     // Traiter si l'étudiant est demissionaire
     $TABLEAUX_MOT_CLEE_DEMISSION = ["Demission", "DÃ©mission", "Démission"];
-    $unEtudiant->setEstDemissionnaire(contientMot($status, $TABLEAUX_MOT_CLEE_DEMISSION));
+    $unEtudiant->setEstDemissionnaire(contientMot($statuts, $TABLEAUX_MOT_CLEE_DEMISSION));
 
     return $unEtudiant;
 }
