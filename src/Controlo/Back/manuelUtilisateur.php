@@ -34,6 +34,8 @@
             <p>4. Télécharger le plan</p>
             <br>
             <p>Exemple avec une vidéo</p>
+            <iframe width="560" height="315" src="<?php echo VIDEOS_PATH."genererPDF.mp4" ?>" title="Video de comment générer des plans de placement" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
             <br>
         </div>
         <div class="tab-pane fade" id="v-pills-parametrer" role="tabpanel" aria-labelledby="v-pills-parametrer-tab" tabindex="0">
@@ -76,10 +78,11 @@
                 <li>Salles</li>
                 <li>Surveillants</li>
             </ul>
-            <p> Voici un tableau informatif sur les champs :</p>
+            <p> Voici un tableau informatif sur les champs : 
             <a class="btn btn-primary" data-bs-toggle="collapse" href="#tabControles" role="button" aria-expanded="false" aria-controls="tabControles">
                 Afficher/Réduire tableau
             </a>
+            </p>
             <div class="collapse" id="tabControles">
                 <div class="card card-body">
                 <table class="table table-striped table-hover">
@@ -157,6 +160,7 @@
                 </table>
                 </div>
             </div>
+            
         </div>
         <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" tabindex="0">...</div>
     </div>

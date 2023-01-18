@@ -93,7 +93,7 @@ function placerEtudiants(&$listeEtudiants, &$unControle, &$erreur)
     // Vérifier si on a parcouru toutes les salles
     if ($indiceSalle == $indiceSalleMax) {
       $erreur = true;
-      return;
+      break;
     }
 
     // Récupérer la salle
