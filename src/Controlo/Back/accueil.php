@@ -10,7 +10,7 @@
             <!-- <span class="card-img-top fa" style="font-size: 4em">&#xf118;</span> -->
             <h4 class="card-title">Controles</h4>
             <h6 class="card-subtitle text-muted">Emplacement du dossier</h6>
-            <p class="card-text"><?php echo CSV_CONTROLES_PATH; ?></p>
+            <p class="card-text"><?php echo CSV_CONTROLES_FOLDER_NAME; ?></p>
           </div>
           <div class="back card-block">
 
@@ -37,7 +37,7 @@
             <!-- <span class="card-img-top fa" style="font-size: 4em">&#xf118;</span> -->
             <h4 class="card-title">Étudiants</h4>
             <h6 class="card-subtitle text-muted">Emplacement du dossier</h6>
-            <p class="card-text"><?php echo CSV_ETUDIANTS_PATH; ?></p>
+            <p class="card-text"><?php echo CSV_ETUDIANTS_FOLDER_NAME; ?></p>
           </div>
           <div class="back card-block">
 
@@ -64,7 +64,7 @@
             <!-- <span class="card-img-top fa" style="font-size: 4em">&#xf118;</span> -->
             <h4 class="card-title">Salles</h4>
             <h6 class="card-subtitle text-muted">Emplacement du dossier</h6>
-            <p class="card-text"><?php echo CSV_SALLES_PATH; ?></p>
+            <p class="card-text"><?php echo CSV_SALLES_FOLDER_NAME; ?></p>
           </div>
           <div class="back card-block">
 
