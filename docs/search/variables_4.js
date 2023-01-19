@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['js_5ffolder_5fname_0',['JS_FOLDER_NAME',['../config_8php.html#a5dc3ee60eb14815f6d3065b14229cfe6',1,'config.php']]],
-  ['js_5fpath_1',['JS_PATH',['../config_8php.html#a240b66ce0c4386e8565f97e0b15f6075',1,'config.php']]]
+  ['heure_5fnom_5fcolonne_5fcontrole_0',['HEURE_NOM_COLONNE_CONTROLE',['../config_8php.html#ae123b7831bc1a2e97e2835cf07e56119',1,'config.php']]],
+  ['heure_5ftt_5fnom_5fcolonne_5fcontrole_1',['HEURE_TT_NOM_COLONNE_CONTROLE',['../config_8php.html#a0f77c2a66b5b4e431eab25894941f699',1,'config.php']]]
 ];
