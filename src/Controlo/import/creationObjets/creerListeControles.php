@@ -38,6 +38,11 @@ function creerListeControles()
 
         // On récupére la première ligne du CSV qui contient les noms des colonnes
         $entete = fgetcsv($monFichier, null, ";");
+
+        // Supprimer les espaces en début et fin de chaque nom de colonne
+        foreach ($entete as $key => $value) {
+            $entete[$key] = trim($value);
+        }
         
 
         // Lecture du reste du CSV

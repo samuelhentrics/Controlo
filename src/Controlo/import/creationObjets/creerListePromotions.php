@@ -70,6 +70,11 @@ function creerUnePromotion($nomPromotion)
         // Récupération de l'entête du CSV
         $entete = fgetcsv($monFichier, null, ";");
 
+        // Supprimer les espaces en début et fin de chaque nom de colonne
+        foreach ($entete as $key => $value) {
+            $entete[$key] = trim($value);
+        }
+
         // Lecture du reste du CSV
         while ($uneLigne = fgetcsv($monFichier, null, ";")) {
             // On récupére les informations de l'étudiant
