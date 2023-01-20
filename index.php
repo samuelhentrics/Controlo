@@ -25,9 +25,7 @@
 
     <body>
         <main>
-            <div class="alert alert-warning" role="alert">
-                Les documents de la partie "Algorithme et Diagramme UML" ne sont pas à jour. Ils seront bientôt mis à jour.
-            </div>
+
             <div class="card-group">
                 <div class="card">
                     <img class="card-img-top" src="src/Controlo/Front/images/banniere2.png" alt="Ressources SAE">
