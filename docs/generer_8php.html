@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.9.4"/>
+<meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Controlo: Référence du fichier src/Controlo/import/generer.php</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
@@ -26,7 +26,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
-  <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="logo2.png"/></td>
   <td id="projectalign">
    <div id="projectname">Controlo<span id="projectnumber">&#160;v1.0</span>
    </div>
@@ -37,10 +37,10 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- Généré par Doxygen 1.9.4 -->
+<!-- Généré par Doxygen 1.9.6 -->
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-var searchBox = new SearchBox("searchBox", "search",'Recherche','.html');
+var searchBox = new SearchBox("searchBox", "search/",'.html');
 /* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
@@ -80,9 +80,16 @@ $(document).ready(function(){initNavTree('generer_8php.html',''); initResizable(
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
-        name="MSearchResults" id="MSearchResults">
-</iframe>
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
 </div>
 
 <div class="header">
@@ -101,10 +108,10 @@ Fonctions</h2></td></tr>
 <tr class="memitem:a1a7b84cb8ac87484f6b1b541a695d47d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generer_8php.html#a1a7b84cb8ac87484f6b1b541a695d47d">supprimerDemissionnaire</a> ($listeEtudiants)</td></tr>
 <tr class="separator:a1a7b84cb8ac87484f6b1b541a695d47d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3d6dda2bfb8b508bd916f00439d2861"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generer_8php.html#ac3d6dda2bfb8b508bd916f00439d2861">trieListe</a> ($liste, $algo)</td></tr>
-<tr class="memdesc:ac3d6dda2bfb8b508bd916f00439d2861"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trie les listes d'étudiants.  <a href="generer_8php.html#ac3d6dda2bfb8b508bd916f00439d2861">Plus de détails...</a><br /></td></tr>
+<tr class="memdesc:ac3d6dda2bfb8b508bd916f00439d2861"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trie les listes d'étudiants.  <br /></td></tr>
 <tr class="separator:ac3d6dda2bfb8b508bd916f00439d2861"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9cde37a47aea2c929948a9a035697b72"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generer_8php.html#a9cde37a47aea2c929948a9a035697b72">placerEtudiants</a> (&amp;$listeEtudiants, &amp;$unControle, &amp;$erreur)</td></tr>
-<tr class="memdesc:a9cde37a47aea2c929948a9a035697b72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Place les étudiants dans les salles du contrôle.  <a href="generer_8php.html#a9cde37a47aea2c929948a9a035697b72">Plus de détails...</a><br /></td></tr>
+<tr class="memdesc:a9cde37a47aea2c929948a9a035697b72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Place les étudiants dans les salles du contrôle.  <br /></td></tr>
 <tr class="separator:a9cde37a47aea2c929948a9a035697b72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -143,13 +150,13 @@ foreach($listeDeSalles as $nom=&gt; $uneSalle)&#160;</td><td class="memItemRight
 <tr class="separator:a2092c526a162211336759c64ece8d517"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
-<div class="textblock"><p >Affiche le résultat du placement des étudiants dans les salles du contrôle. </p>
+<div class="textblock"><p>Affiche le résultat du placement des étudiants dans les salles du contrôle. </p>
 <dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2020-04-20 </dd></dl>
 <dl class="section author"><dt>Auteur</dt><dd>Samuel HENTRICS LOISTINE, Benjamin PEYRE </dd></dl>
 </div><h2 class="groupheader">Documentation des fonctions</h2>
 <a id="a9cde37a47aea2c929948a9a035697b72" name="a9cde37a47aea2c929948a9a035697b72"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9cde37a47aea2c929948a9a035697b72">&#9670;&nbsp;</a></span>placerEtudiants()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cde37a47aea2c929948a9a035697b72">&#9670;&#160;</a></span>placerEtudiants()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -195,7 +202,7 @@ foreach($listeDeSalles as $nom=&gt; $uneSalle)&#160;</td><td class="memItemRight
 </div>
 </div>
 <a id="a1a7b84cb8ac87484f6b1b541a695d47d" name="a1a7b84cb8ac87484f6b1b541a695d47d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a7b84cb8ac87484f6b1b541a695d47d">&#9670;&nbsp;</a></span>supprimerDemissionnaire()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a7b84cb8ac87484f6b1b541a695d47d">&#9670;&#160;</a></span>supprimerDemissionnaire()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -209,7 +216,7 @@ foreach($listeDeSalles as $nom=&gt; $uneSalle)&#160;</td><td class="memItemRight
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Retourne une liste d'étudiants sans les étudiants démissionnaire </p><dl class="params"><dt>Paramètres</dt><dd>
+<p>Retourne une liste d'étudiants sans les étudiants démissionnaire </p><dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramtype">array</td><td class="paramname">$listeEtudiants</td><td>Liste d'étudiants </td></tr>
   </table>
@@ -220,7 +227,7 @@ foreach($listeDeSalles as $nom=&gt; $uneSalle)&#160;</td><td class="memItemRight
 </div>
 </div>
 <a id="ac3d6dda2bfb8b508bd916f00439d2861" name="ac3d6dda2bfb8b508bd916f00439d2861"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac3d6dda2bfb8b508bd916f00439d2861">&#9670;&nbsp;</a></span>trieListe()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3d6dda2bfb8b508bd916f00439d2861">&#9670;&#160;</a></span>trieListe()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -259,7 +266,7 @@ foreach($listeDeSalles as $nom=&gt; $uneSalle)&#160;</td><td class="memItemRight
 </div>
 <h2 class="groupheader">Documentation des variables</h2>
 <a id="a2092c526a162211336759c64ece8d517" name="a2092c526a162211336759c64ece8d517"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2092c526a162211336759c64ece8d517">&#9670;&nbsp;</a></span>else</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2092c526a162211336759c64ece8d517">&#9670;&#160;</a></span>else</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -282,7 +289,7 @@ foreach($listeDeSalles as $nom=&gt; $uneSalle)&#160;</td><td class="memItemRight
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_0219e3f6040368f21360b5e8bfe40506.html">Controlo</a></li><li class="navelem"><a class="el" href="dir_f5db9072545361f0b8f2bb146fa916c7.html">import</a></li><li class="navelem"><a class="el" href="generer_8php.html">generer.php</a></li>
-    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
+    <li class="footer">Généré par <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
 </body>

@@ -1,0 +1,11 @@
+digraph "creerEtudiant"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [label="creerEtudiant",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Créer un étudiant grâce à une ligne du CSV traité"];
+  Node1 -> Node2 [color="steelblue1",style="solid"];
+  Node2 [label="contientMot",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$creer_liste_promotions_8php.html#a715db07b13868ab6dde178e061ef4569",tooltip="Permet de vérifier si un mot clé est dans une phrase."];
+}
