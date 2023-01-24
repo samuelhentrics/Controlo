@@ -40,46 +40,51 @@
                 switch ($page) {
                     // Cas où l'utilisateur souhaite voir la liste des contrôles
                     case 'controles':
-                        require(BACK_PATH."controles.php");
-                        # code...
+                        require(BACK_PATH."Controles/controles.php");
                         break;
 
                     case 'choixGeneration':
-                        require(BACK_PATH."choixGeneration.php");
-                        # code...
+                        require(BACK_PATH."Controles/choixGeneration.php");
+                        break;
+
+                    // Générer les plans de placement
+                    case 'generer':
+                        require(IMPORT_PATH."Controles/generer.php");
+                        break;
+
+                    // Page de résultat de génération plans de placement
+                    case 'resultat':
+                        require(BACK_PATH."Controles/resultat.php");
                         break;
 
 
+                        
                     // Cas où l'utilisateur souhaite voir la liste des étudiants
                     case 'etudiants':
-                        require(BACK_PATH."etudiants.php");
+                        require(BACK_PATH."Etudiants/etudiants.php");
                         break;
                     
+
+
                     // Cas où l'utilisateur souhaite voir la liste des salles
                     case 'salles':
                         if (isset($_GET['salle'])) {
-                            require(BACK_PATH."planSalle.php");
+                            require(BACK_PATH."Salles/planSalle.php");
                         }
                         // Ou plus précisement le plan d'une salle
                         else{
-                            require(BACK_PATH."salles.php");
+                            require(BACK_PATH."Salles/salles.php");
                         }
                         break;
+
+
 
                     // Mode développement
                     case 'test':
                         require(BACK_PATH."test.php");
                         break;
 
-                    // Générer les plans de placement
-                    case 'generer':
-                        require(IMPORT_PATH."generer.php");
-                        break;
-
-                    // Page de résultat de génération plans de placement
-                    case 'resultat':
-                        require(BACK_PATH."resultat.php");
-                        break;
+                    
 
                     case 'politiqueDeConfidentialite':
                         require(BACK_PATH."politiqueDeConfidentialite.php");
