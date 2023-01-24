@@ -49,7 +49,7 @@
 
                     // Générer les plans de placement
                     case 'generer':
-                        require(IMPORT_PATH."Controles/generer.php");
+                        require(IMPORT_PATH."generer.php");
                         break;
 
                     // Page de résultat de génération plans de placement
@@ -58,7 +58,7 @@
                         break;
 
 
-                        
+
                     // Cas où l'utilisateur souhaite voir la liste des étudiants
                     case 'etudiants':
                         require(BACK_PATH."Etudiants/etudiants.php");
