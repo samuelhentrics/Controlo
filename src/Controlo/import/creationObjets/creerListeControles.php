@@ -14,6 +14,7 @@ DEFINE("CHEMIN_LISTE_CONTROLES", CSV_CONTROLES_FOLDER_NAME . LISTE_CONTROLES_FIL
 include_once(FONCTION_CREER_LISTE_PROMOTIONS_PATH);
 include_once(FONCTION_CREER_LISTE_SALLES_PATH);
 include_once(CLASS_PATH . CLASS_CONTROLE_FILE_NAME);
+include_once(FONCTION_ASSOCIER_ENTETE_LIGNE_PATH);
 
 
 
@@ -48,10 +49,7 @@ function creerListeControles()
         // Lecture du reste du CSV
         while ($uneLigne = fgetcsv($monFichier, null, ";")) {
             // Changer les clés associatives pour que les clés soient les noms des colonnes
-            $min = min(count($entete), count($uneLigne));
-            $enteteModif = array_slice($entete, 0, $min);
-            $uneLigne = array_slice($uneLigne, 0, $min);
-            $unControleInfo = array_combine($enteteModif, $uneLigne);
+            $unControleInfo = associerEnteteLigne($entete, $uneLigne);
 
             // Création du contrôle de la ligne actuelle
             $unControle = creerControle($unControleInfo);
@@ -99,10 +97,7 @@ function recupererUnControle($id)
         // Lecture du reste du CSV
         while ($uneLigne = fgetcsv($monFichier, null, ";")) {
             if ($i == $id) {
-                $min = min(count($entete), count($uneLigne));
-                $enteteModif = array_slice($entete, 0, $min);
-                $uneLigne = array_slice($uneLigne, 0, $min);
-                $unControleInfo = array_combine($enteteModif, $uneLigne);
+                $unControleInfo = associerEnteteLigne($entete, $uneLigne);
 
                 $leControle = creerControle($unControleInfo); 
             }

@@ -397,6 +397,18 @@ define("FONCTION_AJOUTER_MINUTES_HEURE_FILE_NAME" , "ajouterMinutesHeure.php");
  */
 define("FONCTION_AJOUTER_MINUTES_HEURE_PATH" , IMPORT_PATH.FONCTION_AJOUTER_MINUTES_HEURE_FILE_NAME);
 
+/**
+ * @brief Nom du fichier où se trouve la fonction associerEnteteLigne
+ * @note ex : associerEnteteLigne.php
+ */
+define("FONCTION_ASSOCIER_ENTETE_LIGNE_FILE_NAME" , "associerEnteteLigne.php");
+
+/**
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve la fonction associerEnteteLigne
+ * @note ex : Controlo/import/associerEnteteLigne.php
+ */
+define("FONCTION_ASSOCIER_ENTETE_LIGNE_PATH" , IMPORT_PATH.FONCTION_ASSOCIER_ENTETE_LIGNE_FILE_NAME);
+
 
 /**
  * @brief Nom du dossier où se trouve les fonctions de création d'objets
