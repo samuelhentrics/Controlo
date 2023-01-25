@@ -47,7 +47,10 @@ function creerListeControles()
 
         // Lecture du reste du CSV
         while ($uneLigne = fgetcsv($monFichier, null, ";")) {
-            $unControleInfo = array_combine($entete, $uneLigne);
+            $min = min(count($entete), count($uneLigne));
+            $enteteModif = array_slice($entete, 0, $min);
+            $uneLigne = array_slice($uneLigne, 0, $min);
+            $unControleInfo = array_combine($enteteModif, $uneLigne);
 
             $laDate = $unControleInfo[DATE_NOM_COLONNE_CONTROLE];
             // Mettre la date au format YYYY-MM-DD si une date existe (pour datatables)
@@ -116,7 +119,10 @@ function recupererUnControle($id)
         // Lecture du reste du CSV
         while ($uneLigne = fgetcsv($monFichier, null, ";")) {
             if ($i == $id) {
-                $unControleInfo = array_combine($entete, $uneLigne);
+                $min = min(count($entete), count($uneLigne));
+                $enteteModif = array_slice($entete, 0, $min);
+                $uneLigne = array_slice($uneLigne, 0, $min);
+                $unControleInfo = array_combine($enteteModif, $uneLigne);
 
                 // Mettre la date au format YYYY-MM-DD si une date existe (pour datatables)
                 $laDate = $unControleInfo[DATE_NOM_COLONNE_CONTROLE];

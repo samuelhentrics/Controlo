@@ -78,7 +78,11 @@ function creerUnePromotion($nomPromotion)
         // Lecture du reste du CSV
         while ($uneLigne = fgetcsv($monFichier, null, ";")) {
             // On récupére les informations de l'étudiant
-            $unEtudiantInfo = array_combine($entete, $uneLigne);
+            array_push($uneLigne, "njnkdgker");
+            $min = min(count($entete), count($uneLigne));
+            $enteteModif = array_slice($entete, 0, $min);
+            $uneLigne = array_slice($uneLigne, 0, $min);
+            $unEtudiantInfo = array_combine($enteteModif, $uneLigne);
 
             // On créer l'étudiant
             $unEtudiant = creerEtudiant($unEtudiantInfo);

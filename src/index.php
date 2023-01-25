@@ -64,6 +64,10 @@
                         require(BACK_PATH."Etudiants/etudiants.php");
                         break;
                     
+                    // Cas où l'utilisateur souhaite voir ajouter un étudiant
+                    case 'ajouterEtudiant':
+                        require(BACK_PATH."Etudiants/ajouterEtudiant.php");
+                        break;
 
 
                     // Cas où l'utilisateur souhaite voir la liste des salles
