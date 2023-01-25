@@ -47,34 +47,14 @@ function creerListeControles()
 
         // Lecture du reste du CSV
         while ($uneLigne = fgetcsv($monFichier, null, ";")) {
+            // Changer les clés associatives pour que les clés soient les noms des colonnes
             $min = min(count($entete), count($uneLigne));
             $enteteModif = array_slice($entete, 0, $min);
             $uneLigne = array_slice($uneLigne, 0, $min);
             $unControleInfo = array_combine($enteteModif, $uneLigne);
 
-            $laDate = $unControleInfo[DATE_NOM_COLONNE_CONTROLE];
-            // Mettre la date au format YYYY-MM-DD si une date existe (pour datatables)
-            if ($laDate != null) {
-                $laDate = DateTime::createFromFormat('d/m/Y', $laDate);
-                $laDate = $laDate->format('Y-m-d');
-            }
-
-            // Création d'un contrôle de la ligne actuelle
-            $leNomLong = $unControleInfo[NOM_LONG_NOM_COLONNE_CONTROLE];
-            $leNomCourt = $unControleInfo[NOM_COURT_NOM_COLONNE_CONTROLE];
-            $laDuree = $unControleInfo[DUREE_NOM_COLONNE_CONTROLE];
-            $lHeureNonTT = $unControleInfo[HEURE_NOM_COLONNE_CONTROLE];
-            $lHeureTT = $unControleInfo[HEURE_TT_NOM_COLONNE_CONTROLE];
-
-            // Création d'un objet de type Controle avec les informations
-            // de la ligne courante que l'on traite dans le CSV
-            $unControle = new Controle($leNomLong, $leNomCourt, $laDuree, $laDate, $lHeureNonTT, $lHeureTT);
-
-            // Création du lien entre les promotions et le contrôle
-            $unControle = creerRelationPromotionControle($unControle, $unControleInfo[PROMOTION_NOM_COLONNE_CONTROLE]);
-
-            // Création du lien entre les salles et le contrôle
-            $unControle = creerRelationSalleControle($unControle, $unControleInfo[SALLES_NOM_COLONNE_CONTROLE]);
+            // Création du contrôle de la ligne actuelle
+            $unControle = creerControle($unControleInfo);
 
 
             // Ajout du contrôle dans la liste des contrôles
@@ -124,30 +104,7 @@ function recupererUnControle($id)
                 $uneLigne = array_slice($uneLigne, 0, $min);
                 $unControleInfo = array_combine($enteteModif, $uneLigne);
 
-                // Mettre la date au format YYYY-MM-DD si une date existe (pour datatables)
-                $laDate = $unControleInfo[DATE_NOM_COLONNE_CONTROLE];
-                if ($laDate != null) {
-                    $laDate = DateTime::createFromFormat('d/m/Y', $laDate);
-                    $laDate = $laDate->format('Y-m-d');
-                }
-
-                // Création du contrôle de la ligne actuelle
-                $leNomLong = $unControleInfo[NOM_LONG_NOM_COLONNE_CONTROLE];
-                $leNomCourt = $unControleInfo[NOM_COURT_NOM_COLONNE_CONTROLE];
-                $laDuree = $unControleInfo[DUREE_NOM_COLONNE_CONTROLE];
-                $lHeureNonTT = $unControleInfo[HEURE_NOM_COLONNE_CONTROLE];
-                $lHeureTT = $unControleInfo[HEURE_TT_NOM_COLONNE_CONTROLE];
-
-                // Création d'un objet de type Controle avec les informations
-                // de la ligne courante que l'on traite dans le CSV
-                $leControle = new Controle($leNomLong, $leNomCourt, $laDuree, $laDate, $lHeureNonTT, $lHeureTT);
-
-                // Création du lien entre les promotions et le contrôle
-                $leControle = creerRelationPromotionControle($leControle, $unControleInfo[PROMOTION_NOM_COLONNE_CONTROLE]);
-
-                // Création du lien entre les salles et le contrôle
-                $leControle = creerRelationSalleControle($leControle, $unControleInfo[SALLES_NOM_COLONNE_CONTROLE]);
-
+                $leControle = creerControle($unControleInfo); 
             }
             $i++;
         }
@@ -155,6 +112,39 @@ function recupererUnControle($id)
     }
 
     fclose($monFichier);
+
+    return $leControle;
+}
+
+/**
+ * Retourne un Controle selon les informations données
+ * @param array $unControleInfo Ligne d'information venant du fichier de la liste des contrôles
+ * @return Controle
+ */
+function creerControle($unControleInfo){
+    // Mettre la date au format YYYY-MM-DD si une date existe (pour datatables)
+    $laDate = $unControleInfo[DATE_NOM_COLONNE_CONTROLE];
+    if ($laDate != null) {
+        $laDate = DateTime::createFromFormat('d/m/Y', $laDate);
+        $laDate = $laDate->format('Y-m-d');
+    }
+
+    // Création du contrôle de la ligne actuelle
+    $leNomLong = $unControleInfo[NOM_LONG_NOM_COLONNE_CONTROLE];
+    $leNomCourt = $unControleInfo[NOM_COURT_NOM_COLONNE_CONTROLE];
+    $laDuree = $unControleInfo[DUREE_NOM_COLONNE_CONTROLE];
+    $lHeureNonTT = $unControleInfo[HEURE_NOM_COLONNE_CONTROLE];
+    $lHeureTT = $unControleInfo[HEURE_TT_NOM_COLONNE_CONTROLE];
+
+    // Création d'un objet de type Controle avec les informations
+    // de la ligne courante que l'on traite dans le CSV
+    $leControle = new Controle($leNomLong, $leNomCourt, $laDuree, $laDate, $lHeureNonTT, $lHeureTT);
+
+    // Création du lien entre les promotions et le contrôle
+    $leControle = creerRelationPromotionControle($leControle, $unControleInfo[PROMOTION_NOM_COLONNE_CONTROLE]);
+
+    // Création du lien entre les salles et le contrôle
+    $leControle = creerRelationSalleControle($leControle, $unControleInfo[SALLES_NOM_COLONNE_CONTROLE]);
 
     return $leControle;
 }
