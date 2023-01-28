@@ -42,6 +42,10 @@
                     case 'controles':
                         require(BACK_PATH."Controles/controles.php");
                         break;
+                    // Cas où l'utilisateur souhaite ajouter un contrôle
+                    case 'ajouterControle':
+                        require(BACK_PATH."Controles/ajouterControle.php");
+                        break;
 
                     case 'choixGeneration':
                         require(BACK_PATH."Controles/choixGeneration.php");
