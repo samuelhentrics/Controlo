@@ -38,6 +38,17 @@
                 $page = $_GET['page'];
    
                 switch ($page) {
+
+                    // Cas ou l'utilisateur souhaite ajouter une promotion
+                    case 'promotions':
+                        require(BACK_PATH."Promotion/promotions.php");
+                        break;
+
+                    // Cas ou l'utilisateur souhaite ajouter une promotion
+                    case 'ajouterPromotion':
+                        require(BACK_PATH."Promotion/ajouterPromotion.php");
+                        break;
+
                     // Cas où l'utilisateur souhaite voir la liste des contrôles
                     case 'controles':
                         require(BACK_PATH."Controles/controles.php");
