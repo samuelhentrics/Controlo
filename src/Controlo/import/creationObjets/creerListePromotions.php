@@ -76,16 +76,22 @@ function creerUnePromotion($nomPromotion)
             $entete[$key] = trim($value);
         }
 
+        // Créer un numéro étudiant
+        $numeroEtudiant = 1;
+
         // Lecture du reste du CSV
         while ($uneLigne = fgetcsv($monFichier, null, ";")) {
             // On récupére les informations de l'étudiant
             $unEtudiantInfo = associerEnteteLigne($entete, $uneLigne);
 
             // On créer l'étudiant
-            $unEtudiant = creerEtudiant($unEtudiantInfo);
+            $unEtudiant = creerEtudiant($unEtudiantInfo, $numeroEtudiant);
 
             // Ajout de l'étudiant dans la liste des étudiants (clé de la liste = l'email de l'étudiant)
             $maPromotion->ajouterEtudiant($unEtudiant);
+
+            // On incrémente le numéro de l'étudiant
+            $numeroEtudiant++;
         }
     }
 
@@ -98,9 +104,10 @@ function creerUnePromotion($nomPromotion)
  * 
  * @brief Créer un étudiant grâce à une ligne du CSV traité
  * @param array $unEtudiantInfo Ligne du CSV actuelle contenant les informations de l'étudiant actuel
+ * @param int $numeroEtudiant Numéro de l'étudiant qui lui sera affecté
  * @return Etudiant Etudiant avec toutes ses informations nom, prenom...
  */
-function creerEtudiant($unEtudiantInfo)
+function creerEtudiant($unEtudiantInfo, $numeroEtudiant)
 {
     // Création d'un contrôle de la ligne actuelle
     $nomEtudiant = $unEtudiantInfo[NOM_NOM_COLONNE_ETUDIANT];
@@ -112,7 +119,8 @@ function creerEtudiant($unEtudiantInfo)
 
     // Création d'un objet de type Controle avec les informations
     // de la ligne courante que l'on traite dans le CSV
-    $unEtudiant = new Etudiant($nomEtudiant, $prenomEtudiant, $tdEtudiant, $tpEtudiant, $emailEtudiant);
+    $unEtudiant = new Etudiant($numeroEtudiant, $nomEtudiant,
+    $prenomEtudiant, $tdEtudiant, $tpEtudiant, $emailEtudiant);
 
 
     // Traiter si l'étudiant dispose d'un tiers temps

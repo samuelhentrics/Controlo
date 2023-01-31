@@ -1,6 +1,13 @@
 <div class="container">
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Attention !</strong>
+        <p>Cette page est en cours de développement.</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
   <div class="col-3"></div>
-  <div class="col-6">
+  <div class="col-6 m-auto">
+    <h2>Ajouter un étudiant</h2>
     <form>
       <div class="form-group row">
         <label for="nom" class="col-4 col-form-label">Nom</label>
@@ -11,7 +18,7 @@
                 <i class="fa fa-address-card"></i>
               </div>
             </div>
-            <input id="nom" name="nom" placeholder="Nom de l'étudiant" type="text" class="form-control"
+            <input id="nom" name="nom" placeholder="ex : DUPONT" type="text" class="form-control"
               required="required">
           </div>
         </div>
@@ -25,7 +32,7 @@
                 <i class="fa fa-address-card"></i>
               </div>
             </div>
-            <input id="prenom" name="prenom" placeholder="Prenom de l'étudiant" type="text" class="form-control"
+            <input id="prenom" name="prenom" placeholder="ex : Paul" type="text" class="form-control"
               required="required">
           </div>
         </div>
@@ -41,13 +48,13 @@
       <div class="form-group row">
         <label for="td" class="col-4 col-form-label">TD</label>
         <div class="col-8">
-          <input id="td" name="td" placeholder="TD de l'étudiant" type="text" class="form-control" required="required">
+          <input id="td" name="td" placeholder="ex : 1" type="text" class="form-control" required="required">
         </div>
       </div>
       <div class="form-group row">
         <label for="tp" class="col-4 col-form-label">TP</label>
         <div class="col-8">
-          <input id="tp" name="tp" placeholder="TP de l'étudiant" type="text" class="form-control" required="required">
+          <input id="tp" name="tp" placeholder="ex : 1" type="text" class="form-control" required="required">
         </div>
       </div>
       <div class="form-group row">
@@ -59,12 +66,12 @@
                 <i class="fa fa-envelope"></i>
               </div>
             </div>
-            <input id="mail" name="mail" placeholder="Mail de l'étudiant" type="text" class="form-control">
+            <input id="mail" name="mail" placeholder="ex : pdupont@iutbayonne.univ-pau.fr" type="text" class="form-control">
           </div>
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-4">Checkboxes</label>
+        <label class="col-4">Statuts</label>
         <div class="col-8">
           <div class="custom-control custom-checkbox custom-control-inline">
             <input name="checkbox" id="checkbox_0" type="checkbox" class="custom-control-input" value="tt">
@@ -82,7 +89,7 @@
       </div>
       <div class="form-group row">
         <div class="offset-4 col-8">
-          <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+          <button name="submit" type="submit" class="btn btn-primary">Ajouter</button>
         </div>
       </div>
     </form>

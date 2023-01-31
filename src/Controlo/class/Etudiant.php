@@ -20,6 +20,12 @@ class Etudiant
     /* Attributs */
 
     /**
+     * @brief Identifiant de l'Etudiant
+     * @var int
+     */
+    private $id;
+
+    /**
      * @brief Nom de l'Etudiant
      * @var string
      */
@@ -85,8 +91,9 @@ class Etudiant
      * @param int $tp TP de l'étudiant
      * @param string $email Mail de l'étudiant
      */
-    public function __construct($nom, $prenom, $td, $tp, $email)
+    public function __construct($id, $nom, $prenom, $td, $tp, $email)
     {
+        $this->setId($id);
         $this->setNom($nom);
         $this->setPrenom($prenom);
         $this->setTd($td);
@@ -247,4 +254,21 @@ class Etudiant
     {
         return $this->estDemissionnaire;
     }
+
+	/**
+	 * @brief Retourne l'ID de l'Etudiant
+	 * @return int
+	 */
+	public function getId() {
+		return $this->id;
+	}
+	
+	/**
+	 * @brief Affecte l'ID de l'Etudiant
+	 * @param int $id 
+	 * @return void
+	 */
+	public function setId($id){
+		$this->id = $id;
+	}
 }
