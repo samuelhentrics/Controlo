@@ -83,6 +83,13 @@ define("CSV_ETUDIANTS_FOLDER_NAME","Etudiants/");
 define("CSV_SALLES_FOLDER_NAME","Salles/");
 
 /**
+ * @brief Nom du dossier où se retrouvent les CSV (partie Promotions)
+ * (La liste des salles et des plans de salle)
+ * @note ex : Salles/
+ */
+define("CSV_PROMOTIONS_FOLDER_NAME","Promotions/");
+
+/**
  * @brief Lien complet pour accéder au dossier CSV (Controles)
  * @note ex : http://localhost/src/Controles
  */
@@ -99,6 +106,12 @@ define("CSV_ETUDIANTS_PATH",PATH.CSV_ETUDIANTS_FOLDER_NAME);
  * @note ex : http://localhost/src/Salles
  */
 define("CSV_SALLES_PATH", PATH.CSV_SALLES_FOLDER_NAME);
+
+/**
+ * @brief Lien complet pour accéder au dossier CSV (Promotions)
+ * @note ex : http://localhost/src/Promotions
+ */
+define("CSV_PROMOTIONS_PATH", PATH.CSV_PROMOTIONS_FOLDER_NAME);
 
 
 
@@ -300,6 +313,12 @@ define("LISTE_CONTROLES_FILE_NAME" , "liste-controles.csv");
  * @note ex: liste-salles.csv
  */
 define("LISTE_SALLES_FILE_NAME" , "liste-salles.csv");
+
+/**
+ * @brief Nom du fichier de la liste des promotions
+ * @note ex: liste-promotions.csv
+ */
+define("LISTE_PROMOTIONS_FILE_NAME" , "liste-promotions.csv");
 
 
 
