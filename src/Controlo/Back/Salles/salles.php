@@ -63,7 +63,7 @@
                         if ($uneSalle->getMonPlan() != null) {
                             print("<i class=\"fa-solid fa-circle text-success\"></i> ");
                             print("- <a class=\"text-reset fw-bold text-decoration-none\"
-                                    href=\"".PAGE_SALLES_PATH."&salle={$uneSalle->getNom()}\">
+                                    href=\"".PAGE_PLAN_SALLE_PATH."&nom={$uneSalle->getNom()}\">
                                     Aperçu
                                     <i class=\"fa-solid fa-arrow-right\"></i>
                                     </a>");

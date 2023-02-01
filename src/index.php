@@ -87,8 +87,19 @@
 
                     // Cas où l'utilisateur souhaite voir la liste des salles
                     case 'salles':
-                        if (isset($_GET['salle'])) {
-                            require(BACK_PATH."Salles/planSalle.php");
+                        if (isset($_GET['action'])) {
+                            $action=$_GET['action'];
+                            switch($action){
+                                case "modifier": break;
+                                case "ajouter": break;
+                                case "importer": break;
+                                case "plan":
+                                    require(BACK_PATH."Salles/planSalle.php");
+                                    break;
+                                default:
+                                    require(BACK_PATH."404.php");
+                                    break;
+                            }
                         }
                         // Ou plus précisement le plan d'une salle
                         else{

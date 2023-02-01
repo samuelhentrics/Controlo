@@ -632,6 +632,12 @@ define("PAGE_ETUDIANTS_PATH" , PATH."index.php?page=etudiants");
 define("PAGE_SALLES_PATH" , PATH."index.php?page=salles");
 
 /**
+ * @brief Lien complet vers la page d'un plan d'une salle
+ * @note ex : http://localhost/src/index.php?page=salles&action=plan
+ */
+define("PAGE_PLAN_SALLE_PATH" , PATH."index.php?page=salles&action=plan");
+
+/**
  * @brief Lien complet vers la page de la politique de confidentialité
  * @note ex : http://localhost/src/index.php?page=politiqueDeConfidentialite
  */
