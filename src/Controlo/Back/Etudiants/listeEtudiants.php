@@ -19,6 +19,8 @@
         </script>
         <section>
             <h1>Liste des étudiants</h1>
+            <!-- Bouton en haut à droite pour ajouter un étudiant -->
+            <a href="index.php?page=etudiants&action=ajouter" class="btn btn-primary">Ajouter</a>
             <table id="etudiants" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
