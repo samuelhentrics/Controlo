@@ -107,11 +107,6 @@ define("CSV_ETUDIANTS_PATH",PATH.CSV_ETUDIANTS_FOLDER_NAME);
  */
 define("CSV_SALLES_PATH", PATH.CSV_SALLES_FOLDER_NAME);
 
-/**
- * @brief Lien complet pour accéder au dossier CSV (Promotions)
- * @note ex : http://localhost/src/Promotions
- */
-define("CSV_PROMOTIONS_PATH", PATH.CSV_PROMOTIONS_FOLDER_NAME);
 
 
 
@@ -626,19 +621,6 @@ define("PAGE_CONTROLES_PATH" , PATH."index.php?page=controles");
 define("PAGE_ETUDIANTS_PATH" , PATH."index.php?page=etudiants");
 
 /**
- * @brief Lien complet vers la page d'ajout d'un etudiant
- * @note ex : http://localhost/src/index.php?page=ajouterEtudiant
- */
-define("PAGE_AJOUTER_ETUDIANTS_PATH" , PATH."index.php?page=ajouterEtudiant");
-
-/**
- * @brief Lien complet vers la page de modification d'un étudiant
- * @note ex : http://localhost/src/index.php?page=ajouterEtudiant
- */
-define("PAGE_MODIFIER_ETUDIANTS_PATH" , PATH."index.php?page=modifierEtudiant");
-
-
-/**
  * @brief Lien complet vers la page de la liste des salles
  * @note ex : http://localhost/src/index.php?page=salles
  */
@@ -647,17 +629,19 @@ define("PAGE_SALLES_PATH" , PATH."index.php?page=salles");
 
 
 
+/**
+ * @brief Lien complet vers la page de téléchargement
+ * @note ex : http://localhost/src/index.php?page=promotions
+ */
+define("PAGE_LISTE_PROMOTIONS_PATH" , PATH."index.php?page=promotions");
 
 
 
 /**
- * @brief Lien complet vers la page de téléchargement
- * @note ex : http://localhost/src/index.php?page=manuelUtilisateur
+ * @brief Lien complet vers la page d'ajout d'une promoion
+ * @note ex : http://localhost/src/index.php?page=promotions&action=ajouter
  */
 define("PAGE_AJOUTER_PROMOTION_PATH" , PATH."index.php?page=promotions&action=ajouter");
-
-
-
 
 
 

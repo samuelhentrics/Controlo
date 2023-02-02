@@ -45,7 +45,7 @@
                             require(BACK_PATH."Promotions/ajouterPromotion.php");
                         }
                         else{
-                            require(BACK_PATH."Promotions/promotions.php");
+                            require(BACK_PATH."Promotions/listePromotions.php");
                         }
                         
                         break;

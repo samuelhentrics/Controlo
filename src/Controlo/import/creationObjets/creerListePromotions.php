@@ -30,7 +30,6 @@ function creerListePromotions()
     // On va traiter chaque fichier dans le dossier /Etudiants/
     $scandir = scandir(CSV_ETUDIANTS_FOLDER_NAME);
     foreach ($scandir as $nomFichier) {
-
         // S'il s'agit d'un fichier CSV, on suppose qu'il s'agit d'un fichier d'étudiants
         if (preg_match("#\.(csv)$#", strtolower($nomFichier))) {
             // On récupére le nom de la promotion
