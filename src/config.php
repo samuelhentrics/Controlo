@@ -626,6 +626,19 @@ define("PAGE_CONTROLES_PATH" , PATH."index.php?page=controles");
 define("PAGE_ETUDIANTS_PATH" , PATH."index.php?page=etudiants");
 
 /**
+ * @brief Lien complet vers la page d'ajout d'un etudiant
+ * @note ex : http://localhost/src/index.php?page=ajouterEtudiant
+ */
+define("PAGE_AJOUTER_ETUDIANTS_PATH" , PATH."index.php?page=ajouterEtudiant");
+
+/**
+ * @brief Lien complet vers la page de modification d'un étudiant
+ * @note ex : http://localhost/src/index.php?page=ajouterEtudiant
+ */
+define("PAGE_MODIFIER_ETUDIANTS_PATH" , PATH."index.php?page=modifierEtudiant");
+
+
+/**
  * @brief Lien complet vers la page de la liste des salles
  * @note ex : http://localhost/src/index.php?page=salles
  */
