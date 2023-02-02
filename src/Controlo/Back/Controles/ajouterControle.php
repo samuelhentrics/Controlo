@@ -60,7 +60,7 @@
 
             foreach ($files as $file) {
                 $extension = pathinfo($file, PATHINFO_EXTENSION);
-                if ($extension === "csv" && $file != "liste-salles.csv"){
+                if ($extension === "csv" && $file != LISTE_SALLES_FILE_NAME){
                     print(' <div class="custom-control custom-checkbox custom-control-inline">
                     <input name="checkbox" id="checkbox_0" type="checkbox" class="custom-control-input" value="salle-'.$file.'">');
                     print('<label for="checkbox_0" class="custom-control-label">'.$file.'</label></div>');
