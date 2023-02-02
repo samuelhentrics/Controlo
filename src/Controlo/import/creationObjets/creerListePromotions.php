@@ -77,7 +77,7 @@ function creerUnePromotion($nomPromotion)
         }
 
         // Créer un numéro étudiant
-        $numeroEtudiant = 1;
+        $numeroEtudiant = 0;
 
         // Lecture du reste du CSV
         while ($uneLigne = fgetcsv($monFichier, null, ";")) {
@@ -137,6 +137,25 @@ function creerEtudiant($unEtudiantInfo, $numeroEtudiant)
 
     return $unEtudiant;
 }
+
+
+/**
+ * Récupére un étudiant à partir de son numéro et de la promotion
+ * @param int $idEtudiant Numéro de l'étudiant
+ * @param string $nomPromotion Nom de la promotion
+ * @return Etudiant
+ */
+function recupererUnEtudiant($idEtudiant, $nomPromotion)
+{
+    $maPromotion = creerUnePromotion($nomPromotion);
+    $listeEtudiants = $maPromotion->getMesEtudiants();
+
+    $unEtudiant = $listeEtudiants[$idEtudiant];
+
+    return $unEtudiant;
+}
+
+
 
 /**
  * @brief Permet de vérifier si un mot clé est dans une phrase
