@@ -85,7 +85,7 @@ define("CSV_SALLES_FOLDER_NAME","Salles/");
 /**
  * @brief Nom du dossier où se retrouvent les CSV (partie Promotions)
  * (La liste des salles et des plans de salle)
- * @note ex : Salles/
+ * @note ex : Promotions/
  */
 define("CSV_PROMOTIONS_FOLDER_NAME","Promotions/");
 
@@ -630,6 +630,25 @@ define("PAGE_ETUDIANTS_PATH" , PATH."index.php?page=etudiants");
  * @note ex : http://localhost/src/index.php?page=salles
  */
 define("PAGE_SALLES_PATH" , PATH."index.php?page=salles");
+
+
+
+
+
+
+
+/**
+ * @brief Lien complet vers la page de téléchargement
+ * @note ex : http://localhost/src/index.php?page=manuelUtilisateur
+ */
+define("PAGE_AJOUTER_PROMOTION_PATH" , PATH."index.php?page=promotions&action=ajouter");
+
+
+
+
+
+
+
 
 /**
  * @brief Lien complet vers la page de la politique de confidentialité

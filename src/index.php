@@ -41,13 +41,15 @@
 
                     // Cas ou l'utilisateur souhaite ajouter une promotion
                     case 'promotions':
-                        require(BACK_PATH."Promotion/promotions.php");
+                        if (isset($_GET["action"])) {
+                            require(BACK_PATH."Promotions/ajouterPromotion.php");
+                        }
+                        else{
+                            require(BACK_PATH."Promotions/promotions.php");
+                        }
+                        
                         break;
 
-                    // Cas ou l'utilisateur souhaite ajouter une promotion
-                    case 'ajouterPromotion':
-                        require(BACK_PATH."Promotion/ajouterPromotion.php");
-                        break;
 
                     // Cas où l'utilisateur souhaite voir la liste des contrôles
                     case 'controles':
