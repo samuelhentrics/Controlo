@@ -42,8 +42,15 @@
                     // Cas ou l'utilisateur souhaite ajouter une promotion
                     case 'promotions':
                         if (isset($_GET["action"])) {
-
-                            require(BACK_PATH."Promotions/promotions.php");
+                            $action=$_GET["action"];
+                            switch($action) {
+                                case "ajouter":
+                                require(BACK_PATH."Promotions/ajouterPromotion.php");
+                                break;
+                            default:
+                                    require(BACK_PATH."404.php");
+                                    break;
+                                }
                         }
                         else{
                             require(BACK_PATH."Promotions/listePromotions.php");
