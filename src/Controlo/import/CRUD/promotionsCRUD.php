@@ -63,7 +63,38 @@ function creerPromotion($nomPromotion){
     return $ajoutOk;
 }
 
-function ajouterNomAffichage(){
+function ajouterNomPromotion($nomPromotion, $nomPromotionAffichage){
+
+    // On initialise un booléen en cas d'erreur
+    $ajoutOk = true;
+    
+    // Tentative d'écriture du fichier CSV
+    try {
+
+        $lienFichier = CSV_ETUDIANTS_FOLDER_NAME."liste-promotions.csv";
+
+        // On verifie si le fichier contient une erreur à l'ouverture 
+        $file =  fopen($lienFichier, "a");
+        if ($file == false){
+            throw new Exception("Impossible d'ecrire dans le fichier de liste de promotions");
+        }
+
+        // Contient l'entête des fichiers de promotions
+        $noms = array($nomPromotion, $nomPromotionAffichage);
+
+        // Ajoute l'array dans le CSV
+        fputcsv($file, $noms, ";");
+
+        // Fermer le fichier CSV
+        fclose($file);
+
+} catch (Exception $e) {
+    $ajoutOk = false;
+    throw new Exception($e->getMessage());
+}
+
+return $ajoutOk;
+
 
 
 }
