@@ -28,6 +28,7 @@
                         <th>Nom de la Salle</th>
                         <th>Salle voisine</th>
                         <th>Etat du plan</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,14 +65,21 @@
                         // Afficher si le plan existe ou non
                         if ($uneSalle->getMonPlan() != null) {
                             print("<i class=\"fa-solid fa-circle text-success\"></i> ");
-                            print("- <a class=\"text-reset fw-bold text-decoration-none\"
-                                    href=\"".PAGE_PLAN_SALLE_PATH."&nom={$uneSalle->getNom()}\">
-                                    Aperçu
-                                    <i class=\"fa-solid fa-arrow-right\"></i>
-                                    </a>");
                         } else {
                             print("<i class=\"fa-solid fa-circle text-danger\"></i>");
                         }
+                        print("
+
+                            </td>
+                            <td>
+                        ");
+
+                        // Afficher les actions de la salle
+                        if ($uneSalle->getMonPlan() != null) {
+                            print(" <a href=\"".PAGE_PLAN_SALLE_PATH."&nom=".$uneSalle->getNom()."\" class=\"btn btn-primary\">Aperçu</a>");
+                        }
+                        print(" <a href=\".PAGE_MODIFIER_SALLE_PATH.\" class=\"btn btn-primary\">Modifier salle</a>");
+                        print(" <a href=\".PAGE_MODIFIER_SALLE_PATH.\" class=\"btn btn-primary\">Supprimer salle</a>");
                         print("
                             </td>
                             </tr>
