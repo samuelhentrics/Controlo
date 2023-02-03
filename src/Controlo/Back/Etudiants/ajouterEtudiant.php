@@ -1,9 +1,4 @@
 <div class="container">
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Attention !</strong>
-        <p>Cette page est en cours de développement.</p>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
 
   <div class="col-3"></div>
   <div class="col-6 m-auto">
@@ -91,7 +86,17 @@
         <label for="promo" class="col-4 col-form-label">Promotion</label>
         <div class="col-8">
           <select id="nomPromotion" name="nomPromotion" class="custom-select" required="required">
-            <option value="Info semestre 1">Info semestre 1</option>
+            <?php
+            include_once(FONCTION_CREER_LISTE_PROMOTIONS_PATH);
+
+            $listePromotions = creerListePromotions();
+
+            foreach ($listePromotions as $unePromotion) {
+              $nomPromo = $unePromotion->getNom();
+              echo '<option value="' . $nomPromo . '">' . $nomPromo . '</option>';
+            }
+
+            ?>
           </select>
         </div>
       </div>
