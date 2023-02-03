@@ -20,8 +20,8 @@
         </script>
         <section>
             <h1>Liste des salles</h1>
-            <a href="<?php PAGE_AJOUTER_SALLE_PATH?>" class="btn btn-primary" >Ajouter salle</a>
-            <a href="<?php PAGE_IMPORTER_SALLE_PATH ?>" class="btn btn-primary" >Importer salle</a>
+            <a href="<?php echo PAGE_AJOUTER_SALLE_PATH;?>" class="btn btn-primary" >Ajouter salle</a>
+            <a href="<?php echo PAGE_IMPORTER_SALLE_PATH; ?>" class="btn btn-primary" >Importer salle</a>
             <table id="salles" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
