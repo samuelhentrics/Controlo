@@ -683,6 +683,12 @@ define("PAGE_MODIFIER_ETUDIANTS_PATH" , PATH."index.php?page=etudiants&action=mo
  */
 define("PAGE_SALLES_PATH" , PATH."index.php?page=salles");
 
+/**
+ * @brief Lien complet vers la page de promotion
+ * @note ex : http://localhost/src/index.php?page=promotions
+ */
+define("PAGE_PROMOTIONS_PATH" , PATH."index.php?page=promotions");
+
 
 /**
  * @brief Lien complet vers la page de promotion
@@ -697,8 +703,6 @@ define("PAGE_LISTE_PROMOTIONS_PATH" , PATH."index.php?page=listePromotions");
  * @note ex : http://localhost/src/index.php?page=promotions&action=ajouter
  */
 define("PAGE_AJOUTER_PROMOTION_PATH" , PATH."index.php?page=promotions&action=ajouter");
-
-
 
 
 

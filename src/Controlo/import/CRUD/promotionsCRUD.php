@@ -25,12 +25,41 @@
  */
 
 
-function ajouterPromotion($nomPromotion, $nomPromotionAffichage){
+function ajouterPromotion($nomPromotion){
 
-        $entete = array(PRENOM_NOM_COLONNE_ETUDIANT, NOM_NOM_COLONNE_ETUDIANT, TD_NOM_COLONNE_ETUDIANT, TP_NOM_COLONNE_ETUDIANT, STATUTS_NOM_COLONNE_ETUDIANT, MAIL_NOM_COLONNE_ETUDIANT);
-        $file =  fopen(CSV_ETUDIANTS_FOLDER_NAME.$nomPromotion.".csv" , "w");
-        fputcsv($file, $entete, ";");
-        fclose($file);
+        // On initialise un booléen en cas d'erreur
+        $ajoutOk = true;
 
+        
+        // Tentative d'écriture du fichier CSV
+        try {
+
+            // On verifie si le fichier que l'on souhaite créer exite déjà
+            $lienFichier = CSV_ETUDIANTS_FOLDER_NAME.$nomPromotion.".csv";
+            if (file_exists($lienFichier)){
+                throw new Exception("Cette promotion existe déjà");
+            }
+
+            // On verifie si le fichier contient une erreur à l'ouverture 
+            $file =  fopen($lienFichier  , "w");
+            if ($file == false){
+                throw new Exception("Impossible de créer le fichier CSV");
+            }
+
+            // Contient l'entête des fichiers de promotions
+            $entete = array(PRENOM_NOM_COLONNE_ETUDIANT, NOM_NOM_COLONNE_ETUDIANT, TD_NOM_COLONNE_ETUDIANT, TP_NOM_COLONNE_ETUDIANT, STATUTS_NOM_COLONNE_ETUDIANT, MAIL_NOM_COLONNE_ETUDIANT);
+
+            // Ajoute l'array dans le CSV
+            fputcsv($file, $entete, ";");
+
+            // Fermer le fichier CSV
+            fclose($file);
+
+    } catch (Exception $e) {
+        $ajoutOk = false;
+        throw new Exception($e->getMessage());
     }
+
+    return $ajoutOk;
+}
 ?>

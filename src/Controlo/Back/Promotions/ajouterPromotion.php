@@ -12,8 +12,9 @@
         
         // Ajouter la promotion
 
-        $bool = ajouterPromotion($nomPromotion, $nomPromotionAffichage);
-        if ($bool) {
+        try{
+
+        ajouterPromotion($nomPromotion);
                 // Afficher un message de succès bootstrap
                 print("
                 <div class='alert alert-success alert-dismissible fade show' role='alert'>
@@ -22,10 +23,18 @@
                     <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>
                     ");
-              }
+              
+        }catch (Exception $e) {
+            // Afficher l'erreur      
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+            echo $e->getMessage();
+            echo "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
+            echo '</div>';
+    
+            $ajoutOk = false;
 
         }
-
+    }
 
         ?>
         <form action="<?php echo PAGE_AJOUTER_PROMOTION_PATH ?>" method="POST">
