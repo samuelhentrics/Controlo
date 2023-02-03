@@ -14,7 +14,7 @@
 
         try{
 
-        ajouterPromotion($nomPromotion);
+        creerPromotion($nomPromotion);
                 // Afficher un message de succès bootstrap
                 print("
                 <div class='alert alert-success alert-dismissible fade show' role='alert'>
@@ -23,6 +23,8 @@
                     <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>
                     ");
+
+        ajouterNomAffichage($nomPromotionAffichage);
               
         }catch (Exception $e) {
             // Afficher l'erreur      

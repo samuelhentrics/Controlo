@@ -25,7 +25,7 @@
  */
 
 
-function ajouterPromotion($nomPromotion){
+function creerPromotion($nomPromotion){
 
         // On initialise un booléen en cas d'erreur
         $ajoutOk = true;
@@ -61,5 +61,10 @@ function ajouterPromotion($nomPromotion){
     }
 
     return $ajoutOk;
+}
+
+function ajouterNomAffichage(){
+
+
 }
 ?>
