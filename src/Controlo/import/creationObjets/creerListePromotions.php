@@ -164,16 +164,16 @@ function creerEtudiant($unEtudiantInfo, $numeroEtudiant)
 
 
         // Traiter si l'étudiant dispose d'un tiers temps
-        $TABLEAUX_MOT_CLEE_TIERS_TEMPS = ["TiersTemps", "Tiers-temps"];
-        $unEtudiant->setEstTT(contientMot($statuts, $TABLEAUX_MOT_CLEE_TIERS_TEMPS));
+        $TABLEAUX_MOTS_CLES_TIERS_TEMPS = ["tierstemps", "tiers-temps", "tiers temps"];
+        $unEtudiant->setEstTT(contientMot($statuts, $TABLEAUX_MOTS_CLES_TIERS_TEMPS));
 
         // Traiter si l'étudiant dispose d'un ordinateur
-        $TABLEAUX_MOT_CLEE_ORDINATEUR = ["PC", "pc", "Ordinateur"];
-        $unEtudiant->setAOrdi(contientMot($statuts, $TABLEAUX_MOT_CLEE_ORDINATEUR));
+        $TABLEAUX_MOTS_CLES_ORDINATEUR = ["pc", "ordinateur"];
+        $unEtudiant->setAOrdi(contientMot($statuts, $TABLEAUX_MOTS_CLES_ORDINATEUR));
 
         // Traiter si l'étudiant est demissionaire
-        $TABLEAUX_MOT_CLEE_DEMISSION = ["Demission", "DÃ©mission", "Démission"];
-        $unEtudiant->setEstDemissionnaire(contientMot($statuts, $TABLEAUX_MOT_CLEE_DEMISSION));
+        $TABLEAUX_MOTS_CLES_DEMISSION = ["demission", "dÃ©mission", "démission", "dÃ©missionnaire", "démissionnaire", "demissionnaire"];
+        $unEtudiant->setEstDemissionnaire(contientMot($statuts, $TABLEAUX_MOTS_CLES_DEMISSION));
     }
 
     return $unEtudiant;
@@ -207,6 +207,7 @@ function recupererUnEtudiant($idEtudiant, $nomPromotion)
 function contientMot($unePhrase, $tableauMotClee)
 {
     $bool = false;
+    $unePhrase = strtolower($unePhrase);
 
     # TiersTemps
     if (!empty($unePhrase)){

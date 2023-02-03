@@ -14,41 +14,48 @@
 
     // Vérifier si le formulaire a été envoyé
     if (isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["nomPromotion"]) && isset($_POST["td"]) && isset($_POST["tp"]) && isset($_POST["mail"])) {
-        // Récupérer les données du formulaire
-        $nom = $_POST["nom"];
-        $prenom = $_POST["prenom"];
-        $nomPromotion = $_POST["nomPromotion"];
-        $td = $_POST["td"];
-        $tp = $_POST["tp"];
-        $email = $_POST["mail"];
+      // Récupérer les données du formulaire
+      $nom = $_POST["nom"];
+      $prenom = $_POST["prenom"];
+      $nomPromotion = $_POST["nomPromotion"];
+      $td = $_POST["td"];
+      $tp = $_POST["tp"];
+      $email = $_POST["mail"];
 
-        if (isset($_POST["tiersTemps"]))
-            $tiersTemps = $_POST["tiersTemps"];
-        else
-            $tiersTemps = 0;
+      if (isset($_POST["tiersTemps"]))
+        $tiersTemps = $_POST["tiersTemps"];
+      else
+        $tiersTemps = 0;
 
-        if (isset($_POST["ordinateur"]))
-            $ordinateur = $_POST["ordinateur"];
-        else
-            $ordinateur = 0; 
+      if (isset($_POST["ordinateur"]))
+        $ordinateur = $_POST["ordinateur"];
+      else
+        $ordinateur = 0;
 
-        if (isset($_POST["demissionnaire"]))  
-            $demissionnaire = $_POST["demissionnaire"];
-        else
-            $demissionnaire = 0;
+      if (isset($_POST["demissionnaire"]))
+        $demissionnaire = $_POST["demissionnaire"];
+      else
+        $demissionnaire = 0;
 
 
-        // Ajouter l'étudiant
-        $bool = ajouterEtudiant($nom, $prenom, $nomPromotion, $td, $tp, $email, $tiersTemps, $ordinateur, $demissionnaire);
-      if ($bool) {
-        // Afficher un message de succès bootstrap
+      // Ajouter l'étudiant
+      try {
+        ajouterEtudiant($nom, $prenom, $nomPromotion, $td, $tp, $tiersTemps, $ordinateur, $demissionnaire, $email);
         print("
-        <div class='alert alert-success alert-dismissible fade show' role='alert'>
-            <strong>Succès !</strong>
-            <p>L'étudiant a bien été ajouté.</p>
-            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-            </div>
-            ");
+            <div class='alert alert-success alert-dismissible fade show' role='alert'>
+                <strong>Succès !</strong>
+                <p>L'étudiant a bien été ajouté.</p>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                </div>
+                ");
+      } catch (Exception $e) {
+        // Afficher l'erreur      
+        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+        echo $e->getMessage();
+        echo "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
+        echo '</div>';
+
+        $ajoutOk = false;
       }
     }
 
@@ -128,7 +135,7 @@
           </div>
           <div class="custom-control custom-checkbox custom-control-inline">
             <input name="demissionnaire" id="demissionnaire" type="checkbox" class="custom-control-input">
-            <label for="demissionnaire" class="custom-control-label">Démissionnaire</label>
+            <label for="demissionnaire" class="custom-control-label">Démission</label>
           </div>
         </div>
       </div>

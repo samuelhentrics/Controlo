@@ -703,6 +703,30 @@ define("PAGE_AJOUTER_PROMOTION_PATH" , PATH."index.php?page=promotions&action=aj
 
 
 /**
+ * @brief Lien complet vers la page d'un plan d'une salle
+ * @note ex : http://localhost/src/index.php?page=salles&action=plan
+ */
+define("PAGE_PLAN_SALLE_PATH" , PATH."index.php?page=salles&action=plan");
+
+/**
+ * @brief Lien complet vers la page d'ajout d'une salle
+ * @note ex : http://localhost/src/index.php?page=ajouter
+ */
+define("PAGE_AJOUTER_SALLE_PATH" , PATH."index.php?page=salles&action=ajouter");
+
+/**
+ * @brief Lien complet vers la page d'importation d'une salle
+ * @note ex : http://localhost/src/index.php?page=importer
+ */
+define("PAGE_IMPORTER_SALLE_PATH" , PATH."index.php?page=salles&action=importer");
+
+/**
+ * @brief Lien complet vers la page de modification d'une salle
+ * @note ex : http://localhost/src/index.php?page=modifier
+ */
+define("PAGE_MODIFIER_SALLE_PATH" , PATH."index.php?page=salles&action=modifier");
+
+/**
  * @brief Lien complet vers la page de la politique de confidentialité
  * @note ex : http://localhost/src/index.php?page=politiqueDeConfidentialite
  */
