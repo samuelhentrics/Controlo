@@ -118,6 +118,9 @@
                                 case "ajouter":
                                     require(BACK_PATH."Salles/ajouterSalle.php");
                                     break;
+                                case "ajouter2":
+                                    require(BACK_PATH."Salles/creerPlanDeSalle.php");
+                                    break;    
                                 case "importer":
                                     require(BACK_PATH."Salles/planSalle.php");
                                     break;
