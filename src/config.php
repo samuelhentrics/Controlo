@@ -85,7 +85,7 @@ define("CSV_SALLES_FOLDER_NAME","Salles/");
 /**
  * @brief Nom du dossier où se retrouvent les CSV (partie Promotions)
  * (La liste des salles et des plans de salle)
- * @note ex : Salles/
+ * @note ex : Promotions/
  */
 define("CSV_PROMOTIONS_FOLDER_NAME","Promotions/");
 
@@ -107,11 +107,6 @@ define("CSV_ETUDIANTS_PATH",PATH.CSV_ETUDIANTS_FOLDER_NAME);
  */
 define("CSV_SALLES_PATH", PATH.CSV_SALLES_FOLDER_NAME);
 
-/**
- * @brief Lien complet pour accéder au dossier CSV (Promotions)
- * @note ex : http://localhost/src/Promotions
- */
-define("CSV_PROMOTIONS_PATH", PATH.CSV_PROMOTIONS_FOLDER_NAME);
 
 
 
@@ -494,9 +489,41 @@ define("FONCTION_CREER_LISTE_PROMOTIONS_FILE_NAME" , "creerListePromotions.php")
  */
 define("FONCTION_CREER_LISTE_PROMOTIONS_PATH" , OBJECT_CREATION_PATH.FONCTION_CREER_LISTE_PROMOTIONS_FILE_NAME);
 
+/** 
+ * @brief Nom du fichier où se trouve le dossier des fonctions CRUD
+ * @note ex : crud/
+ */
+define("CRUD_FOLDER_NAME" , "CRUD/");
 
+/** 
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve le dossier des fonctions CRUD
+ * @note ex : Controlo/import/crud/
+ */
+define("CRUD_PATH" , IMPORT_PATH.CRUD_FOLDER_NAME);
 
+/** 
+ * @brief Nom du fichier où se trouve les fonctions CRUD des contrôles
+ * @note ex : crudControles.php
+ */
+define("FONCTION_CRUD_CONTROLES_FILE_NAME" , "controlesCRUD.php");
 
+/** 
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve les fonctions CRUD des contrôles
+ * @note ex : Controlo/import/crud/crudControles.php
+ */
+define("FONCTION_CRUD_CONTROLES_PATH" , CRUD_PATH.FONCTION_CRUD_CONTROLES_FILE_NAME);
+
+/** 
+ * @brief Nom du fichier où se trouve les fonctions CRUD des étudiants
+ * @note ex : crudEtudiants.php
+ */
+define("FONCTION_CRUD_ETUDIANTS_FILE_NAME" , "etudiantsCRUD.php");
+
+/** 
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve les fonctions CRUD des étudiants
+ * @note ex : Controlo/import/crud/crudEtudiants.php
+ */
+define("FONCTION_CRUD_ETUDIANTS_PATH" , CRUD_PATH.FONCTION_CRUD_ETUDIANTS_FILE_NAME);
 
 
 
@@ -626,10 +653,43 @@ define("PAGE_CONTROLES_PATH" , PATH."index.php?page=controles");
 define("PAGE_ETUDIANTS_PATH" , PATH."index.php?page=etudiants");
 
 /**
+ * @brief Lien complet vers la page d'ajout d'un etudiant
+ * @note ex : http://localhost/src/index.php?page=etudiants&action=ajouter
+ */
+define("PAGE_AJOUTER_ETUDIANTS_PATH" , PATH."index.php?page=etudiants&action=ajouter");
+
+/**
+ * @brief Lien complet vers la page de modification d'un étudiant
+ * @note ex : http://localhost/src/index.php?page=etudiants&action=modifier
+ */
+define("PAGE_MODIFIER_ETUDIANTS_PATH" , PATH."index.php?page=etudiants&action=modifier");
+
+/**
  * @brief Lien complet vers la page de la liste des salles
  * @note ex : http://localhost/src/index.php?page=salles
  */
 define("PAGE_SALLES_PATH" , PATH."index.php?page=salles");
+
+
+
+
+/**
+ * @brief Lien complet vers la page de téléchargement
+ * @note ex : http://localhost/src/index.php?page=promotions
+ */
+define("PAGE_LISTE_PROMOTIONS_PATH" , PATH."index.php?page=promotions");
+
+
+
+/**
+ * @brief Lien complet vers la page d'ajout d'une promoion
+ * @note ex : http://localhost/src/index.php?page=promotions&action=ajouter
+ */
+define("PAGE_AJOUTER_PROMOTION_PATH" , PATH."index.php?page=promotions&action=ajouter");
+
+
+
+
 
 /**
  * @brief Lien complet vers la page d'un plan d'une salle

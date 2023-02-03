@@ -19,6 +19,8 @@
         </script>
         <section>
             <h1>Liste des étudiants</h1>
+            <!-- Bouton en haut à droite pour ajouter un étudiant -->
+            <a href="index.php?page=etudiants&action=ajouter" class="btn btn-primary">Ajouter</a>
             <table id="etudiants" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
@@ -31,6 +33,7 @@
                         <th>Tiers-temps</th>
                         <th>Ordinateur</th>
                         <th>Démissionnaire</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -118,7 +121,18 @@
                                 print("<a style=\"display:none;\">Non</a><i class=\"fa-solid fa-times\"></i>");
                             }
 
-                        print("</td>
+                            print("</td>
+
+
+                        <td class=\"text-center\">
+                            <form method=\"post\" action=" . PAGE_MODIFIER_ETUDIANTS_PATH . ">
+                                <input type=\"hidden\" name=\"idEtudiant\" value=\"{$unEtudiant->getId()}\">
+                                <input type=\"hidden\" name=\"nomPromotion\" value=\"{$unePromotion->getNom()}\">
+                                <input type=\"submit\" name=\"action\" value=\"modifier\" class=\"btn btn-primary\">
+                            </form>
+                        </td>
+
+
                         </tr>");
                         }
                     }

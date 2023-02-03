@@ -3,7 +3,7 @@
     <div class="col-6">
         <form>
             <div class="form-group row">
-                <label for="nom" class="col-4 col-form-label">nom long</label>
+                <label for="nom" class="col-4 col-form-label">Nom long</label>
                 <div class="col-8">
                     <div class="input-group">
                         <input id="controleNomLong" name="controleNomLong" placeholder="ex: R2.01 - Développement orienté objets - Programmation" type="text" class="form-control" required="required">

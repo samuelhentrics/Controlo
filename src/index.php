@@ -41,13 +41,16 @@
 
                     // Cas ou l'utilisateur souhaite ajouter une promotion
                     case 'promotions':
-                        require(BACK_PATH."Promotion/promotions.php");
+                        if (isset($_GET["action"])) {
+
+                            require(BACK_PATH."Promotions/promotions.php");
+                        }
+                        else{
+                            require(BACK_PATH."Promotions/listePromotions.php");
+                        }
+                        
                         break;
 
-                    // Cas ou l'utilisateur souhaite ajouter une promotion
-                    case 'ajouterPromotion':
-                        require(BACK_PATH."Promotion/ajouterPromotion.php");
-                        break;
 
                     // Cas où l'utilisateur souhaite voir la liste des contrôles
                     case 'controles':
@@ -74,15 +77,27 @@
 
 
 
-                    // Cas où l'utilisateur souhaite voir la liste des étudiants
-                    case 'etudiants':
-                        require(BACK_PATH."Etudiants/etudiants.php");
-                        break;
-                    
-                    // Cas où l'utilisateur souhaite voir ajouter un étudiant
-                    case 'ajouterEtudiant':
-                        require(BACK_PATH."Etudiants/ajouterEtudiant.php");
-                        break;
+                // Cas où l'utilisateur souhaite s'occuper des étudiants
+                case 'etudiants':
+                    if (isset($_GET['action'])) {
+                        // Cas où l'utilisateur veut ajouter un étudiant
+                        if ($_GET['action'] == "ajouter") {
+                            require(BACK_PATH . "Etudiants/ajouterEtudiant.php");
+                        }
+                        // Cas où l'utilisateur veut modifier un étudiant
+                        else if ($_GET['action'] == "modifier") {
+                            require(BACK_PATH . "Etudiants/modifierEtudiant.php");
+                        }
+                        // Cas où une action n'est pas reconnue
+                        else {
+                            require(BACK_PATH . "404.php");
+                        }
+                    }
+                    // Cas où il veut voir la liste des étudiants
+                    else {
+                        require(BACK_PATH . "Etudiants/listeEtudiants.php");
+                    }
+                    break;
 
 
                     // Cas où l'utilisateur souhaite voir la liste des salles

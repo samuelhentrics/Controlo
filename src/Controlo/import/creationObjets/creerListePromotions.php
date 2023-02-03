@@ -30,7 +30,6 @@ function creerListePromotions()
     // On va traiter chaque fichier dans le dossier /Etudiants/
     $scandir = scandir(CSV_ETUDIANTS_FOLDER_NAME);
     foreach ($scandir as $nomFichier) {
-
         // S'il s'agit d'un fichier CSV, on suppose qu'il s'agit d'un fichier d'étudiants
         if (preg_match("#\.(csv)$#", strtolower($nomFichier))) {
             // On récupére le nom de la promotion
@@ -71,21 +70,35 @@ function creerUnePromotion($nomPromotion)
         // Récupération de l'entête du CSV
         $entete = fgetcsv($monFichier, null, ";");
 
-        // Supprimer les espaces en début et fin de chaque nom de colonne
-        foreach ($entete as $key => $value) {
-            $entete[$key] = trim($value);
-        }
 
-        // Lecture du reste du CSV
-        while ($uneLigne = fgetcsv($monFichier, null, ";")) {
-            // On récupére les informations de l'étudiant
-            $unEtudiantInfo = associerEnteteLigne($entete, $uneLigne);
+        if ($entete) {
+            // Supprimer les espaces en début et fin de chaque nom de colonne
+            if (count($entete) > 0) {
+                foreach ($entete as $key => $value) {
+                    $entete[$key] = trim($value);
+                }
+            }
 
-            // On créer l'étudiant
-            $unEtudiant = creerEtudiant($unEtudiantInfo);
 
-            // Ajout de l'étudiant dans la liste des étudiants (clé de la liste = l'email de l'étudiant)
-            $maPromotion->ajouterEtudiant($unEtudiant);
+            // Créer un numéro étudiant
+            $numeroEtudiant = 0;
+
+            // Lecture du reste du CSV
+            while ($uneLigne = fgetcsv($monFichier, null, ";")) {
+                // On récupére les informations de l'étudiant
+                $unEtudiantInfo = associerEnteteLigne($entete, $uneLigne);
+
+                // On créer l'étudiant
+                $unEtudiant = creerEtudiant($unEtudiantInfo, $numeroEtudiant);
+
+                // Ajout de l'étudiant dans la liste des étudiants (clé de la liste = l'email de l'étudiant)
+                if($unEtudiant != null){
+                    $maPromotion->ajouterEtudiant($unEtudiant);
+                }
+
+                // On incrémente le numéro de l'étudiant
+                $numeroEtudiant++;
+            }
         }
     }
 
@@ -98,37 +111,92 @@ function creerUnePromotion($nomPromotion)
  * 
  * @brief Créer un étudiant grâce à une ligne du CSV traité
  * @param array $unEtudiantInfo Ligne du CSV actuelle contenant les informations de l'étudiant actuel
+ * @param int $numeroEtudiant Numéro de l'étudiant qui lui sera affecté
  * @return Etudiant Etudiant avec toutes ses informations nom, prenom...
  */
-function creerEtudiant($unEtudiantInfo)
+function creerEtudiant($unEtudiantInfo, $numeroEtudiant)
 {
+    $nomEtudiant = null;
+    $prenomEtudiant = null;
+    $tdEtudiant = null;
+    $tpEtudiant = null;
+    $emailEtudiant = null;
+    $statuts = null;
+    $unEtudiant = null;
+
     // Création d'un contrôle de la ligne actuelle
-    $nomEtudiant = $unEtudiantInfo[NOM_NOM_COLONNE_ETUDIANT];
-    $prenomEtudiant = $unEtudiantInfo[PRENOM_NOM_COLONNE_ETUDIANT];
-    $tdEtudiant = $unEtudiantInfo[TD_NOM_COLONNE_ETUDIANT];
-    $tpEtudiant = $unEtudiantInfo[TP_NOM_COLONNE_ETUDIANT];
-    $emailEtudiant = $unEtudiantInfo[MAIL_NOM_COLONNE_ETUDIANT];
-    $statuts = $unEtudiantInfo[STATUTS_NOM_COLONNE_ETUDIANT];
+    if(isset($unEtudiantInfo[NOM_NOM_COLONNE_ETUDIANT])){
+        $nomEtudiant = $unEtudiantInfo[NOM_NOM_COLONNE_ETUDIANT];
+    }
 
-    // Création d'un objet de type Controle avec les informations
-    // de la ligne courante que l'on traite dans le CSV
-    $unEtudiant = new Etudiant($nomEtudiant, $prenomEtudiant, $tdEtudiant, $tpEtudiant, $emailEtudiant);
+    if(isset($unEtudiantInfo[PRENOM_NOM_COLONNE_ETUDIANT])){
+        $prenomEtudiant = $unEtudiantInfo[PRENOM_NOM_COLONNE_ETUDIANT];
+    }
+
+    if(isset($unEtudiantInfo[TD_NOM_COLONNE_ETUDIANT])){
+        $tdEtudiant = $unEtudiantInfo[TD_NOM_COLONNE_ETUDIANT];
+    }
+
+    if(isset($unEtudiantInfo[TP_NOM_COLONNE_ETUDIANT])){
+        $tpEtudiant = $unEtudiantInfo[TP_NOM_COLONNE_ETUDIANT];
+    }
+
+    if(isset($unEtudiantInfo[MAIL_NOM_COLONNE_ETUDIANT])){
+        $emailEtudiant = $unEtudiantInfo[MAIL_NOM_COLONNE_ETUDIANT];
+    }
+
+    if(isset($unEtudiantInfo[STATUTS_NOM_COLONNE_ETUDIANT])){
+        $statuts = $unEtudiantInfo[STATUTS_NOM_COLONNE_ETUDIANT];
+    }
+
+    if ($nomEtudiant != null && $prenomEtudiant != null) {
+
+        // Création d'un objet de type Controle avec les informations
+        // de la ligne courante que l'on traite dans le CSV
+        $unEtudiant = new Etudiant(
+            $numeroEtudiant,
+            $nomEtudiant,
+            $prenomEtudiant,
+            $tdEtudiant,
+            $tpEtudiant,
+            $emailEtudiant
+        );
 
 
-    // Traiter si l'étudiant dispose d'un tiers temps
-    $TABLEAUX_MOT_CLEE_TIERS_TEMPS = ["TiersTemps", "Tiers-temps"];
-    $unEtudiant->setEstTT(contientMot($statuts, $TABLEAUX_MOT_CLEE_TIERS_TEMPS));
+        // Traiter si l'étudiant dispose d'un tiers temps
+        $TABLEAUX_MOT_CLEE_TIERS_TEMPS = ["TiersTemps", "Tiers-temps"];
+        $unEtudiant->setEstTT(contientMot($statuts, $TABLEAUX_MOT_CLEE_TIERS_TEMPS));
 
-    // Traiter si l'étudiant dispose d'un ordinateur
-    $TABLEAUX_MOT_CLEE_ORDINATEUR = ["PC", "pc", "Ordinateur"];
-    $unEtudiant->setAOrdi(contientMot($statuts, $TABLEAUX_MOT_CLEE_ORDINATEUR));
-    
-    // Traiter si l'étudiant est demissionaire
-    $TABLEAUX_MOT_CLEE_DEMISSION = ["Demission", "DÃ©mission", "Démission"];
-    $unEtudiant->setEstDemissionnaire(contientMot($statuts, $TABLEAUX_MOT_CLEE_DEMISSION));
+        // Traiter si l'étudiant dispose d'un ordinateur
+        $TABLEAUX_MOT_CLEE_ORDINATEUR = ["PC", "pc", "Ordinateur"];
+        $unEtudiant->setAOrdi(contientMot($statuts, $TABLEAUX_MOT_CLEE_ORDINATEUR));
+
+        // Traiter si l'étudiant est demissionaire
+        $TABLEAUX_MOT_CLEE_DEMISSION = ["Demission", "DÃ©mission", "Démission"];
+        $unEtudiant->setEstDemissionnaire(contientMot($statuts, $TABLEAUX_MOT_CLEE_DEMISSION));
+    }
 
     return $unEtudiant;
 }
+
+
+/**
+ * Récupére un étudiant à partir de son numéro et de la promotion
+ * @param int $idEtudiant Numéro de l'étudiant
+ * @param string $nomPromotion Nom de la promotion
+ * @return Etudiant
+ */
+function recupererUnEtudiant($idEtudiant, $nomPromotion)
+{
+    $maPromotion = creerUnePromotion($nomPromotion);
+    $listeEtudiants = $maPromotion->getMesEtudiants();
+
+    $unEtudiant = $listeEtudiants[$idEtudiant];
+
+    return $unEtudiant;
+}
+
+
 
 /**
  * @brief Permet de vérifier si un mot clé est dans une phrase
