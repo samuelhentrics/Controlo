@@ -11,7 +11,7 @@
     <div class="container">
     <div class="col-3"></div>
     <div class="col-6">
-        <form action="creerPlanDeSalle.php" method="post">
+        <form action=<?php echo PAGE_AJOUTER2_SALLE_PATH;?> method="post">
             <div class="form-group row">
                 <label for="nom" class="col-4 col-form-label">Nom de salle pour génération</label>
                 <div class="col-8">

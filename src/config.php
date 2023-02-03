@@ -715,6 +715,12 @@ define("PAGE_PLAN_SALLE_PATH" , PATH."index.php?page=salles&action=plan");
 define("PAGE_AJOUTER_SALLE_PATH" , PATH."index.php?page=salles&action=ajouter");
 
 /**
+ * @brief Lien complet vers la page d'ajout d'une salle
+ * @note ex : http://localhost/src/index.php?page=ajouter2
+ */
+define("PAGE_AJOUTER2_SALLE_PATH" , PATH."index.php?page=salles&action=ajouter2");
+
+/**
  * @brief Lien complet vers la page d'importation d'une salle
  * @note ex : http://localhost/src/index.php?page=importer
  */
