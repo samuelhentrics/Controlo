@@ -75,37 +75,77 @@ function ajouterEtudiant(
         fclose($monFichier);
 
     } catch (Exception $e) {
+        $ajoutOk = false;
         throw new Exception($e->getMessage());
     }
 
     return $ajoutOk;
 }
 
-function supprimerEtudiant($nomPromotion, $idEtudiant)
+function modifierEtudiant($nomPromotion, $idEtudiant, $nomEtudiant, $prenomEtudiant, $tdEtudiant, $tpEtudiant, $emailEtudiant, $tiersTempsEtudiant, $ordinateurEtudiant, $demissionnaireEtudiant)
 {
 
     // On initialise un booléen en cas d'erreur
-    $suppressionOk = true;
+    $modificationOk = true;
 
     // Tentative de suppression de l'étudiant
     try {
         $lienFichier = CSV_ETUDIANTS_FOLDER_NAME . $nomPromotion . ".csv";
 
-        // Ouvrir le fichier CSV en mode lecture pour récupérer les entêtes
+        // Récupérer les entêtes du fichier CSV
+        $entetes = recupererEnteteEtudiant($lienFichier);
 
+        // Ouvrir le fichier en mode modification
+        $monFichier = fopen($lienFichier, "r+");
 
+        $data=array();
+        $i=0;
+        // Aller sur la ligne de l'étudiant à modifier
+        while(true){
+            $ligne = fgetcsv($monFichier, 1000, ";");
 
+            if(!$ligne){
+                break;
+            }
+
+            $data[$i] = $ligne;
+            $i++;
+        }
+        
+        // Récupérer les informations de l'étudiant
+        
+        // Modifier les informations de l'étudiant
+        $infoEtudiant = saisirLigneEtudiant(
+            $entetes,
+            $nomEtudiant,
+            $prenomEtudiant,
+            $tdEtudiant,
+            $tpEtudiant,
+            $emailEtudiant,
+            $tiersTempsEtudiant,
+            $ordinateurEtudiant,
+            $demissionnaireEtudiant
+        );
+
+        $data[$idEtudiant + 1] = $infoEtudiant;
+
+        // Remplacer l'ancienne ligne par la nouvelle
+        rewind($monFichier);
+        ftruncate($monFichier, 0);
+        foreach ($data as $fields) {
+            fputcsv($monFichier, $fields, ";");
+        }
+
+        // Fermer le fichier CSV
+        fclose($monFichier);
 
 
     } catch (Exception $e) {
-        // Afficher l'erreur      
-        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
-        echo $e->getMessage();
-        echo "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
-        echo '</div>';
-
-        $suppressionOk = false;
+        $modificationOk = false;
+        throw new Exception($e->getMessage());
     }
+
+    return $modificationOk;
 }
 
 /**
@@ -191,7 +231,7 @@ function saisirLigneEtudiant($infoEtudiant, $nomEtudiant, $prenomEtudiant, $tdEt
         $infoEtudiant[TP_NOM_COLONNE_ETUDIANT] = $tpEtudiant;
 
         // Vérifier que le mail est valide
-        if (!filter_var($infoEtudiant[MAIL_NOM_COLONNE_ETUDIANT], FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($emailEtudiant, FILTER_VALIDATE_EMAIL)) {
             throw new Exception("Le mail de l'étudiant n'est pas valide");
         }
 

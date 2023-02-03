@@ -40,7 +40,7 @@
 
       // Ajouter l'étudiant
       try {
-        ajouterEtudiant($nom, $prenom, $nomPromotion, $td, $tp, $tiersTemps, $ordinateur, $demissionnaire, $email);
+        ajouterEtudiant($nom, $prenom, $nomPromotion, $td, $tp, $email, $tiersTemps, $ordinateur, $demissionnaire);
         print("
             <div class='alert alert-success alert-dismissible fade show' role='alert'>
                 <strong>Succès !</strong>
@@ -54,8 +54,6 @@
         echo $e->getMessage();
         echo "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
         echo '</div>';
-
-        $ajoutOk = false;
       }
     }
 
