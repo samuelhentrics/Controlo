@@ -112,9 +112,15 @@
                         if (isset($_GET['action'])) {
                             $action=$_GET['action'];
                             switch($action){
-                                case "modifier": break;
-                                case "ajouter": break;
-                                case "importer": break;
+                                case "modifier":
+                                    require(BACK_PATH."Salles/planSalle.php");
+                                    break;
+                                case "ajouter":
+                                    require(BACK_PATH."Salles/ajouterSalle.php");
+                                    break;
+                                case "importer":
+                                    require(BACK_PATH."Salles/planSalle.php");
+                                    break;
                                 case "plan":
                                     require(BACK_PATH."Salles/planSalle.php");
                                     break;
