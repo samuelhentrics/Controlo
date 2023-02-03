@@ -503,27 +503,40 @@ define("CRUD_PATH" , IMPORT_PATH.CRUD_FOLDER_NAME);
 
 /** 
  * @brief Nom du fichier où se trouve les fonctions CRUD des contrôles
- * @note ex : crudControles.php
+ * @note ex : controlesCRUD.php
  */
 define("FONCTION_CRUD_CONTROLES_FILE_NAME" , "controlesCRUD.php");
 
 /** 
  * @brief Lien complet (sans l'adresse du serveur) où se trouve les fonctions CRUD des contrôles
- * @note ex : Controlo/import/crud/crudControles.php
+ * @note ex : Controlo/import/crud/controlesCRUD.php
  */
 define("FONCTION_CRUD_CONTROLES_PATH" , CRUD_PATH.FONCTION_CRUD_CONTROLES_FILE_NAME);
 
 /** 
  * @brief Nom du fichier où se trouve les fonctions CRUD des étudiants
- * @note ex : crudEtudiants.php
+ * @note ex : etudiantsCRUD.php
  */
 define("FONCTION_CRUD_ETUDIANTS_FILE_NAME" , "etudiantsCRUD.php");
 
 /** 
  * @brief Lien complet (sans l'adresse du serveur) où se trouve les fonctions CRUD des étudiants
- * @note ex : Controlo/import/crud/crudEtudiants.php
+ * @note ex : Controlo/import/crud/etudiantsCRUD.php
  */
 define("FONCTION_CRUD_ETUDIANTS_PATH" , CRUD_PATH.FONCTION_CRUD_ETUDIANTS_FILE_NAME);
+
+
+/** 
+ * @brief Nom du fichier où se trouve les fonctions CRUD des étudiants
+ * @note ex : promotionsCRUD.php
+ */
+define("FONCTION_CRUD_PROMOTIONS_FILE_NAME" , "promotionsCRUD.php");
+
+/** 
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve les fonctions CRUD des promotions
+ * @note ex : Controlo/import/crud/promotionsCRUD.php
+ */
+define("FONCTION_CRUD_PROMOTIONS_PATH" , CRUD_PATH.FONCTION_CRUD_PROMOTIONS_FILE_NAME);
 
 
 
@@ -670,14 +683,18 @@ define("PAGE_MODIFIER_ETUDIANTS_PATH" , PATH."index.php?page=etudiants&action=mo
  */
 define("PAGE_SALLES_PATH" , PATH."index.php?page=salles");
 
-
+/**
+ * @brief Lien complet vers la page de promotion
+ * @note ex : http://localhost/src/index.php?page=promotions
+ */
+define("PAGE_PROMOTIONS_PATH" , PATH."index.php?page=promotions");
 
 
 /**
- * @brief Lien complet vers la page de téléchargement
+ * @brief Lien complet vers la page de promotion
  * @note ex : http://localhost/src/index.php?page=promotions
  */
-define("PAGE_LISTE_PROMOTIONS_PATH" , PATH."index.php?page=promotions");
+define("PAGE_LISTE_PROMOTIONS_PATH" , PATH."index.php?page=listePromotions");
 
 
 
@@ -686,8 +703,6 @@ define("PAGE_LISTE_PROMOTIONS_PATH" , PATH."index.php?page=promotions");
  * @note ex : http://localhost/src/index.php?page=promotions&action=ajouter
  */
 define("PAGE_AJOUTER_PROMOTION_PATH" , PATH."index.php?page=promotions&action=ajouter");
-
-
 
 
 
@@ -702,6 +717,12 @@ define("PAGE_PLAN_SALLE_PATH" , PATH."index.php?page=salles&action=plan");
  * @note ex : http://localhost/src/index.php?page=ajouter
  */
 define("PAGE_AJOUTER_SALLE_PATH" , PATH."index.php?page=salles&action=ajouter");
+
+/**
+ * @brief Lien complet vers la page d'ajout d'une salle
+ * @note ex : http://localhost/src/index.php?page=ajouter2
+ */
+define("PAGE_AJOUTER2_SALLE_PATH" , PATH."index.php?page=salles&action=ajouter2");
 
 /**
  * @brief Lien complet vers la page d'importation d'une salle

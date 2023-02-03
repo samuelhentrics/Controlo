@@ -42,8 +42,15 @@
                     // Cas ou l'utilisateur souhaite ajouter une promotion
                     case 'promotions':
                         if (isset($_GET["action"])) {
-
-                            require(BACK_PATH."Promotions/promotions.php");
+                            $action=$_GET["action"];
+                            switch($action) {
+                                case "ajouter":
+                                require(BACK_PATH."Promotions/ajouterPromotion.php");
+                                break;
+                            default:
+                                    require(BACK_PATH."404.php");
+                                    break;
+                                }
                         }
                         else{
                             require(BACK_PATH."Promotions/listePromotions.php");
@@ -105,9 +112,18 @@
                         if (isset($_GET['action'])) {
                             $action=$_GET['action'];
                             switch($action){
-                                case "modifier": break;
-                                case "ajouter": break;
-                                case "importer": break;
+                                case "modifier":
+                                    require(BACK_PATH."Salles/planSalle.php");
+                                    break;
+                                case "ajouter":
+                                    require(BACK_PATH."Salles/ajouterSalle.php");
+                                    break;
+                                case "ajouter2":
+                                    require(BACK_PATH."Salles/creerPlanDeSalle.php");
+                                    break;    
+                                case "importer":
+                                    require(BACK_PATH."Salles/planSalle.php");
+                                    break;
                                 case "plan":
                                     require(BACK_PATH."Salles/planSalle.php");
                                     break;
