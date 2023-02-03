@@ -16,7 +16,7 @@
                 <label for="nom" class="col-4 col-form-label">Nom de salle pour génération</label>
                 <div class="col-8">
                     <div class="input-group">
-                        <input id="NomSalle" name="NomSalle" placeholder="Ex : 124" type="text" class="form-salle" required="required">
+                        <input id="nomSalle" name="nomSalle" placeholder="Ex : 124" type="text" class="form-salle" required="required">
                     </div>
                 </div>
             </div>
