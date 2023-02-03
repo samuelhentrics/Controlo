@@ -22,13 +22,18 @@ include_once(FONCTION_ASSOCIER_ENTETE_LIGNE_PATH);
  * @return array $listePromotions
  *
  */
-function creerListePromotions()
+function creerListePromotions($affichageErreurs = false)
 {
 
     $listePromotions = array();
 
     // On va traiter chaque fichier dans le dossier /Etudiants/
     $scandir = scandir(CSV_ETUDIANTS_FOLDER_NAME);
+
+    if ($affichageErreurs) {
+        echo '<div class="toast-container" style="position: absolute; top: 10px; right: 10px;">';
+    }
+
     foreach ($scandir as $nomFichier) {
         // S'il s'agit d'un fichier CSV, on suppose qu'il s'agit d'un fichier d'étudiants
         if (preg_match("#\.(csv)$#", strtolower($nomFichier))) {
@@ -36,13 +41,37 @@ function creerListePromotions()
             $nomPromotion = substr($nomFichier, 0, -4);
 
             // On récupére une promotion
-            $unePromotion = creerUnePromotion($nomPromotion);
-
-            // On ajoute la promotion à la liste des promotions
-            $listePromotions[$nomPromotion] = $unePromotion;
+            try {
+                $unePromotion = creerUnePromotion($nomPromotion);
+                // On ajoute la promotion à la liste des promotions
+                if ($unePromotion != null) {
+                    $listePromotions[$nomPromotion] = $unePromotion;
+                }
+            }
+            catch(Exception $e){
+                if ($affichageErreurs) {
+                    print('
+                    <div class="toast fade show">
+                        <div class="toast-header">
+                            <strong class="me-auto"><i class="bi-globe"></i> Promotion non créée</strong>
+                            <small>' . $nomPromotion . '</small>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                        </div>
+                        <div class="toast-body">
+                            ' . $e->getMessage() . '
+                        </div>
+                    </div>
+                ');
+                }
+            }
 
         }
     }
+
+    if ($affichageErreurs) {
+        echo '</div>';
+    }
+    
     return $listePromotions;
 
 }
@@ -52,34 +81,48 @@ function creerListePromotions()
  * @brief Fonction permettant de créer une promotion à partir de son nom
  *
  * @param string $nomPromotion Nom de la promotion
- * @return Promotion $unePromotion 
+ * @return Promotion|null $unePromotion 
  */
 function creerUnePromotion($nomPromotion)
 {
-    $monFichier = fopen(CSV_ETUDIANTS_FOLDER_NAME . $nomPromotion . ".csv", "r");
+    try {
+        $monFichier = fopen(CSV_ETUDIANTS_FOLDER_NAME . $nomPromotion . ".csv", "r");
 
-    // Créer la liste des controles en lisant le fichier CSV
+        // Vérifier que le fichier n'est pas interdit
+        if ($nomPromotion == substr(LISTE_PROMOTIONS_FILE_NAME,0,-4)) {
+            throw new Exception(false);
+        }
+        // Créer la liste des controles en lisant le fichier CSV
 
-    if (!($monFichier)) {
-        print("Impossible d'ouvrir le fichier \n");
-        exit;
-    } else {
-        // Création d'un objet Promotion
-        $maPromotion = new Promotion($nomPromotion);
-
-        // Récupération de l'entête du CSV
-        $entete = fgetcsv($monFichier, null, ";");
+        if (!($monFichier)) {
+            throw new Exception("Impossible d'ouvrir le fichier.");
+        } else {
+            // Récupération de l'entête du CSV
+            $entete = fgetcsv($monFichier, null, ";");
 
 
-        if ($entete) {
-            // Supprimer les espaces en début et fin de chaque nom de colonne
-            if (count($entete) > 0) {
-                foreach ($entete as $key => $value) {
-                    $entete[$key] = trim($value);
-                }
+
+            if (!$entete) {
+                throw new Exception("Impossible de lire l'entête du fichier.");
             }
 
+            // Vérification de l'entête
+            if (!in_array(NOM_NOM_COLONNE_ETUDIANT, $entete) ||
+                !in_array(PRENOM_NOM_COLONNE_ETUDIANT, $entete) ||
+                !in_array(TD_NOM_COLONNE_ETUDIANT, $entete) ||
+                !in_array(TP_NOM_COLONNE_ETUDIANT, $entete) ||
+                !in_array(MAIL_NOM_COLONNE_ETUDIANT, $entete) ||
+                !in_array(STATUTS_NOM_COLONNE_ETUDIANT, $entete)) {
+                throw new Exception("La nomenclature de l'entête n'est pas respectée.");
+            }
 
+            // Supprimer les espaces en début et fin de chaque nom de colonne
+            foreach ($entete as $key => $value) {
+                $entete[$key] = trim($value);
+            }
+
+            // Création d'un objet Promotion
+            $maPromotion = new Promotion($nomPromotion);
             // Créer un numéro étudiant
             $numeroEtudiant = 0;
 
@@ -92,19 +135,34 @@ function creerUnePromotion($nomPromotion)
                 $unEtudiant = creerEtudiant($unEtudiantInfo, $numeroEtudiant);
 
                 // Ajout de l'étudiant dans la liste des étudiants (clé de la liste = l'email de l'étudiant)
-                if($unEtudiant != null){
+                if ($unEtudiant != null) {
                     $maPromotion->ajouterEtudiant($unEtudiant);
                 }
 
                 // On incrémente le numéro de l'étudiant
                 $numeroEtudiant++;
             }
+
         }
+
+        fclose($monFichier);
+
+        return $maPromotion;
+    } catch (Exception $e) {
+        if ($e->getMessage() != false) {
+
+            // print('
+            // <div id="info">
+            //     <div class="toast-body">
+            //     Promotion "' . $nomPromotion . '" non créée : ' . $e->getMessage() . '
+            //     </div>
+            // </div>
+            
+            // ');
+            throw new Exception($e->getMessage());
+        }
+        return null;
     }
-
-    fclose($monFichier);
-
-    return $maPromotion;
 }
 
 /**
@@ -125,27 +183,27 @@ function creerEtudiant($unEtudiantInfo, $numeroEtudiant)
     $unEtudiant = null;
 
     // Création d'un contrôle de la ligne actuelle
-    if(isset($unEtudiantInfo[NOM_NOM_COLONNE_ETUDIANT])){
+    if (isset($unEtudiantInfo[NOM_NOM_COLONNE_ETUDIANT])) {
         $nomEtudiant = $unEtudiantInfo[NOM_NOM_COLONNE_ETUDIANT];
     }
 
-    if(isset($unEtudiantInfo[PRENOM_NOM_COLONNE_ETUDIANT])){
+    if (isset($unEtudiantInfo[PRENOM_NOM_COLONNE_ETUDIANT])) {
         $prenomEtudiant = $unEtudiantInfo[PRENOM_NOM_COLONNE_ETUDIANT];
     }
 
-    if(isset($unEtudiantInfo[TD_NOM_COLONNE_ETUDIANT])){
+    if (isset($unEtudiantInfo[TD_NOM_COLONNE_ETUDIANT])) {
         $tdEtudiant = $unEtudiantInfo[TD_NOM_COLONNE_ETUDIANT];
     }
 
-    if(isset($unEtudiantInfo[TP_NOM_COLONNE_ETUDIANT])){
+    if (isset($unEtudiantInfo[TP_NOM_COLONNE_ETUDIANT])) {
         $tpEtudiant = $unEtudiantInfo[TP_NOM_COLONNE_ETUDIANT];
     }
 
-    if(isset($unEtudiantInfo[MAIL_NOM_COLONNE_ETUDIANT])){
+    if (isset($unEtudiantInfo[MAIL_NOM_COLONNE_ETUDIANT])) {
         $emailEtudiant = $unEtudiantInfo[MAIL_NOM_COLONNE_ETUDIANT];
     }
 
-    if(isset($unEtudiantInfo[STATUTS_NOM_COLONNE_ETUDIANT])){
+    if (isset($unEtudiantInfo[STATUTS_NOM_COLONNE_ETUDIANT])) {
         $statuts = $unEtudiantInfo[STATUTS_NOM_COLONNE_ETUDIANT];
     }
 
@@ -210,7 +268,7 @@ function contientMot($unePhrase, $tableauMotClee)
     $unePhrase = strtolower($unePhrase);
 
     # TiersTemps
-    if (!empty($unePhrase)){
+    if (!empty($unePhrase)) {
         $i = 0;
         $max = count($tableauMotClee);
         while (true) {
@@ -225,11 +283,11 @@ function contientMot($unePhrase, $tableauMotClee)
             // On vérifie si le mot clé est dans la phrase
             if (preg_match('/\b' . preg_quote($key, '/') . '\b/i', $unePhrase)) {
                 $bool = true;
-                break;    
+                break;
             }
 
             // On incrémente le compteur
-            $i++;            
+            $i++;
         }
     }
     return $bool;

@@ -36,7 +36,7 @@ function ajouterEtudiant(
 {
 
     // On initialise un booléen en cas d'erreur
-    $ajoutOk = true;
+    $ajoutOk = false;
 
     // Tentative d'écriture du fichier CSV
     try {
@@ -74,6 +74,8 @@ function ajouterEtudiant(
         // Fermer le fichier CSV
         fclose($monFichier);
 
+        $ajoutOk = true;
+
     } catch (Exception $e) {
         $ajoutOk = false;
         throw new Exception($e->getMessage());
@@ -82,11 +84,26 @@ function ajouterEtudiant(
     return $ajoutOk;
 }
 
+/**
+ * @brief Modifie un étudiant dans le fichier CSV des étudiants (selon la promotion donnée)
+ * @param string $nomPromotion Nom de la promotion de l'étudiant
+ * @param int $idEtudiant ID de l'étudiant
+ * @param string $nomEtudiant Nom de l'étudiant
+ * @param string $prenomEtudiant Prénom de l'étudiant
+ * @param int $tdEtudiant TD de l'étudiant
+ * @param int $tpEtudiant TP de l'étudiant
+ * @param string $emailEtudiant Email de l'étudiant
+ * @param string $tiersTempsEtudiant Tiers-temps de l'étudiant (vrai s'il en dispose, faux sinon)
+ * @param string $ordinateurEtudiant Ordinateur de l'étudiant (vrai s'il en dispose, faux sinon)
+ * @param string $demissionnaireEtudiant Démissionnaire de l'étudiant (vrai s'il est démissionnaire, faux sinon)
+ * @throws Exception 
+ * @return bool Retourne vrai si la modification s'est bien passée, faux sinon
+ */
 function modifierEtudiant($nomPromotion, $idEtudiant, $nomEtudiant, $prenomEtudiant, $tdEtudiant, $tpEtudiant, $emailEtudiant, $tiersTempsEtudiant, $ordinateurEtudiant, $demissionnaireEtudiant)
 {
 
     // On initialise un booléen en cas d'erreur
-    $modificationOk = true;
+    $modificationOk = false;
 
     // Tentative de suppression de l'étudiant
     try {
@@ -130,15 +147,17 @@ function modifierEtudiant($nomPromotion, $idEtudiant, $nomEtudiant, $prenomEtudi
         $data[$idEtudiant + 1] = $infoEtudiant;
 
         // Remplacer l'ancienne ligne par la nouvelle
-        rewind($monFichier);
-        ftruncate($monFichier, 0);
+        rewind($monFichier); // On se replace au début du fichier
+        ftruncate($monFichier, 0); // On vide le fichier
         foreach ($data as $fields) {
             fputcsv($monFichier, $fields, ";");
         }
 
         // Fermer le fichier CSV
         fclose($monFichier);
-
+        
+        // On indique que la modification s'est bien passée
+        $modificationOk = true;
 
     } catch (Exception $e) {
         $modificationOk = false;

@@ -33,8 +33,11 @@ function creerListeControles()
         print("Impossible d'ouvrir le fichier \n");
         exit;
     } else {
-        // Création d'une liste vide
+        // Création des listes nécéssaires
         $listeControles = array();
+        $listePromo = creerListePromotions();
+        $listeSalles = creerListeSalles();
+        
         $i = 0;
 
         // On récupére la première ligne du CSV qui contient les noms des colonnes
@@ -52,7 +55,7 @@ function creerListeControles()
             $unControleInfo = associerEnteteLigne($entete, $uneLigne);
 
             // Création du contrôle de la ligne actuelle
-            $unControle = creerControle($unControleInfo);
+            $unControle = creerControle($unControleInfo, $listePromo, $listeSalles);
 
 
             // Ajout du contrôle dans la liste des contrôles
@@ -114,9 +117,11 @@ function recupererUnControle($id)
 /**
  * Retourne un Controle selon les informations données
  * @param array $unControleInfo Ligne d'information venant du fichier de la liste des contrôles
+ * @param array $listePromo Liste des promotions
+ * @param array $listeSalles Liste des salles
  * @return Controle
  */
-function creerControle($unControleInfo){
+function creerControle($unControleInfo, $listePromo = null, $listeSalles = null){
     // Mettre la date au format YYYY-MM-DD si une date existe (pour datatables)
     $laDate = $unControleInfo[DATE_NOM_COLONNE_CONTROLE];
     if ($laDate != null) {
@@ -136,10 +141,10 @@ function creerControle($unControleInfo){
     $leControle = new Controle($leNomLong, $leNomCourt, $laDuree, $laDate, $lHeureNonTT, $lHeureTT);
 
     // Création du lien entre les promotions et le contrôle
-    $leControle = creerRelationPromotionControle($leControle, $unControleInfo[PROMOTION_NOM_COLONNE_CONTROLE]);
+    $leControle = creerRelationPromotionControle($leControle, $unControleInfo[PROMOTION_NOM_COLONNE_CONTROLE], $listePromo);
 
     // Création du lien entre les salles et le contrôle
-    $leControle = creerRelationSalleControle($leControle, $unControleInfo[SALLES_NOM_COLONNE_CONTROLE]);
+    $leControle = creerRelationSalleControle($leControle, $unControleInfo[SALLES_NOM_COLONNE_CONTROLE], $listeSalles);
 
     return $leControle;
 }
@@ -149,11 +154,14 @@ function creerControle($unControleInfo){
  * @param Controle $unControle Controle que nous souhaitons mettre en relation avec $lesPromos
  * @param string $lesPromos Les Promotion qui doivent être mis en relation avec $unControle
  * (chaine de carateres avec le nom des promotions séparées par des virgules)
+ * @param array $listePromo Liste des promotions (objet) qui peuvent être associées au contrôle
  * @return Controle
  */
-function creerRelationPromotionControle($unControle, $lesPromos)
+function creerRelationPromotionControle($unControle, $lesPromos, $listePromo)
 {
-    $listePromo = creerListePromotions();
+    if ($listePromo == null) {
+        $listePromo = creerListePromotions();
+    }
 
     // On récupére la liste des promotions participants au contrôle
     $listePromosControle = explode(",", $lesPromos);
@@ -178,11 +186,15 @@ function creerRelationPromotionControle($unControle, $lesPromos)
  * @param Controle $unControle Controle que nous souhaitons mettre en relation avec $lesSalles
  * @param string $lesSalles Les Salles qui doivent être mis en relation avec $unControle
  * (chaine de caractères avec le nom des salles séparées par des virgules)
+ * @param array $listeSalles Liste des salles (objets) à utiliser pour la relation
  * @return Controle
  */
-function creerRelationSalleControle($unControle, $lesSalles)
+function creerRelationSalleControle($unControle, $lesSalles, $listeSalles = null)
 {
-    $listeSalles = creerListeSalles();
+    if ($listeSalles == null){
+        // On récupére la liste des salles (objets)
+        $listeSalles = creerListeSalles();
+    }
 
     // On récupére la liste des promotions participants au contrôle
     $listeSallesControle = explode(",", $lesSalles);

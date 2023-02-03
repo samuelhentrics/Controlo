@@ -25,6 +25,7 @@ if (isset($_GET['succes']) and isset($_GET['id'])) {
                     <input type='hidden' id='id' value='$id'>
                     <button type='button' id='download-button' class='btn btn-primary btn-lg w-100'>Télécharger</button>
                 </form>
+                <p class='mb-0 mt-3'>Si le bouton ci-dessus ne fonctionne pas cliquez <a href='download.php?id=$id'>ici</a>.</p>
             </div>";
 
             break;

@@ -5,6 +5,7 @@
         <script>
         var lien = "<?php echo JS_PATH ?>";
         $(document).ready(function() {
+
             $('#etudiants').DataTable({
                 "language": {
                     "url": lien + "/French.json"
@@ -41,7 +42,7 @@
                     <?php
                     include(FONCTION_CREER_LISTE_PROMOTIONS_PATH);
 
-                    $listePromotions = creerListePromotions();
+                    $listePromotions = creerListePromotions(true);
 
                     foreach ($listePromotions as $unePromotion) {
                         foreach ($unePromotion->getMesEtudiants() as $unEtudiant) {

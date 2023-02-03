@@ -38,14 +38,15 @@
                     <?php
                     include(FONCTION_CREER_LISTE_PROMOTIONS_PATH);
 
-                    $listePromotions = creerListePromotions();
+                    $listePromotions = creerListePromotions(true);
 
                     foreach ($listePromotions as $unePromotion) {
 
                         // Récupérer le nom pour affichage de la promotion
-                        $lienFichier = CSV_ETUDIANTS_FOLDER_NAME."liste-promotions.csv";
+                        $lienFichier = CSV_ETUDIANTS_FOLDER_NAME.LISTE_PROMOTIONS_FILE_NAME;
                         $file =  fopen($lienFichier  , "r");
 
+                        $nomAffichage = null;
                         // Récupérer dans le fichier le nom pour affichage de la promotion
                         while (($data = fgetcsv($file, 1000, ";")) !== FALSE) {
                             if ($data[0] == $unePromotion->getNom()) {
