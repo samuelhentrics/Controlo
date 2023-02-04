@@ -115,22 +115,22 @@ function modifierEtudiant($nomPromotion, $idEtudiant, $nomEtudiant, $prenomEtudi
         // Ouvrir le fichier en mode modification
         $monFichier = fopen($lienFichier, "r+");
 
-        $data=array();
-        $i=0;
+        $data = array();
+        $i = 0;
         // Aller sur la ligne de l'étudiant à modifier
-        while(true){
+        while (true) {
             $ligne = fgetcsv($monFichier, 1000, ";");
 
-            if(!$ligne){
+            if (!$ligne) {
                 break;
             }
 
             $data[$i] = $ligne;
             $i++;
         }
-        
+
         // Récupérer les informations de l'étudiant
-        
+
         // Modifier les informations de l'étudiant
         $infoEtudiant = saisirLigneEtudiant(
             $entetes,
@@ -155,7 +155,7 @@ function modifierEtudiant($nomPromotion, $idEtudiant, $nomEtudiant, $prenomEtudi
 
         // Fermer le fichier CSV
         fclose($monFichier);
-        
+
         // On indique que la modification s'est bien passée
         $modificationOk = true;
 
@@ -274,9 +274,53 @@ function saisirLigneEtudiant($infoEtudiant, $nomEtudiant, $prenomEtudiant, $tdEt
             }
             $infoEtudiant[STATUTS_NOM_COLONNE_ETUDIANT] .= "Démissionnaire";
         }
-    }
-    catch (Exception $e) {
+    } catch (Exception $e) {
         throw $e;
     }
     return $infoEtudiant;
+}
+
+function supprimerEtudiant($IdEtudiant, $nomPromotion)
+{
+    include_once(FONCTION_CREER_LISTE_PROMOTIONS_PATH);
+    // recuperation d'un etudiant 
+    $unEtudiant = recupererUnEtudiant($IdEtudiant, $nomPromotion);
+
+    // On initialise un booléen en cas d'erreur
+    $suppressionOk = false;
+    // Tentative d'écriture du fichier CSV
+    try {
+        $lienFichier = CSV_ETUDIANTS_FOLDER_NAME . $nomPromotion . ".csv";
+        $lienFichierTemp = CSV_ETUDIANTS_FOLDER_NAME . $nomPromotion . "_temp.csv";
+        $monFichier = fopen($lienFichier, "r");
+
+        $temp_monFichier = fopen($lienFichierTemp, 'w');
+
+        if (!$monFichier) {
+            throw new Exception("Impossible d'ouvrir le fichier CSV. Il semble être ouvert par un autre programme.");
+        }
+ 
+
+        while (($data = fgetcsv($monFichier, 1000)) !== FALSE) {
+            // on verifie que date[0] contient le nom ne rien faire sinon copier la ligne dan le fichier temp
+            if (stristr($data[0], $unEtudiant->getNom())) {
+                print($unEtudiant->getNom() . " " . $unEtudiant->getPrenom() . "       supprimée");
+            } else {
+                $parseData = explode(";", $data[0]);
+                fputcsv($temp_monFichier, $parseData, ";");
+            }
+        }
+        fclose($monFichier);
+        fclose($temp_monFichier);
+        
+        // le fichier temporaire devient le fichier CSV
+        rename($lienFichierTemp, $lienFichier);
+        $suppressionOk = true;
+
+    } catch (Exception $e) {
+        $suppressionOk = false;
+        throw new Exception($e->getMessage());
+    }
+
+    return $suppressionOk;
 }

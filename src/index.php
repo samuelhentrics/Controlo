@@ -95,6 +95,10 @@
                         else if ($_GET['action'] == "modifier") {
                             require(BACK_PATH . "Etudiants/modifierEtudiant.php");
                         }
+                        // Cas où l'utilisateur veut supprimer un étudiant
+                        else if ($_GET['action'] == "supprimer") {
+                            require(BACK_PATH . "Etudiants/supprimerEtudiant.php");
+                        }
                         // Cas où une action n'est pas reconnue
                         else {
                             require(BACK_PATH . "404.php");

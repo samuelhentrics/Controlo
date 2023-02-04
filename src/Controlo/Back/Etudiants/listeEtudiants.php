@@ -3,20 +3,20 @@
         <br>
 
         <script>
-        var lien = "<?php echo JS_PATH ?>";
-        $(document).ready(function() {
+            var lien = "<?php echo JS_PATH ?>";
+            $(document).ready(function () {
 
-            $('#etudiants').DataTable({
-                "language": {
-                    "url": lien + "/French.json"
-                },
+                $('#etudiants').DataTable({
+                    "language": {
+                        "url": lien + "/French.json"
+                    },
 
-                order: [
-                    [0, 'asc'],
-                    [1, 'asc']
-                ]
+                    order: [
+                        [0, 'asc'],
+                        [1, 'asc']
+                    ]
+                });
             });
-        });
         </script>
         <section>
             <h1>Liste des étudiants</h1>
@@ -89,36 +89,33 @@
                             print("
                         <td class=\"text-center\">");
 
-                        if($unEtudiant->getEstTT()){
-                            print("<a style=\"display:none;\">Oui</a><i class=\"fa-solid fa-check\"></i>");
-                        }
-                        else{
-                            print("<a style=\"display:none;\">Non</a><i class=\"fa-solid fa-times\"></i>");
-                        }
+                            if ($unEtudiant->getEstTT()) {
+                                print("<a style=\"display:none;\">Oui</a><i class=\"fa-solid fa-check\"></i>");
+                            } else {
+                                print("<a style=\"display:none;\">Non</a><i class=\"fa-solid fa-times\"></i>");
+                            }
 
-                        print("</td>");
+                            print("</td>");
 
                             // Ordinateur Etudiant
-                        print("
+                            print("
                         <td class=\"text-center\">");
-    
-                        if($unEtudiant->getAOrdi()){
-                            print("<a style=\"display:none;\">Oui</a><i class=\"fa-solid fa-check\"></i>");
-                        }
-                        else{
-                            print("<a style=\"display:none;\">Non</a><i class=\"fa-solid fa-times\"></i>");
-                        }
-    
-                        print("</td>");
+
+                            if ($unEtudiant->getAOrdi()) {
+                                print("<a style=\"display:none;\">Oui</a><i class=\"fa-solid fa-check\"></i>");
+                            } else {
+                                print("<a style=\"display:none;\">Non</a><i class=\"fa-solid fa-times\"></i>");
+                            }
+
+                            print("</td>");
 
                             // Démissionnaire Etudiant
                             print("
                         <td class=\"text-center\">");
 
-                            if($unEtudiant->getEstDemissionnaire()){
+                            if ($unEtudiant->getEstDemissionnaire()) {
                                 print("<a style=\"display:none;\">Oui</a><i class=\"fa-solid fa-check\"></i>");
-                            }
-                            else{
+                            } else {
                                 print("<a style=\"display:none;\">Non</a><i class=\"fa-solid fa-times\"></i>");
                             }
 
@@ -130,6 +127,11 @@
                                 <input type=\"hidden\" name=\"idEtudiant\" value=\"{$unEtudiant->getId()}\">
                                 <input type=\"hidden\" name=\"nomPromotion\" value=\"{$unePromotion->getNom()}\">
                                 <input type=\"submit\" name=\"action\" value=\"modifier\" class=\"btn btn-primary\">
+                            </form>
+                            <form method=\"post\" action=" . PAGE_SUPPRIMER_ETUDIANTS_PATH . ">
+                                <input type=\"hidden\" name=\"idEtudiant\" value=\"{$unEtudiant->getId()}\">
+                                <input type=\"hidden\" name=\"nomPromotion\" value=\"{$unePromotion->getNom()}\">
+                                <input type=\"submit\" onclick=\"return confirm('Confirmer la suppression de: ".$unEtudiant->getNom(). "  " .$unEtudiant->getPrenom()."')\" name=\"action\" value=\"supprimer\" class=\"btn btn-danger\">
                             </form>
                         </td>
 

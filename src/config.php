@@ -676,6 +676,11 @@ define("PAGE_AJOUTER_ETUDIANTS_PATH" , PATH."index.php?page=etudiants&action=ajo
  * @note ex : http://localhost/src/index.php?page=etudiants&action=modifier
  */
 define("PAGE_MODIFIER_ETUDIANTS_PATH" , PATH."index.php?page=etudiants&action=modifier");
+/**
+ * @brief Lien complet vers la page de modification d'un étudiant
+ * @note ex : http://localhost/src/index.php?page=etudiants&action=supprimer
+ */
+define("PAGE_SUPPRIMER_ETUDIANTS_PATH" , PATH."index.php?page=etudiants&action=supprimer");
 
 /**
  * @brief Lien complet vers la page de la liste des salles
