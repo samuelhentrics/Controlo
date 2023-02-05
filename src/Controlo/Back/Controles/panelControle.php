@@ -81,14 +81,74 @@
 
             echo "</div>";
 
-            // Afficher les informations du contrôle
-            echo "<div class='alert alert-primary' role='alert'>";
-            echo "<h4>Informations du contrôle</h4>";
-            echo "<p>";
-            echo "Nom long : ", $unControle->getNomLong(), "<br>";
-            echo "Nom court : ", $unControle->getNomCourt(), "<br>";
-            echo "Date : ", $unControle->getDate(), "<br>";
-            echo "</p>";
+
+            echo '<div class="container-fluid">';
+            echo '
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card text-white bg-primary">
+                                <div class="card-body text-center">
+                                    <i class="fa fa-pen fa-5x"></i><br>
+                                    <h5> Editer les informations du contrôle </h5>
+                                </div>
+                            </div>
+                            <div class="card text-white bg-danger">
+                                <div class="card-body text-center">
+                                    <p class="card-text">
+                                        <i class="fa fa-trash fa-3x"></i><br>
+                                        <h5>Supprimer le contrôle</h5>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card text-white bg-primary text-center">
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        <i class="fa fa-wand-magic fa-3x"></i><br>
+                                        <h5>Placer automatiquement</h5>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <p class="card-text">
+                                        <i class="fa-solid fa-wand-magic fa-3x"></i>
+                                        <h5>Placer manuellement</h5>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="card">
+                                <div class="card-body">
+                                        <h5> <i class="fa fa-download fa-2x"></i> Télécharger feuille d\'émargement</h5>   
+                                </div>
+                            </div>
+                            <div class="card text-white bg-primary">
+                                <div class="card-body">
+                                    <h5>
+                                        <i class="fa fa-download fa-2x"></i>
+                                        Télécharger plans de placement
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="card bg-default">
+                                <div class="card-body">
+                                    <h5>
+                                        <i class="fa fa-envelope fa-2x"></i>
+                                        Envoyer un mail aux étudiants
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            ';
+            echo '</div>';
 
         }
         else {
