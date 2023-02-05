@@ -85,9 +85,12 @@
                             <i class=\"fas fa-edit\"></i>
                         </button>
                     </form>
-                    <a href=\"todo\" class=\"btn btn-danger\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Supprimer\">
-                        <i class=\"fas fa-trash-alt\"></i>
-                    </a>
+                    <form method=\"post\" action=" . PAGE_SUPPRIMER_ENSEIGNANT_PATH . ">
+                        <input type=\"hidden\" name=\"idEnseignant\" value=\"{$enseignant->getId()}\">
+                        <button type=\"submit\" onclick=\"return confirm('Confirmer la suppression de: ".$enseignant->getNom(). "  " .$enseignant->getPrenom()."')\" name=\"action\" class=\"btn btn-danger\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Supprimer\">
+                            <i class=\"fas fa-trash-alt\"></i>
+                        </button>
+                    </form>
                 ");
                 
 

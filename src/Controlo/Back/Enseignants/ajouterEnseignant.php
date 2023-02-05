@@ -4,6 +4,7 @@
     <?php
     if (isset($_POST['submit'])) {
         include_once(FONCTION_CRUD_ENSEIGNANTS_PATH);
+        include_once(CLASS_PATH . CLASS_ENSEIGNANT_FILE_NAME);
 
         $nom = $_POST['nom'];
         $prenom = $_POST['prenom'];
