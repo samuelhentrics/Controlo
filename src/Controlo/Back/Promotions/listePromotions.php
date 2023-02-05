@@ -26,8 +26,8 @@
             <table id="promotions" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Nom pour génération</th>
                         <th>Nom de la promotion</th>
+                        <th>Nom pour génération</th>
                         <th>Effectif de la promotion</th>
                         <th>Effectif d'étudiants avec tiers-temps</th>
                         <th>Nombre d'étudiants avec ordinateur</th>
