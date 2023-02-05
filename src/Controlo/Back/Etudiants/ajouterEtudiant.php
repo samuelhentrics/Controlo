@@ -53,7 +53,7 @@
     }
 
     ?>
-    <form action="<?php echo PAGE_AJOUTER_ETUDIANTS_PATH; ?>" method="post">
+    <form action="<?php echo PAGE_AJOUTER_ETUDIANT_PATH; ?>" method="post">
       <div class="form-group row">
         <label for="nom" class="col-4 col-form-label">Nom</label>
         <div class="col-8">

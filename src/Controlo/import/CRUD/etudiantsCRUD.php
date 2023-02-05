@@ -58,7 +58,6 @@ function ajouterEtudiant(
             $demissionnaireEtudiant
         );
 
-
         // Ajouter l'étudiant en fin de fichier
 
         // Ouvrir le fichier CSV en mode écriture en fin de fichier

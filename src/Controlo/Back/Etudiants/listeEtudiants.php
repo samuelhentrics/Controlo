@@ -21,7 +21,7 @@
         <section>
             <h1>Liste des étudiants</h1>
             <!-- Bouton en haut à droite pour ajouter un étudiant -->
-            <a href="index.php?page=etudiants&action=ajouter" class="btn btn-primary">Ajouter</a>
+            <a href="<?php echo PAGE_AJOUTER_ETUDIANT_PATH; ?>" class="btn btn-primary">Ajouter</a>
             <table id="etudiants" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
@@ -123,15 +123,15 @@
 
 
                         <td class=\"text-center\">
-                            <form method=\"post\" action=" . PAGE_MODIFIER_ETUDIANTS_PATH . ">
+                            <form method=\"post\" action=" . PAGE_MODIFIER_ETUDIANT_PATH . ">
                                 <input type=\"hidden\" name=\"idEtudiant\" value=\"{$unEtudiant->getId()}\">
                                 <input type=\"hidden\" name=\"nomPromotion\" value=\"{$unePromotion->getNom()}\">
-                                <input type=\"submit\" name=\"action\" value=\"modifier\" class=\"btn btn-primary\">
+                                <input type=\"submit\" name=\"action\" value=\"Modifier\" class=\"btn btn-primary\">
                             </form>
-                            <form method=\"post\" action=" . PAGE_SUPPRIMER_ETUDIANTS_PATH . ">
+                            <form method=\"post\" action=" . PAGE_SUPPRIMER_ETUDIANT_PATH . ">
                                 <input type=\"hidden\" name=\"idEtudiant\" value=\"{$unEtudiant->getId()}\">
                                 <input type=\"hidden\" name=\"nomPromotion\" value=\"{$unePromotion->getNom()}\">
-                                <input type=\"submit\" onclick=\"return confirm('Confirmer la suppression de: ".$unEtudiant->getNom(). "  " .$unEtudiant->getPrenom()."')\" name=\"action\" value=\"supprimer\" class=\"btn btn-danger\">
+                                <input type=\"submit\" onclick=\"return confirm('Confirmer la suppression de: ".$unEtudiant->getNom(). "  " .$unEtudiant->getPrenom()."')\" name=\"action\" value=\"Supprimer\" class=\"btn btn-danger\">
                             </form>
                         </td>
 

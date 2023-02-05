@@ -20,7 +20,7 @@
         <section>
             <h1>Liste des promotions</h1>
             <!-- Bouton en haut à gauche pour ajouter une promotion -->
-            <a href="index.php?page=promotions&action=ajouter" class="btn btn-primary">Ajouter</a>
+            <a href="<?php echo PAGE_AJOUTER_PROMOTION_PATH; ?>" class="btn btn-primary">Ajouter</a>
             <table id="promotions" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
@@ -62,19 +62,25 @@
 
                         // Compter le nombre d'étudiants Tiers-Temps dans la promotion
                         $nbEtudiantTT= count($unePromotion->getMesEtudiants())-count($unePromotion->recupererListeEtudiantsNonTT());
-
-                    print("
+                    
+                        // Nom de la promotion
+                        $nomPromotion = $unePromotion->getNom();
+                    
+                        print("
 
                         <tr>
-                            <td>".$unePromotion->getNom()."</td>
+                            <td>".$nomPromotion."</td>
                             <td>".$nomAffichage."</td>
                             <td>".$nbEtudiant."</td>
                             <td>".$nbEtudiantTT."</td>
                             <td>".$nbEtudiantsOrdi."</td>
                         <td class=\"text-center\">
-                            <form method=\"post\" action=" . PAGE_MODIFIER_ETUDIANTS_PATH . ">
-                                <input type=\"submit\" name=\"action\" value=\"supprimer\" class=\"btn btn-primary\">
-                                <input type=\"submit\" name=\"action\" value=\"modifier\" class=\"btn btn-primary\">
+                            <form method=\"post\" action=" . PAGE_MODIFIER_PROMOTION_PATH . ">
+                                <input type=\"submit\" name=\"action\" value=\"Modifier\" class=\"btn btn-primary\">
+                                </form>
+                            <form method=\"post\" action=" . PAGE_SUPPRIMER_PROMOTION_PATH . ">
+                                <input type=\"hidden\" name=\"nomPromotion\" value=\"".$nomPromotion."\">
+                                <input type=\"submit\" onclick=\"return confirm('Confirmer la suppression de: ".$nomPromotion."')\" name=\"action\" value=\"Supprimer\" class=\"btn btn-danger\">
                             </form>
                         </td>
 

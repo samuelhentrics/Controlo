@@ -1,4 +1,3 @@
-
 <?php
 /**
  * @brief Contient les fonctions CRUD pour les promotions (ajouter, modifier, supprimer, importer)
@@ -9,51 +8,39 @@
  */
 
 
-/**
- * @brief Ajoute une nouvelle promotion dans le fichier CSV des listes de promotions (selon la promotion donnée)
- * @param string $nomEtudiant Nom de l'étudiant
- * @param string $prenomEtudiant Prénom de l'étudiant
- * @param string $nomPromotion Nom de la promotion de l'étudiant
- * @param int $tdEtudiant TD de l'étudiant
- * @param int $tpEtudiant TP de l'étudiant
- * @param string $emailEtudiant Email de l'étudiant
- * @param string $tiersTempsEtudiant Tiers-temps de l'étudiant (vrai s'il en dispose, faux sinon)
- * @param string $ordinateurEtudiant Ordinateur de l'étudiant (vrai s'il en dispose, faux sinon)
- * @param string $demissionnaireEtudiant Démissionnaire de l'étudiant (vrai s'il est démissionnaire, faux sinon)
- * @throws Exception Si le fichier CSV ne contient pas les champs obligatoires de la nomenclature
- * @return bool Retourne vrai si l'ajout s'est bien passé, faux sinon
- */
 
 
-function creerPromotion($nomPromotion){
 
-        // On initialise un booléen en cas d'erreur
-        $ajoutOk = true;
+function creerPromotion($nomPromotion)
+{
 
-        
-        // Tentative d'écriture du fichier CSV
-        try {
+    // On initialise un booléen en cas d'erreur
+    $ajoutOk = true;
 
-            // On verifie si le fichier que l'on souhaite créer exite déjà
-            $lienFichier = CSV_ETUDIANTS_FOLDER_NAME.$nomPromotion.".csv";
-            if (file_exists($lienFichier)){
-                throw new Exception("Cette promotion existe déjà");
-            }
 
-            // On verifie si le fichier contient une erreur à l'ouverture 
-            $file =  fopen($lienFichier  , "w");
-            if ($file == false){
-                throw new Exception("Impossible de créer le fichier CSV");
-            }
+    // Tentative d'écriture du fichier CSV
+    try {
 
-            // Contient l'entête des fichiers de promotions
-            $entete = array(PRENOM_NOM_COLONNE_ETUDIANT, NOM_NOM_COLONNE_ETUDIANT, TD_NOM_COLONNE_ETUDIANT, TP_NOM_COLONNE_ETUDIANT, STATUTS_NOM_COLONNE_ETUDIANT, MAIL_NOM_COLONNE_ETUDIANT);
+        // On verifie si le fichier que l'on souhaite créer exite déjà
+        $lienFichier = CSV_ETUDIANTS_FOLDER_NAME . $nomPromotion . ".csv";
+        if (file_exists($lienFichier)) {
+            throw new Exception("Cette promotion existe déjà");
+        }
 
-            // Ajoute l'array dans le CSV
-            fputcsv($file, $entete, ";");
+        // On verifie si le fichier contient une erreur à l'ouverture 
+        $file = fopen($lienFichier, "w");
+        if ($file == false) {
+            throw new Exception("Impossible de créer le fichier CSV");
+        }
 
-            // Fermer le fichier CSV
-            fclose($file);
+        // Contient l'entête des fichiers de promotions
+        $entete = array(PRENOM_NOM_COLONNE_ETUDIANT, NOM_NOM_COLONNE_ETUDIANT, TD_NOM_COLONNE_ETUDIANT, TP_NOM_COLONNE_ETUDIANT, STATUTS_NOM_COLONNE_ETUDIANT, MAIL_NOM_COLONNE_ETUDIANT);
+
+        // Ajoute l'array dans le CSV
+        fputcsv($file, $entete, ";");
+
+        // Fermer le fichier CSV
+        fclose($file);
 
     } catch (Exception $e) {
         $ajoutOk = false;
@@ -63,19 +50,20 @@ function creerPromotion($nomPromotion){
     return $ajoutOk;
 }
 
-function ajouterNomPromotion($nomPromotion, $nomPromotionAffichage){
+function ajouterNomPromotion($nomPromotion, $nomPromotionAffichage)
+{
 
     // On initialise un booléen en cas d'erreur
     $ajoutOk = true;
-    
+
     // Tentative d'écriture du fichier CSV
     try {
 
-        $lienFichier = CSV_ETUDIANTS_FOLDER_NAME."liste-promotions.csv";
+        $lienFichier = CSV_ETUDIANTS_FOLDER_NAME . "liste-promotions.csv";
 
         // On verifie si le fichier contient une erreur à l'ouverture 
-        $file =  fopen($lienFichier, "a");
-        if ($file == false){
+        $file = fopen($lienFichier, "a");
+        if ($file == false) {
             throw new Exception("Impossible d'ecrire dans le fichier de liste de promotions");
         }
 
@@ -88,14 +76,93 @@ function ajouterNomPromotion($nomPromotion, $nomPromotionAffichage){
         // Fermer le fichier CSV
         fclose($file);
 
-} catch (Exception $e) {
-    $ajoutOk = false;
-    throw new Exception($e->getMessage());
+    } catch (Exception $e) {
+        $ajoutOk = false;
+        throw new Exception($e->getMessage());
+    }
+
+    return $ajoutOk;
+
+
+
 }
 
-return $ajoutOk;
+function supprimerPromotion($nomPromotion)
+{
 
+    // On initialise un booléen en cas d'erreur
+    $suppressionOk = true;
 
+    // Tentative de suppression du fichier CSV
+    try {
 
+        // On verifie si le fichier que l'on souhaite créer existe déjà
+        $lienFichier = CSV_ETUDIANTS_FOLDER_NAME . $nomPromotion . ".csv";
+        if (!file_exists($lienFichier)) {
+            throw new Exception("Cette promotion n'existe pas");
+        }
+
+        // Ouvrir le fichier liste-promotions en lecture afin de vérifier si le nom de la promotion existe
+        $fichierListePromo = fopen(CSV_ETUDIANTS_FOLDER_NAME . LISTE_PROMOTIONS_FILE_NAME, "r");
+        if ($fichierListePromo == false) {
+            throw new Exception("Impossible d'ouvrir le fichier de liste de promotions.");
+        }
+
+        // On initialise un tableau qui contiendra les noms de promotions
+        $infoFichierListePromo = array();
+
+        $existeListePromo = false;
+        // On parcours le fichier liste-promotions
+        while (($data = fgetcsv($fichierListePromo, 1000, ";")) !== FALSE) {
+
+            // On vérifie si le nom de la promotion existe
+            if ($data[0] == $nomPromotion) {
+                $existeListePromo = true;
+            }
+
+            // On ajoute les informations du fichier dans le tableau
+            $infoFichierListePromo[] = $data;
+        }
+
+        // On ferme le fichier liste-promotions
+        fclose($fichierListePromo);
+
+        // Supprimer dans le fichier liste-promotions la promotion
+        if ($existeListePromo) {
+
+            // On ouvre le fichier liste-promotions en écriture
+            $fichierListePromo = fopen(CSV_ETUDIANTS_FOLDER_NAME . LISTE_PROMOTIONS_FILE_NAME, "w");
+            if ($fichierListePromo == false) {
+                throw new Exception("Impossible d'ouvrir le fichier de liste de promotions.");
+            }
+
+            // On parcours le tableau qui contient les informations du fichier liste-promotions
+            foreach ($infoFichierListePromo as $info) {
+
+                // On vérifie si le nom de la promotion existe
+                if ($info[0] != $nomPromotion) {
+                    // On ajoute les informations du fichier dans le tableau
+                    fputcsv($fichierListePromo, $info, ";");
+                }
+            }
+
+            // On ferme le fichier liste-promotions
+            fclose($fichierListePromo);
+        }
+
+        // Suppression du fichier de la promotion
+        unlink($lienFichier);
+
+        // Cas d'erreur
+        if (file_exists($lienFichier)) {
+            throw new Exception("Impossible de supprimer le fichier CSV");
+        }
+
+    } catch (Exception $e) {
+        $suppressionOk = false;
+        throw new Exception($e->getMessage());
+    }
+    return $suppressionOk;
 }
+
 ?>

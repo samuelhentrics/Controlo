@@ -669,18 +669,18 @@ define("PAGE_ETUDIANTS_PATH" , PATH."index.php?page=etudiants");
  * @brief Lien complet vers la page d'ajout d'un etudiant
  * @note ex : http://localhost/src/index.php?page=etudiants&action=ajouter
  */
-define("PAGE_AJOUTER_ETUDIANTS_PATH" , PATH."index.php?page=etudiants&action=ajouter");
+define("PAGE_AJOUTER_ETUDIANT_PATH" , PATH."index.php?page=etudiants&action=ajouter");
 
 /**
  * @brief Lien complet vers la page de modification d'un étudiant
  * @note ex : http://localhost/src/index.php?page=etudiants&action=modifier
  */
-define("PAGE_MODIFIER_ETUDIANTS_PATH" , PATH."index.php?page=etudiants&action=modifier");
+define("PAGE_MODIFIER_ETUDIANT_PATH" , PATH."index.php?page=etudiants&action=modifier");
 /**
  * @brief Lien complet vers la page de modification d'un étudiant
  * @note ex : http://localhost/src/index.php?page=etudiants&action=supprimer
  */
-define("PAGE_SUPPRIMER_ETUDIANTS_PATH" , PATH."index.php?page=etudiants&action=supprimer");
+define("PAGE_SUPPRIMER_ETUDIANT_PATH" , PATH."index.php?page=etudiants&action=supprimer");
 
 /**
  * @brief Lien complet vers la page de la liste des salles
@@ -694,20 +694,23 @@ define("PAGE_SALLES_PATH" , PATH."index.php?page=salles");
  */
 define("PAGE_PROMOTIONS_PATH" , PATH."index.php?page=promotions");
 
-
-/**
- * @brief Lien complet vers la page de promotion
- * @note ex : http://localhost/src/index.php?page=promotions
- */
-define("PAGE_LISTE_PROMOTIONS_PATH" , PATH."index.php?page=listePromotions");
-
-
-
 /**
  * @brief Lien complet vers la page d'ajout d'une promoion
  * @note ex : http://localhost/src/index.php?page=promotions&action=ajouter
  */
 define("PAGE_AJOUTER_PROMOTION_PATH" , PATH."index.php?page=promotions&action=ajouter");
+
+/**
+ * @brief Lien complet vers la page de modification d'une promoion
+ * @note ex : http://localhost/src/index.php?page=promotions&action=modifier
+ */
+define("PAGE_MODIFIER_PROMOTION_PATH" , PATH."index.php?page=promotions&action=modifier");
+
+/**
+ * @brief Lien complet vers la page de suppression d'une promoion
+ * @note ex : http://localhost/src/index.php?page=promotions&action=supprimer
+ */
+define("PAGE_SUPPRIMER_PROMOTION_PATH" , PATH."index.php?page=promotions&action=supprimer");
 
 
 

@@ -56,7 +56,7 @@
         $etudiant = recupererUnEtudiant($idEtudiant, $nomPromotion);
 
         echo '
-        <form action="'.PAGE_MODIFIER_ETUDIANTS_PATH.'" method="post">
+        <form action="'.PAGE_MODIFIER_ETUDIANT_PATH.'" method="post">
         <div class="form-group row">
             <label for="nom" class="col-4 col-form-label">Nom</label>
             <div class="col-8">
