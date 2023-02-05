@@ -4,7 +4,9 @@
 
         <?php
         echo "<div class='alert alert-warning' role='alert'>";
-        echo "Cette page est en cours de développement.";
+        echo "Cette page est en cours de développement.<br>";
+        echo "Certaines fonctionnalités ne sont pas encore disponibles.<br>";
+        echo "Les fonctions disponibles sont en bleues/rouges et les fonctions non disponibles sont en grises.";
         echo "</div>";
 
         if (isset($_POST["idControle"])) {
@@ -112,7 +114,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="card">
+                            <div class="card bg-secondary">
                                 <div class="card-body text-center">
                                     <p class="card-text">
                                         <i class="fa-solid fa-wand-magic fa-3x"></i>
@@ -122,7 +124,7 @@
                             </div>
                         </div>
                         <div class="col-md-5">
-                            <div class="card">
+                            <div class="card bg-secondary">
                                 <div class="card-body">
                                         <h5> <i class="fa fa-download fa-2x"></i> Télécharger feuille d\'émargement</h5>   
                                 </div>
@@ -135,7 +137,7 @@
                                     </h5>
                                 </div>
                             </div>
-                            <div class="card bg-default">
+                            <div class="card bg-secondary">
                                 <div class="card-body">
                                     <h5>
                                         <i class="fa fa-envelope fa-2x"></i>

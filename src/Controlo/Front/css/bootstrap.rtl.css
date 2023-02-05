@@ -4210,6 +4210,7 @@ textarea.form-control-lg {
   background-clip: border-box;
   border: var(--bs-card-border-width) solid var(--bs-card-border-color);
   border-radius: var(--bs-card-border-radius);
+  margin: 10px 0 10px 0;
 }
 .card > hr {
   margin-left: 0;

@@ -11,7 +11,7 @@
       </div>
       <div class="col-lg-3 d-flex justify-content-end">
         <p class="text-muted text-right">
-          Version 1.0
+          Version 1.5
         </p>
       </div>
     </div>
