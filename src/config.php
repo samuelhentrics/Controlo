@@ -3,8 +3,8 @@
  * @file        config.php
  * @brief       Contient les variables d'environnement pour la bonne configuration du projet
  * @author      Samuel HENTRICS LOISTINE <samuel.hentrics@gmail.com>, Benjamin PEYRE
- * @version     0.1
- * @date        26/11/2022
+ * @version     1.5
+ * @date       05/02/2023
  */
 
 // Désactive les informations d'erreur (pour le mode non-dev)
@@ -261,10 +261,16 @@ define("CLASS_CONTRAINTES_ESPACEMENT_FILE_NAME" , "ContraintesEspacement.php");
 define("CLASS_CONTRAINTES_GENERALES_FILE_NAME" , "ContraintesGenerales.php");
 
 /**
- * @brief Nom du fichier de la classe Etudiants
+ * @brief Nom du fichier de la classe Etudiant
  * @note ex : Etudiants.php
  */
 define("CLASS_ETUDIANT_FILE_NAME" , "Etudiant.php");
+
+/**
+ * @brief Nom du fichier de la classe Enseignant
+ * @note ex : Etudiants.php
+ */
+define("CLASS_ENSEIGNANT_FILE_NAME" , "Enseignant.php");
 
 /**
  * @brief Nom du fichier de la classe PlanDePlacement
@@ -315,7 +321,11 @@ define("LISTE_SALLES_FILE_NAME" , "liste-salles.csv");
  */
 define("LISTE_PROMOTIONS_FILE_NAME" , "liste-promotions.csv");
 
-
+/**
+ * @brief Nom du fichier de la liste des enseignants
+ * @note ex: liste-enseignants.csv
+ */
+define("LISTE_ENSEIGNANTS_FILE_NAME" , "liste-enseignants.csv");
 
 
 
@@ -449,6 +459,20 @@ define("FONCTION_CREER_LISTE_CONTROLES_FILE_NAME" , "creerListeControles.php");
  * @note ex : Controlo/creationObjets/creerListeControles.php
  */
 define("FONCTION_CREER_LISTE_CONTROLES_PATH" , OBJECT_CREATION_PATH.FONCTION_CREER_LISTE_CONTROLES_FILE_NAME);
+
+/**
+ * @brief Nom du fichier où se trouve la fonction de création de la liste des enseignants
+ * @note ex: creerListeEnseignants.php
+ */
+define("FONCTION_CREER_LISTE_ENSEIGNANTS_FILE_NAME" , "creerListeEnseignants.php");
+
+/**
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve la fonction de création de la liste des enseignants
+ * @note ex : Controlo/creationObjets/creerListeEnseignants.php
+ */
+define("FONCTION_CREER_LISTE_ENSEIGNANTS_PATH" , OBJECT_CREATION_PATH.FONCTION_CREER_LISTE_ENSEIGNANTS_FILE_NAME);
+
+
 
 /**
  * @brief Nom du fichier où se trouve la fonction de création de la liste des salles
