@@ -76,6 +76,13 @@ define("CSV_CONTROLES_FOLDER_NAME","Controles/");
 define("CSV_ETUDIANTS_FOLDER_NAME","Etudiants/");
 
 /**
+ * @brief Nom du dossier où se retrouvent les CSV (partie Enseignants)
+ * (La liste des enseignants)
+ * @note ex : Enseignants/
+ */
+define("CSV_ENSEIGNANTS_FOLDER_NAME","Enseignants/");
+
+/**
  * @brief Nom du dossier où se retrouvent les CSV (partie Salles)
  * (La liste des salles et des plans de salle)
  * @note ex : Salles/
