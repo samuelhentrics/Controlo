@@ -6,7 +6,7 @@
  * @version 1.0
  */
 
-include_once(IMPORT_PATH.CLASS_ENSEIGNANT_FILE_NAME);
+include_once(CLASS_PATH.CLASS_ENSEIGNANT_FILE_NAME);
 
 /**
  * @brief Créer la liste des enseignants
@@ -35,7 +35,7 @@ function creerListeEnseignants($affichageErreur = false){
             $ligne = fgetcsv($fichier, 0, ";");
 
             // Si la ligne n'est pas vide
-            if(!$ligne){
+            if($ligne != false){
                 // Récupérer les informations de l'enseignant
                 $nom = $ligne[0];
                 $prenom = $ligne[1];

@@ -738,6 +738,31 @@ define("PAGE_MODIFIER_ETUDIANT_PATH" , PATH."index.php?page=etudiants&action=mod
 define("PAGE_SUPPRIMER_ETUDIANT_PATH" , PATH."index.php?page=etudiants&action=supprimer");
 
 /**
+ * @brief Lien complet vers la page de la liste des enseignants
+ * @note ex : http://localhost/src/index.php?page=enseignants
+ */
+define("PAGE_ENSEIGNANTS_PATH" , PATH."index.php?page=enseignants");
+
+/**
+ * @brief Lien complet vers la page d'ajoût d'un enseignant
+ * @note ex : http://localhost/src/index.php?page=enseignants&action=ajouter
+ */
+define("PAGE_AJOUTER_ENSEIGNANT_PATH" , PATH."index.php?page=enseignants&action=ajouter");
+
+/**
+ * @brief Lien complet vers la page de modification d'un enseignant
+ * @note ex : http://localhost/src/index.php?page=enseignants&action=modifier
+ */
+define("PAGE_MODIFIER_ENSEIGNANT_PATH" , PATH."index.php?page=enseignants&action=modifier");
+
+/**
+ * @brief Lien complet vers la page de suppression d'un enseignant
+ * @note ex : http://localhost/src/index.php?page=enseignants&action=supprimer
+ */
+define("PAGE_SUPPRIMER_ENSEIGNANT_PATH" , PATH."index.php?page=enseignants&action=supprimer");
+
+
+/**
  * @brief Lien complet vers la page de la liste des salles
  * @note ex : http://localhost/src/index.php?page=salles
  */

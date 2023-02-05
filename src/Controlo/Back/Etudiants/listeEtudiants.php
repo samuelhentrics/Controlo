@@ -17,6 +17,10 @@
                     ]
                 });
             });
+
+            $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+            })
         </script>
         <section>
             <h1>Liste des étudiants</h1>
@@ -36,7 +40,7 @@
                         <th>Tiers-temps</th>
                         <th>Ordinateur</th>
                         <th>Démissionnaire</th>
-                        <th>Action</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -128,12 +132,18 @@
                             <form method=\"post\" action=" . PAGE_MODIFIER_ETUDIANT_PATH . ">
                                 <input type=\"hidden\" name=\"idEtudiant\" value=\"{$unEtudiant->getId()}\">
                                 <input type=\"hidden\" name=\"nomPromotion\" value=\"{$unePromotion->getNom()}\">
-                                <input type=\"submit\" name=\"action\" value=\"Modifier\" class=\"btn btn-primary\">
+
+                                <button type=\"submit\" class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Modifier\">
+                                    <i class=\"fas fa-edit\"></i>
+                                </button>
+                                
                             </form>
                             <form method=\"post\" action=" . PAGE_SUPPRIMER_ETUDIANT_PATH . ">
                                 <input type=\"hidden\" name=\"idEtudiant\" value=\"{$unEtudiant->getId()}\">
                                 <input type=\"hidden\" name=\"nomPromotion\" value=\"{$unePromotion->getNom()}\">
-                                <input type=\"submit\" onclick=\"return confirm('Confirmer la suppression de: ".$unEtudiant->getNom(). "  " .$unEtudiant->getPrenom()."')\" name=\"action\" value=\"Supprimer\" class=\"btn btn-danger\">
+                                <button type=\"submit\" onclick=\"return confirm('Confirmer la suppression de: ".$unEtudiant->getNom(). "  " .$unEtudiant->getPrenom()."')\" name=\"action\" class=\"btn btn-danger\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Supprimer\">
+                                    <i class=\"fas fa-trash-alt\"></i>
+                                </button>
                             </form>
                         </td>
 

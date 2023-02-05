@@ -20,6 +20,9 @@
                         <a class="nav-link" href="<?php echo PAGE_ETUDIANTS_PATH; ?>">Étudiants</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="<?php echo PAGE_ENSEIGNANTS_PATH; ?>">Enseignants</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="<?php echo PAGE_PROMOTIONS_PATH; ?>">Promotions</a>
                     </li>
                     <li class="nav-item">
