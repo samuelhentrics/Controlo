@@ -19,22 +19,27 @@
             $email = $_POST["mail"];
 
             if (isset($_POST["tiersTemps"]))
-                $tiersTemps = $_POST["tiersTemps"];
+                $tiersTemps = true;
             else
-                $tiersTemps = 0;
+                $tiersTemps = false;
 
             if (isset($_POST["ordinateur"]))
-                $ordinateur = $_POST["ordinateur"];
+                $ordinateur = true;
             else
-                $ordinateur = 0;
+                $ordinateur = false;
 
             if (isset($_POST["demissionnaire"]))
-                $demissionnaire = $_POST["demissionnaire"];
+                $demissionnaire = true;
             else
-                $demissionnaire = 0;
+                $demissionnaire = false;
 
             try {
-                modifierEtudiant($nomPromotion, $idEtudiant, $nom, $prenom, $td, $tp, $email, $tiersTemps, $ordinateur, $demissionnaire);
+                $nouvelEtudiant = new Etudiant($idEtudiant, $nom, $prenom, $td, $tp, $email);
+                $nouvelEtudiant->setEstTT($tiersTemps);
+                $nouvelEtudiant->setAOrdi($ordinateur);
+                $nouvelEtudiant->setEstDemissionnaire($demissionnaire);
+                
+                modifierEtudiant($nouvelEtudiant, $nomPromotion);
                 print("
                     <div class='alert alert-success alert-dismissible fade show' role='alert'>
                         <strong>Succès !</strong>

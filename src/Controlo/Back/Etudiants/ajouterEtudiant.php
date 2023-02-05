@@ -6,6 +6,7 @@
     <br>
     <?php
     include_once(FONCTION_CRUD_ETUDIANTS_PATH);
+    include_once(CLASS_PATH. CLASS_ETUDIANT_FILE_NAME);
 
     // Vérifier si le formulaire a été envoyé
     if (isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["nomPromotion"]) && isset($_POST["td"]) && isset($_POST["tp"]) && isset($_POST["mail"])) {
@@ -18,24 +19,29 @@
       $email = $_POST["mail"];
 
       if (isset($_POST["tiersTemps"]))
-        $tiersTemps = $_POST["tiersTemps"];
+        $tiersTemps = true;
       else
-        $tiersTemps = 0;
+        $tiersTemps = false;
 
       if (isset($_POST["ordinateur"]))
-        $ordinateur = $_POST["ordinateur"];
+        $ordinateur = true;
       else
-        $ordinateur = 0;
+        $ordinateur = false;
 
       if (isset($_POST["demissionnaire"]))
-        $demissionnaire = $_POST["demissionnaire"];
+        $demissionnaire = true;
       else
-        $demissionnaire = 0;
+        $demissionnaire = false;
 
 
       // Ajouter l'étudiant
       try {
-        ajouterEtudiant($nom, $prenom, $nomPromotion, $td, $tp, $email, $tiersTemps, $ordinateur, $demissionnaire);
+        $nouvelEtudiant = new Etudiant(0, $nom, $prenom, $td, $tp, $email);
+        $nouvelEtudiant->setEstTT($tiersTemps);
+        $nouvelEtudiant->setAOrdi($ordinateur);
+        $nouvelEtudiant->setEstDemissionnaire($demissionnaire);
+
+        ajouterEtudiant($nouvelEtudiant, $nomPromotion);
         print("
             <div class='alert alert-success alert-dismissible fade show' role='alert'>
                 <strong>Succès !</strong>

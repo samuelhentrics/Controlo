@@ -1,16 +1,30 @@
 <div class="container">
-    <!-- Affichage fonctionnalité en cours de développement -->
-    <div class="alert alert-warning" role="alert">
-        <h4 class="alert-heading">Fonctionnalité en cours de développement</h4>
-        <p>La fonctionnalité que vous essayez d'utiliser est en cours de développement. Elle sera disponible dans les prochaines versions.</p>
-        <hr>
-        <p class="mb-0">Merci de votre compréhension.</p>
-    </div>
+    <h2>Ajouter un enseignant</h2>
 
-    
+    <?php
+    if (isset($_POST['submit'])) {
+        include_once(FONCTION_CRUD_ENSEIGNANTS_PATH);
+
+        $nom = $_POST['nom'];
+        $prenom = $_POST['prenom'];
+        $statut = $_POST['statut'];
+
+        try{
+            $nouvelEnseignant = new Enseignant(0, $nom, $prenom, $statut);
+            ajouterEnseignant($nouvelEnseignant);
+            echo "<div class='alert alert-success' role='alert'>L'enseignant a bien été ajouté.</div>";
+        }
+        catch(Exception $e){
+            echo "<div class='alert alert-danger' role='alert'>
+                L'enseignant n'a pas été ajouté : ". $e->getMessage() ."</div>";
+        }
+    }
+    ?>
+
+
     <div class="col-3"></div>
     <div class="col-6">
-        <form>
+        <form action="<?php echo PAGE_AJOUTER_ENSEIGNANT_PATH; ?>" method="post">
             <div class="form-group row">
                 <label for="nom" class="col-4 col-form-label">Nom</label>
                 <div class="col-8">
@@ -28,15 +42,20 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="email" class="col-4 col-form-label">Statut</label>
+                <label for="statut" class="col-4 col-form-label">Statut</label>
                 <div class="col-8">
-                    <div class="input-group">
-                        <select id="statut" name="statut" class="custom-select" required="required">
-                            <option value="1">Enseignant</option>
-                            <option value="2">Administrateur</option>
-                        </select>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="statut" id="statutTitulaire" value="Titulaire">
+                        <label class="form-check-label" for="statutTitulaire">
+                            Titulaire
+                        </label>
                     </div>
-                    
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="statut" id="statutVacataire" value="Vacataire" checked>
+                        <label class="form-check-label" for="statutVacataire">
+                            Vacataire
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="offset-4 col-8">

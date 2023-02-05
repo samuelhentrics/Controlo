@@ -556,6 +556,17 @@ define("FONCTION_CRUD_ETUDIANTS_FILE_NAME" , "etudiantsCRUD.php");
  */
 define("FONCTION_CRUD_ETUDIANTS_PATH" , CRUD_PATH.FONCTION_CRUD_ETUDIANTS_FILE_NAME);
 
+/** 
+ * @brief Nom du fichier où se trouve les fonctions CRUD des enseignants
+ * @note ex : enseignantsCRUD.php
+ */
+define("FONCTION_CRUD_ENSEIGNANTS_FILE_NAME" , "enseignantsCRUD.php");
+
+/** 
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve les fonctions CRUD des enseignants
+ * @note ex : Controlo/import/crud/enseignantsCRUD.php
+ */
+define("FONCTION_CRUD_ENSEIGNANTS_PATH" , CRUD_PATH.FONCTION_CRUD_ENSEIGNANTS_FILE_NAME);
 
 /** 
  * @brief Nom du fichier où se trouve les fonctions CRUD des étudiants

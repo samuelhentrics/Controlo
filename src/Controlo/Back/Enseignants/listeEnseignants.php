@@ -78,10 +78,13 @@
 
 
                 // Boutons
-                print("
-                    <a href=\"todo\" class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Modifier\">
-                        <i class=\"fas fa-edit\"></i>
-                    </a>
+                        print("
+                    <form action=\"". PAGE_MODIFIER_ENSEIGNANT_PATH ."\" method=\"post\">
+                        <input type=\"hidden\" name=\"idEnseignant\" value=\"{$enseignant->getId()}\">
+                        <button type=\"submit\" class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Modifier\">
+                            <i class=\"fas fa-edit\"></i>
+                        </button>
+                    </form>
                     <a href=\"todo\" class=\"btn btn-danger\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Supprimer\">
                         <i class=\"fas fa-trash-alt\"></i>
                     </a>

@@ -66,4 +66,30 @@ function creerListeEnseignants($affichageErreur = false){
     }
 }
 
+
+/**
+ * @brief Récupérer un enseignant
+ * @param int $id Identifiant de l'enseignant
+ * @param bool $affichageErreur Afficher les erreurs
+ * @throws Exception
+ * @return Enseignant|null Enseignant
+ */
+function recupererUnEnseignant($id, $affichageErreur = false){
+    try{
+        // Récupérer la liste des enseignants
+        $listeEnseignants = creerListeEnseignants();
+
+        // Récupérer l'enseignant
+        $enseignant = $listeEnseignants[$id];
+
+        return $enseignant;
+    }
+    catch(Exception $e){
+        if($affichageErreur){
+            throw new Exception($e->getMessage());
+        }
+        return null;
+    }
+}
+
 ?>

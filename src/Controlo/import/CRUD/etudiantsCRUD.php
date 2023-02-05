@@ -10,28 +10,14 @@
 
 /**
  * @brief Ajoute un étudiant dans le fichier CSV des étudiants (selon la promotion donnée)
- * @param string $nomEtudiant Nom de l'étudiant
- * @param string $prenomEtudiant Prénom de l'étudiant
+ * @param Etudiant $nouvelEtudiant L'étudiant à ajouter
  * @param string $nomPromotion Nom de la promotion de l'étudiant
- * @param int $tdEtudiant TD de l'étudiant
- * @param int $tpEtudiant TP de l'étudiant
- * @param string $emailEtudiant Email de l'étudiant
- * @param string $tiersTempsEtudiant Tiers-temps de l'étudiant (vrai s'il en dispose, faux sinon)
- * @param string $ordinateurEtudiant Ordinateur de l'étudiant (vrai s'il en dispose, faux sinon)
- * @param string $demissionnaireEtudiant Démissionnaire de l'étudiant (vrai s'il est démissionnaire, faux sinon)
  * @throws Exception Si le fichier CSV ne contient pas les champs obligatoires de la nomenclature
  * @return bool Retourne vrai si l'ajout s'est bien passé, faux sinon
  */
 function ajouterEtudiant(
-    $nomEtudiant,
-    $prenomEtudiant,
-    $nomPromotion,
-    $tdEtudiant,
-    $tpEtudiant,
-    $emailEtudiant,
-    $tiersTempsEtudiant,
-    $ordinateurEtudiant,
-    $demissionnaireEtudiant
+    $nouvelEtudiant,
+    $nomPromotion
 )
 {
 
@@ -48,14 +34,7 @@ function ajouterEtudiant(
         // Faire un array avec les informations de l'étudiant
         $infoEtudiant = saisirLigneEtudiant(
             $infoEtudiant,
-            $nomEtudiant,
-            $prenomEtudiant,
-            $tdEtudiant,
-            $tpEtudiant,
-            $emailEtudiant,
-            $tiersTempsEtudiant,
-            $ordinateurEtudiant,
-            $demissionnaireEtudiant
+            $nouvelEtudiant
         );
 
         // Ajouter l'étudiant en fin de fichier
@@ -85,20 +64,12 @@ function ajouterEtudiant(
 
 /**
  * @brief Modifie un étudiant dans le fichier CSV des étudiants (selon la promotion donnée)
+ * @param Etudiant $nouvelEtudiant L'étudiant à modifier
  * @param string $nomPromotion Nom de la promotion de l'étudiant
- * @param int $idEtudiant ID de l'étudiant
- * @param string $nomEtudiant Nom de l'étudiant
- * @param string $prenomEtudiant Prénom de l'étudiant
- * @param int $tdEtudiant TD de l'étudiant
- * @param int $tpEtudiant TP de l'étudiant
- * @param string $emailEtudiant Email de l'étudiant
- * @param string $tiersTempsEtudiant Tiers-temps de l'étudiant (vrai s'il en dispose, faux sinon)
- * @param string $ordinateurEtudiant Ordinateur de l'étudiant (vrai s'il en dispose, faux sinon)
- * @param string $demissionnaireEtudiant Démissionnaire de l'étudiant (vrai s'il est démissionnaire, faux sinon)
  * @throws Exception 
  * @return bool Retourne vrai si la modification s'est bien passée, faux sinon
  */
-function modifierEtudiant($nomPromotion, $idEtudiant, $nomEtudiant, $prenomEtudiant, $tdEtudiant, $tpEtudiant, $emailEtudiant, $tiersTempsEtudiant, $ordinateurEtudiant, $demissionnaireEtudiant)
+function modifierEtudiant($nouvelEtudiant, $nomPromotion)
 {
 
     // On initialise un booléen en cas d'erreur
@@ -106,6 +77,7 @@ function modifierEtudiant($nomPromotion, $idEtudiant, $nomEtudiant, $prenomEtudi
 
     // Tentative de suppression de l'étudiant
     try {
+        $idEtudiant = $nouvelEtudiant->getId();
         $lienFichier = CSV_ETUDIANTS_FOLDER_NAME . $nomPromotion . ".csv";
 
         // Récupérer les entêtes du fichier CSV
@@ -133,14 +105,7 @@ function modifierEtudiant($nomPromotion, $idEtudiant, $nomEtudiant, $prenomEtudi
         // Modifier les informations de l'étudiant
         $infoEtudiant = saisirLigneEtudiant(
             $entetes,
-            $nomEtudiant,
-            $prenomEtudiant,
-            $tdEtudiant,
-            $tpEtudiant,
-            $emailEtudiant,
-            $tiersTempsEtudiant,
-            $ordinateurEtudiant,
-            $demissionnaireEtudiant
+            $nouvelEtudiant
         );
 
         $data[$idEtudiant + 1] = $infoEtudiant;
@@ -219,19 +184,24 @@ function recupererEnteteEtudiant($lienFichier)
 /**
  * @brief Modifie une ligne d'un array d'une info étudiante
  * @param array $infoEtudiant Array contenant les infos d'un étudiant
- * @param string $nomEtudiant Nom de l'étudiant
- * @param string $prenomEtudiant Prénom de l'étudiant
- * @param int $tdEtudiant Numéro du TD de l'étudiant
- * @param int $tpEtudiant Numéro du TP de l'étudiant
- * @param string $emailEtudiant Email de l'étudiant
- * @param string $tiersTempsEtudiant Tiers temps de l'étudiant
- * @param string $ordinateurEtudiant Ordinateur de l'étudiant
- * @param string $demissionnaireEtudiant Démisionnaire de l'étudiant
+ * @param Etudiant $unEtudiant Objet Etudiant
  * @return array Liste contenant les infos d'un étudiant
  */
-function saisirLigneEtudiant($infoEtudiant, $nomEtudiant, $prenomEtudiant, $tdEtudiant, $tpEtudiant, $emailEtudiant, $tiersTempsEtudiant, $ordinateurEtudiant, $demissionnaireEtudiant)
+function saisirLigneEtudiant($infoEtudiant, $unEtudiant)
 {
     try {
+        
+
+        // Variables
+        $nomEtudiant = $unEtudiant->getNom();
+        $prenomEtudiant = $unEtudiant->getPrenom();
+        $tdEtudiant = $unEtudiant->getTd();
+        $tpEtudiant = $unEtudiant->getTp();
+        $emailEtudiant = $unEtudiant->getEmail();
+        $tiersTempsEtudiant = $unEtudiant->getEstTT();
+        $ordinateurEtudiant = $unEtudiant->getAOrdi();
+        $demissionnaireEtudiant = $unEtudiant->getEstDemissionnaire();
+
         // Créer les données à écrire dans le fichier CSV
         $infoEtudiant[NOM_NOM_COLONNE_ETUDIANT] = $nomEtudiant;
         $infoEtudiant[PRENOM_NOM_COLONNE_ETUDIANT] = $prenomEtudiant;
@@ -256,18 +226,18 @@ function saisirLigneEtudiant($infoEtudiant, $nomEtudiant, $prenomEtudiant, $tdEt
         $infoEtudiant[MAIL_NOM_COLONNE_ETUDIANT] = $emailEtudiant;
 
         $infoEtudiant[STATUTS_NOM_COLONNE_ETUDIANT] = null;
-        if ($tiersTempsEtudiant == "on") {
+        if ($tiersTempsEtudiant) {
             $infoEtudiant[STATUTS_NOM_COLONNE_ETUDIANT] .= "Tiers temps";
         }
 
-        if ($ordinateurEtudiant == "on") {
+        if ($ordinateurEtudiant) {
             if ($infoEtudiant[STATUTS_NOM_COLONNE_ETUDIANT] != null) {
                 $infoEtudiant[STATUTS_NOM_COLONNE_ETUDIANT] .= ", ";
             }
             $infoEtudiant[STATUTS_NOM_COLONNE_ETUDIANT] .= "Ordinateur";
         }
 
-        if ($demissionnaireEtudiant == "on") {
+        if ($demissionnaireEtudiant) {
             if ($infoEtudiant[STATUTS_NOM_COLONNE_ETUDIANT] != null) {
                 $infoEtudiant[STATUTS_NOM_COLONNE_ETUDIANT] .= ", ";
             }
