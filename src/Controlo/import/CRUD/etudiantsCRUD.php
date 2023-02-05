@@ -280,41 +280,48 @@ function saisirLigneEtudiant($infoEtudiant, $nomEtudiant, $prenomEtudiant, $tdEt
     return $infoEtudiant;
 }
 
-function supprimerEtudiant($IdEtudiant, $nomPromotion)
+function supprimerEtudiant($idEtudiant, $nomPromotion)
 {
     include_once(FONCTION_CREER_LISTE_PROMOTIONS_PATH);
-    // recuperation d'un etudiant 
-    $unEtudiant = recupererUnEtudiant($IdEtudiant, $nomPromotion);
 
     // On initialise un booléen en cas d'erreur
     $suppressionOk = false;
     // Tentative d'écriture du fichier CSV
     try {
         $lienFichier = CSV_ETUDIANTS_FOLDER_NAME . $nomPromotion . ".csv";
-        $lienFichierTemp = CSV_ETUDIANTS_FOLDER_NAME . $nomPromotion . "_temp.csv";
         $monFichier = fopen($lienFichier, "r");
-
-        $temp_monFichier = fopen($lienFichierTemp, 'w');
 
         if (!$monFichier) {
             throw new Exception("Impossible d'ouvrir le fichier CSV. Il semble être ouvert par un autre programme.");
         }
- 
 
-        while (($data = fgetcsv($monFichier, 1000)) !== FALSE) {
-            // on verifie que date[0] contient le nom ne rien faire sinon copier la ligne dan le fichier temp
-            if (stristr($data[0], $unEtudiant->getNom())) {
-                print($unEtudiant->getNom() . " " . $unEtudiant->getPrenom() . "       supprimée");
-            } else {
-                $parseData = explode(";", $data[0]);
-                fputcsv($temp_monFichier, $parseData, ";");
-            }
+        $contenuDossier = array();
+
+        while (($data = fgetcsv($monFichier, 1000, ";")) !== FALSE) {
+            array_push($contenuDossier, $data);
         }
+
         fclose($monFichier);
-        fclose($temp_monFichier);
+
+        $monFichier = fopen($lienFichier, "w");
+
+        if (!$monFichier) {
+            throw new Exception("Impossible d'ouvrir le fichier CSV. Il semble être ouvert par un autre programme.");
+        }
+
+        $indiceLigne = 0;
+
+        // On parcourt le fichier CSV
+        foreach ($contenuDossier as $uneLigne) {
+            // on verifie que l'indice de la ligne n'est pas celui de l'étudiant à supprimer
+            if (!($indiceLigne == $idEtudiant + 1)) {
+                fputcsv($monFichier, $uneLigne, ";");
+            }
+            $indiceLigne++;
+        }
+
+        fclose($monFichier);
         
-        // le fichier temporaire devient le fichier CSV
-        rename($lienFichierTemp, $lienFichier);
         $suppressionOk = true;
 
     } catch (Exception $e) {
