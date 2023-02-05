@@ -70,12 +70,30 @@
 
                     // Cas où l'utilisateur souhaite voir la liste des contrôles
                     case 'controles':
-                        require(BACK_PATH."Controles/controles.php");
-                        break;
-                    // Cas où l'utilisateur souhaite ajouter un contrôle
-                    case 'ajouterControle':
-                        require(BACK_PATH."Controles/ajouterControle.php");
-                        break;
+                        if (isset($_GET["action"])) {
+                            $action=$_GET["action"];
+                            switch($action) {
+                                case "ajouter":
+                                    require(BACK_PATH."Controles/ajouterControle.php");
+                                    break;
+                                    
+                                case "modifier":
+                                    require(BACK_PATH."Controles/modifierControle.php");
+                                    break;
+
+                                case "supprimer":
+                                    require(BACK_PATH."Controles/supprimerControle.php");
+                                    break;
+
+                                default:
+                                    require(BACK_PATH."404.php");
+                                    break;
+                                }
+                        }
+                        else{
+                            require(BACK_PATH."Controles/listeControles.php");
+                        }
+                    break;
 
                     case 'choixGeneration':
                         require(BACK_PATH."Controles/choixGeneration.php");

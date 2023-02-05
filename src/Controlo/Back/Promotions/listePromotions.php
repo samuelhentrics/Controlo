@@ -19,8 +19,10 @@
         </script>
         <section>
             <h1>Liste des promotions</h1>
-            <!-- Bouton en haut à gauche pour ajouter une promotion -->
-            <a href="<?php echo PAGE_AJOUTER_PROMOTION_PATH; ?>" class="btn btn-primary">Ajouter</a>
+            <a href="<?php echo PAGE_AJOUTER_PROMOTION_PATH; ?>" class="btn btn-primary">
+                <i class="fas fa-plus"></i>
+                Ajouter
+            </a>
             <table id="promotions" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>

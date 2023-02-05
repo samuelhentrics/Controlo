@@ -20,8 +20,10 @@
         </script>
         <section>
             <h1>Liste des étudiants</h1>
-            <!-- Bouton en haut à droite pour ajouter un étudiant -->
-            <a href="<?php echo PAGE_AJOUTER_ETUDIANT_PATH; ?>" class="btn btn-primary">Ajouter</a>
+            <a href="<?php echo PAGE_AJOUTER_ETUDIANT_PATH; ?>" class="btn btn-primary">
+                <i class="fas fa-plus"></i>
+                Ajouter
+            </a>
             <table id="etudiants" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>

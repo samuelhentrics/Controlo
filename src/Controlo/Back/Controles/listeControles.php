@@ -25,6 +25,10 @@
         </script>
         <section>
             <h1>Liste des contrôles</h1>
+            <a href="<?php echo PAGE_AJOUTER_CONTROLE_PATH;?>" class="btn btn-primary">
+                <i class="fas fa-plus"></i>
+                Ajouter
+            </a>
             <table id="controles" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
@@ -131,6 +135,24 @@
                     ');
                     
                 }
+
+                // Bouton pour modifier
+                        print("
+                <form action=\"" . PAGE_MODIFIER_CONTROLE_PATH . "\" method=\"post\">
+                    <input type=\"hidden\" name=\"numControle\" value=\"$numControle\">
+                    <button type=\"submit\" class=\"btn btn-primary\">
+                        <i class=\"fa-solid fa-pencil text-white\"></i> Modifier
+                    </button>
+                </form>
+                ");
+
+                // Bouton pour supprimer
+                        print("
+                <form action=\"" . PAGE_SUPPRIMER_CONTROLE_PATH . "\" method=\"post\">
+                    <input type=\"hidden\" name=\"numControle\" value=\"$numControle\">
+                    <button type=\"submit\" class=\"btn btn-danger\">
+                        <i class=\"fa-solid fa-trash text-white\"></i> Supprimer
+                    </button>");
                 
 
 

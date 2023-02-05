@@ -655,9 +655,27 @@ define("STATUTS_NOM_COLONNE_ETUDIANT", "Statuts");
 
 /**
  * @brief Lien complet vers la page de la liste des contrôles
- * @note ex : http://localhost/src/index.php?page,controles
+ * @note ex : http://localhost/src/index.php?page=controles
  */
 define("PAGE_CONTROLES_PATH" , PATH."index.php?page=controles");
+
+/**
+ * @brief Lien complet vers la page d'ajout d'un contrôle
+ * @note ex : http://localhost/src/index.php?page=controles&action=ajouter
+ */
+define("PAGE_AJOUTER_CONTROLE_PATH" , PATH."index.php?page=controles&action=ajouter");
+
+/**
+ * @brief Lien complet vers la page de modification d'un contrôle
+ * @note ex : http://localhost/src/index.php?page=controles&action=modifier
+ */
+define("PAGE_MODIFIER_CONTROLE_PATH" , PATH."index.php?page=controles&action=modifier");
+
+/**
+ * @brief Lien complet vers la page de suppression d'un contrôle
+ * @note ex : http://localhost/src/index.php?page=controles&action=supprimer
+ */
+define("PAGE_SUPPRIMER_CONTROLE_PATH" , PATH."index.php?page=controles&action=supprimer");
 
 /**
  * @brief Lien complet vers la page de la liste des etudiants
