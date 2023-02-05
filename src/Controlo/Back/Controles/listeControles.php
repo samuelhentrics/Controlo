@@ -136,23 +136,15 @@
                     
                 }
 
-                // Bouton pour modifier
+                // Bouton pour gérer le contrôle
                         print("
-                <form action=\"" . PAGE_MODIFIER_CONTROLE_PATH . "\" method=\"post\">
-                    <input type=\"hidden\" name=\"numControle\" value=\"$numControle\">
+                <form action=\"" . PAGE_PANEL_CONTROLE_PATH . "\" method=\"post\">
+                    <input type=\"hidden\" name=\"idControle\" value=\"$numControle\">
                     <button type=\"submit\" class=\"btn btn-primary\">
-                        <i class=\"fa-solid fa-pencil text-white\"></i> Modifier
+                        <i class=\"fa-solid fa-pencil text-white\"></i> Gérer
                     </button>
                 </form>
                 ");
-
-                // Bouton pour supprimer
-                        print("
-                <form action=\"" . PAGE_SUPPRIMER_CONTROLE_PATH . "\" method=\"post\">
-                    <input type=\"hidden\" name=\"numControle\" value=\"$numControle\">
-                    <button type=\"submit\" class=\"btn btn-danger\">
-                        <i class=\"fa-solid fa-trash text-white\"></i> Supprimer
-                    </button>");
                 
 
 

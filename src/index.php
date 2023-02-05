@@ -73,6 +73,10 @@
                         if (isset($_GET["action"])) {
                             $action=$_GET["action"];
                             switch($action) {
+                                case "panel":
+                                    require(BACK_PATH."Controles/panelControle.php");
+                                    break;
+                                    
                                 case "ajouter":
                                     require(BACK_PATH."Controles/ajouterControle.php");
                                     break;

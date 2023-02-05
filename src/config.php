@@ -660,6 +660,12 @@ define("STATUTS_NOM_COLONNE_ETUDIANT", "Statuts");
 define("PAGE_CONTROLES_PATH" , PATH."index.php?page=controles");
 
 /**
+ * @brief Lien complet vers la gestion d'un contrôle
+ * @note ex : http://localhost/src/index.php?page=controles&action=panel
+ */
+define("PAGE_PANEL_CONTROLE_PATH" , PATH."index.php?page=controles&action=panel");
+
+/**
  * @brief Lien complet vers la page d'ajout d'un contrôle
  * @note ex : http://localhost/src/index.php?page=controles&action=ajouter
  */

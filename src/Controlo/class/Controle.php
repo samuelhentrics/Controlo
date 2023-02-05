@@ -382,11 +382,14 @@ class Controle
     /**
      * @brief Retourne la durée totale pour un étudiant non tiers temps
      *
-     * @return int
+     * @return int|null
      */
     public function getDureeNonTT()
     {
-        return ($this->duree) * 3 / 4;
+        if ($this->duree == null)
+            return null;
+        else
+            return ($this->duree) * 3 / 4;
     }
 
     /**
