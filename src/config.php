@@ -806,19 +806,25 @@ define("PAGE_SALLES_PATH" , PATH."index.php?page=salles");
 define("PAGE_PROMOTIONS_PATH" , PATH."index.php?page=promotions");
 
 /**
- * @brief Lien complet vers la page d'ajout d'une promoion
+ * @brief Lien complet vers la page d'ajout d'une promotion
  * @note ex : http://localhost/src/index.php?page=promotions&action=ajouter
  */
 define("PAGE_AJOUTER_PROMOTION_PATH" , PATH."index.php?page=promotions&action=ajouter");
 
 /**
- * @brief Lien complet vers la page de modification d'une promoion
+ * @brief Lien complet vers la page d'import d'une promotion
+ * @note ex : http://localhost/src/index.php?page=promotions&action=importer
+ */
+define("PAGE_IMPORTER_PROMOTION_PATH" , PATH."index.php?page=promotions&action=importer");
+
+/**
+ * @brief Lien complet vers la page de modification d'une promotion
  * @note ex : http://localhost/src/index.php?page=promotions&action=modifier
  */
 define("PAGE_MODIFIER_PROMOTION_PATH" , PATH."index.php?page=promotions&action=modifier");
 
 /**
- * @brief Lien complet vers la page de suppression d'une promoion
+ * @brief Lien complet vers la page de suppression d'une promotion
  * @note ex : http://localhost/src/index.php?page=promotions&action=supprimer
  */
 define("PAGE_SUPPRIMER_PROMOTION_PATH" , PATH."index.php?page=promotions&action=supprimer");

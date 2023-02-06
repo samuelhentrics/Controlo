@@ -27,6 +27,13 @@ class Promotion
     private $nom;
 
     /**
+     * @brief Nom de la promotion pour affichage
+     * 
+     * @var string
+     */
+    private $nomAffichage;
+
+    /**
      * @brief Liste des Etudiants qui appartient à cette promotion
      * 
      * @var array
@@ -40,9 +47,11 @@ class Promotion
      *
      * @param string $nom Nom de la promotion
      */
-    public function __construct($nom)
+    public function __construct($nom, $nomAffichage = null)
+
     {
         $this->setNom($nom);
+        $this->setNomAffichage($nomAffichage);
     }
 
 
@@ -67,6 +76,29 @@ class Promotion
     {
         $this->nom = $nouveauNom;
     }
+
+
+    
+    /**
+     * @brief Retourne le nom de la Promotion pour affichage
+     * 
+     * @return string
+     */
+    public function getNomAffichage()
+    {
+        return $this->nomAffichage;
+    }
+
+    /**
+     * @brief Permet d'affecter un nom d'affichage à une Promotion
+     * 
+     * @param string $nouveauNom
+     */
+    public function setNomAffichage($nouveauNomAffichage)
+    {
+        $this->nomAffichage = $nouveauNomAffichage;
+    }
+
 
     /**
      * @brief Retourne la liste des Etudiant
@@ -163,6 +195,56 @@ class Promotion
         return $listeEtudiantsOrdi;
     }
 
+    /**
+     * @brief Retourne la liste des Etudiant démisionnaires dans la Promotion
+     * @return array Liste des Etudiant démisionnaires
+     */
+    public function recupererListeEtudiantsDemisionnaire()
+    {
+        $listeEtudiantsDemisionnaire = array();
+        foreach ($this->getMesEtudiants() as $key => $unEtudiant) {
+            if ($unEtudiant->getEstDemissionnaire()){
+                array_push($listeEtudiantsDemisionnaire, $unEtudiant);
+            }
+        }
+        return $listeEtudiantsDemisionnaire;
+    }
 
+    /**
+     * @brief Retourne la liste des Etudiant avec ordinateur dans la Promotion
+     * @return array Liste des Etudiant avec ordinateur
+     */
+    public function recupererListeEtudiantsTT()
+    {
+        $listeEtudiantsTT = array();
+        foreach ($this->getMesEtudiants() as $key => $unEtudiant) {
+            if ($unEtudiant->getEstTT()){
+                array_push($listeEtudiantsOrdi, $unEtudiant);
+            }
+        }
+        return $listeEtudiantsTT;
+    }
+
+    /**
+     * @brief Retourne le nom d'affichage de la Promotion
+     * @return array Nom pour affichage de la promotion
+     */
+    public function recupererNomPromotionAffichage($unePromotion)
+    {
+    // Récupérer le nom pour affichage de la promotion
+    $lienFichier = CSV_ETUDIANTS_FOLDER_NAME.LISTE_PROMOTIONS_FILE_NAME;
+    $file =  fopen($lienFichier  , "r");
+
+    $nomAffichage = $unePromotion->getNom();
+    // Récupérer dans le fichier le nom pour affichage de la promotion
+    while (($data = fgetcsv($file, 1000, ";")) !== FALSE) {
+        if ($data[0] == $unePromotion->getNom()) {
+            if($data[1]!=null){
+                $nomAffichage = $data[1];
+            }
+        }
+    }
+    return $nomAffichage;
+    }
 }
 ?>
