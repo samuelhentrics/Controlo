@@ -105,7 +105,9 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col-md-4">
+                        <a href="'. PAGE_CHOIX_GENERATION_PATH .'" style="text-decoration: none"> 
                             <div class="card text-white bg-primary text-center">
                                 <div class="card-body">
                                     <p class="card-text">
@@ -114,6 +116,7 @@
                                     </p>
                                 </div>
                             </div>
+                            </a>
                             <div class="card bg-secondary">
                                 <div class="card-body text-center">
                                     <p class="card-text">
