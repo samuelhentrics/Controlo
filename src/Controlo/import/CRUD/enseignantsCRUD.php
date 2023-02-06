@@ -151,6 +151,13 @@ function supprimerEnseignant($idEnseignant){
                 $prenom = $ligne[1];
                 $statut = $ligne[2];
 
+                if ($statut == "Titulaire"){
+                    $statut = true;
+                }
+                else{
+                    $statut = false;
+                }
+
                 // Créer l'objet Enseignant
                 $enseignant = new Enseignant($id, $nom, $prenom, $statut);
 
