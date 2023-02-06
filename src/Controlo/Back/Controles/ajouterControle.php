@@ -25,9 +25,9 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="Durée" class="col-4 col-form-label">Durée</label>
+                <label for="Durée" class="col-4 col-form-label">Durée Totale du controle</label>
                 <div class="col-8">
-                    <input id="Durée" name="Durée" placeholder="ex: 120, 60 en min" type="text" class="form-control" required="required">
+                    <input id="Durée" name="DuréeTotale" placeholder="ex: 120, 60 en min" type="text" class="form-control" required="required">
                 </div>
             </div>
             <div class="form-group row">
@@ -49,9 +49,12 @@
                     </div>
                 </div>
             </div>
+
+            
             <div class="form-group row">
-                <label class="col-4">Salles</label>
+            <label for="select" class="col-4 col-form-label">Salles</label> 
                 <div class="col-8">
+                <select id="select" name="checkbox" class="custom-select" multiple="multiple">
                     <?php
                     //ajouter la liste de salles
             $directory = CSV_SALLES_FOLDER_NAME;
@@ -62,11 +65,11 @@
                 $extension = pathinfo($file, PATHINFO_EXTENSION);
                 if ($extension === "csv" && $file != LISTE_SALLES_FILE_NAME){
                     print(' <div class="custom-control custom-checkbox custom-control-inline">
-                    <input name="checkbox" id="checkbox_0" type="checkbox" class="custom-control-input" value="salle-'.$file.'">');
-                    print('<label for="checkbox_0" class="custom-control-label">'.$file.'</label></div>');
+                    <option value="'.$file.'">'.$file.'</option>');
                 }
             }
             ?>
+                  </select>
             </div>
             <div class="form-group row">
                 <div class="offset-4 col-8">
