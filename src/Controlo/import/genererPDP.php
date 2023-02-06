@@ -243,117 +243,142 @@ function placerEtudiants(&$listeEtudiants, &$unControle, &$erreur)
 }
 
 
+  try {
 
-/* ----------------------------------------------------------------
-----------------------------------------------------------------
------------------------- Initialisation ------------------------
-----------------------------------------------------------------
-----------------------------------------------------------------*/
+    /* ----------------------------------------------------------------
+    ----------------------------------------------------------------
+    ------------------------ Initialisation ------------------------
+    ----------------------------------------------------------------
+    ----------------------------------------------------------------*/
 
-// -- Récupération du contrôle passé en paramètre
-$unControle = recupererUnControle($_POST["id"]);
+    // Récupérer le contrôle
 
-// -- Récupération des contraintes générales
-$typePlacement = $_POST["typePlacement"];
-$typeSeparation = $_POST["typeSeparation"];
+    // -- Récupération des contraintes générales
+    $typePlacement = $_POST["typePlacement"];
+    $typeSeparation = $_POST["typeSeparation"];
 
-// -- Création des contraintes générales
-$contraintesGenerales = new ContraintesGenerales($typePlacement, $typeSeparation);
+    // -- Création des contraintes générales
+    $contraintesGenerales = new ContraintesGenerales($typePlacement, $typeSeparation);
 
-// -- Récupération des Salles du contrôle
-$listeDeSalles = $unControle->getMesSalles();
+    // -- Récupération des Salles du contrôle
+    $listeDeSalles = $unControle->getMesSalles();
 
-// -- Création des plans de placement pour chaque salle
-foreach ($listeDeSalles as $nom => $uneSalle) {
-  // Récupération des contraintes d'espacement
-  $nbPlaceSeparant = $_POST["nbPlacesSeparant-" . $nom];
-  $nbRangeeSeparant = $_POST["nbRangeesSeparant-" . $nom];
+    // -- Création des plans de placement pour chaque salle
+    foreach ($listeDeSalles as $nom => $uneSalle) {
+      // Récupération des contraintes d'espacement
+      $nbPlaceSeparant = $_POST["nbPlacesSeparant-" . $nom];
+      $nbRangeeSeparant = $_POST["nbRangeesSeparant-" . $nom];
 
-  // Création des contraintes d'espacement
-  $contraintesSalle = new ContraintesEspacement($nbRangeeSeparant, $nbPlaceSeparant);
+      // Gestion des erreurs
 
-  // Création du plan de placement
-  $unPDP = new PlanDePlacement($contraintesGenerales, $contraintesSalle, $uneSalle);
+      // String en int
+      $nbPlaceSeparant = (int) $nbPlaceSeparant;
+      $nbRangeeSeparant = (int) $nbRangeeSeparant;
+      
+      // Vérifier qu'il s'agit d'entiers
+      if (!is_int($nbPlaceSeparant) || !is_int($nbRangeeSeparant)) {
+        throw new Exception("Erreur : Les espacements doivent être des entiers");
+      }
 
-  // Ajout du plan de placement au contrôle
-  $unControle->ajouterPlanDePlacement($unPDP);
+      // Vérification que les espacements sont positifs
+      if ($nbPlaceSeparant < 0 || $nbRangeeSeparant < 0) {
+        throw new Exception("Erreur : Les espacements doivent être positifs");
+      }
 
-}
+      // Création des contraintes d'espacement
+      $contraintesSalle = new ContraintesEspacement($nbRangeeSeparant, $nbPlaceSeparant);
 
-// -- Récupération des promotions du contrôle
-$listePromos = $unControle->getMesPromotions();
+      // Création du plan de placement
+      $unPDP = new PlanDePlacement($contraintesGenerales, $contraintesSalle, $uneSalle);
 
-// -- Création des listes d'étudiants
-$listeTTSansOrdi = array();
-$listeOrdi = array();
-$listeEtud = array();
+      // Ajout du plan de placement au contrôle
+      $unControle->ajouterPlanDePlacement($unPDP);
 
-// -- Récupération des étudiants des promotions
-foreach ($listePromos as $unePromo) {
-  // Récupération des étudiants de la promotion et ajout dans les listes d'étudiants correspondantes
-  $listeTTSansOrdi = array_merge($listeTTSansOrdi, $unePromo->recupererListeEtudiantsTTSansOrdi());
-  
-  $listeOrdi = array_merge($listeOrdi, $unePromo->recupererListeEtudiantsOrdi());
-  $listeEtud = array_merge($listeEtud, $unePromo->recupererListeEtudiantsNonTT());
+    }
 
-}
+    // -- Récupération des promotions du contrôle
+    $listePromos = $unControle->getMesPromotions();
 
-// -- Supprimer les étudiants démissionnaires des listes
-$listeTTSansOrdi = supprimerDemissionnaire($listeTTSansOrdi);
-$listeOrdi = supprimerDemissionnaire($listeOrdi);
-$listeEtud = supprimerDemissionnaire($listeEtud);
+    // -- Création des listes d'étudiants
+    $listeTTSansOrdi = array();
+    $listeOrdi = array();
+    $listeEtud = array();
 
-// -- Trie les listes d'étudiants
-$listeTTSansOrdi = trieListe($listeTTSansOrdi, $contraintesGenerales->getAlgoRemplissage());
-$listeOrdi = trieListe($listeOrdi, $contraintesGenerales->getAlgoRemplissage());
-$listeEtud = trieListe($listeEtud, $contraintesGenerales->getAlgoRemplissage());
+    // -- Récupération des étudiants des promotions
+    foreach ($listePromos as $unePromo) {
+      // Récupération des étudiants de la promotion et ajout dans les listes d'étudiants correspondantes
+      $listeTTSansOrdi = array_merge($listeTTSansOrdi, $unePromo->recupererListeEtudiantsTTSansOrdi());
 
-// -- Création d'un indicateur d'erreur
-$erreur = false;
+      $listeOrdi = array_merge($listeOrdi, $unePromo->recupererListeEtudiantsOrdi());
+      $listeEtud = array_merge($listeEtud, $unePromo->recupererListeEtudiantsNonTT());
 
-/* ----------------------------------------------------------------
-----------------------------------------------------------------
--------------------- Placement des étudiants -------------------
-----------------------------------------------------------------
-----------------------------------------------------------------*/
+    }
 
-// Placement des étudiants avec ordinateur
-if (!empty($listeOrdi)) {
-  placerEtudiants($listeOrdi, $unControle, $erreur);
-}
+    // -- Supprimer les étudiants démissionnaires des listes
+    $listeTTSansOrdi = supprimerDemissionnaire($listeTTSansOrdi);
+    $listeOrdi = supprimerDemissionnaire($listeOrdi);
+    $listeEtud = supprimerDemissionnaire($listeEtud);
 
-if (!$erreur) {
-  // Placement des étudiants tiers-temps sans ordinateur
-  if (!empty($listeTTSansOrdi)) {
-    placerEtudiants($listeTTSansOrdi, $unControle, $erreur);
+    // -- Trie les listes d'étudiants
+    $listeTTSansOrdi = trieListe($listeTTSansOrdi, $contraintesGenerales->getAlgoRemplissage());
+    $listeOrdi = trieListe($listeOrdi, $contraintesGenerales->getAlgoRemplissage());
+    $listeEtud = trieListe($listeEtud, $contraintesGenerales->getAlgoRemplissage());
+
+    // -- Création d'un indicateur d'erreur
+    $erreur = false;
+
+    /* ----------------------------------------------------------------
+    ----------------------------------------------------------------
+    -------------------- Placement des étudiants -------------------
+    ----------------------------------------------------------------
+    ----------------------------------------------------------------*/
+
+    // Placement des étudiants avec ordinateur
+    if (!empty($listeOrdi)) {
+      placerEtudiants($listeOrdi, $unControle, $erreur);
+    }
+
+    if($erreur){
+      throw new Exception("Erreur lors du placement des étudiants avec ordinateur");
+    }
+
+      // Placement des étudiants tiers-temps sans ordinateur
+      if (!empty($listeTTSansOrdi)) {
+        placerEtudiants($listeTTSansOrdi, $unControle, $erreur);
+      }
+    
+      if($erreur){
+        throw new Exception("Erreur lors du placement des étudiants avec ordinateur");
+      }
+
+      // Placement des étudiants sans ordinateur ni tiers-temps
+      if (!empty($listeEtud)) {
+        placerEtudiants($listeEtud, $unControle, $erreur);
+      }
+    
+      if($erreur){
+        throw new Exception("Erreur lors du placement des étudiants sans ordinateur ni tiers-temps");
+      }
+
+
+
+    /* ----------------------------------------------------------------
+    ----------------------------------------------------------------
+    ---------------- Génération des PDF si possible ----------------
+    ----------------------------------------------------------------
+    ----------------------------------------------------------------*/
+
+
+    // Tentative de génération des PDF
+    if (!$erreur) {
+      // Génération des PDF
+      genererPDF($unControle);
+      // Rediriger l'utilisateur vers un message de succès
+    }
   }
-}
-
-if (!$erreur) {
-  // Placement des étudiants sans ordinateur ni tiers-temps
-  if (!empty($listeEtud)) {
-    placerEtudiants($listeEtud, $unControle, $erreur);
+  catch (Exception $e) {
+    throw new Exception($e->getMessage());
   }
-}
 
-
-
-/* ----------------------------------------------------------------
-----------------------------------------------------------------
----------------- Génération des PDF si possible ----------------
-----------------------------------------------------------------
-----------------------------------------------------------------*/
-
-
-// Tentative de génération des PDF
-if (!$erreur) {
-  // Génération des PDF
-  genererPDF($unControle);
-  // Rediriger l'utilisateur vers un message de succès
-  echo "<meta http-equiv='refresh' content='0;url=" . PAGE_RESULTAT_PATH . "&succes=ok&id=" . $_POST["id"] . "'>";
-} else {
-  // Rediriger l'utilisateur vers un message d'erreur
-  echo "<meta http-equiv='refresh' content='0;url=" . PAGE_RESULTAT_PATH . "&succes=erreur&id=" . $_POST["id"] . " '>";
-}
 
 ?>

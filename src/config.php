@@ -440,6 +440,18 @@ define("FONCTION_ASSOCIER_ENTETE_LIGNE_FILE_NAME" , "associerEnteteLigne.php");
  */
 define("FONCTION_ASSOCIER_ENTETE_LIGNE_PATH" , IMPORT_PATH.FONCTION_ASSOCIER_ENTETE_LIGNE_FILE_NAME);
 
+/**
+ * @brief Nom du fichier où se trouve la fonction genererPDP
+ * @note ex : genererPDP.php
+ */
+define("FONCTION_GENERER_PDP_FILE_NAME" , "genererPDP.php");
+
+
+/**
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve la fonction genererPDP
+ * @note ex : Controlo/import/genererPDP.php
+ */
+define("FONCTION_GENERER_PDP_PATH" , IMPORT_PATH.FONCTION_GENERER_PDP_FILE_NAME);
 
 /**
  * @brief Nom du dossier où se trouve les fonctions de création d'objets
@@ -579,6 +591,8 @@ define("FONCTION_CRUD_PROMOTIONS_FILE_NAME" , "promotionsCRUD.php");
  * @note ex : Controlo/import/crud/promotionsCRUD.php
  */
 define("FONCTION_CRUD_PROMOTIONS_PATH" , CRUD_PATH.FONCTION_CRUD_PROMOTIONS_FILE_NAME);
+
+
 
 
 
@@ -726,6 +740,12 @@ define("PAGE_MODIFIER_CONTROLE_PATH" , PATH."index.php?page=controles&action=mod
 define("PAGE_SUPPRIMER_CONTROLE_PATH" , PATH."index.php?page=controles&action=supprimer");
 
 /**
+ * @brief Lien complet vers la page de téléchargement d'un plan de placement d'un contrôle
+ * @note ex : http://localhost/src/index.php?page=controles&action=telechargerPDP
+ */
+define("PAGE_TELECHARGER_PDP_CONTROLE_PATH" , PATH."index.php?page=controles&action=telechargerPDP");
+
+/**
  * @brief Lien complet vers la page de la liste des etudiants
  * @note ex : http://localhost/src/index.php?page=etudiants
  */
@@ -848,10 +868,10 @@ define("PAGE_POLITIQUEDECONFIDENTIALITE_PATH" , PATH."index.php?page=politiqueDe
 define("PAGE_MENTIONSLEGALES_PATH" , PATH."index.php?page=mentionsLegales");
 
 /**
- * @brief Lien complet vers la page de xhoix de génération d'un controle
+ * @brief Lien complet vers la page de placement automatique
  * @note ex : http://localhost/src/index.php?page=choixGeneration
  */
-define("PAGE_CHOIX_GENERATION_PATH" , PATH."index.php?page=choixGeneration");
+define("PAGE_PLACEMENT_AUTO_PATH" , PATH."index.php?page=controles&action=placementAuto");
 
 /**
  * @brief Lien complet vers la page de génération (qui revoit directement vers la page resultat)
@@ -861,9 +881,9 @@ define("PAGE_GENERER_PATH" , PATH."index.php?page=generer");
 
 /**
  * @brief Lien complet vers la page resultat
- * @note ex : http://localhost/src/index.php?page=resultat
+ * @note ex : http://localhost/src/index.php?page=resultatPdp
  */
-define("PAGE_RESULTAT_PATH" , PATH."index.php?page=resultat");
+define("PAGE_RESULTAT_PDP_PATH" , PATH."index.php?page=resultatPdp");
 
 /**
  * @brief Lien complet vers la page de téléchargement
