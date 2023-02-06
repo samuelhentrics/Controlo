@@ -92,6 +92,14 @@
                             require(BACK_PATH . "Controles/supprimerControle.php");
                             break;
 
+                        case "placementAuto":
+                            require(BACK_PATH . "Controles/placementAuto.php");
+                            break;
+
+                        case "telechargerPDP":
+                            require(BACK_PATH . "Controles/telechargerPDP.php");
+                            break;
+
                         default:
                             require(BACK_PATH . "404.php");
                             break;
@@ -99,20 +107,6 @@
                 } else {
                     require(BACK_PATH . "Controles/listeControles.php");
                 }
-                break;
-
-            case 'choixGeneration':
-                require(BACK_PATH . "Controles/choixGeneration.php");
-                break;
-
-            // Générer les plans de placement
-            case 'generer':
-                require(IMPORT_PATH . "generer.php");
-                break;
-
-            // Page de résultat de génération plans de placement
-            case 'resultat':
-                require(BACK_PATH . "Controles/resultat.php");
                 break;
 
 

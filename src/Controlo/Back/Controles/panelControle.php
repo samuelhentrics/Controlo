@@ -90,30 +90,51 @@
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-3">
-                            <div class="card text-white bg-primary">
-                                <div class="card-body text-center">
-                                    <i class="fa fa-pen fa-5x"></i><br>
-                                    <h5> Editer les informations du contrôle </h5>
-                                </div>
-                            </div>
-                            <div class="card text-white bg-danger">
-                                <div class="card-body text-center">
-                                    <p class="card-text">
-                                        <i class="fa fa-trash fa-3x"></i><br>
-                                        <h5>Supprimer le contrôle</h5>
-                                    </p>
-                                </div>
-                            </div>
+                            <form id="modifier" action="'.PAGE_MODIFIER_CONTROLE_PATH.'" method="POST">
+                                <input type="hidden" name="idControle" value="'.$idControle.'">
+                                <a onClick="document.getElementById(\'modifier\').submit();">
+                                    <div class="card text-white bg-primary text-center">
+                                        <div class="card-body text-center">
+                                        <i class="fa fa-pen fa-5x"></i><br>
+                                        <h5> Editer les informations du contrôle </h5>
+                                        </div>
+                                    </div>
+                                </a>
+                            </form>
+
+                            <form id="supprimer" action="'.PAGE_SUPPRIMER_CONTROLE_PATH.'" method="POST">
+                                <input type="hidden" name="idControle" value="'.$idControle.'">
+                                <a onClick="document.getElementById(\'supprimer\').submit();">
+                                    <div class="card text-white bg-danger text-center">
+                                        <div class="card-body text-center">
+                                            <p class="card-text">
+                                            <i class="fa fa-trash fa-3x"></i><br>
+                                            <h5>Supprimer le contrôle</h5>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </form>
+
+
                         </div>
+                        
                         <div class="col-md-4">
-                            <div class="card text-white bg-primary text-center">
-                                <div class="card-body">
-                                    <p class="card-text">
-                                        <i class="fa fa-wand-magic fa-3x"></i><br>
-                                        <h5>Placer automatiquement</h5>
-                                    </p>
-                                </div>
-                            </div>
+                            <form id="placerAuto" action="'.PAGE_PLACEMENT_AUTO_PATH.'" method="POST">
+                                <input type="hidden" name="idControle" value="'.$idControle.'">
+                                <a onClick="document.getElementById(\'placerAuto\').submit();">
+                                    <div class="card text-white bg-primary text-center">
+                                        <div class="card-body">
+                                            <p class="card-text">
+                                                <i class="fa fa-wand-magic fa-3x"></i><br>
+                                                <h5>Placer automatiquement</h5>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </form>
+                            
+
                             <div class="card bg-secondary">
                                 <div class="card-body text-center">
                                     <p class="card-text">
@@ -122,6 +143,7 @@
                                     </p>
                                 </div>
                             </div>
+
                         </div>
                         <div class="col-md-5">
                             <div class="card bg-secondary">
@@ -129,14 +151,22 @@
                                         <h5> <i class="fa fa-download fa-2x"></i> Télécharger feuille d\'émargement</h5>   
                                 </div>
                             </div>
-                            <div class="card text-white bg-primary">
-                                <div class="card-body">
-                                    <h5>
-                                        <i class="fa fa-download fa-2x"></i>
-                                        Télécharger plans de placement
-                                    </h5>
-                                </div>
-                            </div>
+
+                            <form id="telechargerPDP" action="'.PAGE_TELECHARGER_PDP_CONTROLE_PATH .'" method="POST">
+                                <input type="hidden" name="idControle" value="'.$idControle.'">
+                                <a onClick="document.getElementById(\'telechargerPDP\').submit();">
+                                    <div class="card text-white bg-primary">
+                                        <div class="card-body">
+                                            <h5>
+                                            <i class="fa fa-download fa-2x"></i>
+                                            Télécharger plans de placement
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </a>
+                            </form>
+
+
                             <div class="card bg-secondary">
                                 <div class="card-body">
                                     <h5>

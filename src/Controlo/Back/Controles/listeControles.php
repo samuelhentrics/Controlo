@@ -120,7 +120,7 @@
 
                 if ($listeControles[$numControle]->controleInfoComplet()){
                     print("
-                    <a href=\"".PAGE_CHOIX_GENERATION_PATH."&numControle=$numControle\">
+                    <a href=\"&numControle=$numControle\">
                         <i class=\"fa-solid fa-arrow-rotate-right text-dark\"></i>
                     </a>");
                 }
