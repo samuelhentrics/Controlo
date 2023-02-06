@@ -23,6 +23,10 @@
                 <i class="fas fa-plus"></i>
                 Ajouter
             </a>
+            <a href="<?php echo PAGE_IMPORTER_PROMOTION_PATH; ?>"class="btn btn-primary">
+                <i class="fas fa-plus"></i>
+                Importer
+            </a>
             <table id="promotions" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
@@ -32,6 +36,7 @@
                         <th>Effectif d'étudiants avec tiers-temps</th>
                         <th>Nombre d'étudiants avec ordinateur</th>
                         <th>Nombre d'étudiants démisionnaires</th>
+                        <th>Action</th>
 
                     </tr>
                 </thead>
@@ -44,38 +49,41 @@
 
                     foreach ($listePromotions as $unePromotion) {
 
-                        // Récupérer le nom pour affichage de la promotion
-                        $lienFichier = CSV_ETUDIANTS_FOLDER_NAME.LISTE_PROMOTIONS_FILE_NAME;
-                        $file =  fopen($lienFichier  , "r");
 
-                        $nomAffichage = null;
-                        // Récupérer dans le fichier le nom pour affichage de la promotion
-                        while (($data = fgetcsv($file, 1000, ";")) !== FALSE) {
-                            if ($data[0] == $unePromotion->getNom()) {
-                                $nomAffichage = $data[1];
-                            }
-                        }
+
+                        // Nom de la promotion
+                        $nomPromotion = $unePromotion->getNom();
+
+                        // Récupérer le nom pour affichage de la promotion
+                        $nomPromotionAffichage = $unePromotion->recupererNomPromotionAffichage($unePromotion);
 
                         // Compter le nombre d'étudiants dans la promotion
-                        $nbEtudiant = count($unePromotion->getMesEtudiants());
+                        $effectifEtudiant = count($unePromotion->getMesEtudiants());
+
+                        // Compter le nombre d'étudiants Tiers-Temps dans la promotion
+                        $nbEtudiantTT= count($unePromotion->getMesEtudiants())-count($unePromotion->recupererListeEtudiantsNonTT());
 
                         // Compter le nombre d'étudiants avec ordinateur dans la promotion
                         $nbEtudiantsOrdi = count($unePromotion->recupererListeEtudiantsOrdi());
 
-                        // Compter le nombre d'étudiants Tiers-Temps dans la promotion
-                        $nbEtudiantTT= count($unePromotion->getMesEtudiants())-count($unePromotion->recupererListeEtudiantsNonTT());
+                        // Compter le nombre d'étudiants démisionnaires dans la promotion
+                        $nbEtudiantDemisionnaire= count($unePromotion->recupererListeEtudiantsDemisionnaire());
+
+
                     
-                        // Nom de la promotion
-                        $nomPromotion = $unePromotion->getNom();
+
+                        // Etudiant démisionnaires
+
                     
                         print("
 
                         <tr>
                             <td>".$nomPromotion."</td>
-                            <td>".$nomAffichage."</td>
-                            <td>".$nbEtudiant."</td>
+                            <td>".$nomPromotionAffichage."</td>
+                            <td>".$effectifEtudiant."</td>
                             <td>".$nbEtudiantTT."</td>
                             <td>".$nbEtudiantsOrdi."</td>
+                            <td>".$nbEtudiantDemisionnaire."</td>
                         <td class=\"text-center\">
                             <form method=\"post\" action=" . PAGE_MODIFIER_PROMOTION_PATH . ">
                                 <input type=\"submit\" name=\"action\" value=\"Modifier\" class=\"btn btn-primary\">

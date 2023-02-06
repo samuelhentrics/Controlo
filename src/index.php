@@ -48,6 +48,10 @@
                             require(BACK_PATH . "Promotions/ajouterPromotion.php");
                             break;
 
+                        case "importer":
+                            require(BACK_PATH. "Promotions/importerPromotion.php");
+                            break;
+                            
                         case "modifier":
                             require(BACK_PATH . "Promotions/modifierPromotion.php");
                             break;
