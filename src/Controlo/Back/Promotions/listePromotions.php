@@ -62,7 +62,7 @@
                         $nomPromotion = $unePromotion->getNom();
 
                         // Récupérer le nom pour affichage de la promotion
-                        $nomPromotionAffichage = $unePromotion->recupererNomPromotionAffichage($unePromotion);
+                        $nomPromotionAffichage = $unePromotion->getNomAffichage();
 
                         // Compter le nombre d'étudiants dans la promotion
                         $effectifEtudiant = count($unePromotion->getMesEtudiants());
