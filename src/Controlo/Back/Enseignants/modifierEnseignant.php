@@ -39,7 +39,7 @@
         $enseignant = recupererUnEnseignant($idEnseignant);
 
         echo '
-        <form action="' . PAGE_MODIFIER_ENSEIGNANT_PATH . '" method="post">
+        <form action="' . PAGE_MODIFIER_PROMOTION_PATH . '" method="post">
         <div class="form-group row">
             <label for="nom" class="col-4 col-form-label">Nom</label>
             <div class="col-8">

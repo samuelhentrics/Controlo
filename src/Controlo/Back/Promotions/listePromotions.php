@@ -27,6 +27,7 @@
                 <i class="fas fa-plus"></i>
                 Importer
             </a>
+            
             <table id="promotions" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
@@ -86,7 +87,10 @@
                             <td>".$nbEtudiantDemisionnaire."</td>
                         <td class=\"text-center\">
                             <form method=\"post\" action=" . PAGE_MODIFIER_PROMOTION_PATH . ">
-                                <input type=\"submit\" name=\"action\" value=\"Modifier\" class=\"btn btn-primary\">
+                                <input type=\"hidden\" name=\"=idPromotion\" value=\"{$unePromotion->getId()}\">
+                                <button type=\"submit\" class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Modifier\">
+                                    <i class=\"fas fa-edit\"></i>
+                                </button>
                                 </form>
                             <form method=\"post\" action=" . PAGE_SUPPRIMER_PROMOTION_PATH . ">
                                 <input type=\"hidden\" name=\"nomPromotion\" value=\"".$nomPromotion."\">
