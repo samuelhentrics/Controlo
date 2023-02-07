@@ -127,7 +127,13 @@ class Promotion
      */
     public function setNomAffichage($nouveauNomAffichage)
     {
-        $this->nomAffichage = $nouveauNomAffichage;
+        if ($nouveauNomAffichage != null){
+            $nouveauNomAffichage = trim($nouveauNomAffichage);
+            $this->nomAffichage = $nouveauNomAffichage;
+        }
+        else{
+            $this->nomAffichage = $this->nom;
+        }
     }
 
 
@@ -254,28 +260,6 @@ class Promotion
             }
         }
         return $listeEtudiantsTT;
-    }
-
-    /**
-     * @brief Retourne le nom d'affichage de la Promotion
-     * @return array Nom pour affichage de la promotion
-     */
-    public function recupererNomPromotionAffichage($unePromotion)
-    {
-    // Récupérer le nom pour affichage de la promotion
-    $lienFichier = CSV_ETUDIANTS_FOLDER_NAME.LISTE_PROMOTIONS_FILE_NAME;
-    $file =  fopen($lienFichier  , "r");
-
-    $nomAffichage = $unePromotion->getNom();
-    // Récupérer dans le fichier le nom pour affichage de la promotion
-    while (($data = fgetcsv($file, 1000, ";")) !== FALSE) {
-        if ($data[0] == $unePromotion->getNom()) {
-            if($data[1]!=null){
-                $nomAffichage = $data[1];
-            }
-        }
-    }
-    return $nomAffichage;
     }
 }
 ?>

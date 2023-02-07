@@ -18,6 +18,7 @@
         });
         </script>
         <section>
+<<<<<<< HEAD
             <h1>Liste des promotions</h1>
             <a href="<?php echo PAGE_AJOUTER_PROMOTION_PATH; ?>" class="btn btn-primary">
                 <i class="fas fa-plus"></i>
@@ -28,6 +29,24 @@
                 Importer
             </a>
             
+=======
+            <div class="row">
+                <div class="col-8">
+                    <h1>Liste des promotions</h1>
+                </div>
+                <div class="col-4 text-end">
+                    <a href="<?php echo PAGE_AJOUTER_PROMOTION_PATH; ?>" class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Ajouter
+                    </a>
+                    <a href="<?php echo PAGE_IMPORTER_PROMOTION_PATH; ?>"class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Importer
+                    </a>
+                </div>
+            </div>
+
+>>>>>>> a7f52e6f46fb20aa18e6afb29d1b7a191f9d16de
             <table id="promotions" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
@@ -56,7 +75,7 @@
                         $nomPromotion = $unePromotion->getNom();
 
                         // Récupérer le nom pour affichage de la promotion
-                        $nomPromotionAffichage = $unePromotion->recupererNomPromotionAffichage($unePromotion);
+                        $nomPromotionAffichage = $unePromotion->getNomAffichage();
 
                         // Compter le nombre d'étudiants dans la promotion
                         $effectifEtudiant = count($unePromotion->getMesEtudiants());
