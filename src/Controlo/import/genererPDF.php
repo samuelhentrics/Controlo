@@ -263,6 +263,7 @@ function genererPDF($unControle)
         mkdir($nomDossier);
     }
 
+
     foreach ($unControle->getMesSalles() as $nomSalle => $uneSalle) {
         // Informations sur le PDP
         // Plan de Placement de la salle actuelle
@@ -407,6 +408,12 @@ function genererPDF($unControle)
 
         // Enregistrer le PDF du PlanDePlacement actuel dans le dossier
         $nomFichier = $dateFormatDossier . "_" . $nomFormatDossier . "_Plan_Placement_" . $nomSalle . ".pdf";
+
+        // Si le fichier existe déjà, on le supprime
+        if (file_exists($nomDossier . $nomFichier)) {
+            unlink($nomDossier . $nomFichier);
+        }
+
         $pdf->Output($nomDossier . $nomFichier, 'F');
     }
 }
