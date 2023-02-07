@@ -97,7 +97,7 @@
                             <td>" . $nbEtudiantDemisionnaire . "</td>
                         <td class=\"text-center\">
                             <form method=\"post\" action=" . PAGE_MODIFIER_PROMOTION_PATH . ">
-                                <input type=\"hidden\" name=\"=idPromotion\" value=\"{$unePromotion->getId()}\">
+                                <input type=\"hidden\" name=\"nomPromotion\" value=\"" . $nomPromotion . "\">
                                 <button type=\"submit\" class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Modifier\">
                                     <i class=\"fas fa-edit\"></i>
                                 </button>

@@ -171,4 +171,85 @@ function supprimerPromotion($nomPromotion)
     return $suppressionOk;
 }
 
+
+function modifierPromotion($anciennePromo, $nouvellePromo){
+    try{
+        $nomAnciennePromo = trim($anciennePromo->getNom());
+        $nomNouvellePromo = trim($nouvellePromo->getNom());
+
+        $nomAffichageAnciennePromo = trim($anciennePromo->getNomAffichage());
+        $nomAffichageNouvellePromo = trim($nouvellePromo->getNomAffichage());
+        if($nomAffichageNouvellePromo == ""){
+            $nomAffichageNouvellePromo = $nomNouvellePromo;
+        }
+
+        // On vérifie si le nom de l'ancienne promotion diffère
+        if($nomAnciennePromo != $nomNouvellePromo){
+            // On vérifie si le nom de la nouvelle promotion existe déjà dans le dossier
+            if(file_exists(CSV_ETUDIANTS_FOLDER_NAME . $nomNouvellePromo . ".csv")){
+                throw new Exception("Le nom de la promotion existe déjà");
+            }
+
+            // On renomme le fichier de la promotion
+            rename(CSV_ETUDIANTS_FOLDER_NAME . $nomAnciennePromo . ".csv",
+                CSV_ETUDIANTS_FOLDER_NAME . $nomNouvellePromo . ".csv");
+        }
+
+        // Modifier le nom de la promotion dans le fichier liste-promotions
+
+        // Ouvrir le fichier liste-promotions en lecture afin de vérifier si le nom de la promotion existe
+        $fichierListePromo = fopen(CSV_ETUDIANTS_FOLDER_NAME . LISTE_PROMOTIONS_FILE_NAME, "r");
+
+        if ($fichierListePromo == false) {
+            throw new Exception("Impossible d'ouvrir le fichier de liste de promotions.");
+        }
+
+        // On initialise un tableau qui contiendra les noms de promotions
+
+        $infoFichierListePromo = array();
+
+        $indiceListePromo = null;
+        $indiceActuelFichier = 0;
+
+        // On parcours le fichier liste-promotions
+        while (($data = fgetcsv($fichierListePromo, 1000, ";")) !== FALSE) {
+
+            // On vérifie si le nom de la promotion existe
+            if ($data[0] == $nomAnciennePromo) {
+                $indiceListePromo = count($infoFichierListePromo);
+            }
+
+            // On ajoute les informations du fichier dans le tableau
+            $infoFichierListePromo[] = $data;
+            $indiceActuelFichier++;
+        }
+
+        // On ferme le fichier liste-promotions
+        fclose($fichierListePromo);
+
+        // On modifie avec les nouvelles infos
+        $infoFichierListePromo[$indiceListePromo][0] = $nomNouvellePromo;
+        $infoFichierListePromo[$indiceListePromo][1] = $nomAffichageNouvellePromo;
+
+        // On ouvre le fichier liste-promotions en écriture
+        $fichierListePromo = fopen(CSV_ETUDIANTS_FOLDER_NAME . LISTE_PROMOTIONS_FILE_NAME, "w");
+
+        if ($fichierListePromo == false) {
+            throw new Exception("Impossible d'ouvrir le fichier de liste de promotions.");
+        }
+
+        // On parcours le tableau qui contient les informations du fichier liste-promotions
+        foreach ($infoFichierListePromo as $info) {
+            // On ajoute les informations du fichier dans le tableau
+            fputcsv($fichierListePromo, $info, ";");
+        }
+
+        // On ferme le fichier liste-promotions
+        fclose($fichierListePromo);
+    }
+    catch(Exception $e){
+        throw new Exception($e->getMessage());
+    }
+}
+
 ?>
