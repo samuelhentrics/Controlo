@@ -189,7 +189,7 @@
                 }
                 // Ou plus précisement le plan d'une salle
                 else {
-                    require(BACK_PATH . "Salles/salles.php");
+                    require(BACK_PATH . "Salles/listeSalles.php");
                 }
                 break;
 

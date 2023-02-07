@@ -873,6 +873,13 @@ define("PAGE_IMPORTER_SALLE_PATH" , PATH."index.php?page=salles&action=importer"
 define("PAGE_MODIFIER_SALLE_PATH" , PATH."index.php?page=salles&action=modifier");
 
 /**
+ * @brief Lien complet vers la page de suppression d'une salle
+ * @note ex : http://localhost/src/index.php?page=supprimer
+ */
+define("PAGE_SUPPRIMER_SALLE_PATH" , PATH."index.php?page=salles&action=supprimer");
+
+
+/**
  * @brief Lien complet vers la page de la politique de confidentialité
  * @note ex : http://localhost/src/index.php?page=politiqueDeConfidentialite
  */

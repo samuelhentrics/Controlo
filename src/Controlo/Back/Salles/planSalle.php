@@ -3,12 +3,22 @@
         <br>
 
         <section>
-            <h1>Plan de la salle <?php print($_GET["nom"]); ?></h1>
-            <table class="table table-striped table-bordered">
-                <?php
-                include(FONCTION_CREER_PLAN_SALLE_PATH);
 
-                $plan = creerPlanSalle($_GET["nom"])->getMesZones();
+
+        <?php
+
+        if (isset($_POST["nomSalle"])) {
+            include(FONCTION_CREER_PLAN_SALLE_PATH);
+
+            $nomSalle = $_POST["nomSalle"];
+
+            echo '
+            <h2>Plan de la salle '. $nomSalle .'</h2>
+            <table class="table table-striped table-bordered">';
+
+                
+
+                $plan = creerPlanSalle($nomSalle)->getMesZones();
 
                 for ($lig = 0; $lig <= count($plan) - 1; $lig++) {
                     print("<tr>");
@@ -38,8 +48,22 @@
                     }
                     print("</tr>");
                 }
-                ?>
-            </table>
+
+            echo '</table>';
+
+
+            }
+            else{
+                // Afficher un message d'erreur en bootstrap
+            echo '
+                <div class="alert alert-danger" role="alert">
+                    Une erreur est survenue, veuillez réessayer.<br>
+                    Le nom de la salle n\'a pas été transmis.<br>
+                    Si le problème persiste, veuillez contacter l\'administrateur.
+                </div>';
+            }
+            
+            ?>
         </section>
 
     </div>
