@@ -581,7 +581,7 @@ define("FONCTION_CRUD_ENSEIGNANTS_FILE_NAME" , "enseignantsCRUD.php");
 define("FONCTION_CRUD_ENSEIGNANTS_PATH" , CRUD_PATH.FONCTION_CRUD_ENSEIGNANTS_FILE_NAME);
 
 /** 
- * @brief Nom du fichier où se trouve les fonctions CRUD des étudiants
+ * @brief Nom du fichier où se trouve les fonctions CRUD des promotions
  * @note ex : promotionsCRUD.php
  */
 define("FONCTION_CRUD_PROMOTIONS_FILE_NAME" , "promotionsCRUD.php");
@@ -592,6 +592,17 @@ define("FONCTION_CRUD_PROMOTIONS_FILE_NAME" , "promotionsCRUD.php");
  */
 define("FONCTION_CRUD_PROMOTIONS_PATH" , CRUD_PATH.FONCTION_CRUD_PROMOTIONS_FILE_NAME);
 
+/** 
+ * @brief Nom du fichier où se trouve les fonctions CRUD des salles
+ * @note ex : sallesCRUD.php
+ */
+define("FONCTION_CRUD_SALLES_FILE_NAME" , "sallesCRUD.php");
+
+/** 
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve les fonctions CRUD des salles
+ * @note ex : Controlo/import/crud/sallesCRUD.php
+ */
+define("FONCTION_CRUD_SALLES_PATH" , CRUD_PATH.FONCTION_CRUD_SALLES_FILE_NAME);
 
 
 
