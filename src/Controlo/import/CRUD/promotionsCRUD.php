@@ -11,17 +11,18 @@
 
 
 
-function creerPromotion($nomPromotion)
+function ajouterPromotion($unePromotion)
 {
 
     // On initialise un booléen en cas d'erreur
     $ajoutOk = true;
 
-
     // Tentative d'écriture du fichier CSV
     try {
+        $nomPromotion = $unePromotion->getNom();
 
-        // On verifie si le fichier que l'on souhaite créer exite déjà
+
+        // On verifie si le fichier que l'on souhaite créer existe déjà
         $lienFichier = CSV_ETUDIANTS_FOLDER_NAME . $nomPromotion . ".csv";
         if (file_exists($lienFichier)) {
             throw new Exception("Cette promotion existe déjà");
@@ -42,6 +43,9 @@ function creerPromotion($nomPromotion)
         // Fermer le fichier CSV
         fclose($file);
 
+        // Modifier le fichier de liste des promotions
+        ajouterAffichagePromotion($unePromotion);
+
     } catch (Exception $e) {
         $ajoutOk = false;
         throw new Exception($e->getMessage());
@@ -50,7 +54,7 @@ function creerPromotion($nomPromotion)
     return $ajoutOk;
 }
 
-function ajouterNomPromotion($nomPromotion, $nomPromotionAffichage)
+function ajouterAffichagePromotion($unePromotion)
 {
 
     // On initialise un booléen en cas d'erreur
@@ -58,6 +62,8 @@ function ajouterNomPromotion($nomPromotion, $nomPromotionAffichage)
 
     // Tentative d'écriture du fichier CSV
     try {
+        $nomPromotion = $unePromotion->getNom();
+        $nomPromotionAffichage = $unePromotion->getNomAffichage();
 
         $lienFichier = CSV_ETUDIANTS_FOLDER_NAME . "liste-promotions.csv";
 

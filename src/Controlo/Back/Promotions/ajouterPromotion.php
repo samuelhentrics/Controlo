@@ -3,6 +3,7 @@
     <div class="col-6">
         <?php
         include_once(FONCTION_CRUD_PROMOTIONS_PATH);
+        include_once(CLASS_PATH . CLASS_PROMOTION_FILE_NAME);
 
         // Vérifier si le formulaire a été envoyé
         if (isset($_POST['nomGeneration']) && isset($_POST['nomFormation'])) {
@@ -14,16 +15,29 @@
 
         try{
 
-        creerPromotion($nomPromotion);
-        ajouterNomPromotion($nomPromotion, $nomPromotionAffichage);
-                // Afficher un message de succès bootstrap
-                print("
-                <div class='alert alert-success alert-dismissible fade show' role='alert'>
-                    <strong>Succès !</strong>
-                    <p>La promotion a bien été ajouté.</p>
-                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                $unePromotion = new Promotion($nomPromotion, $nomPromotionAffichage);
+                try{
+                    ajouterPromotion($unePromotion);
+
+                    print("
+                    <div class='alert alert-success alert-dismissible fade show' role='alert'>
+                        <strong>Succès !</strong>
+                        <p>La promotion a bien été ajouté.</p>
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>
                     ");
+                }catch (Exception $e) {
+                    // Afficher l'erreur      
+                    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+                    echo $e->getMessage();
+                    echo "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
+                    echo '</div>';
+            
+                    $ajoutOk = false;
+            
+                }
+                // Afficher un message de succès bootstrap
+                
 
               
         }catch (Exception $e) {

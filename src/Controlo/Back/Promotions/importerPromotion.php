@@ -4,64 +4,77 @@
         <?php
         include_once(FONCTION_CRUD_PROMOTIONS_PATH);
 
-        if (isset($_FILES['fichierPromotion'])) {
+        try {
+            if (isset($_FILES['fichierPromotion'])) {
 
-            // Récupération du nom du fichier de promotion
-            $fichierPromotion = $_FILES['fichierPromotion']['name'];
+                // Récupération du nom du fichier de promotion
+                $fichierPromotion = $_FILES['fichierPromotion']['name'];
 
-            //Récupération du nom du fichier sans l'extension .csv
-            $fichierPromotionSansExtension = str_replace(".csv", "",$fichierPromotion);
+                //Récupération du nom du fichier sans l'extension .csv
+                $fichierPromotionSansExtension = str_replace(".csv", "", $fichierPromotion);
 
-            // Récupération du chemin temporaire du fichier sur le serveur
-            $cheminTemporaire = $_FILES['fichierPromotion']['tmp_name'];
+                // Récupération du chemin temporaire du fichier sur le serveur
+                $cheminTemporaire = $_FILES['fichierPromotion']['tmp_name'];
 
-            // Définission du chemin où on souhaite enregistrer l'image
-            $emplacement = CSV_ETUDIANTS_FOLDER_NAME . $_FILES['fichierPromotion']['name'];
+                // Définission du chemin où on souhaite enregistrer l'image
+                $emplacement = CSV_ETUDIANTS_FOLDER_NAME . $_FILES['fichierPromotion']['name'];
 
-            // Récupération du nom de la promotion pour génération et pour l'affichage
-            $nomGeneration = $_POST["nomGeneration"];
-            $nomFormation = $_POST["nomFormation"];
+                // Récupération du nom de la promotion pour génération et pour l'affichage
+                $nomGeneration = $_POST["nomGeneration"];
+                $nomFormation = $_POST["nomFormation"];
 
-            //Vérification de l'extension CSV
-            $extension = pathinfo($fichierPromotion, PATHINFO_EXTENSION);
-            if ($extension != "csv") {
-                throw new Exception("Le fichier importé n'est pas au format 'csv'");
-            }
+                //Vérification de l'extension CSV
+                $extension = pathinfo($fichierPromotion, PATHINFO_EXTENSION);
+                if ($extension != "csv") {
+                    throw new Exception("Le fichier importé n'est pas au format 'csv'");
+                }
 
-            // Emplacement du fichier avec le nouveau nom
-            $emplacementRenomme = CSV_ETUDIANTS_FOLDER_NAME . $nomGeneration . ".csv";
+                // Emplacement du fichier avec le nouveau nom
+                $emplacementRenomme = CSV_ETUDIANTS_FOLDER_NAME . $nomGeneration . ".csv";
 
-            // Cas où seulement le fichier est saisi
-            if ($nomGeneration == "" & $nomFormation == "") 
-            {
-                // Déplacement de l'image du répertoire temporaire vers le répertoire de destination
-                move_uploaded_file($cheminTemporaire, $emplacement);
-                ajouterNomPromotion($fichierPromotionSansExtension, $fichierPromotionSansExtension);
+                // Cas où seulement le fichier est saisi
+                if ($nomGeneration == ""& $nomFormation == "") {
+                    // Déplacement de l'image du répertoire temporaire vers le répertoire de destination
+                    move_uploaded_file($cheminTemporaire, $emplacement);
+                    $unePromotion = new Promotion($fichierPromotionSansExtension, $fichierPromotionSansExtension);
+                    ajouterAffichagePromotion($unePromotion);
 
-            } 
+                }
 
-            // Cas où le nom de génération et le fichier sont remplis
-            else if($nomGeneration != "" & $nomFormation ==""){
+                // Cas où le nom de génération et le fichier sont remplis
+                else if ($nomGeneration != ""& $nomFormation == "") {
 
-                // Déplacement de l'image du répertoire temporaire vers le répertoire de destination
-                move_uploaded_file($cheminTemporaire, $emplacement);
-                rename($emplacement, $emplacementRenomme);
-                ajouterNomPromotion($nomGeneration, $nomGeneration);
-            }
+                    // Déplacement de l'image du répertoire temporaire vers le répertoire de destination
+                    move_uploaded_file($cheminTemporaire, $emplacement);
+                    rename($emplacement, $emplacementRenomme);
+                    $unePromotion = new Promotion($nomGeneration, $nomGeneration);
+                    ajouterAffichagePromotion($unePromotion);
+                }
 
-            // Cas où le nom de formation et le fichier sont remplis
-            else if($nomGeneration== "" & $nomFormation !=""){
-                move_uploaded_file($cheminTemporaire, $emplacement);
-                ajouterNomPromotion($fichierPromotionSansExtension, $nomFormation);
-            }
+                // Cas où le nom de formation et le fichier sont remplis
+                else if ($nomGeneration == ""& $nomFormation != "") {
+                    move_uploaded_file($cheminTemporaire, $emplacement);
+                    $unePromotion = new Promotion($fichierPromotionSansExtension, $nomFormation);
+                    ajouterAffichagePromotion($unePromotion);
+                }
 
-            // Cas où les 2 champs et le fichier sont remplis 
-            else{
-                move_uploaded_file($cheminTemporaire, $emplacement);
-                rename($emplacement, $emplacementRenomme);
-                ajouterNomPromotion($nomGeneration, $nomFormation);
+                // Cas où les 2 champs et le fichier sont remplis 
+                else {
+                    move_uploaded_file($cheminTemporaire, $emplacement);
+                    rename($emplacement, $emplacementRenomme);
+                    $unePromotion = new Promotion($nomGeneration, $nomFormation);
+                    ajouterAffichagePromotion($unePromotion);
+                }
+
+                echo '<div class="alert alert-success" role="alert">La promotion a bien été ajoutée</div>';
             }
         }
+            
+            catch (Exception $e) {
+                echo '<div class="alert alert-danger" role="alert">
+                Erreur lors de l\'ajout de la promotion : ' .
+                $e->getMessage() . '</div>';
+            }
         ?>
         <form action="<?php echo PAGE_IMPORTER_PROMOTION_PATH ?>" method="POST" enctype="multipart/form-data">
             <div class="form-group row">

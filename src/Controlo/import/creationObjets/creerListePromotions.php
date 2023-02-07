@@ -321,7 +321,7 @@ function recupererNomAffichagePromotion($nomPromotion){
             // Si la ligne contient le nom de la promotion
             if (strtolower($ligne[0]) == strtolower($nomPromotion)){
                 // On retourne le nom d'affichage
-                $nomPromotionAffichage;
+                $nomPromotionAffichage = $ligne[1];
                 break;
             }
         }
