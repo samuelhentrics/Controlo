@@ -1,6 +1,6 @@
 <div class="container">
   <div class="col-3"></div>
-  <div class="col-6 m-auto">
+  <div class="col-6 m-auto text-center">
     <h2>Modifier une promotion</h2>
 
     <?php
@@ -15,7 +15,6 @@
             $nouveauNomAffichage = $_POST["nouveauNomAffichage"];
 
             try {
-                
                 ajouterNomPromotion($nouveauNomGeneration, $nouveauNomAffichage);
                 
                 print("

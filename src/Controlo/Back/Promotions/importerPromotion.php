@@ -1,6 +1,6 @@
 <div class="container">
     <div class="col-3"></div>
-    <div class="col-6">
+    <div class="col-6 m-auto text-center">
         <?php
         include_once(FONCTION_CRUD_PROMOTIONS_PATH);
 
@@ -76,6 +76,11 @@
                 $e->getMessage() . '</div>';
             }
         ?>
+
+
+
+
+        <h2>Importer une promotion</h2>
         <form action="<?php echo PAGE_IMPORTER_PROMOTION_PATH ?>" method="POST" enctype="multipart/form-data">
             <div class="form-group row">
                 <label for="nom" class="col-4 col-form-label">Nom de promotion pour génération</label>
@@ -94,8 +99,9 @@
                 </div>
             </div>
             <div class="form-group row">
-                <div class="offset-4 col-8">
-                    Fichier de promotion (CSV) : <input type="file" name="fichierPromotion" class="btn btn-primary">
+                <label for="fichierPromotion" class="col-4 col-form-label">Fichier de promotion (format CSV)</label>
+                <div class="col-8">
+                    <input type="file" name="fichierPromotion" class="btn btn-primary">
                 </div>
             </div>
             <br>

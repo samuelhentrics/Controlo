@@ -236,7 +236,7 @@ function genererPDF($unControle)
     // Récupération des promotions du contrôle
     $lesPromotions = "";
     foreach ($unControle->getMesPromotions() as $numPromo => $unePromotion) {
-        $lesPromotions .= $unePromotion->getNom() . " - ";
+        $lesPromotions .= $unePromotion->getNomAffichage() . " - ";
     }
     $lesPromotions = substr($lesPromotions, 0, -2);
 
