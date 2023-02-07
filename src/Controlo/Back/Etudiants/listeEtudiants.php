@@ -23,11 +23,18 @@
             })
         </script>
         <section>
-            <h1>Liste des étudiants</h1>
-            <a href="<?php echo PAGE_AJOUTER_ETUDIANT_PATH; ?>" class="btn btn-primary">
-                <i class="fas fa-plus"></i>
-                Ajouter
-            </a>
+            <div class="row">
+                <div class="col-10">
+                    <h1>Liste des étudiants</h1>
+                </div>
+                <div class="col-2 text-end">
+                    <a href="<?php echo PAGE_AJOUTER_ETUDIANT_PATH;?>" class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Ajouter
+                    </a>
+                </div>
+            </div>
+
             <table id="etudiants" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>

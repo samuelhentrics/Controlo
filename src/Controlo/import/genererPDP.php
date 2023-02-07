@@ -139,6 +139,7 @@ function placerEtudiants(&$listeEtudiants, &$unControle, &$erreur)
 
       // Trouver une place pour l'étudiant
       $lesZones = $planSalleLibre->getMesZones();
+
       $listeNumLigne = array_keys($lesZones);
       $indiceNumLigne = 0;
       $indiceNumLigneMax = count($listeNumLigne);
@@ -152,8 +153,10 @@ function placerEtudiants(&$listeEtudiants, &$unControle, &$erreur)
         // Récupérer le numéro de ligne
         $numeroLigne = $listeNumLigne[$indiceNumLigne];
         $uneLigne = $lesZones[$numeroLigne];
+
         // Vérifier qu'on est sur une ligne acceptable
-        if ($numeroLigne % ($nbRangeesSeparant + 1) == 0) {
+
+        if ($indiceNumLigne % ($nbRangeesSeparant+1) == 0) {
 
           // Initialiser un numero de colonne
           $numeroColonne = $nbPlacesSeparant;
@@ -206,8 +209,6 @@ function placerEtudiants(&$listeEtudiants, &$unControle, &$erreur)
 
         }
 
-        // Incrémenter le numéro de ligne
-        $numeroLigne++;
 
         if ($trouve) {
           break;
@@ -243,7 +244,7 @@ function placerEtudiants(&$listeEtudiants, &$unControle, &$erreur)
 }
 
 
-  try {
+try {
 
     /* ----------------------------------------------------------------
     ----------------------------------------------------------------
@@ -268,7 +269,6 @@ function placerEtudiants(&$listeEtudiants, &$unControle, &$erreur)
       // Récupération des contraintes d'espacement
       $nbPlaceSeparant = $_POST["nbPlacesSeparant-" . $nom];
       $nbRangeeSeparant = $_POST["nbRangeesSeparant-" . $nom];
-
       // Gestion des erreurs
 
       // String en int
@@ -373,7 +373,6 @@ function placerEtudiants(&$listeEtudiants, &$unControle, &$erreur)
     if (!$erreur) {
       // Génération des PDF
       genererPDF($unControle);
-      // Rediriger l'utilisateur vers un message de succès
     }
   }
   catch (Exception $e) {

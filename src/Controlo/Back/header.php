@@ -33,3 +33,27 @@
         </div>
     </nav>
 </header>
+<script>
+    if(location.search){       
+        let param;
+        location.search.includes('&') ? param = location.search.split("?page=")[1].split("&")[0] : param = location.search.split("?page=")[1];
+        function removeAccents (text) {
+            var accents    = 'ÀÁÂÃÄÅàáâãäåÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž',
+                accentsOut = "AAAAAAaaaaaaOOOOOOOooooooEEEEeeeeeCcDIIIIiiiiUUUUuuuuNnSsYyyZz",
+                textNoAccents = [];
+                
+                for (var i in text) { 
+                var idx = accents.indexOf(text[i]);
+                if (idx != -1)
+                textNoAccents[i] = accentsOut.substr(idx, 1);
+                else
+                textNoAccents[i] = text[i];
+            }
+            
+            return textNoAccents.join('');
+        }
+        document.querySelectorAll('a.nav-link').forEach(e => {
+            removeAccents(e.innerText.toLowerCase()).includes(param) ? e.classList.add('active') : e.classList.remove('active');
+        })
+} 
+</script>

@@ -18,15 +18,22 @@
         });
         </script>
         <section>
-            <h1>Liste des promotions</h1>
-            <a href="<?php echo PAGE_AJOUTER_PROMOTION_PATH; ?>" class="btn btn-primary">
-                <i class="fas fa-plus"></i>
-                Ajouter
-            </a>
-            <a href="<?php echo PAGE_IMPORTER_PROMOTION_PATH; ?>"class="btn btn-primary">
-                <i class="fas fa-plus"></i>
-                Importer
-            </a>
+            <div class="row">
+                <div class="col-8">
+                    <h1>Liste des promotions</h1>
+                </div>
+                <div class="col-4 text-end">
+                    <a href="<?php echo PAGE_AJOUTER_PROMOTION_PATH; ?>" class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Ajouter
+                    </a>
+                    <a href="<?php echo PAGE_IMPORTER_PROMOTION_PATH; ?>"class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Importer
+                    </a>
+                </div>
+            </div>
+
             <table id="promotions" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
