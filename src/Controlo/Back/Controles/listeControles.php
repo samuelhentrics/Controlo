@@ -29,7 +29,7 @@
                 <div class="col-10">
                     <h1>Liste des contrôles</h1>
                 </div>
-                <div class="col-2">
+                <div class="col-2 text-end">
                     <a href="<?php echo PAGE_AJOUTER_CONTROLE_PATH;?>" class="btn btn-primary">
                         <i class="fas fa-plus"></i>
                         Ajouter
