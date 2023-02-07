@@ -45,7 +45,21 @@
                                 <i class="fa fa-address-card"></i>
                             </div>
                         </div>
-                        <input id="controleNomLong" name="controleNomLong" placeholder="ex: Cordova,Futrell" type="text" class="form-control" required="required">
+                        
+                            <select id="select" name="checkbox_ENSEIGNANT" class="custom-select" multiple="multiple">
+                            <?php 
+                            include_once(FONCTION_CREER_LISTE_ENSEIGNANTS_PATH);
+                            print(' <div class="custom-control custom-checkbox custom-control-inline">');
+                            $listeEnseignants = creerListeEnseignants();
+                            // print(count($listeEnseignants))
+
+                            for($i=0;$i<count($listeEnseignants);$i++)
+                                print_r('<option value="'.$listeEnseignants[$i]->getId().'">'.$listeEnseignants[$i]->getNom()." ".$listeEnseignants[$i]->getPrenom(   ).'</option>');
+                                print("</div>");
+
+                            ?>
+                             </select>
+                        <!-- <input id="controleNomLong" name="controleNomLong" placeholder="ex: Cordova,Futrell" type="text" class="form-control" required="required"> -->
                     </div>
                 </div>
             </div>
@@ -54,7 +68,7 @@
             <div class="form-group row">
             <label for="select" class="col-4 col-form-label">Salles</label> 
                 <div class="col-8">
-                <select id="select" name="checkbox" class="custom-select" multiple="multiple">
+                <select id="select" name="checkbox_SALLES" class="custom-select" multiple="multiple">
                     <?php
                     //ajouter la liste de salles
             $directory = CSV_SALLES_FOLDER_NAME;
