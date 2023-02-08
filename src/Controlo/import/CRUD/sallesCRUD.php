@@ -118,9 +118,9 @@ function modifierPlanSalle($uneSalle)
 
         $plan = $uneSalle->getMonPlan();
         $lesZones = $plan->getMesZones();
-        for ($i = 0; $i < $_POST['nbrLigne']; $i++) {
+        for ($i = 0; $i < count($lesZones); $i++) {
             $uneLigne = array();
-            for ($j = 0; $j < $_POST['nbrColonne']; $j++) {
+            for ($j = 0; $j < count($lesZones[$i]); $j++) {
                 //Ajouter la zone dans le CSV
 
                 $uneZone = $lesZones[$i][$j];

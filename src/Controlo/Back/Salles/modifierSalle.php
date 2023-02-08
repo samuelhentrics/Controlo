@@ -12,9 +12,10 @@
   if (isset($_POST["cell-0-0"])) {
     $uneSalle = creerListeSalles()[$nomSalle]; // Création de la salle
     $unPlan = $uneSalle->getMonPlan(); // Créer un plan de salle
+    $mesZones = $unPlan->getMesZones();
 
-    for ($indiceLigne = 0; $indiceLigne < $nbrLigne; $indiceLigne++) {
-      for ($indiceColonne = 0; $indiceColonne < $nbrColonne; $indiceColonne++) {
+    for ($indiceLigne = 0; $indiceLigne < count($mesZones); $indiceLigne++) {
+      for ($indiceColonne = 0; $indiceColonne < count($mesZones[$indiceLigne]); $indiceColonne++) {
         $uneZone = new Zone(); // Créer une zone
         $infoZone = $_POST["cell-" . $indiceLigne . "-" . $indiceColonne]; // Récupérer la donnée saisi dans le formulaire
         // Informer de la position de cette zone
@@ -61,7 +62,7 @@
     }
 
     try {
-      modifierSalle($uneSalle);
+      modifierPlanSalle($uneSalle);
 
       // Message de succès
       echo "<div class='alert alert-success' role='alert'>La salle a été ajoutée avec succès</div>";
@@ -74,7 +75,7 @@
   }
 
   ?>
-  <form action="<?php echo PAGE_AJOUTER2_SALLE_PATH; ?>" method="post">
+  <form action="<?php echo PAGE_MODIFIER_SALLE_PATH; ?>" method="post">
     <?php
     $uneSalle = creerListeSalles()[$nomSalle];
     $unPlan = $uneSalle->getMonPlan();
