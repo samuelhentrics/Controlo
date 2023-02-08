@@ -57,12 +57,11 @@
   $salleVoisineActuelle = $uneSalle->getMonVoisin();
   if($salleVoisineActuelle != null){
     $nomSalleVoisine = $salleVoisineActuelle->getNom();
+    echo '<option value="' . $nomSalleVoisine . '" selected>' . $nomSalleVoisine . '</option>';
   }
   else{
     $nomSalleVoisine = "";
   }
-
-  echo '<option value="' . $nomSalleVoisine . '" selected>' . $nomSalleVoisine . '</option>';
   foreach ($listeSallesSansVoisin as $nomUneSalle) {
     $nomSalleVerif = strtolower(trim($nomUneSalle));
 
