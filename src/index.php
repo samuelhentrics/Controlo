@@ -83,6 +83,9 @@
                         case "ajouter":
                             require(BACK_PATH . "Controles/ajouterControle.php");
                             break;
+                        case "importer":
+                            require(BACK_PATH . "Controles/importerControle.php");
+                            break;
 
                         case "modifier":
                             require(BACK_PATH . "Controles/modifierControle.php");
