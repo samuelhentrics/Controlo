@@ -1,5 +1,5 @@
 <?php
-include_once(FONCTION_CRUD_CONTROLES_PATH);
+include_once(FONCTION_CRUD_CONTROLE_PATH);
 ?>
 
 <?php
