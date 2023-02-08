@@ -38,10 +38,22 @@ function supprimerSalle($nomSalle)
         foreach ($contenuDossier as $uneLigne) {
             $nomSalleTraitee = trim($uneLigne[0]);
             $nomSalleTraitee = strtolower($nomSalleTraitee);
+
+            $nomSalleVoisineTraitee = trim($uneLigne[1]);
+            $nomSalleVoisineTraitee = strtolower($nomSalleVoisineTraitee);
+
             // on verifie que l'indice de la ligne n'est pas celui de la salle à supprimer
             if (!($nomSalleTraitee == $nomSalle)) {
+                // Vérifier que la salle n'est pas utilisée en tant que salle voisine
+                if ($nomSalleVoisineTraitee == $nomSalle) {
+                    $uneLigne[1] = "";
+                }
+
                 fputcsv($monFichier, $uneLigne, ";");
             }
+
+            
+
         }
 
         fclose($monFichier);
