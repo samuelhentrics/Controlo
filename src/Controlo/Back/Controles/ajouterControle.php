@@ -1,12 +1,14 @@
 <div class="container">
-    <div class="col-3"></div>
-    <div class="col-6">
+<div class="col-3"></div>
+  <div class="col-6 m-auto text-center">
+    <h2>Ajouter un contrôle</h2>
+    <br>
         <form action="<?php echo PAGE_AJOUTER_CONTROLE_PATH ?>" method="POST">
             <div class="form-group row">
                 <label for="nom" class="col-4 col-form-label">Nom long *</label>
                 <div class="col-8">
                     <div class="input-group">
-                        <input id="controleNomLong" name="controleNomLong" placeholder="ex: R2.01 - Développement orienté objets - Programmation" type="text" class="form-control" required="required">
+                        <input id="controleNomLong" name="controleNomLong" placeholder="Ex: R2.01 - Développement orienté objets - Programmation" type="text" class="form-control" required="required">
                     </div>
                 </div>
             </div>
@@ -14,63 +16,62 @@
                 <label for="controleNomCourt" class="col-4 col-form-label">Nom Court *</label>
                 <div class="col-8">
                     <div class="input-group">
-                        <input id="controleNomCourt" name="controleNomCourt" placeholder="ex: R2.01 - Dév. objets - Programmation" type="text" class="form-control" required="required">
+                        <input id="controleNomCourt" name="controleNomCourt" placeholder="Ex: R2.01 - Dév. objets - Programmation" type="text" class="form-control" required="required">
                     </div>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="promo" class="col-4 col-form-label">Date</label>
                 <div class="col-8">
-                    <input type="date" name="dateDebutControle" id="dateDebutControle">
+                    <input type="date" name="dateDebutControle" id="dateDebutControle" class="form-control">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="Durée" class="col-4 col-form-label">Durée totale (en min)</label>
                 <div class="col-8">
-                    <input id="Durée" name="dureeTotale" placeholder="ex: 120, 60 en min" type="int" class="form-control">
+                    <input id="Durée" name="dureeTotale" placeholder="Ex: 120, 60" type="number" class="form-control">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="heureTT" class="col-4 col-form-label">Heure début Non TT</label>
                 <div class="col-8">
-                    <input id="heureTT" name="heureNonTT" placeholder="ex: 14:00" type="time" class="form-control">
+                    <input id="heureTT" name="heureNonTT" placeholder="Ex: 14:00" type="time" class="form-control">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="heureTT" class="col-4 col-form-label">Heure début TT</label>
                 <div class="col-8">
-                    <input id="heureTT" name="heureTT" placeholder="ex: 14:00" type="time" class="form-control">
+                    <input id="heureTT" name="heureTT" placeholder="Ex: 14:00" type="time" class="form-control">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="nom" class="col-4 col-form-label">Enseignant - Surveillant</label>
+                <label for="nom" class="col-4 col-form-label">Enseignant</label>
                 <div class="col-8">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <i class="fa fa-address-card"></i>
-                            </div>
-                        </div>
                         <div>
-                            <input id="enseignant" name="enseignant" placeholder="Enseignant" type="text" class="form-control" disabled>
-                        </div>
-                        <div>
-                            <input id="enseignant" name="enseignant" placeholder="Surveillant" type="text" class="form-control" disabled>
+                            <input id="enseignant" name="enseignant" placeholder="Dupont" type="text" class="form-control" disabled>
                         </div>
                         <!-- <input id="controleNomLong" name="controleNomLong" placeholder="ex: Cordova,Futrell" type="text" class="form-control" required="required"> -->
-                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="nom" class="col-4 col-form-label">Surveillant</label>
+                <div class="col-8">
+                        <div>
+                            <input id="surveillant" name="surveillant" placeholder="Dupont" type="text" class="form-control" disabled>
+                        </div>
+                        <!-- <input id="controleNomLong" name="controleNomLong" placeholder="ex: Cordova,Futrell" type="text" class="form-control" required="required"> -->
                 </div>
             </div>
 
             
             <div class="form-group row">
-            <label for="select" class="col-4 col-form-label">Salles</label> 
+            <label for="choixSalle" class="col-4 col-form-label">Salles</label> 
                 <div class="col-8">
-                <input id="choixSalle" name="choixSalle" placeholder="Ex : S124" class="custom-select">
+                <input id="choixSalle" name="choixSalle" placeholder="Ex : S124" class="form-control">
                     <?php
                 //ajouter la liste de salles
 
-            $directory = CSV_SALLES_FOLDER_NAME;
+            /*$directory = CSV_SALLES_FOLDER_NAME;
             $files = scandir($directory);
             echo "<p style='color:green'>";
 
@@ -80,32 +81,36 @@
                     print('Taboulet');
                     $nomSalle = $_POST["choixSalle"];
                 }
-            }
+            }*/
             ?>
                   </select>
             </div>
             <div class="form-group row">
                 <div class="offset-4 col-8">
-                    <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                    <button name="submit" type="submit" class="btn btn-primary">Ajouter</button>
                 </div>
             </div>
+
             <?php
-            
+
             if (isset($_POST["controleNomLong"]) && isset($_POST["controleNomCourt"]) && isset($_POST["dateDebutControle"]) && isset($_POST["dureeTotale"]) && isset($_POST["heureNonTT"]) && isset($_POST["heureTT"])) {
-                include_once(FONCTION_CRUD_ENSEIGNANTS_PATH);
-                include_once(CLASS_PATH . CLASS_ENSEIGNANT_FILE_NAME);
+                include_once(FONCTION_CRUD_CONTROLE_PATH);
+                include_once(CLASS_PATH . CLASS_CONTROLE_FILE_NAME);
     
-                $nom = $_POST['nom'];
-                $prenom = $_POST['prenom'];
-                $statut = $_POST['statut'];
+                $nomLong= $_POST['controleNomLong'];
+                $nomCourt = $_POST['controleNomCourt'];
+                $dureeNonTT= $_POST['dureeTotale'];
+                $dateControle = $_POST['dateDebutControle'];
+                $heureNonTT = $_POST['heureNonTT'];
+                $heureTT = $_POST['heureTT'];
     
                 try {
-                    $nouvelEnseignant = new Enseignant(0, $nom, $prenom, $statut);
-                    ajouterEnseignant($nouvelEnseignant);
-                    echo "<div class='alert alert-success' role='alert'>L'enseignant a bien été ajouté.</div>";
+                    $nouveauControle = new Controle($nomLong, $nomCourt, $dureeNonTT, $dateControle, $heureNonTT, $heureTT);
+                    ajouterControle($nouveauControle);
+                    echo "<div class='alert alert-success' role='alert'>Le contrôle a bien été ajouté.</div>";
                 } catch (Exception $e) {
                     echo "<div class='alert alert-danger' role='alert'>
-                    L'enseignant n'a pas été ajouté : " . $e->getMessage() . "</div>";
+                    Le contrôle n'a pas été ajouté : " . $e->getMessage() . "</div>";
                 }
             }
             
@@ -114,3 +119,4 @@
     </div>
     <div class="col-3"></div>
 </div>
+<p> (*) signifie obligatoire</p>
