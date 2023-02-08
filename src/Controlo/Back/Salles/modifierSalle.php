@@ -14,49 +14,73 @@
   $nomSalle = $_POST["nomSalle"];
   $uneSalle = creerListeSalles()[$nomSalle];
 
-  // //Traitement
-  // if (isset($_POST["nomVoisinSalle"])) {
-  //   try {
-  //     $nomSalleVoisine = $_POST["nomVoisinSalle"];
-  //     modifierVoisinSalle($nomSalle, $nomSalleVoisine);
-  //     echo "<div class='alert alert-success' role='alert'>La salle a été modifiée avec succès</div>";
-  //   } catch (Exception $e) {
-  //     echo "<div class='alert alert-danger' role='alert'>Erreur lors de la modification de la salle</div>";
-  //   }
-  // }
+  //Traitement
+  if (isset($_POST["nomVoisinSalle"])) {
+    try {
+      $nomSalleVoisine = $_POST["nomVoisinSalle"];
+      modifierVoisinSalle($nomSalle, $nomSalleVoisine);
+      echo "<div class='alert alert-success' role='alert'>La salle a été modifiée avec succès</div>";
+    } catch (Exception $e) {
+      echo "<div class='alert alert-danger' role='alert'>Erreur lors de la modification de la salle</div>";
+    }
+  }
 
 
 
 
-  // $nomSalleVoisine = $uneSalle->getMonVoisin();
+  $nomSalleVoisine = $uneSalle->getMonVoisin();
 
-  // if($nomSalleVoisine != null){
-  //   $nomSalleVoisine = $nomSalleVoisine->getNom();
-  // }
-  // else{
-  //   $nomSalleVoisine = "";
-  // }
-  // // Formulaire
-  // echo "<h3>Modifier les informations de la salle</h3>";
+  if($nomSalleVoisine != null){
+    $nomSalleVoisine = $nomSalleVoisine->getNom();
+  }
+  else{
+    $nomSalleVoisine = "";
+  }
+  // Formulaire
+  
+  $listeSallesSansVoisin = recupererSallesSansVoisin();
 
-  // echo "<form action='" . PAGE_MODIFIER_SALLE_PATH . "' method='post'>";
-  // echo "<div class='form-group'>";
-  // echo "<input type='hidden' class='form-control' id='nomSalle' name='nomSalle' value='" . $nomSalle . "' >";
-  // echo '
-  //       <div class="form-group row">
-  //               <label for="nomVoisinSalle" class="col-4 col-form-label">Salle voisine</label>
-  //               <div class="col">
-  //                   <div class="input-group">
-  //                       <input id="nomVoisinSalle" name="nomVoisinSalle" placeholder="Ex: S125" type="text" class="form-salle" value="' . $nomSalleVoisine . '">
-  //                   </div>
-  //               </div>
-  //               <input type="submit" class="btn btn-primary" value="Modifier">
-  //           </div>
+  echo "<h3>Modifier les informations de la salle</h3>";
+
+  echo "<form action='" . PAGE_MODIFIER_SALLE_PATH . "' method='post'>";
+  echo "<div class='form-group'>";
+  echo "<input type='hidden' class='form-control' id='nomSalle' name='nomSalle' value='" . $nomSalle . "' >";
+  echo '
+        <div class="form-group row">
+                <label for="nomVoisinSalle" class="col-4 col-form-label">Salle voisine</label>
+                <div class="col">
+                    <div class="input-group">';
+
+  echo '<select class="form-control" class="custom-select" id="nomVoisinSalle" name="nomVoisinSalle">';
+  echo '<option value="">Aucune</option>';
+
+  $salleVoisineActuelle = $uneSalle->getMonVoisin();
+  if($salleVoisineActuelle != null){
+    $nomSalleVoisine = $salleVoisineActuelle->getNom();
+  }
+  else{
+    $nomSalleVoisine = "";
+  }
+
+  echo '<option value="' . $nomSalleVoisine . '" selected>' . $nomSalleVoisine . '</option>';
+  foreach ($listeSallesSansVoisin as $nomUneSalle) {
+    $nomSalleVerif = strtolower(trim($nomUneSalle));
+
+    if (strtolower(trim($nomUneSalle)) != $nomSalle) {
+      echo '<option value="' . $uneSalle->getNom() . '">' . $uneSalle->getNom() . '</option>';
+    }
+  }
+
+  echo '          </select>
+                </div>
+                </div>
+                <input type="submit" class="btn btn-primary" value="Modifier">
+            </div>
   
   
-  // ';
-  // echo "</div>
-  // </form>";
+  ';
+  echo "</div>
+  </form>";
 
 
   ?>
