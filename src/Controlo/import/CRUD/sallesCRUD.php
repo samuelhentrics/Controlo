@@ -55,7 +55,41 @@ function ajouterSalle(
     return $ajoutOk;
 }
 
+function ajouterAffichageSalle($nomSalle, $nomVoisin)
+{
 
+    // On initialise un booléen en cas d'erreur
+    $ajoutOk = true;
+
+    // Tentative d'écriture du fichier CSV
+    try {
+        $lienFichier = CSV_SALLES_FOLDER_NAME . LISTE_SALLES_FILE_NAME;
+
+        // On verifie si le fichier contient une erreur à l'ouverture 
+        $file = fopen($lienFichier, "a");
+        if ($file == false) {
+            throw new Exception("Impossible d'ecrire dans le fichier de liste de promotions");
+        }
+
+        // Contient l'entête des fichiers de promotions
+        $noms = array($nomSalle, $nomVoisin);
+
+        // Ajoute l'array dans le CSV
+        fputcsv($file, $noms, ";");
+
+        // Fermer le fichier CSV
+        fclose($file);
+
+    } catch (Exception $e) {
+        $ajoutOk = false;
+        throw new Exception($e->getMessage());
+    }
+
+    return $ajoutOk;
+
+
+
+}
 
 function supprimerSalle($nomSalle)
 {
