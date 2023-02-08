@@ -5,7 +5,7 @@
         <br>
         <form action=<?php echo PAGE_AJOUTER2_SALLE_PATH; ?> method="post">
             <div class="form-group row">
-                <label for="nom" class="col-4 col-form-label">Nom de salle pour génération</label>
+                <label for="nom" class="col-4 col-form-label">Nom de salle pour génération *</label>
                 <div class="col-8">
                     <div class="input-group">
                         <input id="nomSalle" class="form-control" name="nomSalle" placeholder="Ex : S124" type="text" class="form-salle"
@@ -15,7 +15,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="salleVoisine" class="col-4 col-form-label">Salle voisine</label>
+                <label for="salleVoisine" class="col-4 col-form-label">Salle voisine *</label>
                 <div class="col-8">
                     <div class="input-group">
                         <select class="form-control" id="salleVoisine" name="salleVoisine">
@@ -33,7 +33,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="nbrLigne" class="col-4 col-form-label">Nombre de lignes</label>
+                <label for="nbrLigne" class="col-4 col-form-label">Nombre de lignes *</label>
                 <div class="col-8">
                     <div class="input-group">
                         <input class="form-control" id="nbrLigne" name="nbrLigne" placeholder="Ex: 5" type="number" class="form-salle"
@@ -43,7 +43,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="nbrColonne" class="col-4 col-form-label">Nombre de colonnes</label>
+                <label for="nbrColonne" class="col-4 col-form-label">Nombre de colonnes *</label>
                 <div class="col-8">
                     <div class="input-group">
                         <input class="form-control" id="nbrColonne" name="nbrColonne" placeholder="Ex: 6" type="number" class="form-salle"
@@ -62,4 +62,5 @@
         </form>
     </div>
     <div class="col-3"></div>
+    (*) signifie obligatoire
 </div>
