@@ -238,4 +238,52 @@ function supprimerSalle($nomSalle)
 }
 
 
+function modifierVoisinSalle($nomSalle, $nomSalleVoisine){
+    try{
+        // Ouvir le fichier liste-salles en mode lecture
+        $monFichier = fopen(CSV_SALLES_FOLDER_NAME . LISTE_SALLES_FILE_NAME, "r");
+
+        // Vérifier que le fichier CSV est bien ouvert
+        if ($monFichier === false) {
+            throw new Exception("Impossible d'ouvrir le fichier CSV");
+        }
+
+        // On parcourt le fichier CSV
+        $contenuDossier = array();
+        while (($data = fgetcsv($monFichier, 1000, ";")) !== FALSE) {
+            // On vérifie que l'indice de la ligne est celui de la salle à modifier
+            if ($data[0] == $nomSalle) {
+                // On modifie la salle voisine
+                $data[1] = $nomSalleVoisine;
+            }
+
+            // On ajoute la ligne dans le tableau
+            $contenuDossier[] = $data;
+        }
+
+        // Fermer le fichier CSV
+        fclose($monFichier);
+
+        // Ouvir le fichier liste-salles en mode écriture
+        $monFichier = fopen(CSV_SALLES_FOLDER_NAME . LISTE_SALLES_FILE_NAME, "w");
+
+        // Vérifier que le fichier CSV est bien ouvert
+        if ($monFichier === false) {
+            throw new Exception("Impossible d'ouvrir le fichier CSV");
+        }
+
+        // On parcourt le tableau
+        foreach ($contenuDossier as $uneLigne) {
+            // On ajoute la ligne dans le fichier CSV
+            fputcsv($monFichier, $uneLigne, ";");
+        }
+
+        // Fermer le fichier CSV
+        fclose($monFichier);
+    }
+    catch (Exception $e) {
+        throw new Exception($e->getMessage());
+    }
+}
+
 ?>
