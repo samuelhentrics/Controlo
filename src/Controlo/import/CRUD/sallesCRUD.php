@@ -50,7 +50,12 @@ function ajouterSalle(
 
         // Ajouter la salle dans le fichier CSV
         $nomSalle = $nouvelleSalle->getNom();
-        $nomSalleVoisine = $nouvelleSalle->getMonVoisin()->getNom();
+
+        $salleVoisine = $nouvelleSalle->getMonVoisin();
+        $nomSalleVoisine = "";
+        if($salleVoisine->getNom()){
+            $nomSalleVoisine = $salleVoisine->getNom();
+        }
 
         $ligne = array($nomSalle, $nomSalleVoisine);
         fputcsv($monFichier, $ligne, ";");
@@ -255,6 +260,11 @@ function modifierVoisinSalle($nomSalle, $nomSalleVoisine){
             if ($data[0] == $nomSalle) {
                 // On modifie la salle voisine
                 $data[1] = $nomSalleVoisine;
+            }
+
+            // Pareil pour la salle voisine
+            if ($data[1] == $nomSalleVoisine) {
+                $data[0] = $nomSalle;
             }
 
             // On ajoute la ligne dans le tableau
