@@ -24,7 +24,7 @@ include_once(CLASS_PATH . CLASS_ZONE_FILE_NAME);
 function creerPlanSalle($nomSalle)
 {
     try {
-        $nomFichier = CSV_SALLES_PATH . $nomSalle . ".csv";
+        $nomFichier = CSV_SALLES_FOLDER_NAME . $nomSalle . ".csv";
         
         // Ouvrir le fichier CSV
         $monFichier = fopen($nomFichier, "r");
