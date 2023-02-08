@@ -1,7 +1,7 @@
 <div class="container">
     <div class="col-3"></div>
     <div class="col-6">
-        <form>
+        <form action="<?php echo PAGE_AJOUTER_CONTROLE_PATH ?>" method="POST">
             <div class="form-group row">
                 <label for="nom" class="col-4 col-form-label">Nom long *</label>
                 <div class="col-8">
@@ -27,13 +27,13 @@
             <div class="form-group row">
                 <label for="Durée" class="col-4 col-form-label">Durée totale (en min)</label>
                 <div class="col-8">
-                    <input id="Durée" name="DuréeTotale" placeholder="ex: 120, 60 en min" type="int" class="form-control">
+                    <input id="Durée" name="dureeTotale" placeholder="ex: 120, 60 en min" type="int" class="form-control">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="heureTT" class="col-4 col-form-label">Heure début Non TT</label>
                 <div class="col-8">
-                    <input id="heureTT" name="heureTT" placeholder="ex: 14:00" type="time" class="form-control">
+                    <input id="heureTT" name="heureNonTT" placeholder="ex: 14:00" type="time" class="form-control">
                 </div>
             </div>
             <div class="form-group row">
@@ -66,9 +66,10 @@
             <div class="form-group row">
             <label for="select" class="col-4 col-form-label">Salles</label> 
                 <div class="col-8">
-                <select id="select" name="checkbox_SALLES" class="custom-select" multiple="multiple">
+                <input id="choixSalle" name="choixSalle" placeholder="Ex : S124" class="custom-select">
                     <?php
-                    //ajouter la liste de salles
+                //ajouter la liste de salles
+
             $directory = CSV_SALLES_FOLDER_NAME;
             $files = scandir($directory);
             echo "<p style='color:green'>";
@@ -76,8 +77,8 @@
             foreach ($files as $file) {
                 $extension = pathinfo($file, PATHINFO_EXTENSION);
                 if ($extension === "csv" && $file != LISTE_SALLES_FILE_NAME){
-                    print(' <div class="custom-control custom-checkbox custom-control-inline">
-                    <option value="'.$file.'">'.$file.'</option>');
+                    print('Taboulet');
+                    $nomSalle = $_POST["choixSalle"];
                 }
             }
             ?>
@@ -90,7 +91,7 @@
             </div>
             <?php
             
-            if (isset($_POST['submit'])) {
+            if (isset($_POST["controleNomLong"]) && isset($_POST["controleNomCourt"]) && isset($_POST["dateDebutControle"]) && isset($_POST["dureeTotale"]) && isset($_POST["heureNonTT"]) && isset($_POST["heureTT"])) {
                 include_once(FONCTION_CRUD_ENSEIGNANTS_PATH);
                 include_once(CLASS_PATH . CLASS_ENSEIGNANT_FILE_NAME);
     
