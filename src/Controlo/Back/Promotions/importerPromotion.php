@@ -99,7 +99,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="fichierPromotion" class="col-4 col-form-label">Fichier de promotion (format CSV)</label>
+                <label for="fichierPromotion" class="col-4 col-form-label">Fichier de promotion (format CSV) *</label>
                 <div class="col-8">
                     <input type="file" name="fichierPromotion" class="btn btn-primary">
                 </div>
@@ -113,4 +113,5 @@
         </form>
     </div>
     <div class="col-3"></div>
+    (*) signifie obligatoire
 </div>

@@ -63,7 +63,7 @@
             echo '
         <form action="' . PAGE_MODIFIER_ETUDIANT_PATH . '" method="post">
         <div class="form-group row">
-            <label for="nom" class="col-4 col-form-label">Nom</label>
+            <label for="nom" class="col-4 col-form-label">Nom *</label>
             <div class="col-8">
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -78,7 +78,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="prenom" class="col-4 col-form-label">Prénom</label>
+            <label for="prenom" class="col-4 col-form-label">Prénom *</label>
             <div class="col-8">
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -93,14 +93,14 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="nomPromo" class="col-4 col-form-label">Promotion</label>
+            <label for="nomPromo" class="col-4 col-form-label">Promotion *</label>
             <div class="col-8">
             <p>' . $nomPromotion . '</p>
             <input id="nomPromo" name="nomPromo" value="' . $nomPromotion . '" hidden>
             </div>
         </div>
         <div class="form-group row">
-            <label for="td" class="col-4 col-form-label">TD</label>
+            <label for="td" class="col-4 col-form-label">TD *</label>
             <div class="col-8">
             <input id="td" name="td" placeholder="ex : 1" type="text"
             class="form-control" value="' . $etudiant->getTd() . '"
@@ -108,7 +108,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="tp" class="col-4 col-form-label">TP</label>
+            <label for="tp" class="col-4 col-form-label">TP *</label>
             <div class="col-8">
             <input id="tp" name="tp" placeholder="ex : 1" type="text"
             class="form-control" value="' . $etudiant->getTp() . '"
@@ -116,7 +116,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="mail" class="col-4 col-form-label">Mail</label>
+            <label for="mail" class="col-4 col-form-label">Mail *</label>
             <div class="col-8">
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -210,4 +210,5 @@
 
     </div>
     <div class="col-3"></div>
+    (*) signifie obligatoire
 </div>

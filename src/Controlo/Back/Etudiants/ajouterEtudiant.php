@@ -61,7 +61,7 @@
     ?>
     <form action="<?php echo PAGE_AJOUTER_ETUDIANT_PATH; ?>" method="post">
       <div class="form-group row">
-        <label for="nom" class="col-4 col-form-label">Nom</label>
+        <label for="nom" class="col-4 col-form-label">Nom *</label>
         <div class="col-8">
           <div class="input-group">
             <div class="input-group-prepend">
@@ -74,7 +74,7 @@
         </div>
       </div>
       <div class="form-group row">
-        <label for="prenom" class="col-4 col-form-label">Prénom</label>
+        <label for="prenom" class="col-4 col-form-label">Prénom *</label>
         <div class="col-8">
           <div class="input-group">
             <div class="input-group-prepend">
@@ -88,7 +88,7 @@
         </div>
       </div>
       <div class="form-group row">
-        <label for="promo" class="col-4 col-form-label">Promotion</label>
+        <label for="promo" class="col-4 col-form-label">Promotion *</label>
         <div class="col-8">
           <select id="nomPromotion" name="nomPromotion" class="custom-select" required="required">
             <?php
@@ -106,19 +106,19 @@
         </div>
       </div>
       <div class="form-group row">
-        <label for="td" class="col-4 col-form-label">TD</label>
+        <label for="td" class="col-4 col-form-label">TD *</label>
         <div class="col-8">
           <input id="td" name="td" placeholder="ex : 1" type="text" class="form-control" required="required">
         </div>
       </div>
       <div class="form-group row">
-        <label for="tp" class="col-4 col-form-label">TP</label>
+        <label for="tp" class="col-4 col-form-label">TP *</label>
         <div class="col-8">
           <input id="tp" name="tp" placeholder="ex : 1" type="text" class="form-control" required="required">
         </div>
       </div>
       <div class="form-group row">
-        <label for="mail" class="col-4 col-form-label">Mail</label>
+        <label for="mail" class="col-4 col-form-label">Mail *</label>
         <div class="col-8">
           <div class="input-group">
             <div class="input-group-prepend">
@@ -156,4 +156,5 @@
     </form>
   </div>
   <div class="col-3"></div>
+  (*) signifie obligatoire
 </div>

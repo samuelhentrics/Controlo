@@ -57,4 +57,5 @@
         </form>
     </div>
     <div class="col-3"></div>
+    (*) signifie obligatoire
 </div>
