@@ -1,7 +1,11 @@
 <div class="container">
     <div class="col-12">
         <br>
-
+        <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+        </script>
         <?php
         echo "<div class='alert alert-warning' role='alert'>";
         echo "Cette page est en cours de développement.<br>";
@@ -70,9 +74,33 @@
 
             // Centrer les infos du contrôle
             echo "<div class='text-center'>";
-            echo "<h2>$nomControle</h2>";
+            echo "<h2>$nomControle";
+            // Etat du controle
+            if ($unControle->controleInfoComplet()){
+                            print('
+                <i class="fa-solid fa-circle text-success"
+                    data-toggle="tooltip"
+                    data-bs-html="true"
+                    title="PDP Générable">
+                </i>
+                ');
+            }
+            else{
+                print('
+                <i class="fa-solid fa-circle text-danger"
+                    data-toggle="tooltip"
+                    data-bs-html="true"
+                    title="'.$unControle->infoManquant().'">
+                </i>
+                
+                ');
+                
+            }
+            
+            echo"</h2>";
             echo "<h3>$nomCourt</h3>";
 
+            
             // Afficher les informations du contrôle
             echo "<a>
             Date : $date - Heure : $infoHeureNonTT - TT : $infoHeureTT - Promotion(s) : $promotions<br>

@@ -26,13 +26,17 @@
         <section>
             <!-- Mettre un titre à gauche et un bouton à droite -->
             <div class="row">
-                <div class="col-10">
+                <div class="col-8">
                     <h1>Liste des contrôles</h1>
                 </div>
-                <div class="col-2 text-end">
+                <div class="col-4 text-end">
                     <a href="<?php echo PAGE_AJOUTER_CONTROLE_PATH;?>" class="btn btn-primary">
                         <i class="fas fa-plus"></i>
                         Ajouter
+                    </a>
+                    <a href="<?php echo PAGE_IMPORTER_CONTROLE_PATH;?>" class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Importer
                     </a>
                 </div>
             </div>

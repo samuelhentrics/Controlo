@@ -739,6 +739,12 @@ define("PAGE_PANEL_CONTROLE_PATH" , PATH."index.php?page=controles&action=panel"
 define("PAGE_AJOUTER_CONTROLE_PATH" , PATH."index.php?page=controles&action=ajouter");
 
 /**
+ * @brief Lien complet vers la page d'importation d'un contrôle
+ * @note ex : http://localhost/src/index.php?page=controles&action=importer
+ */
+define("PAGE_IMPORTER_CONTROLE_PATH" , PATH."index.php?page=controles&action=importer");
+
+/**
  * @brief Lien complet vers la page de modification d'un contrôle
  * @note ex : http://localhost/src/index.php?page=controles&action=modifier
  */
