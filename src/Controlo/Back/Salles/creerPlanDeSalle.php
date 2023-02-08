@@ -3,7 +3,8 @@
 </h1>
 <?php
 include_once(CLASS_PATH . CLASS_SALLE_FILE_NAME);
-include_once(FONCTION_CRUD_SALLES_FILE_NAME);
+include_once(FONCTION_CRUD_SALLES_PATH);
+include_once(FONCTION_CREER_LISTE_SALLES_PATH);
 // Récupérer les données saisies dans le formulaire précédent
 $nomSalle = $_POST["nomSalle"];
 $salleVoisine = $_POST["salleVoisine"];
@@ -13,7 +14,7 @@ $nbrColonne = $_POST["nbrColonne"];
 if (isset($_POST["cell-0-0"])) {
   $uneSalle = new Salle($nomSalle); // Création de la salle
   if ($salleVoisine != null) { // Lier la salle avec sa salle voisine 
-    $salleVoisine = recupererUneSalle()[$salleVoisine];
+    $salleVoisine = creerListeSalles()[$salleVoisine];
     $nomSalle->setMonvoisin($salleVoisine);
   }
 
