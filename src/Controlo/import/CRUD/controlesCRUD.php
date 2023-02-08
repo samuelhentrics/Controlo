@@ -175,5 +175,65 @@ function saisirLigneControle($infoControle, $unControle)
     }
     return $infoControle;
 }
+function modifierControle($id, $nouveauControle) {
+    echo $id;
+    // On initialise un booléen en cas d'erreur
+    $modificationOk = false;
+
+    // Tentative de suppression du controle
+    try {
+
+        $lienFichier = CSV_CONTROLES_FOLDER_NAME.LISTE_CONTROLES_FILE_NAME;
+
+        // Récupérer les entêtes du fichier CSV
+        $entetes = recupererEnteteControle($lienFichier);
+
+        // Ouvrir le fichier en mode modification
+        $monFichier = fopen($lienFichier, "r+");
+
+        $data = array();
+        $i = 0;
+        // Aller sur la ligne de l'étudiant à modifier
+        while (true) {
+            $ligne = fgetcsv($monFichier, 1000, ";");
+
+            if (!$ligne) {
+                break;
+            }
+
+            $data[$i] = $ligne;
+            $i++;
+        }
+
+        // Récupérer les informations de l'étudiant
+
+        // Modifier les informations de l'étudiant
+        $infoControle = saisirLigneControle(
+            $entetes,
+            $nouveauControle
+        );
+
+        $data[$id + 1] = $infoControle;
+
+        // Remplacer l'ancienne ligne par la nouvelle
+        rewind($monFichier); // On se replace au début du fichier
+        ftruncate($monFichier, 0); // On vide le fichier
+        foreach ($data as $fields) {
+            fputcsv($monFichier, $fields, ";");
+        }
+
+        // Fermer le fichier CSV
+        fclose($monFichier);
+
+        // On indique que la modification s'est bien passée
+        $modificationOk = true;
+
+    } catch (Exception $e) {
+        $modificationOk = false;
+        throw new Exception($e->getMessage());
+    }
+
+    return $modificationOk;
+}
 
 ?>
