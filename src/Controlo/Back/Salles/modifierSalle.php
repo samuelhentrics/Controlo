@@ -4,24 +4,59 @@
     <?php print($_POST["nomSalle"]); ?>
   </h2>
 
-  <?php 
+  <?php
 
-    // Récupérer les données saisies dans le formulaire précédent
-    $nomSalle = $_POST["nomSalle"];
+  include_once(CLASS_PATH . CLASS_SALLE_FILE_NAME);
+  include_once(FONCTION_CRUD_SALLES_PATH);
+  include_once(FONCTION_CREER_LISTE_SALLES_PATH);
+
+  // Récupérer les données saisies dans le formulaire précédent
+  $nomSalle = $_POST["nomSalle"];
+  $uneSalle = creerListeSalles()[$nomSalle];
+
+  // //Traitement
+  // if (isset($_POST["nomVoisinSalle"])) {
+  //   try {
+  //     $nomSalleVoisine = $_POST["nomVoisinSalle"];
+  //     modifierVoisinSalle($nomSalle, $nomSalleVoisine);
+  //     echo "<div class='alert alert-success' role='alert'>La salle a été modifiée avec succès</div>";
+  //   } catch (Exception $e) {
+  //     echo "<div class='alert alert-danger' role='alert'>Erreur lors de la modification de la salle</div>";
+  //   }
+  // }
 
 
 
 
+  // $nomSalleVoisine = $uneSalle->getMonVoisin();
 
-  // Formulaire
-  echo "<h3>Modifier les informations de la salle</h3>";
+  // if($nomSalleVoisine != null){
+  //   $nomSalleVoisine = $nomSalleVoisine->getNom();
+  // }
+  // else{
+  //   $nomSalleVoisine = "";
+  // }
+  // // Formulaire
+  // echo "<h3>Modifier les informations de la salle</h3>";
 
-  echo "<form action='". PAGE_MODIFIER_SALLE_PATH ."' method='post'>";
-  echo "<div class='form-group'>";
-  echo "<label for='nomSalle'>Nom de la salle</label>";
-  echo "<input type='text' class='form-control' id='nomSalle' name='nomSalle' value='". $nomSalle ."' required>";
-  echo "<div>";
-  echo "</div>";
+  // echo "<form action='" . PAGE_MODIFIER_SALLE_PATH . "' method='post'>";
+  // echo "<div class='form-group'>";
+  // echo "<input type='hidden' class='form-control' id='nomSalle' name='nomSalle' value='" . $nomSalle . "' >";
+  // echo '
+  //       <div class="form-group row">
+  //               <label for="nomVoisinSalle" class="col-4 col-form-label">Salle voisine</label>
+  //               <div class="col">
+  //                   <div class="input-group">
+  //                       <input id="nomVoisinSalle" name="nomVoisinSalle" placeholder="Ex: S125" type="text" class="form-salle" value="' . $nomSalleVoisine . '">
+  //                   </div>
+  //               </div>
+  //               <input type="submit" class="btn btn-primary" value="Modifier">
+  //           </div>
+  
+  
+  // ';
+  // echo "</div>
+  // </form>";
 
 
   ?>
@@ -31,13 +66,11 @@
 
 
 
-  <h3>Modifier Plan de Salle 
+  <h3>Modifier Plan de Salle
     <?php echo $nomSalle; ?>
   </h3>
   <?php
-  include_once(CLASS_PATH . CLASS_SALLE_FILE_NAME);
-  include_once(FONCTION_CRUD_SALLES_PATH);
-  include_once(FONCTION_CREER_LISTE_SALLES_PATH);
+
 
 
   //Traitement
@@ -120,28 +153,28 @@
           <?php
           for ($j = 0; $j < count($mesZones[$i]); $j++) {
             $uneZone = $mesZones[$i][$j];
-            switch($uneZone->getType()){
-                case "tableau":
-                    $infoZone = "T";
-                    break;
-                case "place":
-                    $infoZone = $uneZone->getNumero();	
-                    if($uneZone->getInfoPrise()){
-                        $infoZone .= "E";
-                    }
-                    
-                    break;
-                default:
-                    $infoZone = "";
-                    break;
-                
+            switch ($uneZone->getType()) {
+              case "tableau":
+                $infoZone = "T";
+                break;
+              case "place":
+                $infoZone = $uneZone->getNumero();
+                if ($uneZone->getInfoPrise()) {
+                  $infoZone .= "E";
+                }
+
+                break;
+              default:
+                $infoZone = "";
+                break;
+
             }
-            
+
             ?>
 
             <td class="text-center">
-                <input type="text" style="width:50px;" name="<?php echo 'cell-' . $i . '-' . $j; ?>"
-                        value="<?php echo $infoZone;?>">
+              <input type="text" style="width:50px;" name="<?php echo 'cell-' . $i . '-' . $j; ?>"
+                value="<?php echo $infoZone; ?>">
             </td>
           <?php } ?>
         </tr>

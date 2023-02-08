@@ -33,7 +33,7 @@
                         Ajouter
                     </a>
                     <a href="<?php echo PAGE_IMPORTER_SALLE_PATH; ?>" class="btn btn-primary">
-                        <i class="fas fa-plus"></i>
+                        <i class="fas fa-file-import"></i>
                         Importer
                     </a>
                 </div>
