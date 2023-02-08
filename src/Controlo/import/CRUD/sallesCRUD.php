@@ -53,7 +53,7 @@ function ajouterSalle(
 
         $salleVoisine = $nouvelleSalle->getMonVoisin();
         $nomSalleVoisine = "";
-        if($salleVoisine->getNom()){
+        if($salleVoisine != null){
             $nomSalleVoisine = $salleVoisine->getNom();
         }
 
@@ -293,6 +293,37 @@ function modifierVoisinSalle($nomSalle, $nomSalleVoisine){
     }
     catch (Exception $e) {
         throw new Exception($e->getMessage());
+    }
+}
+
+
+function recupererSallesSansVoisin(){
+    try{
+        // Ouvrir le fichier liste salles
+        $monFichier = fopen(CSV_SALLES_FOLDER_NAME . LISTE_SALLES_FILE_NAME, "r");
+
+        // Vérifier que le fichier CSV est bien ouvert
+        if ($monFichier === false) {
+            throw new Exception("Impossible d'ouvrir le fichier CSV");
+        }
+
+        // On parcourt le fichier CSV
+        $contenuDossier = array();
+        while (($data = fgetcsv($monFichier, 1000, ";")) !== FALSE) {
+            // On vérifie que la salle n'a pas de voisine
+            if ($data[1] == "") {
+                // On ajoute la salle dans le tableau
+                $contenuDossier[] = $data[0];
+            }
+        }
+
+        // Fermer le fichier CSV
+        fclose($monFichier);
+
+        return $contenuDossier;
+    }
+    catch (Exception $e) {
+        echo $e->getMessage();
     }
 }
 

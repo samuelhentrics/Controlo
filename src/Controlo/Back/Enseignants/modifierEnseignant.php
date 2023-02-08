@@ -41,7 +41,7 @@
             echo '
         <form action="' . PAGE_MODIFIER_ENSEIGNANT_PATH . '" method="post">
         <div class="form-group row">
-            <label for="nom" class="col-4 col-form-label">Nom</label>
+            <label for="nom" class="col-4 col-form-label">Nom *</label>
             <div class="col-8">
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="prenom" class="col-4 col-form-label">Prénom</label>
+            <label for="prenom" class="col-4 col-form-label">Prénom *</label>
             <div class="col-8">
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -135,4 +135,5 @@
 
     </div>
     <div class="col-3"></div>
+    (*) signifie obligatoire
 </div>

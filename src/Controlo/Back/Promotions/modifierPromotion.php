@@ -47,7 +47,7 @@
         <form action="' . PAGE_MODIFIER_PROMOTION_PATH . '" method="POST">
             <input type="hidden" name="nomPromotion" value="' . $promotion->getNom() . '">
             <div class="form-group row">
-                <label for="nom" class="col-4 col-form-label">Nom de promotion pour génération</label>
+                <label for="nom" class="col-4 col-form-label">Nom de promotion pour génération *</label>
                 <div class="col-8">
                     <div class="input-group">
                         <input id="nouveauNomGeneration" name="nouveauNomGeneration" placeholder="Ex : Info semestre 1" type="text" class="form-control" value="'. $promotion->getNom() .'" required="required">
@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="controleNomCourt" class="col-4 col-form-label">Nom de promotion pour affichage</label>
+                <label for="controleNomCourt" class="col-4 col-form-label">Nom de promotion pour affichage *</label>
                 <div class="col-8">
                     <div class="input-group">
                         <input id="nouveauNomAffichage" name="nouveauNomAffichage" placeholder="Ex: BUT Informatique S1" type="text" class="form-control" value="'. $promotion->getNomAffichage() .'">
@@ -79,4 +79,5 @@
 
   </div>
   <div class="col-3"></div>
+  (*) signifie obligatoire
 </div>
