@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Création du plan de la salle
+  <h2>Modifier Plan de Salle 
     <?php print($_POST["nomSalle"]); ?>
   </h2>
   <?php
@@ -13,13 +13,7 @@
   $nbrColonne = $_POST["nbrColonne"];
   //Traitement
   if (isset($_POST["cell-0-0"])) {
-    $uneSalle = new Salle($nomSalle); // Création de la salle
-    if ($nomSalleVoisine != null) { // Lier la salle avec sa salle voisine 
-      $salleVoisine = creerListeSalles()[$nomSalleVoisine];
-      if ($salleVoisine != null) {
-        $uneSalle->setMonVoisin($salleVoisine);
-      }
-    }
+    
 
     $unPlan = new Plan(); // Créer un plan de salle
     for ($indiceLigne = 0; $indiceLigne < $nbrLigne; $indiceLigne++) {
