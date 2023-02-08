@@ -236,7 +236,7 @@ function genererPDF($unControle)
     // Récupération des promotions du contrôle
     $lesPromotions = "";
     foreach ($unControle->getMesPromotions() as $numPromo => $unePromotion) {
-        $lesPromotions .= $unePromotion->getNom() . " - ";
+        $lesPromotions .= $unePromotion->getNomAffichage() . " - ";
     }
     $lesPromotions = substr($lesPromotions, 0, -2);
 
@@ -262,6 +262,7 @@ function genererPDF($unControle)
     if (!file_exists($nomDossier)) {
         mkdir($nomDossier);
     }
+
 
     foreach ($unControle->getMesSalles() as $nomSalle => $uneSalle) {
         // Informations sur le PDP
@@ -407,6 +408,12 @@ function genererPDF($unControle)
 
         // Enregistrer le PDF du PlanDePlacement actuel dans le dossier
         $nomFichier = $dateFormatDossier . "_" . $nomFormatDossier . "_Plan_Placement_" . $nomSalle . ".pdf";
+
+        // Si le fichier existe déjà, on le supprime
+        if (file_exists($nomDossier . $nomFichier)) {
+            unlink($nomDossier . $nomFichier);
+        }
+
         $pdf->Output($nomDossier . $nomFichier, 'F');
     }
 }

@@ -3,7 +3,11 @@
     <div class="row">
       <div class="col-lg-9">
         <p class="text-muted">
-          © 2022 Controlo | 
+          <?php
+          $anneeCourante = date("Y");
+          echo "© 2022-$anneeCourante Controlo | ";
+
+          ?>
           <a class="text-reset" href="<?php echo PAGE_MENTIONSLEGALES_PATH; ?>">Mentions Légales</a> | 
           <a class="text-reset" href="<?php echo PAGE_POLITIQUEDECONFIDENTIALITE_PATH; ?>">Politique de Confidentialité</a> | 
           <a class="text-reset" href="<?php echo PAGE_MANUELUTILISATEUR_PATH; ?>">Manuel Utilisateur</a>

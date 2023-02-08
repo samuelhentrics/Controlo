@@ -36,7 +36,7 @@ if(isset($_POST["idControle"])){
             <div class='alert alert-danger' role='alert'>
                 <h4 class='alert-heading'>Informations manquantes</h4>
                 Le contrôle \"$controleNom\" ne peut pas être généré car certaines informations sont manquantes.<br>
-                Merci de compléter les informations manquantes avant de générer les plans de placement.<br>
+                Merci de compléter les informations manquantes et de générer les plans de placement avant de les télécharger.<br>
                 <p class='mb-0 mt-3'>Si le problème persiste, veuillez contacter l'administrateur.</p>
             </div>";
     }
@@ -54,10 +54,15 @@ if(isset($_POST["idControle"])){
     }
     // Cas où le contrôle est généré et les informations sont completes
     else {
+        $dateGeneration = date('d/m/Y H:i:s', filemtime(PLANS_DE_PLACEMENT_FOLDER_NAME.$nomDossier));
         echo "
+            <div class='alert alert-primary' role='alert'>
+                Date de dernière génération : $dateGeneration
+            </div>
+
             <div class='alert alert-success' role='alert'>
-                <h4 class='alert-heading'>Plans générés</h4>
-                Les plans de placement pour le contrôle \"$controleNom\" ont été générés avec succès.<br>
+                <h4 class='alert-heading'>Télécharger les plans de placement</h4>
+                Les plans de placement pour le contrôle \"$controleNom\" sont disponibles en téléchagement !<br>
                 Vous pouvez les télécharger en cliquant sur le bouton ci-dessous.<br><br>
                 <form>
                     <input type='hidden' id='id' value='$idControle'>

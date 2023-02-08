@@ -8,7 +8,7 @@
         <div class="card card-flip">
           <div class="front card-block">
             <!-- <span class="card-img-top fa" style="font-size: 4em">&#xf118;</span> -->
-            <h4 class="card-title">Controles</h4>
+            <h4 class="card-title">Contrôles</h4>
             <h6 class="card-subtitle text-muted">Emplacement du dossier</h6>
             <p class="card-text"><?php echo CSV_CONTROLES_FOLDER_NAME; ?></p>
           </div>

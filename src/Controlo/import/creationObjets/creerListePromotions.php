@@ -147,6 +147,11 @@ function creerUnePromotion($nomPromotion)
 
         fclose($monFichier);
 
+        // Avoir le nom d'affichage de la promotion
+
+        $nomAffichage = recupererNomAffichagePromotion($nomPromotion);
+        $maPromotion->setNomAffichage($nomAffichage);
+
         return $maPromotion;
     } catch (Exception $e) {
         if ($e->getMessage() != false) {
@@ -291,6 +296,44 @@ function contientMot($unePhrase, $tableauMotClee)
         }
     }
     return $bool;
+}
+
+
+/**
+ * @brief Permet de récupérer le nom d'affichage d'une promotion
+ * @param string $nomPromotion Nom de la promotion
+ * @throws Exception
+ * @return string
+ */
+function recupererNomAffichagePromotion($nomPromotion){
+    try{
+        // Ouvrir le fichier liste-promotions
+        $listePromotions = fopen(CSV_ETUDIANTS_FOLDER_NAME.LISTE_PROMOTIONS_FILE_NAME, "r");
+
+        if (!$listePromotions){
+            throw new Exception("Impossible d'ouvrir le fichier ".CSV_ETUDIANTS_FOLDER_NAME.LISTE_PROMOTIONS_FILE_NAME);
+        }
+
+
+        $nomPromotionAffichage = $nomPromotion;
+        // Parcourir le fichier
+        while (($ligne = fgetcsv($listePromotions, 0, ";")) !== FALSE) {
+            // Si la ligne contient le nom de la promotion
+            if (strtolower($ligne[0]) == strtolower($nomPromotion)){
+                // On retourne le nom d'affichage
+                $nomPromotionAffichage = $ligne[1];
+                break;
+            }
+        }
+
+        // Fermer le fichier
+        fclose($listePromotions);
+
+        return $nomPromotionAffichage;
+    }
+    catch (Exception $e){
+        throw $e;
+    }
 }
 
 ?>

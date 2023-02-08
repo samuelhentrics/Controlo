@@ -1,67 +1,67 @@
 <div class="container">
-  <div class="col-3"></div>
-  <div class="col-6 m-auto">
-    <h2>Modifier un étudiant</h2>
+    <div class="col-3"></div>
+    <div class="col-6 m-auto text-center">
+        <h2>Modifier un étudiant</h2>
 
-    <?php
-    include_once(FONCTION_CREER_LISTE_PROMOTIONS_PATH);
+        <?php
+        include_once(FONCTION_CREER_LISTE_PROMOTIONS_PATH);
 
-    if (isset($_POST["idEtudiant"]) && isset($_POST["nomPromotion"])) {
-        $idEtudiant = $_POST["idEtudiant"];
-        $nomPromotion = $_POST["nomPromotion"];
+        if (isset($_POST["idEtudiant"]) && isset($_POST["nomPromotion"])) {
+            $idEtudiant = $_POST["idEtudiant"];
+            $nomPromotion = $_POST["nomPromotion"];
 
-        if(isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["td"]) && isset($_POST["tp"]) && isset($_POST["mail"])) {
-            include_once(FONCTION_CRUD_ETUDIANTS_PATH);
-            $nom = $_POST["nom"];
-            $prenom = $_POST["prenom"];
-            $td = $_POST["td"];
-            $tp = $_POST["tp"];
-            $email = $_POST["mail"];
+            if (isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["td"]) && isset($_POST["tp"]) && isset($_POST["mail"])) {
+                include_once(FONCTION_CRUD_ETUDIANTS_PATH);
+                $nom = $_POST["nom"];
+                $prenom = $_POST["prenom"];
+                $td = $_POST["td"];
+                $tp = $_POST["tp"];
+                $email = $_POST["mail"];
 
-            if (isset($_POST["tiersTemps"]))
-                $tiersTemps = true;
-            else
-                $tiersTemps = false;
+                if (isset($_POST["tiersTemps"]))
+                    $tiersTemps = true;
+                else
+                    $tiersTemps = false;
 
-            if (isset($_POST["ordinateur"]))
-                $ordinateur = true;
-            else
-                $ordinateur = false;
+                if (isset($_POST["ordinateur"]))
+                    $ordinateur = true;
+                else
+                    $ordinateur = false;
 
-            if (isset($_POST["demissionnaire"]))
-                $demissionnaire = true;
-            else
-                $demissionnaire = false;
+                if (isset($_POST["demissionnaire"]))
+                    $demissionnaire = true;
+                else
+                    $demissionnaire = false;
 
-            try {
-                $nouvelEtudiant = new Etudiant($idEtudiant, $nom, $prenom, $td, $tp, $email);
-                $nouvelEtudiant->setEstTT($tiersTemps);
-                $nouvelEtudiant->setAOrdi($ordinateur);
-                $nouvelEtudiant->setEstDemissionnaire($demissionnaire);
-                
-                modifierEtudiant($nouvelEtudiant, $nomPromotion);
-                print("
+                try {
+                    $nouvelEtudiant = new Etudiant($idEtudiant, $nom, $prenom, $td, $tp, $email);
+                    $nouvelEtudiant->setEstTT($tiersTemps);
+                    $nouvelEtudiant->setAOrdi($ordinateur);
+                    $nouvelEtudiant->setEstDemissionnaire($demissionnaire);
+
+                    modifierEtudiant($nouvelEtudiant, $nomPromotion);
+                    print("
                     <div class='alert alert-success alert-dismissible fade show' role='alert'>
                         <strong>Succès !</strong>
                         <p>L'étudiant a bien été modifié.</p>
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                         </div>
                         ");
-            } catch (Exception $e) {
-                // Afficher l'erreur      
-                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
-                echo $e->getMessage();
-                echo "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
-                echo '</div>';
+                } catch (Exception $e) {
+                    // Afficher l'erreur      
+                    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+                    echo $e->getMessage();
+                    echo "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
+                    echo '</div>';
+                }
             }
-        }
 
 
 
-        $etudiant = recupererUnEtudiant($idEtudiant, $nomPromotion);
+            $etudiant = recupererUnEtudiant($idEtudiant, $nomPromotion);
 
-        echo '
-        <form action="'.PAGE_MODIFIER_ETUDIANT_PATH.'" method="post">
+            echo '
+        <form action="' . PAGE_MODIFIER_ETUDIANT_PATH . '" method="post">
         <div class="form-group row">
             <label for="nom" class="col-4 col-form-label">Nom</label>
             <div class="col-8">
@@ -136,18 +136,18 @@
             <div class="custom-control custom-checkbox custom-control-inline">
         ';
 
-        // Case à cocher Tiers-temps
-        if ($etudiant->getEstTT()) {
-            echo '
+            // Case à cocher Tiers-temps
+            if ($etudiant->getEstTT()) {
+                echo '
                 <input name="tiersTemps" id="tiersTemps" type="checkbox" class="custom-control-input" checked>
             ';
-        } else {
-            echo '
+            } else {
+                echo '
                 <input name="tiersTemps" id="tiersTemps" type="checkbox" class="custom-control-input">
             ';
-        }
+            }
 
-        echo '
+            echo '
                 <label for="tiersTemps" class="custom-control-label">
                     Tiers-temps
                 </label>
@@ -155,19 +155,18 @@
             <div class="custom-control custom-checkbox custom-control-inline">';
 
 
-        // Case à cocher Ordinateur
-        if ($etudiant->getAOrdi()) {
-            echo '
+            // Case à cocher Ordinateur
+            if ($etudiant->getAOrdi()) {
+                echo '
                 <input name="ordinateur" id="ordinateur" type="checkbox" class="custom-control-input" checked>
             ';
-        }
-        else {
-            echo '
+            } else {
+                echo '
                 <input name="ordinateur" id="ordinateur" type="checkbox" class="custom-control-input">
             ';
-        }
+            }
 
-        echo '
+            echo '
                 <label for="ordinateur" class="custom-control-label">
                     Ordinateur
                 </label>
@@ -175,19 +174,18 @@
             <div class="custom-control custom-checkbox custom-control-inline">';
 
 
-        // Case à cocher Démissionnaire
-        if ($etudiant->getEstDemissionnaire()) {
-            echo '
+            // Case à cocher Démissionnaire
+            if ($etudiant->getEstDemissionnaire()) {
+                echo '
                 <input name="demissionnaire" id="demissionnaire" type="checkbox" class="custom-control-input" checked>
             ';
-        }
-        else {
-            echo '
+            } else {
+                echo '
                 <input name="demissionnaire" id="demissionnaire" type="checkbox" class="custom-control-input">
             ';
-        }
+            }
 
-        echo '                
+            echo '                
                 <label for="demissionnaire" class="custom-control-label">
                     Démissionnaire
                 </label>
@@ -204,13 +202,12 @@
         </form>
 
         ';
-    }
-    else{
-        echo "Aucun étudiant n'a été renseigné. Veuillez-réessayer";    
-    }
-    ?>
+        } else {
+            echo "Aucun étudiant n'a été renseigné. Veuillez-réessayer";
+        }
+        ?>
 
 
-  </div>
-  <div class="col-3"></div>
+    </div>
+    <div class="col-3"></div>
 </div>

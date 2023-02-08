@@ -1,12 +1,12 @@
 <div class="container">
 
   <div class="col-3"></div>
-  <div class="col-6 m-auto">
+  <div class="col-6 m-auto text-center">
     <h2>Ajouter un étudiant</h2>
     <br>
     <?php
     include_once(FONCTION_CRUD_ETUDIANTS_PATH);
-    include_once(CLASS_PATH. CLASS_ETUDIANT_FILE_NAME);
+    include_once(CLASS_PATH . CLASS_ETUDIANT_FILE_NAME);
 
     // Vérifier si le formulaire a été envoyé
     if (isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["nomPromotion"]) && isset($_POST["td"]) && isset($_POST["tp"]) && isset($_POST["mail"])) {
@@ -69,8 +69,7 @@
                 <i class="fa fa-address-card"></i>
               </div>
             </div>
-            <input id="nom" name="nom" placeholder="ex : DUPONT" type="text" class="form-control"
-              required="required">
+            <input id="nom" name="nom" placeholder="ex : DUPONT" type="text" class="form-control" required="required">
           </div>
         </div>
       </div>
@@ -127,7 +126,8 @@
                 <i class="fa fa-envelope"></i>
               </div>
             </div>
-            <input id="mail" name="mail" placeholder="ex : pdupont@iutbayonne.univ-pau.fr" type="text" class="form-control">
+            <input id="mail" name="mail" placeholder="ex : pdupont@iutbayonne.univ-pau.fr" type="text"
+              class="form-control">
           </div>
         </div>
       </div>
@@ -154,6 +154,6 @@
         </div>
       </div>
     </form>
-  </div> 
+  </div>
   <div class="col-3"></div>
 </div>
