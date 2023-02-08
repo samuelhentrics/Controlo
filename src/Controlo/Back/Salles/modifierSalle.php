@@ -1,13 +1,45 @@
 <div class="container">
-  <h2>Modifier Plan de Salle 
+
+  <h2> Modifier la Salle
     <?php print($_POST["nomSalle"]); ?>
   </h2>
+
+  <?php 
+
+    // Récupérer les données saisies dans le formulaire précédent
+    $nomSalle = $_POST["nomSalle"];
+
+
+
+
+
+  // Formulaire
+  echo "<h3>Modifier les informations de la salle</h3>";
+
+  echo "<form action='". PAGE_MODIFIER_SALLE_PATH ."' method='post'>";
+  echo "<div class='form-group'>";
+  echo "<label for='nomSalle'>Nom de la salle</label>";
+  echo "<input type='text' class='form-control' id='nomSalle' name='nomSalle' value='". $nomSalle ."' required>";
+  echo "<div>";
+  echo "</div>";
+
+
+  ?>
+
+
+
+
+
+
+  <h3>Modifier Plan de Salle 
+    <?php echo $nomSalle; ?>
+  </h3>
   <?php
   include_once(CLASS_PATH . CLASS_SALLE_FILE_NAME);
   include_once(FONCTION_CRUD_SALLES_PATH);
   include_once(FONCTION_CREER_LISTE_SALLES_PATH);
-  // Récupérer les données saisies dans le formulaire précédent
-  $nomSalle = $_POST["nomSalle"];
+
+
   //Traitement
   if (isset($_POST["cell-0-0"])) {
     $uneSalle = creerListeSalles()[$nomSalle]; // Création de la salle

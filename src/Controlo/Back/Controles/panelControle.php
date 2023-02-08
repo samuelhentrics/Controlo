@@ -133,8 +133,9 @@
                             <form id="supprimer" action="'.PAGE_SUPPRIMER_CONTROLE_PATH.'" method="POST">
                                 <input type="hidden" name="idControle" value="'.$idControle.'">
                                 <a onClick="
-                                return confirm(\'Confirmer la suppression de: '.$nomControle.' ?\');
-                                document.getElementById(\'supprimer\').submit();
+                                if(confirm(\'Confirmer la suppression de: '.$nomControle.' ?\')){ 
+                                    document.getElementById(\'supprimer\').submit();
+                                }
                                 ">
                                     <div class="card text-white bg-danger text-center">
                                         <div class="card-body text-center">
