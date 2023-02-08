@@ -107,7 +107,7 @@
                 try {
                     $nouveauControle = new Controle($nomLong, $nomCourt, $dureeNonTT, $dateControle, $heureNonTT, $heureTT);
                     ajouterControle($nouveauControle);
-                    echo "<div class='alert alert-success' role='alert'>L'enseignant a bien été ajouté.</div>";
+                    echo "<div class='alert alert-success' role='alert'>Le contrôle a bien été ajouté.</div>";
                 } catch (Exception $e) {
                     echo "<div class='alert alert-danger' role='alert'>
                     Le contrôle n'a pas été ajouté : " . $e->getMessage() . "</div>";
