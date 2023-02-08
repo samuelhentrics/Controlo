@@ -87,13 +87,13 @@
 
                 // Boutons
                         print("
-                    <form action=\"". PAGE_MODIFIER_ENSEIGNANT_PATH ."\" method=\"post\">
+                    <form action=\"". PAGE_MODIFIER_ENSEIGNANT_PATH ."\" style='display:inline;' method=\"post\">
                         <input type=\"hidden\" name=\"idEnseignant\" value=\"{$enseignant->getId()}\">
                         <button type=\"submit\" class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Modifier\">
                             <i class=\"fas fa-edit\"></i>
                         </button>
                     </form>
-                    <form method=\"post\" action=" . PAGE_SUPPRIMER_ENSEIGNANT_PATH . ">
+                    <form method=\"post\" style='display:inline;' action=" . PAGE_SUPPRIMER_ENSEIGNANT_PATH . ">
                         <input type=\"hidden\" name=\"idEnseignant\" value=\"{$enseignant->getId()}\">
                         <button type=\"submit\" onclick=\"return confirm('Confirmer la suppression de: ".$enseignant->getNom(). "  " .$enseignant->getPrenom()."')\" name=\"action\" class=\"btn btn-danger\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Supprimer\">
                             <i class=\"fas fa-trash-alt\"></i>

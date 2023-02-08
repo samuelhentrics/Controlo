@@ -136,7 +136,7 @@
 
 
                         <td class=\"text-center\">
-                            <form method=\"post\" action=" . PAGE_MODIFIER_ETUDIANT_PATH . ">
+                            <form method=\"post\" style='display:inline;' action=" . PAGE_MODIFIER_ETUDIANT_PATH . ">
                                 <input type=\"hidden\" name=\"idEtudiant\" value=\"{$unEtudiant->getId()}\">
                                 <input type=\"hidden\" name=\"nomPromotion\" value=\"{$unePromotion->getNom()}\">
 
@@ -145,7 +145,7 @@
                                 </button>
                                 
                             </form>
-                            <form method=\"post\" action=" . PAGE_SUPPRIMER_ETUDIANT_PATH . ">
+                            <form method=\"post\" style='display:inline;' action=" . PAGE_SUPPRIMER_ETUDIANT_PATH . ">
                                 <input type=\"hidden\" name=\"idEtudiant\" value=\"{$unEtudiant->getId()}\">
                                 <input type=\"hidden\" name=\"nomPromotion\" value=\"{$unePromotion->getNom()}\">
                                 <button type=\"submit\" onclick=\"return confirm('Confirmer la suppression de: ".$unEtudiant->getNom(). "  " .$unEtudiant->getPrenom()."')\" name=\"action\" class=\"btn btn-danger\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Supprimer\">

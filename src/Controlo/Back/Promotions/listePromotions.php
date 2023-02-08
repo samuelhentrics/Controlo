@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            <table id="promotions" class="table table-striped table-bordered" style="width:100%">
+            <table  id="promotions" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
                         <th>Nom de la promotion</th>
@@ -96,13 +96,13 @@
                             <td>" . $nbEtudiantsOrdi . "</td>
                             <td>" . $nbEtudiantDemisionnaire . "</td>
                         <td class=\"text-center\">
-                            <form method=\"post\" action=" . PAGE_MODIFIER_PROMOTION_PATH . ">
+                            <form style='display:inline;' method=\"post\" action=" . PAGE_MODIFIER_PROMOTION_PATH . ">
                                 <input type=\"hidden\" name=\"nomPromotion\" value=\"" . $nomPromotion . "\">
                                 <button type=\"submit\" class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Modifier\">
                                     <i class=\"fas fa-edit\"></i>
                                 </button>
                                 </form>
-                            <form method=\"post\" action=" . PAGE_SUPPRIMER_PROMOTION_PATH . ">
+                            <form style='display:inline;' method=\"post\" action=" . PAGE_SUPPRIMER_PROMOTION_PATH . ">
                                 <input type=\"hidden\" name=\"nomPromotion\" value=\"" . $nomPromotion . "\">
 
                                 <button type=\"submit\" onclick=\"return confirm('Confirmer la suppression de: ".$nomPromotion."')\" name=\"action\" class=\"btn btn-danger\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Supprimer\">

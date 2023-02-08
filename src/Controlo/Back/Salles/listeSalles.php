@@ -96,7 +96,7 @@
                         // Afficher les actions de la salle
                         if ($uneSalle->getMonPlan() != null) {
                             print("
-                            <form method=\"post\" action=" . PAGE_PLAN_SALLE_PATH . ">
+                            <form style='display:inline;' method=\"post\" action=" . PAGE_PLAN_SALLE_PATH . ">
                                 <input type=\"hidden\" name=\"nomSalle\" value=\"".$nomSalle."\">
                                 <button type=\"submit\" class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Visualiser\">
                                     <i class=\"fas fa-eye\"></i>
@@ -106,13 +106,13 @@
                         }
                         print("
                         
-                            <form method=\"post\" action=" . PAGE_MODIFIER_SALLE_PATH . ">
+                            <form  style='display:inline;' method=\"post\" action=" . PAGE_MODIFIER_SALLE_PATH . ">
                                 <input type=\"hidden\" name=\"nomSalle\" value=\"$nomSalle\">
                                 <button type=\"submit\" class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Modifier\">
                                     <i class=\"fas fa-edit\"></i>
                                 </button>
                             </form>
-                            <form method=\"post\" action=" . PAGE_SUPPRIMER_SALLE_PATH . ">
+                            <form style='display:inline;' method=\"post\" action=" . PAGE_SUPPRIMER_SALLE_PATH . ">
                                 <input type=\"hidden\" name=\"nomSalle\" value=\"" . $nomSalle . "\">
 
                                 <button type=\"submit\" onclick=\"return confirm('Confirmer la suppression de: ".$nomSalle."')\" name=\"action\" class=\"btn btn-danger\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Supprimer\">
