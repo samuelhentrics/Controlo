@@ -47,7 +47,7 @@
   echo "<input type='hidden' class='form-control' id='nomSalle' name='nomSalle' value='" . $nomSalle . "' >";
   echo '
         <div class="form-group row">
-                <label for="nomVoisinSalle" class="col-4 col-form-label">Salle voisine</label>
+                <label for="nomVoisinSalle" class="col-4 col-form-label">Salle voisine *</label>
                 <div class="col">
                     <div class="input-group">';
 
@@ -87,7 +87,7 @@
 
 
 
-
+(*) signifie obligatoire
 
   <h3>Modifier Plan de Salle
     <?php echo $nomSalle; ?>
