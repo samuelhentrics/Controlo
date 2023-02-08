@@ -53,7 +53,7 @@ function ajouterSalle(
 
         $salleVoisine = $nouvelleSalle->getMonVoisin();
         $nomSalleVoisine = "";
-        if($salleVoisine->getNom()){
+        if($salleVoisine != null){
             $nomSalleVoisine = $salleVoisine->getNom();
         }
 
