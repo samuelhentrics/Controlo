@@ -89,7 +89,21 @@
                 <label for="salleVoisin" class="col-4 col-form-label">Voisin (optionnel)</label>
                 <div class="col-8">
                     <div class="input-group">
-                        <input id="salleVoisin" name="nomVoisin" placeholder="Ex: vide ou S125" type="text" class="form-control" >
+                        <select
+                            class="custom-select form-control"
+                            id="nomVoisin"
+                            name="nomVoisin"
+                            required="required" >
+                            <option value="" selected>Choisir un voisin</option>
+                        <?php
+
+                        include_once(FONCTION_CRUD_SALLES_PATH);
+                        $listeSallesSansVoisin = recupererSallesSansVoisin();
+                        foreach ($listeSallesSansVoisin as $nomSalle) {
+                            echo '<option value="' . $nomSalle . '">' . $nomSalle . '</option>';
+                        }
+                        ?>
+                        </select>
                     </div>
                 </div>
             </div>
