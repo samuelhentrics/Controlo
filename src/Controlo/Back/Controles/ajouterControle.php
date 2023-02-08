@@ -45,19 +45,19 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="nom" class="col-4 col-form-label">Enseignant</label>
+                <label for="nom" class="col-4 col-form-label">Enseignant référent</label>
                 <div class="col-8">
                         <div>
-                            <input id="enseignant" name="enseignant" placeholder="Dupont" type="text" class="form-control" disabled>
+                            <input id="enseignant" name="enseignant" placeholder="Ex : Dupont" type="text" class="form-control" disabled>
                         </div>
                         <!-- <input id="controleNomLong" name="controleNomLong" placeholder="ex: Cordova,Futrell" type="text" class="form-control" required="required"> -->
                 </div>
             </div>
             <div class="form-group row">
-                <label for="nom" class="col-4 col-form-label">Surveillant</label>
+                <label for="nom" class="col-4 col-form-label">Surveillant(s)</label>
                 <div class="col-8">
                         <div>
-                            <input id="surveillant" name="surveillant" placeholder="Dupont" type="text" class="form-control" disabled>
+                            <input id="surveillant" name="surveillant" placeholder="Ex : Dupont, Lamarque" type="text" class="form-control" disabled>
                         </div>
                         <!-- <input id="controleNomLong" name="controleNomLong" placeholder="ex: Cordova,Futrell" type="text" class="form-control" required="required"> -->
                 </div>
@@ -119,4 +119,4 @@
     </div>
     <div class="col-3"></div>
 </div>
-<p> (*) signifie obligatoire</p>
+(*) signifie obligatoire

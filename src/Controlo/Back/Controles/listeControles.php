@@ -35,7 +35,7 @@
                         Ajouter
                     </a>
                     <a href="<?php echo PAGE_IMPORTER_CONTROLE_PATH;?>" class="btn btn-primary">
-                        <i class="fas fa-plus"></i>
+                        <i class="fas fa-file-import"></i>
                         Importer
                     </a>
                 </div>
@@ -158,7 +158,7 @@
                 <form action=\"" . PAGE_PANEL_CONTROLE_PATH . "\" method=\"post\">
                     <input type=\"hidden\" name=\"idControle\" value=\"$numControle\">
                     <button type=\"submit\" class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Gérer\">
-                        <i class=\"fa-solid fa-pencil text-white\"></i>
+                        <i class=\"fa-sharp fa-solid fa-gears \"></i>
                     </button>
                 </form>
                 ");

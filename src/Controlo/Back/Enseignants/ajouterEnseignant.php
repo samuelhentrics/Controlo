@@ -28,7 +28,7 @@
         <div class="col-6">
             <form action="<?php echo PAGE_AJOUTER_ENSEIGNANT_PATH; ?>" method="post">
                 <div class="form-group row">
-                    <label for="nom" class="col-4 col-form-label">Nom</label>
+                    <label for="nom" class="col-4 col-form-label">Nom *</label>
                     <div class="col-8">
                         <div class="input-group">
                             <input id="nom" name="nom" placeholder="ex: Dupond" type="text" class="form-control"
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="prenom" class="col-4 col-form-label">Prénom</label>
+                    <label for="prenom" class="col-4 col-form-label">Prénom *</label>
                     <div class="col-8">
                         <div class="input-group">
                             <input id="prenom" name="prenom" placeholder="ex: Jean" type="text" class="form-control"
@@ -71,4 +71,5 @@
         </div>
         <div class="col-3"></div>
     </div>
+    (*) signifie obligatoire
 </div>
