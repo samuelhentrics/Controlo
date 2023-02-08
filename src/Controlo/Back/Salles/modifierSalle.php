@@ -65,10 +65,10 @@
       modifierPlanSalle($uneSalle);
 
       // Message de succès
-      echo "<div class='alert alert-success' role='alert'>La salle a été ajoutée avec succès</div>";
+      echo "<div class='alert alert-success' role='alert'>La salle a été modifiée avec succès</div>";
     } catch (Exception $e) {
       echo "<div class='alert alert-danger' role='alert'>
-    Erreur lors de l'ajout de la salle<br>
+    Erreur lors de la modification de la salle<br>
     Message d'erreur : " . $e->getMessage() . "
     </div>";
     }
