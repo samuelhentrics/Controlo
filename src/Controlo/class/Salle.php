@@ -108,7 +108,7 @@ class Salle
      *
      * @param Salle|null $nouveauVoisin
      */
-    private function setMonVoisin($nouveauVoisin)
+    public function setMonVoisin($nouveauVoisin)
     {
         $this->monVoisin = $nouveauVoisin;
     }

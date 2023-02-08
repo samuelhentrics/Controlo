@@ -24,23 +24,81 @@ function ajouterSalle(
 
     // Tentative d'écriture du fichier CSV
     try {
+
+        // Créer le plan de la salle
         $lienFichier = CSV_SALLES_FOLDER_NAME . $_POST["nomSalle"] . ".csv";
 
-        if ($lienFichier) {
+        if (file_exists($lienFichier)) {
             throw new Exception("La salle existe déja");
         }
 
         // Ouvrir le fichier CSV en mode création
         $monFichier = fopen($lienFichier, "w");
 
-        ///for ($i = 0; $i < $_POST['nbrLigne']; $i++)
-        ///{
-           /// for ($j = 0; $j < $_POST['nbrColonne']; $j++)
-           /// {
-                // Ajouter la zone dans le CSV
-              ///  fputcsv($monFichier, $uneZone, ";");
-          ///  }
-       /// }
+        // Vérifier que le fichier CSV est bien ouvert
+        if ($monFichier === false) {
+            throw new Exception("Impossible d'ouvrir le fichier CSV");
+        }
+
+        $plan = $nouvelleSalle->getMonPlan();
+        $lesZones = $plan->getMesZones();
+        for ($i = 0; $i < $_POST['nbrLigne']; $i++){
+            $uneLigne = array();
+           for ($j = 0; $j < $_POST['nbrColonne']; $j++)
+           {
+            //Ajouter la zone dans le CSV
+
+            $uneZone = $lesZones[$i][$j];
+            $typeZone = $uneZone->getType();
+
+            switch($typeZone)
+            {
+                case "tableau":
+                    $infoZone = "T";
+                    break;
+
+                case "place":
+                    $infoZone = $uneZone->getNumero();
+                    if($uneZone->getInfoPrise()){
+                        $infoZone .= "E";
+                    }
+                    break;
+
+                default:
+                    $infoZone = "";
+                    break;
+                
+            }
+
+            array_push($uneLigne, $infoZone);
+            
+          }
+          fputcsv($monFichier, $uneLigne , ";");
+       }
+
+        // Fermer le fichier CSV
+        fclose($monFichier);
+
+        // Ajouter la salle dans le fichier CSV liste salles
+
+        $lienFichier = CSV_SALLES_FOLDER_NAME . LISTE_SALLES_FILE_NAME;
+
+        // Ouvrir le fichier CSV en mode ajout
+
+        $monFichier = fopen($lienFichier, "a");
+
+        // Vérifier que le fichier CSV est bien ouvert
+
+        if ($monFichier === false) {
+            throw new Exception("Impossible d'ouvrir le fichier CSV");
+        }
+
+        // Ajouter la salle dans le fichier CSV
+        $nomSalle = $nouvelleSalle->getNom();
+        $nomSalleVoisine = $nouvelleSalle->getMonVoisin()->getNom();
+
+        $ligne = array($nomSalle, $nomSalleVoisine);
+        fputcsv($monFichier, $ligne, ";");
 
         // Fermer le fichier CSV
         fclose($monFichier);

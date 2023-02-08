@@ -7,43 +7,57 @@ include_once(FONCTION_CRUD_SALLES_PATH);
 include_once(FONCTION_CREER_LISTE_SALLES_PATH);
 // Récupérer les données saisies dans le formulaire précédent
 $nomSalle = $_POST["nomSalle"];
-$salleVoisine = $_POST["salleVoisine"];
+$nomSalleVoisine = $_POST["salleVoisine"];
 $nbrLigne = $_POST["nbrLigne"];
 $nbrColonne = $_POST["nbrColonne"];
 //Traitement
 if (isset($_POST["cell-0-0"])) {
   $uneSalle = new Salle($nomSalle); // Création de la salle
-  if ($salleVoisine != null) { // Lier la salle avec sa salle voisine 
-    $salleVoisine = creerListeSalles()[$salleVoisine];
-    $nomSalle->setMonvoisin($salleVoisine);
+  if ($nomSalleVoisine != null) { // Lier la salle avec sa salle voisine 
+    $salleVoisine = creerListeSalles()[$nomSalleVoisine];
+    if ($salleVoisine != null) {
+      $uneSalle->setMonVoisin($salleVoisine);
+    }
   }
 
-  $plan = new Plan(); // Créer un plan de salle
+  $unPlan = new Plan(); // Créer un plan de salle
   for ($indiceLigne = 0; $indiceLigne < $nbrLigne; $indiceLigne++) {
     for ($indiceColonne = 0; $indiceColonne < $nbrColonne; $indiceColonne++) {
       $uneZone = new Zone(); // Créer une zone
       $infoZone = $_POST["cell-" . $indiceLigne . "-" . $indiceColonne]; // Récupérer la donnée saisi dans le formulaire
       // Informer de la position de cette zone
       $uneZone->setNumLigne($indiceLigne);
-      $uneZone->setNumColonne($indiceColonne);
+      $uneZone->setNumCol($indiceColonne);
       $infoZone = strtolower($infoZone);
-      array_push($uneLigne, $uneZone); // Remplir la donnée dans la zone 
       // Déterminer le type de Zone qu'il s'agit
       switch ($infoZone) {
-        case 'T':
+        case 't':
           $uneZone->setType("tableau");
           break;
         case '':
           $uneZone->setType("vide");
           break;
         default:
-          $uneZone->setType("place");
+          // Vérifier qu'il s'agit d'un numéro de place
+          if (!is_numeric($infoZone)) {
+            // Récupérer infoZone jusqu'à l'avant dernier caractère
+            if(is_numeric(substr($infoZone, 0, -1))){
+              $uneZone->setType("place");
+            }
+            else{
+              $uneZone->setType("vide");
+            }
+
+          }
+          else {
+            $uneZone->setType("place");
+          }
           break;
       }
 
       if ($uneZone->getType() == "place") {
         // Vérifier s'il s'agit d'une place avec prise
-        if (substr($infoZone, -1) == "E") {
+        if (substr($infoZone, -1) == "e") {
           $uneZone->setInfoPrise(true);
         }
         // On met le numéro de la place s'il s'agit d'une place
@@ -52,19 +66,33 @@ if (isset($_POST["cell-0-0"])) {
       // Ajouter la Zone dans le Plan
       $unPlan->ajouterUneZone($uneZone);
     }
+
+    $uneSalle->setMonPlan($unPlan); // Ajouter le plan à la salle
   }
-  ajouterSalle($nomSalle);
+
+  try {
+    ajouterSalle($uneSalle);
+
+    // Message de succès
+    echo "<div class='alert alert-success' role='alert'>La salle a été ajoutée avec succès</div>";
+  }
+  catch (Exception $e) {
+    echo "<div class='alert alert-danger' role='alert'>
+    Erreur lors de l'ajout de la salle<br>
+    Message d'erreur : " . $e->getMessage() . "
+    </div>";
+  }
 }
 
 ?>
 <form action="<?php echo PAGE_AJOUTER2_SALLE_PATH; ?>" method="post">
   <?php
-  echo "<input id='nomSalle' name='nomSalle'  type='text' class='form-salle' type='hidden' value='echo $nomSalle;'>";
-  echo "<input id='salleVoisine' name='salleVoisine'  type='text' class='form-salle' type='hidden' value=' echo $salleVoisine;'>";
-  echo "<input id='nbrLigne' name='nbrLigne'  type='text' class='form-salle' type='hidden' value='echo $nbrLigne;'>";
-  echo "<input id='nbrColonne' name='nbrColonne'  type='text' class='form-salle' type='hidden' value='echo $nbrColonne;'>";
+  echo "<input id='nomSalle' name='nomSalle' class='form-salle' type='hidden' value='$nomSalle'>";
+  echo "<input id='salleVoisine' name='salleVoisine' class='form-salle' type='hidden' value='$nomSalleVoisine'>";
+  echo "<input id='nbrLigne' name='nbrLigne' class='form-salle' type='hidden' value='$nbrLigne'>";
+  echo "<input id='nbrColonne' name='nbrColonne' class='form-salle' type='hidden' value='$nbrColonne'>";
   ?>
-  <table border="1">
+  <table class="table table-striped table-bordered">
     <?php for ($i = 0; $i < $nbrLigne; $i++) { ?>
       <tr>
         <?php for ($j = 0; $j < $nbrColonne; $j++) { ?>
@@ -74,6 +102,7 @@ if (isset($_POST["cell-0-0"])) {
     <?php } ?>
   </table>
   <h6>Légende : </h6>
-  <p>T : Tableau E : Place avec prise<br></p>
-  <input type="submit" value="Créer">
+  <p>T : Tableau <br>E : Place avec prise<br></p>
+
+  <input type="submit" class="btn btn-primary" value="Créer"></button>
 </form>
