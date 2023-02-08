@@ -168,7 +168,7 @@
                     $action = $_GET['action'];
                     switch ($action) {
                         case "modifier":
-                            require(BACK_PATH . "Salles/planSalle.php");
+                            require(BACK_PATH . "Salles/modifierSalle.php");
                             break;
                         case "ajouter":
                             require(BACK_PATH . "Salles/ajouterSalle.php");

@@ -107,7 +107,7 @@
                         print("
                         
                             <form method=\"post\" action=" . PAGE_MODIFIER_SALLE_PATH . ">
-                                <input type=\"hidden\" name=\"=nomSalle\" value=\"$nomSalle\">
+                                <input type=\"hidden\" name=\"nomSalle\" value=\"$nomSalle\">
                                 <button type=\"submit\" class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Modifier\">
                                     <i class=\"fas fa-edit\"></i>
                                 </button>

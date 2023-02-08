@@ -8,14 +8,11 @@
   include_once(FONCTION_CREER_LISTE_SALLES_PATH);
   // Récupérer les données saisies dans le formulaire précédent
   $nomSalle = $_POST["nomSalle"];
-  $nomSalleVoisine = $_POST["salleVoisine"];
-  $nbrLigne = $_POST["nbrLigne"];
-  $nbrColonne = $_POST["nbrColonne"];
   //Traitement
   if (isset($_POST["cell-0-0"])) {
-    
+    $uneSalle = creerListeSalles()[$nomSalle]; // Création de la salle
+    $unPlan = $uneSalle->getMonPlan(); // Créer un plan de salle
 
-    $unPlan = new Plan(); // Créer un plan de salle
     for ($indiceLigne = 0; $indiceLigne < $nbrLigne; $indiceLigne++) {
       for ($indiceColonne = 0; $indiceColonne < $nbrColonne; $indiceColonne++) {
         $uneZone = new Zone(); // Créer une zone
@@ -64,7 +61,7 @@
     }
 
     try {
-      ajouterSalle($uneSalle);
+      modifierSalle($uneSalle);
 
       // Message de succès
       echo "<div class='alert alert-success' role='alert'>La salle a été ajoutée avec succès</div>";
@@ -79,16 +76,40 @@
   ?>
   <form action="<?php echo PAGE_AJOUTER2_SALLE_PATH; ?>" method="post">
     <?php
+    $uneSalle = creerListeSalles()[$nomSalle];
+    $unPlan = $uneSalle->getMonPlan();
+    $mesZones = $unPlan->getMesZones();
     echo "<input id='nomSalle' name='nomSalle' class='form-salle' type='hidden' value='$nomSalle'>";
-    echo "<input id='salleVoisine' name='salleVoisine' class='form-salle' type='hidden' value='$nomSalleVoisine'>";
-    echo "<input id='nbrLigne' name='nbrLigne' class='form-salle' type='hidden' value='$nbrLigne'>";
-    echo "<input id='nbrColonne' name='nbrColonne' class='form-salle' type='hidden' value='$nbrColonne'>";
     ?>
     <table class="table table-striped table-bordered">
-      <?php for ($i = 0; $i < $nbrLigne; $i++) { ?>
+      <?php for ($i = 0; $i < count($mesZones); $i++) { ?>
         <tr>
-          <?php for ($j = 0; $j < $nbrColonne; $j++) { ?>
-            <td><input type="text" name="<?php echo 'cell-' . $i . '-' . $j; ?>"></td>
+          <?php
+          for ($j = 0; $j < count($mesZones[$i]); $j++) {
+            $uneZone = $mesZones[$i][$j];
+            switch($uneZone->getType()){
+                case "tableau":
+                    $infoZone = "T";
+                    break;
+                case "place":
+                    $infoZone = $uneZone->getNumero();	
+                    if($uneZone->getInfoPrise()){
+                        $infoZone .= "E";
+                    }
+                    
+                    break;
+                default:
+                    $infoZone = "";
+                    break;
+                
+            }
+            
+            ?>
+
+            <td class="text-center">
+                <input type="text" style="width:50px;" name="<?php echo 'cell-' . $i . '-' . $j; ?>"
+                        value="<?php echo $infoZone;?>">
+            </td>
           <?php } ?>
         </tr>
       <?php } ?>
@@ -96,6 +117,6 @@
     <h6>Légende : </h6>
     <p>T : Tableau <br>E : Place avec prise<br></p>
 
-    <input type="submit" class="btn btn-primary" value="Créer"></button>
+    <input type="submit" class="btn btn-primary" value="Modifier"></button>
   </form>
 </div>
