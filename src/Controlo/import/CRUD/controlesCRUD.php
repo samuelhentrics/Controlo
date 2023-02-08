@@ -51,7 +51,7 @@ function supprimerControle($idControle)
     return $suppressionOk;
 }
 
-function ajouterControle ($nomLong)
+function ajouterControle ($nouveauControle)
 {
 
     // On initialise un booléen en cas d'erreur
@@ -157,56 +157,23 @@ function saisirLigneControle($infoControle, $unControle)
         // Variables
         $nomLongControle = $unControle->getNomLong();
         $nomCourtControle = $unControle->getNomCourt();
-        $dateControle = $unControle->getDate();
         $dureeControle = $unControle->getDuree();
+        $dateControle = $unControle->getDate();
         $heureNonTTControle = $unControle->getHeureNonTT();
         $heureTTControle = $unControle->getHeureTT();
 
         // Créer les données à écrire dans le fichier CSV
-        $infoEtudiant[NOM_NOM_COLONNE_ETUDIANT] = $nomEtudiant;
-        $infoEtudiant[PRENOM_NOM_COLONNE_ETUDIANT] = $prenomEtudiant;
+        $infoControle[NOM_LONG_NOM_COLONNE_CONTROLE] = $nomLongControle;
+        $infoControle[NOM_COURT_NOM_COLONNE_CONTROLE] = $nomCourtControle;
+        $infoControle[DUREE_NOM_COLONNE_CONTROLE] = $dureeControle;
+        $infoControle[DATE_NOM_COLONNE_CONTROLE] = $dateControle;
+        $infoControle[HEURE_NOM_COLONNE_CONTROLE] = $heureNonTTControle;
+        $infoControle[HEURE_TT_NOM_COLONNE_CONTROLE] = $heureTTControle;
 
-        // Vérifier que le numéro de TD est un entier
-        if (!is_numeric($tdEtudiant)) {
-            throw new Exception("Le numéro de TD de l'étudiant n'est pas un entier");
-        }
-        $infoEtudiant[TD_NOM_COLONNE_ETUDIANT] = $tdEtudiant;
-
-        // Vérifier que le numéro de TP est un entier
-        if (!is_numeric($tpEtudiant)) {
-            throw new Exception("Le numéro de TP de l'étudiant n'est pas un entier");
-        }
-        $infoEtudiant[TP_NOM_COLONNE_ETUDIANT] = $tpEtudiant;
-
-        // Vérifier que le mail est valide
-        if (!filter_var($emailEtudiant, FILTER_VALIDATE_EMAIL)) {
-            throw new Exception("Le mail de l'étudiant n'est pas valide");
-        }
-
-        $infoEtudiant[MAIL_NOM_COLONNE_ETUDIANT] = $emailEtudiant;
-
-        $infoEtudiant[STATUTS_NOM_COLONNE_ETUDIANT] = null;
-        if ($tiersTempsEtudiant) {
-            $infoEtudiant[STATUTS_NOM_COLONNE_ETUDIANT] .= "Tiers temps";
-        }
-
-        if ($ordinateurEtudiant) {
-            if ($infoEtudiant[STATUTS_NOM_COLONNE_ETUDIANT] != null) {
-                $infoEtudiant[STATUTS_NOM_COLONNE_ETUDIANT] .= ", ";
-            }
-            $infoEtudiant[STATUTS_NOM_COLONNE_ETUDIANT] .= "Ordinateur";
-        }
-
-        if ($demissionnaireEtudiant) {
-            if ($infoEtudiant[STATUTS_NOM_COLONNE_ETUDIANT] != null) {
-                $infoEtudiant[STATUTS_NOM_COLONNE_ETUDIANT] .= ", ";
-            }
-            $infoEtudiant[STATUTS_NOM_COLONNE_ETUDIANT] .= "Démissionnaire";
-        }
     } catch (Exception $e) {
         throw $e;
     }
-    return $infoEtudiant;
+    return $infoControle;
 }
 
 ?>

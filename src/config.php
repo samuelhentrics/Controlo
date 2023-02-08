@@ -554,7 +554,7 @@ define("FONCTION_CRUD_CONTROLES_FILE_NAME" , "controlesCRUD.php");
  * @brief Lien complet (sans l'adresse du serveur) où se trouve les fonctions CRUD des contrôles
  * @note ex : Controlo/import/crud/controlesCRUD.php
  */
-define("FONCTION_CRUD_CONTROLES_PATH" , CRUD_PATH.FONCTION_CRUD_CONTROLES_FILE_NAME);
+define("FONCTION_CRUD_CONTROLE_PATH" , CRUD_PATH.FONCTION_CRUD_CONTROLES_FILE_NAME);
 
 /** 
  * @brief Nom du fichier où se trouve les fonctions CRUD des étudiants
