@@ -3,6 +3,45 @@
   <div class="col-6 m-auto text-center">
     <h2>Ajouter un contrôle</h2>
     <br>
+
+    <?php
+
+            if (isset($_POST["promotion"]) && isset($_POST["controleNomLong"]) && isset($_POST["controleNomCourt"]) && isset($_POST["dateDebutControle"]) && isset($_POST["dureeTotale"]) && isset($_POST["heureNonTT"]) && isset($_POST["heureTT"])) {
+                include_once(FONCTION_CRUD_CONTROLE_PATH);
+                include_once(CLASS_PATH . CLASS_CONTROLE_FILE_NAME);
+    
+                $nomPromotion = $_POST["promotion"];
+                $nomLong= $_POST['controleNomLong'];
+                $nomCourt = $_POST['controleNomCourt'];
+                $dureeNonTT= $_POST['dureeTotale'];
+                $dateControle = $_POST['dateDebutControle'];
+                // Transformer la date en DD/MM/YYYY si la date est au format YYYY-MM-DD
+                if (preg_match("#[0-9]{4}-[0-9]{2}-[0-9]{2}#", $dateControle)) {
+                    $dateControle = date("d/m/Y", strtotime($dateControle));
+                }
+
+                $heureNonTT = $_POST['heureNonTT'];
+                $heureTT = $_POST['heureTT'];
+    
+                try {
+                    $nouveauControle = new Controle($nomLong, $nomCourt, $dureeNonTT, $dateControle, $heureNonTT, $heureTT);
+
+                    $listeNomPromotion = explode(",", $nomPromotion);
+                    foreach($listeNomPromotion as $key => $nomPromo)
+                    {
+                        $unePromotion = creerUnePromotion($nomPromo);
+                        $nouveauControle->ajouterPromotion($unePromotion);
+                    }
+
+                    ajouterControle($nouveauControle);
+                    echo "<div class='alert alert-success' role='alert'>Le contrôle a bien été ajouté.</div>";
+                } catch (Exception $e) {
+                    echo "<div class='alert alert-danger' role='alert'>
+                    Le contrôle n'a pas été ajouté : " . $e->getMessage() . "</div>";
+                }
+            }
+            
+            ?>
         <form action="<?php echo PAGE_AJOUTER_CONTROLE_PATH ?>" method="POST">
         <div class="form-group row">
                 <label for="nom" class="col-4 col-form-label">Promotion</label>
@@ -58,7 +97,6 @@
                         <div>
                             <input id="enseignant" name="enseignant" placeholder="Ex : Dupont" type="text" class="form-control" disabled>
                         </div>
-                        <!-- <input id="controleNomLong" name="controleNomLong" placeholder="ex: Cordova,Futrell" type="text" class="form-control" required="required"> -->
                 </div>
             </div>
             <div class="form-group row">
@@ -67,7 +105,6 @@
                         <div>
                             <input id="surveillant" name="surveillant" placeholder="Ex : Dupont, Lamarque" type="text" class="form-control" disabled>
                         </div>
-                        <!-- <input id="controleNomLong" name="controleNomLong" placeholder="ex: Cordova,Futrell" type="text" class="form-control" required="required"> -->
                 </div>
             </div>
 
@@ -98,39 +135,6 @@
                     <button name="submit" type="submit" class="btn btn-primary">Ajouter</button>
                 </div>
             </div>
-
-            <?php
-
-            if (isset($_POST["promotion"]) && isset($_POST["controleNomLong"]) && isset($_POST["controleNomCourt"]) && isset($_POST["dateDebutControle"]) && isset($_POST["dureeTotale"]) && isset($_POST["heureNonTT"]) && isset($_POST["heureTT"])) {
-                include_once(FONCTION_CRUD_CONTROLE_PATH);
-                include_once(CLASS_PATH . CLASS_CONTROLE_FILE_NAME);
-    
-                $nomPromotion = $_POST['promotion'];
-                $nomLong= $_POST['controleNomLong'];
-                $nomCourt = $_POST['controleNomCourt'];
-                $dureeNonTT= $_POST['dureeTotale'];
-                $dateControle = $_POST['dateDebutControle'];
-                $heureNonTT = $_POST['heureNonTT'];
-                $heureTT = $_POST['heureTT'];
-    
-                try {
-                    $nouveauControle = new Controle($nomLong, $nomCourt, $dureeNonTT, $dateControle, $heureNonTT, $heureTT);
-                    $listeNomPromotion = explode(",", $nomPromotion);
-                    foreach($listeNomPromotion as $key => $nomPromo)
-                    {
-                        $unePromotion = creerUnePromotion($nomPromo);
-                        $nouveauControle->ajouterPromotion($unePromotion);
-                    }
-                    $nouveauControle = new Controle($nomLong, $nomCourt, $dureeNonTT, $dateControle, $heureNonTT, $heureTT);
-                    ajouterControle($nouveauControle);
-                    echo "<div class='alert alert-success' role='alert'>Le contrôle a bien été ajouté.</div>";
-                } catch (Exception $e) {
-                    echo "<div class='alert alert-danger' role='alert'>
-                    Le contrôle n'a pas été ajouté : " . $e->getMessage() . "</div>";
-                }
-            }
-            
-            ?>
         </form>
     </div>
     <div class="col-3"></div>

@@ -21,6 +21,11 @@ if (isset($_POST["idControle"])) {
     $nomCourt = $_POST['controleNomCourt'];
     $dureeNonTT= $_POST['dureeTotale'];
     $dateControle = $_POST['dateDebutControle'];
+    // Transformer la date au format DD/MM/YYYY si elle est au format YYYY-MM-DD
+    if (preg_match("#[0-9]{4}-[0-9]{2}-[0-9]{2}#", $dateControle)) {
+        $dateControle = date("d/m/Y", strtotime($dateControle));
+    }
+
     $heureNonTT = $_POST['heureNonTT'];
     $heureTT = $_POST['heureTT'];
     try {
@@ -35,8 +40,7 @@ if (isset($_POST["idControle"])) {
         
     }
 
-}else
-    var_dump($_POST);
+}
 
     ?>
 
@@ -45,7 +49,7 @@ if (isset($_POST["idControle"])) {
         <form action="<?php echo PAGE_MODIFIER_CONTROLE_PATH; ?>" method="POST">
             <div class="form-group row">
                 <input type="hidden" name="idControle" value="<?php echo $id; ?>">
-                <label for="nom" class="col-4 col-form-label"><?php  ?></label>
+                <label for="nom" class="col-4 col-form-label">Nom long*</label>
                 <div class="col-8">
                     <div class="input-group">
                         <input id="controleNomLong" value="<?php echo $unControle->getNomLong();  ?>"  name="controleNomLong" placeholder="Ex: R2.01 - Développement orienté objets - Programmation" type="text" class="form-control" required="required">
@@ -53,7 +57,7 @@ if (isset($_POST["idControle"])) {
                 </div>
             </div>
             <div class="form-group row">
-                <label for="controleNomCourt" class="col-4 col-form-label">Nom Court *</label>
+                <label for="controleNomCourt" class="col-4 col-form-label">Nom Court*</label>
                 <div class="col-8">
                     <div class="input-group">
                         <input id="controleNomCourt" value="<?php echo $unControle->getNomCourt();  ?>" name="controleNomCourt" placeholder="Ex: R2.01 - Dév. objets - Programmation" type="text" class="form-control" required="required">
@@ -85,7 +89,7 @@ if (isset($_POST["idControle"])) {
                 </div>
             </div>
             <div class="form-group row">
-                <label for="nom" class="col-4 col-form-label">Enseignant</label>
+                <label for="nom" class="col-4 col-form-label">Enseignant référent</label>
                 <div class="col-8">
                         <div>
                             <input id="enseignant" name="enseignant" placeholder="Dupont" type="text" class="form-control" disabled>
@@ -94,10 +98,10 @@ if (isset($_POST["idControle"])) {
                 </div>
             </div>
             <div class="form-group row">
-                <label for="nom" class="col-4 col-form-label">Surveillant</label>
+                <label for="nom" class="col-4 col-form-label">Surveillant(s)</label>
                 <div class="col-8">
                         <div>
-                            <input id="surveillant" name="surveillant" placeholder="Dupont" type="text" class="form-control" disabled>
+                            <input id="surveillant" name="surveillant" placeholder="Dupont, Lamarque" type="text" class="form-control" disabled>
                         </div>
                         <!-- <input id="controleNomLong" name="controleNomLong" placeholder="ex: Cordova,Futrell" type="text" class="form-control" required="required"> -->
                 </div>
@@ -107,7 +111,7 @@ if (isset($_POST["idControle"])) {
             <div class="form-group row">
             <label for="choixSalle" class="col-4 col-form-label">Salles</label> 
                 <div class="col-8">
-                <input id="choixSalle" name="choixSalle" placeholder="Ex : S124" class="form-control">
+                <input id="choixSalle" name="choixSalle" placeholder="Ex : S124, S125" class="form-control">
                     <?php
                 //ajouter la liste de salles
 

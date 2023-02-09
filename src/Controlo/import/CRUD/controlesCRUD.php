@@ -176,7 +176,6 @@ function saisirLigneControle($infoControle, $unControle)
     return $infoControle;
 }
 function modifierControle($id, $nouveauControle) {
-    echo $id;
     // On initialise un booléen en cas d'erreur
     $modificationOk = false;
 
