@@ -86,6 +86,10 @@ function modifierEtudiant($nouvelEtudiant, $nomPromotion)
         // Ouvrir le fichier en mode modification
         $monFichier = fopen($lienFichier, "r+");
 
+        if (!$monFichier) {
+            throw new Exception("Impossible d'ouvrir le fichier CSV. Il semble être ouvert par un autre programme.");
+        }
+
         $data = array();
         $i = 0;
         // Aller sur la ligne de l'étudiant à modifier

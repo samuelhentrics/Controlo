@@ -390,7 +390,7 @@ class Controle
         if ($this->duree == null)
             return null;
         else
-            return ($this->duree) * 3 / 4;
+            return round(($this->duree) * 3 / 4);
     }
 
     /**

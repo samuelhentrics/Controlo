@@ -45,6 +45,12 @@ if (isset($_POST["idControle"])) {
 }
 $unControle = recupererUnControle($id);
 
+$nomsPromos="";
+                         foreach($unControle->getMesPromotions() as $keys => $unePromotion) {
+                            $nomsPromos.= $unePromotion->getNom(). ",";
+                        }
+                        $nomsPromos=substr($nomsPromos, 0, -1);
+
     ?>
 
 
@@ -57,14 +63,8 @@ $unControle = recupererUnControle($id);
                     <!-- <?php var_dump($unControle);?> -->
                         <input id="promotion" name="promotion" placeholder="ex: Info semestre 1" value="<?php 
                         //  print_r($unControle->getMesPromotions());
-                        $txt="";
-                         foreach($unControle->getMesPromotions() as $keys => $unePromotion) {
-                            $txt.= $unePromotion->getNom(). ",";
-    
-
-                         }
-                        $txt=substr($txt, 0, -1);
-                        echo $txt;
+                        
+                        echo $nomsPromos;
                         ?>" type="text" class="form-control" required="">
                     </div>
                 </div>
