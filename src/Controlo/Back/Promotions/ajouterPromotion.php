@@ -1,10 +1,19 @@
 <div class="container">
     <div class="col-3"></div>
     <div class="col-6 m-auto text-center">
-        <h2>Ajouter une promotion</h2>
         <?php
         include_once(FONCTION_CRUD_PROMOTIONS_PATH);
         include_once(CLASS_PATH . CLASS_PROMOTION_FILE_NAME);
+
+        echo '
+        <h2>
+            <form action="'.PAGE_PROMOTIONS_PATH.'" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
+            </form>
+            Ajouter une promotion
+        </h2><br>';
 
         // Vérifier si le formulaire a été envoyé
         if (isset($_POST['nomGeneration']) && isset($_POST['nomFormation'])) {

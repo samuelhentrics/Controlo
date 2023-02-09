@@ -4,6 +4,18 @@ include_once(CLASS_PATH . CLASS_ENSEIGNANT_FILE_NAME);
 ?>
 
 <?php
+
+echo '
+        <h2>
+            <form action="'.PAGE_ENSEIGNANTS_PATH.'" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
+            </form>
+            Supprimer un enseignant
+        </h2><br>';
+        
+
 if (isset($_POST["idEnseignant"])) {
     $idEnseignant = $_POST["idEnseignant"];
     try {

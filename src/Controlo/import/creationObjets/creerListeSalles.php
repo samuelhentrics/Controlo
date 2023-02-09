@@ -101,6 +101,59 @@ function creerListeSalles()
     }
 }
 
+function creerUneSalle($nomSalle){
+    try {
+        $monFichier = fopen(CHEMIN_LISTE_SALLES, "r");
+
+        // Récupérer les données du CSV dans un tableau
+
+        if (!($monFichier)) {
+            throw new Exception("Impossible d'ouvrir le fichier");
+        }
+        
+            $ligneSalle = array();
+            $i = 0;
+
+            // On enleve l'entete
+            fgetcsv($monFichier, null, ";");
+
+
+            $trouve = false;
+            // Lecture du reste du CSV
+            while ($data = fgetcsv($monFichier, null, ";")) {
+                if($data[0] == $nomSalle){
+                    $ligneSalle[0] = $data[0];
+                    $ligneSalle[1] = $data[1];
+                    $trouve = true;
+                    break;
+                }
+                $i++;
+            }
+
+        fclose($monFichier);
+
+        if(!$trouve){
+            throw new Exception("La salle n'existe pas");
+        }
+
+        // Création de l'objet Salle
+        $uneSalle = new Salle($nomSalle);
+
+        // Création de la relation Plan-Salle si le plan existe
+        $nomSalleVoisine = $ligneSalle[1];
+        if($nomSalleVoisine != null){
+            $listeSalles = creerListeSalles();
+            $salleVoisine = $listeSalles[$nomSalleVoisine];
+            $uneSalle->lierVoisin($salleVoisine);
+        }
+
+        return $uneSalle;
+    }
+    catch (Exception $e) {
+        return null;
+    }
+}
+
 
 /**
  * @brief Fonction mettant en relation une Salle avec son Plan s'il existe

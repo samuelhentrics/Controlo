@@ -5,6 +5,16 @@
         include_once(FONCTION_CRUD_PROMOTIONS_PATH);
         include_once(CLASS_PATH . CLASS_PROMOTION_FILE_NAME);
 
+        echo '
+        <h2>
+            <form action="'.PAGE_PROMOTIONS_PATH.'" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
+            </form>
+            Importer une promotion
+        </h2><br>';
+
         try {
             if (isset($_FILES['fichierPromotion'])) {
 
@@ -81,11 +91,6 @@
                 $e->getMessage() . '</div>';
         }
         ?>
-
-
-
-
-        <h2>Importer une promotion</h2>
         <form action="<?php echo PAGE_IMPORTER_PROMOTION_PATH ?>" method="POST" enctype="multipart/form-data">
             <div class="form-group row">
                 <label for="nom" class="col-4 col-form-label">Nom de promotion pour génération</label>

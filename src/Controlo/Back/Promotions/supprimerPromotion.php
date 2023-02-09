@@ -1,6 +1,16 @@
 <?php
 include_once(FONCTION_CRUD_PROMOTIONS_PATH);
 
+echo '
+        <h2>
+            <form action="'.PAGE_PROMOTIONS_PATH.'" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
+            </form>
+            Supprimer une promotion
+        </h2><br>';
+
 if (isset($_POST["nomPromotion"])){
     $nomPromotion = $_POST["nomPromotion"];
     try{

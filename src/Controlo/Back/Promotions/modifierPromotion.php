@@ -1,11 +1,19 @@
 <div class="container">
   <div class="col-3"></div>
   <div class="col-6 m-auto text-center">
-    <h2>Modifier une promotion</h2>
-
     <?php
     include_once(FONCTION_CREER_LISTE_PROMOTIONS_PATH);
     include_once(CRUD_PATH . FONCTION_CRUD_PROMOTIONS_FILE_NAME);
+
+    echo '
+        <h2>
+            <form action="'.PAGE_PROMOTIONS_PATH.'" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
+            </form>
+            Modifier une promotion
+        </h2><br>';
 
     if (isset($_POST["nomPromotion"])) {
         $nomPromotion = $_POST["nomPromotion"];

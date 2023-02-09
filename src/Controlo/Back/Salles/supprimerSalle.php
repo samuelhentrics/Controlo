@@ -3,6 +3,17 @@ include_once(FONCTION_CRUD_SALLES_PATH);
 ?>
 
 <?php
+
+echo '
+        <h2>
+            <form action="' . PAGE_SALLES_PATH . '" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
+            </form>
+            Supprimer une salle
+        </h2><br>';
+
 if (isset($_POST["nomSalle"])) {
     $nomSalle = $_POST["nomSalle"];
     try {

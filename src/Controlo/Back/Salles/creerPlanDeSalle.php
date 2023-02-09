@@ -1,11 +1,20 @@
 <div class="container">
-  <h2>Création du plan de la salle
-    <?php print($_POST["nomSalle"]); ?>
-  </h2>
   <?php
   include_once(CLASS_PATH . CLASS_SALLE_FILE_NAME);
   include_once(FONCTION_CRUD_SALLES_PATH);
   include_once(FONCTION_CREER_LISTE_SALLES_PATH);
+
+  echo '
+  <h2>
+      <form action="' . PAGE_AJOUTER_SALLE_PATH . '" method="post" style="display:inline;">
+              <button type="submit" class="btn btn-primary">
+                  <i class="fas fa-arrow-left"></i> Retour
+              </button>
+      </form>
+      Création du plan de la salle
+  </h2><br>';
+
+
   // Récupérer les données saisies dans le formulaire précédent
   $nomSalle = $_POST["nomSalle"];
   $nomSalleVoisine = $_POST["salleVoisine"];

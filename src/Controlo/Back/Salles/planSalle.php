@@ -13,7 +13,17 @@
             $nomSalle = $_POST["nomSalle"];
 
             echo '
-            <h2>Plan de la salle '. $nomSalle .'</h2>
+            <h2>
+                <form action="' . PAGE_SALLES_PATH . '" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-arrow-left"></i> Retour
+                        </button>
+                </form>
+                Plan de la salle ' . $nomSalle . '
+            </h2><br>';
+
+
+            echo '
             <table class="table table-striped table-bordered">';
 
                 

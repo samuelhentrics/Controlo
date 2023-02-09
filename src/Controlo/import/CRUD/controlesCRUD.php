@@ -170,6 +170,13 @@ function saisirLigneControle($infoControle, $unControle)
         }
         $nomsPromos = substr($nomsPromos, 0, -2);
 
+        $lesSalles = $unControle->getMesSalles();
+        $nomsSalles = "";
+
+        foreach($lesSalles as $unNomSalle){
+            $nomsSalles.= $unNomSalle->getNom() . ", ";
+        }
+        $nomsSalles = substr($nomsSalles, 0, -2);
 
         // Créer les données à écrire dans le fichier CSV
         $infoControle[PROMOTION_NOM_COLONNE_CONTROLE] = $nomsPromos;
@@ -179,6 +186,7 @@ function saisirLigneControle($infoControle, $unControle)
         $infoControle[DATE_NOM_COLONNE_CONTROLE] = $dateControle;
         $infoControle[HEURE_NOM_COLONNE_CONTROLE] = $heureNonTTControle;
         $infoControle[HEURE_TT_NOM_COLONNE_CONTROLE] = $heureTTControle;
+        $infoControle[SALLES_NOM_COLONNE_CONTROLE] = $nomsSalles;
 
     } catch (Exception $e) {
         throw $e;

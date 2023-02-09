@@ -3,6 +3,17 @@ include_once(FONCTION_CRUD_CONTROLE_PATH);
 ?>
 
 <?php
+
+echo '
+        <h2>
+            <form action="'.PAGE_CONTROLES_PATH.'" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
+            </form>
+            Supprimer un contrôle
+        </h2><br>';
+
 if (isset($_POST["idControle"])) {
     $controleId = $_POST["idControle"];
     try {

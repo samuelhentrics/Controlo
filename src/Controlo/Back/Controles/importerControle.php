@@ -4,6 +4,8 @@
         <?php
         include_once(FONCTION_CRUD_CONTROLE_PATH);
 
+
+
         try {
             if (isset($_FILES['fichierControles'])) {
 
@@ -36,8 +38,17 @@
             }
         ?>
 
-        <h2>Importer une nouvelle liste de contrôles</h2>
         <?php
+        echo '
+        <h2>
+            <form action="'.PAGE_CONTROLES_PATH.'" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
+            </form>
+            Importer une liste de contrôles
+        </h2>';
+
         echo "<div class='alert alert-warning' role='alert'>";
         echo "Attention!<br>En important une nouvelle liste de contrôles, vous effacez l'ancien fichier.<br>";
         echo "</div>";?>

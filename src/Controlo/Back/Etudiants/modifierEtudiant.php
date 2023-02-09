@@ -1,10 +1,18 @@
 <div class="container">
     <div class="col-3"></div>
     <div class="col-6 m-auto text-center">
-        <h2>Modifier un étudiant</h2>
-
-        <?php
+        <?php 
         include_once(FONCTION_CREER_LISTE_PROMOTIONS_PATH);
+
+        echo '
+        <h2>
+            <form action="'.PAGE_ETUDIANTS_PATH.'" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
+            </form>
+            Modifier un étudiant
+        </h2><br>';
 
         if (isset($_POST["idEtudiant"]) && isset($_POST["nomPromotion"])) {
             $idEtudiant = $_POST["idEtudiant"];

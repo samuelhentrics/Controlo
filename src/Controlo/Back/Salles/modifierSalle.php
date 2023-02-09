@@ -1,9 +1,5 @@
 <div class="container">
 
-  <h2> Modifier la Salle
-    <?php print($_POST["nomSalle"]); ?>
-  </h2>
-
   <?php
 
   include_once(CLASS_PATH . CLASS_SALLE_FILE_NAME);
@@ -12,7 +8,19 @@
 
   // Récupérer les données saisies dans le formulaire précédent
   $nomSalle = $_POST["nomSalle"];
+
+  echo '
+        <h2>
+            <form action="' . PAGE_SALLES_PATH . '" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
+            </form>
+            Modifier la salle '.$nomSalle.'
+        </h2><br>';
+
   $uneSalle = creerListeSalles()[$nomSalle];
+
 
   //Traitement
   if (isset($_POST["nomVoisinSalle"])) {

@@ -4,6 +4,16 @@
         <?php
         include_once(FONCTION_CRUD_SALLES_PATH);
 
+        echo '
+        <h2>
+            <form action="' . PAGE_SALLES_PATH . '" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
+            </form>
+            Importer une salle
+        </h2><br>';
+
         try {
             if (isset($_FILES['fichierSalle'])) {
 
@@ -72,10 +82,6 @@
             }
         ?>
 
-
-
-
-        <h2>Importer une salle</h2>
         <form action="<?php echo PAGE_IMPORTER_SALLE_PATH ?>" method="POST" enctype="multipart/form-data">
             <div class="form-group row">
                 <label for="nom" class="col-4 col-form-label">Nom de la salle *</label>

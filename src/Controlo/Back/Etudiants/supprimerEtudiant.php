@@ -4,6 +4,17 @@ include_once(FONCTION_CREER_LISTE_PROMOTIONS_PATH);
 ?>
 
 <?php
+echo '
+<h2>
+    <form action="'.PAGE_ETUDIANTS_PATH.'" method="post" style="display:inline;">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+    </form>
+    Supprimer un étudiant
+</h2><br>';
+
+
 if (isset($_POST["idEtudiant"]) && isset($_POST["nomPromotion"])) {
     $etudiantId = $_POST["idEtudiant"];
     $nomPromotion = $_POST["nomPromotion"];

@@ -1,9 +1,19 @@
 <div class="container">
     <div class="col-3"></div>
     <div class="col-6 m-auto text-center">
-        <h2>Ajouter un enseignant</h2>
 
         <?php
+
+        echo '
+        <h2>
+            <form action="'.PAGE_ENSEIGNANTS_PATH.'" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
+            </form>
+            Ajouter un enseignant
+        </h2><br>';
+
         if (isset($_POST['submit'])) {
             include_once(FONCTION_CRUD_ENSEIGNANTS_PATH);
             include_once(CLASS_PATH . CLASS_ENSEIGNANT_FILE_NAME);

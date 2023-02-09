@@ -7,6 +7,17 @@ if(isset($_POST["idControle"])){
     include(FONCTION_CREER_LISTE_CONTROLES_PATH);
 
     $idControle = $_POST["idControle"];
+    echo '
+    <h2>
+        <form action="'.PAGE_PANEL_CONTROLE_PATH.'" method="post" style="display:inline;">
+                <input type="hidden" name="idControle" value="' . $idControle . '">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-arrow-left"></i> Retour
+                </button>
+        </form>
+        Télécharger les plans de placement
+    </h2>';
+
     $unControle = recupererUnControle($idControle);
     $controleNom = $unControle->getNomLong();
 

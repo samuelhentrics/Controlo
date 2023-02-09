@@ -2,11 +2,19 @@
 
   <div class="col-3"></div>
   <div class="col-6 m-auto text-center">
-    <h2>Ajouter un étudiant</h2>
-    <br>
-    <?php
+  <?php
     include_once(FONCTION_CRUD_ETUDIANTS_PATH);
     include_once(CLASS_PATH . CLASS_ETUDIANT_FILE_NAME);
+
+    echo '
+        <h2>
+            <form action="'.PAGE_ETUDIANTS_PATH.'" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-arrow-left"></i> Retour
+                    </button>
+            </form>
+            Ajouter un étudiant
+        </h2><br>';
 
     // Vérifier si le formulaire a été envoyé
     if (isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["nomPromotion"]) && isset($_POST["td"]) && isset($_POST["tp"]) && isset($_POST["mail"])) {
