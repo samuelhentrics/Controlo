@@ -75,6 +75,16 @@
 
                 ajouterControle($nouveauControle);
 
+                // Repreparer à une nouvelle saisie
+                $nomsPromos = null;
+                $nomsSalles = null;
+                $nomLong = null;
+                $nomCourt = null;
+                $dureeTotale = null;
+                $heureNonTT = null;
+                $heureTT = null;
+                $dateControle = null;
+
                 echo "<div class='alert alert-success' role='alert'>Le contrôle a bien été ajouté.</div>";
             } catch (Exception $e) {
                 echo "<div class='alert alert-danger' role='alert'>

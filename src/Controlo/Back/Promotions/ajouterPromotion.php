@@ -15,6 +15,9 @@
             Ajouter une promotion
         </h2><br>';
 
+        $nomPromotion = null;
+        $nomPromotionAffichage = null;
+
         // Vérifier si le formulaire a été envoyé
         if (isset($_POST['nomGeneration']) && isset($_POST['nomFormation'])) {
         // Récupérer les données du formulaire
@@ -75,7 +78,8 @@
                 <label for="nom" class="col-4 col-form-label">Nom de promotion pour génération *</label>
                 <div class="col-8">
                     <div class="input-group">
-                        <input id="controleNomLong" name="nomGeneration" placeholder="Ex : Info semestre 1" type="text" class="form-control" required="required">
+                        <input id="controleNomLong" name="nomGeneration" placeholder="Ex : Info semestre 1" type="text" class="form-control" required="required"
+                        value="<?php echo $nomPromotion; ?>">
                     </div>
                 </div>
             </div>
@@ -83,7 +87,8 @@
                 <label for="controleNomCourt" class="col-4 col-form-label">Nom de promotion pour affichage</label>
                 <div class="col-8">
                     <div class="input-group">
-                        <input id="controleNomCourt" name="nomFormation" placeholder="Ex: BUT Informatique S1" type="text" class="form-control">
+                        <input id="controleNomCourt" name="nomFormation" placeholder="Ex: BUT Informatique S1" type="text" class="form-control"
+                        value="<?php echo $nomPromotion; ?>">
                     </div>
                 </div>
             </div>

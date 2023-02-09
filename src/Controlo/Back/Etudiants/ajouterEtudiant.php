@@ -98,7 +98,7 @@
       <div class="form-group row">
         <label for="promo" class="col-4 col-form-label">Promotion *</label>
         <div class="col-8">
-          <select id="nomPromotion" name="nomPromotion" class="custom-select" required="required">
+          <select id="nomPromotion" name="nomPromotion" class="custom-select form-control" required="required">
             <?php
             include_once(FONCTION_CREER_LISTE_PROMOTIONS_PATH);
 

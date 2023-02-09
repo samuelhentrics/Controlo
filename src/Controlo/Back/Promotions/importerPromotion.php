@@ -16,6 +16,8 @@
         </h2><br>';
 
         try {
+            $nomGeneration = null;
+            $nomFormation = null;
             if (isset($_FILES['fichierPromotion'])) {
 
                 // Récupération du nom de la promotion pour génération et pour l'affichage
@@ -97,7 +99,8 @@
                 <div class="col-8">
                     <div class="input-group">
                         <input id="controleNomLong" name="nomGeneration" placeholder="Ex : Info semestre 1" type="text"
-                            class="form-control">
+                            class="form-control"
+                            value="<?php echo $nomGeneration; ?>">
                     </div>
                 </div>
             </div>
@@ -106,7 +109,9 @@
                 <div class="col-8">
                     <div class="input-group">
                         <input id="controleNomCourt" name="nomFormation" placeholder="Ex: BUT Informatique S1"
-                            type="text" class="form-control">
+                            type="text" class="form-control"
+                            value="<?php echo $nomFormation; ?>"
+                            >
                     </div>
                 </div>
             </div>
