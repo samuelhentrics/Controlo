@@ -30,7 +30,7 @@ function creerListeControles()
     // Créer la liste des controles en lisant le fichier CSV
 
     if (!($monFichier)) {
-        print("Impossible d'ouvrir le fichier \n");
+        print("Impossible d'ouvrir le fichier associé à cette promotion \n");
         exit;
     } else {
         // Création des listes nécéssaires
