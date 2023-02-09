@@ -14,9 +14,9 @@ if (isset($_POST["idControle"])) {
     $unControle = recupererUnControle($id);
     // var_dump($unControle);
     // print($unControle->getNomLong());
-    if (isset($_POST["controleNomLong"]) && isset($_POST["controleNomCourt"]) && isset($_POST["dateDebutControle"]) && isset($_POST["dureeTotale"]) && isset($_POST["heureNonTT"]) && isset($_POST["heureTT"])) 
+    if (isset($_POST["promotion"]) && isset($_POST["controleNomLong"]) && isset($_POST["controleNomCourt"]) && isset($_POST["dateDebutControle"]) && isset($_POST["dureeTotale"]) && isset($_POST["heureNonTT"]) && isset($_POST["heureTT"])) 
 {
-
+    $nomPromotion = $_POST["promotion"];
     $nomLong= $_POST['controleNomLong'];
     $nomCourt = $_POST['controleNomCourt'];
     $dureeNonTT= $_POST['dureeTotale'];
@@ -30,7 +30,14 @@ if (isset($_POST["idControle"])) {
     $heureTT = $_POST['heureTT'];
     try {
         $nouveauControle = new Controle($nomLong, $nomCourt, $dureeNonTT, $dateControle, $heureNonTT, $heureTT);
+        $listeNomPromotion = explode(",", $nomPromotion);
+        foreach($listeNomPromotion as $key => $nomPromo)
+        {
+            $unePromotion = creerUnePromotion(trim($nomPromo));
+            $nouveauControle->ajouterPromotion($unePromotion);
+        }
         modifierControle($id, $nouveauControle);
+
         echo "<div class='alert alert-success' role='alert'>Le contrôle a bien été modifié.</div>";
     } catch (Exception $e) {
         echo "<div class='alert alert-danger' role='alert'>
@@ -47,6 +54,25 @@ if (isset($_POST["idControle"])) {
 
     <br>
         <form action="<?php echo PAGE_MODIFIER_CONTROLE_PATH; ?>" method="POST">
+            <div class="form-group row">
+                <label for="nom" class="col-4 col-form-label">Promotion</label>
+                <div class="col-8">
+                    <div class="input-group">
+                    <?php var_dump($unControle);?>
+                        <input id="promotion" name="promotion" placeholder="ex: Info semestre 1" value="<?php 
+                        //  print_r($unControle->getMesPromotions());
+                        $txt="";
+                         foreach($unControle->getMesPromotions() as $keys => $unePromotion) {
+                            $txt.= $unePromotion->getNom(). ",";
+    
+
+                         }
+                        $txt=substr($txt, 0, -1);
+                        echo $txt;
+                        ?>" type="text" class="form-control" required="">
+                    </div>
+                </div>
+            </div>
             <div class="form-group row">
                 <input type="hidden" name="idControle" value="<?php echo $id; ?>">
                 <label for="nom" class="col-4 col-form-label">Nom long*</label>

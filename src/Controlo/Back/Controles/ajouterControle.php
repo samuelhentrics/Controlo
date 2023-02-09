@@ -43,11 +43,11 @@
             
             ?>
         <form action="<?php echo PAGE_AJOUTER_CONTROLE_PATH ?>" method="POST">
-        <div class="form-group row">
+            <div class="form-group row">
                 <label for="nom" class="col-4 col-form-label">Promotion</label>
                 <div class="col-8">
                     <div class="input-group">
-                        <input id="promotion" name="promotion" placeholder="Info semestre 1" type="text" class="form-control" required="required">
+                        <input id="promotion" name="promotion" placeholder="Info semestre 1" type="text" class="form-control" required="">
                     </div>
                 </div>
             </div>
