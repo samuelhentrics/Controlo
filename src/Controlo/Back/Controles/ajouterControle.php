@@ -4,6 +4,14 @@
     <h2>Ajouter un contrôle</h2>
     <br>
         <form action="<?php echo PAGE_AJOUTER_CONTROLE_PATH ?>" method="POST">
+        <div class="form-group row">
+                <label for="nom" class="col-4 col-form-label">Promotion</label>
+                <div class="col-8">
+                    <div class="input-group">
+                        <input id="promotion" name="promotion" placeholder="Info semestre 1" type="text" class="form-control" required="required">
+                    </div>
+                </div>
+            </div>
             <div class="form-group row">
                 <label for="nom" class="col-4 col-form-label">Nom long *</label>
                 <div class="col-8">
@@ -93,10 +101,11 @@
 
             <?php
 
-            if (isset($_POST["controleNomLong"]) && isset($_POST["controleNomCourt"]) && isset($_POST["dateDebutControle"]) && isset($_POST["dureeTotale"]) && isset($_POST["heureNonTT"]) && isset($_POST["heureTT"])) {
+            if (isset($_POST["promotion"]) && isset($_POST["controleNomLong"]) && isset($_POST["controleNomCourt"]) && isset($_POST["dateDebutControle"]) && isset($_POST["dureeTotale"]) && isset($_POST["heureNonTT"]) && isset($_POST["heureTT"])) {
                 include_once(FONCTION_CRUD_CONTROLE_PATH);
                 include_once(CLASS_PATH . CLASS_CONTROLE_FILE_NAME);
     
+                $nomPromotion = $_POST['promotion'];
                 $nomLong= $_POST['controleNomLong'];
                 $nomCourt = $_POST['controleNomCourt'];
                 $dureeNonTT= $_POST['dureeTotale'];
@@ -105,6 +114,13 @@
                 $heureTT = $_POST['heureTT'];
     
                 try {
+                    $nouveauControle = new Controle($nomLong, $nomCourt, $dureeNonTT, $dateControle, $heureNonTT, $heureTT);
+                    $listeNomPromotion = explode(",", $nomPromotion);
+                    foreach($listeNomPromotion as $key => $nomPromo)
+                    {
+                        $unePromotion = creerUnePromotion($nomPromo);
+                        $nouveauControle->ajouterPromotion($unePromotion);
+                    }
                     $nouveauControle = new Controle($nomLong, $nomCourt, $dureeNonTT, $dateControle, $heureNonTT, $heureTT);
                     ajouterControle($nouveauControle);
                     echo "<div class='alert alert-success' role='alert'>Le contrôle a bien été ajouté.</div>";
