@@ -94,7 +94,9 @@
       <?php for ($i = 0; $i < $nbrLigne; $i++) { ?>
         <tr>
           <?php for ($j = 0; $j < $nbrColonne; $j++) { ?>
-            <td><input type="text" name="<?php echo 'cell-' . $i . '-' . $j; ?>"></td>
+            <td class="text-center">
+              <input style="width:50px;" type="text" name="<?php echo 'cell-' . $i . '-' . $j; ?>">
+            </td>
           <?php } ?>
         </tr>
       <?php } ?>
