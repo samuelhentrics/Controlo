@@ -5,9 +5,9 @@
     <br>
 
     <?php
-
             if (isset($_POST["promotion"]) && isset($_POST["controleNomLong"]) && isset($_POST["controleNomCourt"]) && isset($_POST["dateDebutControle"]) && isset($_POST["dureeTotale"]) && isset($_POST["heureNonTT"]) && isset($_POST["heureTT"])) {
                 include_once(FONCTION_CRUD_CONTROLE_PATH);
+                include_once(FONCTION_CREER_LISTE_PROMOTIONS_PATH);
                 include_once(CLASS_PATH . CLASS_CONTROLE_FILE_NAME);
     
                 $nomPromotion = $_POST["promotion"];
@@ -29,7 +29,7 @@
                     $listeNomPromotion = explode(",", $nomPromotion);
                     foreach($listeNomPromotion as $key => $nomPromo)
                     {
-                        $unePromotion = creerUnePromotion($nomPromo);
+                        $unePromotion = creerUnePromotion(trim($nomPromo));
                         $nouveauControle->ajouterPromotion($unePromotion);
                     }
 
