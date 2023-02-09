@@ -66,7 +66,7 @@
 "LP-NUM tronc commun";15/11/2022;"B0XMTC5Q - MàN Tronc commun";"MaN GAI-MM/Photo";"MaN GAI-MM/Photo";Fort;60;16/11/2022;10:00;10:00;"S124, S125, Amphi";"Theodora, Harris"
 "LP-NUM tronc commun";29/11/2022;"B0XAU5Q - ACO-Audiovisuel";"ACO MM/Sémiologie Signes-Couleur";"ACO MM/Sémio Signes-Couleur";Corre;120;30/11/2022;09:30;09:00;"S124, S125, Amphi";"Lepley, McKinley"
 "LP-NUM tronc commun";17/01/2023;"B0XGP5Q - ACO-Gestion de projet";"ACO GP3/Aspects juridiques";"ACO GP3/Aspects juridiques";Corre;120;18/01/2023;11:30;11:30;"S124, S126, Amphi";"Cordova, Futrell"
-;;;"ACO GP2/Pilotage de projets";"ACO GP2/Pilotage projets";;120;15/02/2023;14:00;14:00;;
+"LP-NUM tronc commun";14/02/2023;"B0XGP5Q - ACO-Gestion de projet";"ACO GP2/Pilotage de projets";"ACO GP2/Pilotage projets";Fabre;120;15/02/2023;14:00;14:00;"S124, S127, Amphi";"Theodora, Harris"
 "LP-NUM tronc commun";21/03/2023;"B0XINF5Q - LOT- Informatique";"LOT Info2/Développement web - Javascript";"LOT Info2/Dév. web JavaScript";Catherine;120;22/03/2023;08:00;08:00;"S124, S125, Amphi";"Lepley, McKinley"
 lp-prog;18/10/2022;"BPVCN5C - Connaissances Générales";"UE7 - CG - Droit de l'infomatique (périodes 1&2)";"Droit TIC";Corre;120;19/10/2022;09:00;09:00;"S124, S125, Amphi";"Cordova, Futrell"
 lp-prog;18/10/2022;"BPVCN5C - Connaissances Générales";"UE7 - CG - Fondamentaux pour la création d'entreprises (périodes 1&2)";"Ateliers Création entreprise";Drame;120;19/10/2022;08:30;08:30;"S124, S126, Amphi";"Theodora, Harris"
@@ -75,4 +75,5 @@ lp-prog;15/11/2022;"BPVAP5C - Algorithmique";"UE6 - Conception, Prog avancée (p
 lp-prog;10/01/2023;"BPVPM6C - Programmation mobile avancée";"UE2 - Programmation mobile (période 6)";Android;Garcia;120;11/01/2023;14:00;14:00;"S124, S125, Amphi";"Theodora, Harris"
 lp-prog;28/02/2023;"BPVPW6C - Programmation web";"UE1 - Programmation Web avancée (période 5)";"Prog. web avancée";Drame;60;01/03/2023;10:00;10:00;"S124, S126, Amphi";"Lepley, McKinley"
 lp-prog;11/04/2022;"BPVET6C - Embarqué & temps réel";"UE4 - Programmation embarquée et temps réel (période 7)";"Prog embarquée";Bergeron;;12/04/2022;;09:00;;"Cordova, Futrell"
-"Info semestre 1, Info semestre 4";;;"R1.12&R3.12 - Voltaire 2";"R1.12&R3.12 - Volt. 2 ";;60;08/02/2023;10:00;10:00;;
+"Info semestre 3, Info semestre 1";06/12/2022;"R1.12&R3.12 - Voltaire 2 ";"R1.12&R3.12 - Voltaire 2 ";"R1.12&R3.12 - Volt. 2 ";Fischer;60;07/12/2022;10:00;10:00;"S124, S126, Amphi";"Theodora, Harris"
+"Info semestre 3";;;"R3.10 - Gestion de projet";"R3.10 - Gestion de projet";;45;;14:00;14:00;;

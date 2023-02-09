@@ -15,7 +15,14 @@
         // Ajouter la promotion
 
         try{
+            // Cas d'erreur
+                if($nomPromotion == null)
+                    throw new Exception("Veuillez remplir les champs requis.");
 
+                if($nomPromotionAffichage == null){
+                    $nomPromotionAffichage = $nomPromotion;
+                }
+                
                 $unePromotion = new Promotion($nomPromotion, $nomPromotionAffichage);
                 try{
                     ajouterPromotion($unePromotion);
@@ -64,10 +71,10 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="controleNomCourt" class="col-4 col-form-label">Nom de promotion pour affichage *</label>
+                <label for="controleNomCourt" class="col-4 col-form-label">Nom de promotion pour affichage</label>
                 <div class="col-8">
                     <div class="input-group">
-                        <input id="controleNomCourt" name="nomFormation" placeholder="Ex: BUT Informatique S1" type="text" class="form-control" required="required">
+                        <input id="controleNomCourt" name="nomFormation" placeholder="Ex: BUT Informatique S1" type="text" class="form-control">
                     </div>
                 </div>
             </div>
