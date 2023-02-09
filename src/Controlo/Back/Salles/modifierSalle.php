@@ -16,7 +16,7 @@
                         <i class="fas fa-arrow-left"></i> Retour
                     </button>
             </form>
-            Modifier la salle '.$nomSalle.'
+            Modifier la salle ' . $nomSalle . '
         </h2><br>';
 
   $uneSalle = creerListeSalles()[$nomSalle];
@@ -38,10 +38,9 @@
 
   $nomSalleVoisine = $uneSalle->getMonVoisin();
 
-  if($nomSalleVoisine != null){
+  if ($nomSalleVoisine != null) {
     $nomSalleVoisine = $nomSalleVoisine->getNom();
-  }
-  else{
+  } else {
     $nomSalleVoisine = "";
   }
   // Formulaire
@@ -63,11 +62,10 @@
   echo '<option value="">Aucune</option>';
 
   $salleVoisineActuelle = $uneSalle->getMonVoisin();
-  if($salleVoisineActuelle != null){
+  if ($salleVoisineActuelle != null) {
     $nomSalleVoisine = $salleVoisineActuelle->getNom();
     echo '<option value="' . $nomSalleVoisine . '" selected>' . $nomSalleVoisine . '</option>';
-  }
-  else{
+  } else {
     $nomSalleVoisine = "";
   }
   foreach ($listeSallesSansVoisin as $nomUneSalle) {
@@ -95,70 +93,146 @@
 
 
 
-(*) signifie obligatoire
+  (*) signifie obligatoire
 
   <h3>Modifier Plan de Salle
     <?php echo $nomSalle; ?>
   </h3>
   <?php
 
+  $uneSalle = creerListeSalles()[$nomSalle];
+  $unPlan = $uneSalle->getMonPlan();
+  $mesZones = $unPlan->getMesZones();
+  $nbrLigne = $unPlan->getNbRangees();
+  $nbrColonne = $unPlan->getNbColonnes();
+  // Faire un array de 2 dimensions pour le plan de salle
+  
+
+  $planSalleWeb = array();
+  for ($indiceLigne = 0; $indiceLigne < $nbrLigne; $indiceLigne++) {
+    $planSalleWeb[$indiceLigne] = array();
+    for ($indiceColonne = 0; $indiceColonne < $nbrColonne; $indiceColonne++) {
+      $uneZone = $mesZones[$indiceLigne][$indiceColonne];
+      switch ($uneZone->getType()) {
+        case "tableau":
+          $infoZone = "T";
+          break;
+        case "place":
+          $infoZone = $uneZone->getNumero();
+          if ($uneZone->getInfoPrise()) {
+            $infoZone .= "E";
+          }
+
+          break;
+        default:
+          $infoZone = "";
+          break;
+
+      }
+      $planSalleWeb[$indiceLigne][$indiceColonne] = $infoZone;
+    }
+  }
 
 
   //Traitement
   if (isset($_POST["cell-0-0"])) {
-    $uneSalle = creerListeSalles()[$nomSalle]; // Création de la salle
-    $unPlan = $uneSalle->getMonPlan(); // Créer un plan de salle
-    $mesZones = $unPlan->getMesZones();
-
-    for ($indiceLigne = 0; $indiceLigne < count($mesZones); $indiceLigne++) {
-      for ($indiceColonne = 0; $indiceColonne < count($mesZones[$indiceLigne]); $indiceColonne++) {
-        $uneZone = new Zone(); // Créer une zone
-        $infoZone = $_POST["cell-" . $indiceLigne . "-" . $indiceColonne]; // Récupérer la donnée saisi dans le formulaire
-        // Informer de la position de cette zone
-        $uneZone->setNumLigne($indiceLigne);
-        $uneZone->setNumCol($indiceColonne);
-        $infoZone = strtolower($infoZone);
-        // Déterminer le type de Zone qu'il s'agit
-        switch ($infoZone) {
-          case 't':
-            $uneZone->setType("tableau");
-            break;
-          case '':
-            $uneZone->setType("vide");
-            break;
-          default:
-            // Vérifier qu'il s'agit d'un numéro de place
-            if (!is_numeric($infoZone)) {
-              // Récupérer infoZone jusqu'à l'avant dernier caractère
-              if (is_numeric(substr($infoZone, 0, -1))) {
-                $uneZone->setType("place");
-              } else {
-                $uneZone->setType("vide");
-              }
-
-            } else {
-              $uneZone->setType("place");
-            }
-            break;
+    try {
+      // Completer $planSalleWeb
+      for ($indiceLigne = 0; $indiceLigne < $nbrLigne; $indiceLigne++) {
+        for ($indiceColonne = 0; $indiceColonne < $nbrColonne; $indiceColonne++) {
+          $planSalleWeb[$indiceLigne][$indiceColonne] = $_POST["cell-" . $indiceLigne . "-" . $indiceColonne];
         }
-
-        if ($uneZone->getType() == "place") {
-          // Vérifier s'il s'agit d'une place avec prise
-          if (substr($infoZone, -1) == "e") {
-            $uneZone->setInfoPrise(true);
-          }
-          // On met le numéro de la place s'il s'agit d'une place
-          $uneZone->setNumero($infoZone);
-        }
-        // Ajouter la Zone dans le Plan
-        $unPlan->ajouterUneZone($uneZone);
       }
 
-      $uneSalle->setMonPlan($unPlan); // Ajouter le plan à la salle
-    }
 
-    try {
+
+      $uneSalle = creerListeSalles()[$nomSalle]; // Création de la salle
+      $unPlan = $uneSalle->getMonPlan(); // Créer un plan de salle
+      $mesZones = $unPlan->getMesZones();
+
+      for ($indiceLigne = 0; $indiceLigne < count($mesZones); $indiceLigne++) {
+        for ($indiceColonne = 0; $indiceColonne < count($mesZones[$indiceLigne]); $indiceColonne++) {
+          $uneZone = new Zone(); // Créer une zone
+          $infoZone = $_POST["cell-" . $indiceLigne . "-" . $indiceColonne]; // Récupérer la donnée saisi dans le formulaire
+          // Informer de la position de cette zone
+          $uneZone->setNumLigne($indiceLigne);
+          $uneZone->setNumCol($indiceColonne);
+          $infoZoneNonModif = $infoZone;
+          $infoZone = strtolower($infoZone);
+          // Déterminer le type de Zone qu'il s'agit
+          switch ($infoZone) {
+            case 't':
+              $uneZone->setType("tableau");
+              break;
+            case '':
+              $uneZone->setType("vide");
+              break;
+            default:
+              // Vérifier qu'il s'agit d'un numéro de place
+              if (!is_numeric($infoZone)) {
+                // Récupérer infoZone jusqu'à l'avant dernier caractère
+                if (is_numeric(substr($infoZone, 0, -1))) {
+                  $uneZone->setType("place");
+                } else {
+                  throw new Exception("
+                  La zone " . $infoZoneNonModif . " n'est pas valide (ligne " . ($indiceLigne + 1) . ", colonne " . ($indiceColonne + 1) . ")");
+                }
+
+              } else {
+                $uneZone->setType("place");
+              }
+              break;
+          }
+
+          if ($uneZone->getType() == "place") {
+            // Vérifier s'il s'agit d'une place avec prise
+            if (substr($infoZone, -1) == "e") {
+              $uneZone->setInfoPrise(true);
+            }
+            // On met le numéro de la place s'il s'agit d'une place
+            $uneZone->setNumero($infoZone);
+          }
+          // Ajouter la Zone dans le Plan
+          $unPlan->ajouterUneZone($uneZone);
+        }
+
+        $uneSalle->setMonPlan($unPlan); // Ajouter le plan à la salle
+      }
+
+      if (!$unPlan->verifierPlacesUniques()) {
+        throw new Exception("Des numéros de places sont dupliqués");
+      }
+
+      // Modifier la salle
       modifierPlanSalle($uneSalle);
+
+
+      // Update le plan pour le formulaire
+      $mesZones = $unPlan->getMesZones();
+      for ($indiceLigne = 0; $indiceLigne < count($mesZones); $indiceLigne++) {
+        for ($indiceColonne = 0; $indiceColonne < count($mesZones[$indiceLigne]); $indiceColonne++) {
+          $uneZone = $mesZones[$indiceLigne][$indiceColonne];
+          switch ($uneZone->getType()) {
+            case "tableau":
+              $infoZone = "T";
+              break;
+            case "place":
+              $infoZone = $uneZone->getNumero();
+              if ($uneZone->getInfoPrise()) {
+                $infoZone .= "E";
+              }
+
+              break;
+            default:
+              $infoZone = "";
+              break;
+
+          }
+          $planSalleWeb[$indiceLigne][$indiceColonne] = $infoZone;
+        }
+      }
+
+
 
       // Message de succès
       echo "<div class='alert alert-success' role='alert'>La salle a été modifiée avec succès</div>";
@@ -173,9 +247,7 @@
   ?>
   <form action="<?php echo PAGE_MODIFIER_SALLE_PATH; ?>" method="post">
     <?php
-    $uneSalle = creerListeSalles()[$nomSalle];
-    $unPlan = $uneSalle->getMonPlan();
-    $mesZones = $unPlan->getMesZones();
+
     echo "<input id='nomSalle' name='nomSalle' class='form-salle' type='hidden' value='$nomSalle'>";
     ?>
     <table class="table table-striped table-bordered">
@@ -183,29 +255,12 @@
         <tr>
           <?php
           for ($j = 0; $j < count($mesZones[$i]); $j++) {
-            $uneZone = $mesZones[$i][$j];
-            switch ($uneZone->getType()) {
-              case "tableau":
-                $infoZone = "T";
-                break;
-              case "place":
-                $infoZone = $uneZone->getNumero();
-                if ($uneZone->getInfoPrise()) {
-                  $infoZone .= "E";
-                }
-
-                break;
-              default:
-                $infoZone = "";
-                break;
-
-            }
 
             ?>
 
             <td class="text-center">
               <input type="text" style="width:50px;" name="<?php echo 'cell-' . $i . '-' . $j; ?>"
-                value="<?php echo $infoZone; ?>">
+                value="<?php echo $planSalleWeb[$i][$j]; ?>">
             </td>
           <?php } ?>
         </tr>

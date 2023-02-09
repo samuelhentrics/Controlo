@@ -130,4 +130,29 @@ class Plan
 
         return $plan;
     }
+
+
+    /**
+     * @brief Retourne vrai si les numéros de place sont uniques (aucun doublon)
+     * @return bool 
+     */
+    public function verifierPlacesUniques(){
+        $placesUniques = true;
+        $listeNumeroDePlace = array();
+        for ($numLigne = 0; $numLigne <= count($this->mesZones) - 1; $numLigne++) {
+            for ($numCol = 0; $numCol <= count($this->mesZones[$numLigne]) - 1; $numCol++) {
+                $uneZone = $this->mesZones[$numLigne][$numCol];
+                if ($uneZone->getType() == "place") {
+                    $numeroDePlace = $uneZone->getNumero();
+                    if (in_array($numeroDePlace, $listeNumeroDePlace)) {
+                        $placesUniques = false;
+                    } else {
+                        array_push($listeNumeroDePlace, $numeroDePlace);
+                    }
+                }
+            }
+
+        }
+        return $placesUniques;
+    }
 }
