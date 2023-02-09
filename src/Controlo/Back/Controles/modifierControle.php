@@ -12,10 +12,8 @@ if (isset($_POST["idControle"])) {
 
     // Récuperer le controle
     $unControle = recupererUnControle($id);
-    // var_dump($unControle);
-    // print($unControle->getNomLong());
     if (isset($_POST["promotion"]) && isset($_POST["controleNomLong"]) && isset($_POST["controleNomCourt"]) && isset($_POST["dateDebutControle"]) && isset($_POST["dureeTotale"]) && isset($_POST["heureNonTT"]) && isset($_POST["heureTT"])) 
-{
+    {
     $nomPromotion = $_POST["promotion"];
     $nomLong= $_POST['controleNomLong'];
     $nomCourt = $_POST['controleNomCourt'];
@@ -43,11 +41,9 @@ if (isset($_POST["idControle"])) {
         echo "<div class='alert alert-danger' role='alert'>
         Le contrôle n'a pas été ajouté : " . $e->getMessage() . "</div>";
     }
-      
-        
     }
-
 }
+$unControle = recupererUnControle($id);
 
     ?>
 
@@ -58,7 +54,7 @@ if (isset($_POST["idControle"])) {
                 <label for="nom" class="col-4 col-form-label">Promotion</label>
                 <div class="col-8">
                     <div class="input-group">
-                    <?php var_dump($unControle);?>
+                    <!-- <?php var_dump($unControle);?> -->
                         <input id="promotion" name="promotion" placeholder="ex: Info semestre 1" value="<?php 
                         //  print_r($unControle->getMesPromotions());
                         $txt="";
