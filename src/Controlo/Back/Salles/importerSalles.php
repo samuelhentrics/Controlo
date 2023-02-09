@@ -78,7 +78,7 @@
         <h2>Importer une salle</h2>
         <form action="<?php echo PAGE_IMPORTER_SALLE_PATH ?>" method="POST" enctype="multipart/form-data">
             <div class="form-group row">
-                <label for="nom" class="col-4 col-form-label">Renommer la salle *</label>
+                <label for="nom" class="col-4 col-form-label">Nom de la salle *</label>
                 <div class="col-8">
                     <div class="input-group">
                         <input id="salleNom" name="salleNom" placeholder="Ex : S124" type="text" class="form-control" >
@@ -86,7 +86,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="salleVoisin" class="col-4 col-form-label">Voisin *</label>
+                <label for="salleVoisin" class="col-4 col-form-label">Salle voisine *</label>
                 <div class="col-8">
                     <div class="input-group">
                         <select
