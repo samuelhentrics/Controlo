@@ -88,6 +88,10 @@ function creerUnePromotion($nomPromotion)
     try {
         $monFichier = fopen(CSV_ETUDIANTS_FOLDER_NAME . $nomPromotion . ".csv", "r");
 
+        if (!$monFichier){
+            throw new Exception("Impossible d'ouvrir le fichier associé au nom de la promotion.");
+        }
+
         // Vérifier que le fichier n'est pas interdit
         if ($nomPromotion == substr(LISTE_PROMOTIONS_FILE_NAME,0,-4)) {
             throw new Exception(false);
