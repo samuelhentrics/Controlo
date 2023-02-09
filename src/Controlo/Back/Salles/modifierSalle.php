@@ -65,8 +65,8 @@
   foreach ($listeSallesSansVoisin as $nomUneSalle) {
     $nomSalleVerif = strtolower(trim($nomUneSalle));
 
-    if (strtolower(trim($nomUneSalle)) != $nomSalle) {
-      echo '<option value="' . $uneSalle->getNom() . '">' . $uneSalle->getNom() . '</option>';
+    if ($nomSalleVerif != strtolower(trim($nomSalle))) {
+      echo '<option value="' . $nomUneSalle . '">' . $nomUneSalle . '</option>';
     }
   }
 

@@ -126,7 +126,9 @@ function creerControle($unControleInfo, $listePromo = null, $listeSalles = null)
     $laDate = $unControleInfo[DATE_NOM_COLONNE_CONTROLE];
     if ($laDate != null) {
         $laDate = DateTime::createFromFormat('d/m/Y', $laDate);
-        $laDate = $laDate->format('Y-m-d');
+        if($laDate != false){
+            $laDate = $laDate->format('Y-m-d');
+        }
     }
 
     // Création du contrôle de la ligne actuelle

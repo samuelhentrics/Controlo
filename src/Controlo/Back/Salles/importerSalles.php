@@ -92,8 +92,7 @@
                         <select
                             class="custom-select form-control"
                             id="nomVoisin"
-                            name="nomVoisin"
-                            required="required" >
+                            name="nomVoisin">
                             <option value="" selected>Choisir un voisin</option>
                         <?php
 
