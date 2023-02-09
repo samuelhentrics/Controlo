@@ -17,6 +17,7 @@
  */
 class Controle
 {
+
     // Variables
     /**
      * @brief Nom long du Controle
