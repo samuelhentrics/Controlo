@@ -30,7 +30,9 @@
                     foreach($listeNomPromotion as $key => $nomPromo)
                     {
                         $unePromotion = creerUnePromotion(trim($nomPromo));
-                        $nouveauControle->ajouterPromotion($unePromotion);
+                        if($unePromotion != null){
+                            $nouveauControle->ajouterPromotion($unePromotion);
+                        }
                     }
 
                     ajouterControle($nouveauControle);
