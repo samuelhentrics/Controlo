@@ -7,11 +7,6 @@
         })
         </script>
         <?php
-        echo "<div class='alert alert-warning' role='alert'>";
-        echo "Cette page est en cours de développement.<br>";
-        echo "Certaines fonctionnalités ne sont pas encore disponibles.<br>";
-        echo "Les fonctions disponibles sont en bleues/rouges et les fonctions non disponibles sont en grises.";
-        echo "</div>";
 
         if (isset($_POST["idControle"])) {
             include_once(FONCTION_CREER_LISTE_CONTROLES_PATH);
@@ -123,7 +118,7 @@
                                 <a onClick="document.getElementById(\'modifier\').submit();">
                                     <div class="card text-white bg-primary text-center">
                                         <div class="card-body text-center">
-                                        <i class="fa fa-pen fa-5x"></i><br>
+                                        <i class="fa fa-pen fa-3x"></i><br>
                                         <h5> Editer les informations du contrôle </h5>
                                         </div>
                                     </div>
@@ -170,7 +165,7 @@
                             <div class="card bg-secondary">
                                 <div class="card-body text-center">
                                     <p class="card-text">
-                                        <i class="fa-solid fa-wand-magic fa-3x"></i>
+                                        <i class="fa fa-chalkboard-user fa-3x"></i>
                                         <h5>Placer manuellement</h5>
                                     </p>
                                 </div>
