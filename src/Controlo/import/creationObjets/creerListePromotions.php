@@ -35,22 +35,22 @@ function creerListePromotions($affichageErreurs = false)
     }
 
     foreach ($scandir as $nomFichier) {
-        // S'il s'agit d'un fichier CSV, on suppose qu'il s'agit d'un fichier d'étudiants
-        if (preg_match("#\.(csv)$#", strtolower($nomFichier))) {
-            // On récupére le nom de la promotion
-            $nomPromotion = substr($nomFichier, 0, -4);
+        if ($nomFichier != LISTE_PROMOTIONS_FILE_NAME) {
+            // S'il s'agit d'un fichier CSV, on suppose qu'il s'agit d'un fichier d'étudiants
+            if (preg_match("#\.(csv)$#", strtolower($nomFichier))) {
+                // On récupére le nom de la promotion
+                $nomPromotion = substr($nomFichier, 0, -4);
 
-            // On récupére une promotion
-            try {
-                $unePromotion = creerUnePromotion($nomPromotion);
-                // On ajoute la promotion à la liste des promotions
-                if ($unePromotion != null) {
-                    $listePromotions[$nomPromotion] = $unePromotion;
-                }
-            }
-            catch(Exception $e){
-                if ($affichageErreurs) {
-                    print('
+                // On récupére une promotion
+                try {
+                    $unePromotion = creerUnePromotion($nomPromotion);
+                    // On ajoute la promotion à la liste des promotions
+                    if ($unePromotion != null) {
+                        $listePromotions[$nomPromotion] = $unePromotion;
+                    }
+                } catch (Exception $e) {
+                    if ($affichageErreurs) {
+                        print('
                     <div class="toast fade show">
                         <div class="toast-header">
                             <strong class="me-auto"><i class="bi-globe"></i> Promotion non créée</strong>
@@ -62,9 +62,10 @@ function creerListePromotions($affichageErreurs = false)
                         </div>
                     </div>
                 ');
+                    }
                 }
-            }
 
+            }
         }
     }
 
@@ -87,7 +88,6 @@ function creerUnePromotion($nomPromotion)
 {
     try {
         $monFichier = fopen(CSV_ETUDIANTS_FOLDER_NAME . $nomPromotion . ".csv", "r");
-
         if (!$monFichier){
             throw new Exception("Impossible d'ouvrir le fichier associé au nom de la promotion.");
         }
@@ -159,15 +159,6 @@ function creerUnePromotion($nomPromotion)
         return $maPromotion;
     } catch (Exception $e) {
         if ($e->getMessage() != false) {
-
-            // print('
-            // <div id="info">
-            //     <div class="toast-body">
-            //     Promotion "' . $nomPromotion . '" non créée : ' . $e->getMessage() . '
-            //     </div>
-            // </div>
-            
-            // ');
             throw new Exception($e->getMessage());
         }
         return null;

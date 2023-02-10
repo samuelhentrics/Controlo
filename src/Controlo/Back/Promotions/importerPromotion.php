@@ -7,7 +7,7 @@
 
         echo '
         <h2>
-            <form action="'.PAGE_PROMOTIONS_PATH.'" method="post" style="display:inline;">
+            <form action="' . PAGE_PROMOTIONS_PATH . '" method="post" style="display:inline;">
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-arrow-left"></i> Retour
                     </button>
@@ -32,30 +32,6 @@
 
                 // Récupération du chemin temporaire du fichier sur le serveur
                 $cheminTemporaire = $_FILES['fichierPromotion']['tmp_name'];
-
-
-
-                //Vérification de l'extension CSV
-                $extension = pathinfo($fichierPromotion, PATHINFO_EXTENSION);
-                if ($extension != "csv") {
-                    throw new Exception("Le fichier importé n'est pas au format 'csv'");
-                }
-
-                
-                // Définission du chemin où on souhaite enregistrer l'image
-                if ($nomGeneration != ""){
-                    $emplacement = CSV_ETUDIANTS_FOLDER_NAME . $nomGeneration . ".csv";
-                }
-                else{
-                    $emplacement = CSV_ETUDIANTS_FOLDER_NAME . $_FILES['fichierPromotion']['name'];
-                }
-
-                
-                if (file_exists($emplacement)) {
-                    throw new Exception("La promotion existe déjà. Veuillez la renommer ou la supprimer.");
-                }
-
-                move_uploaded_file($cheminTemporaire, $emplacement);
 
 
                 // Cas où seulement le fichier est saisi
@@ -85,6 +61,28 @@
                     ajouterAffichagePromotion($unePromotion);
                 }
 
+
+                //Vérification de l'extension CSV
+                $extension = pathinfo($fichierPromotion, PATHINFO_EXTENSION);
+                if ($extension != "csv") {
+                    throw new Exception("Le fichier importé n'est pas au format 'csv'");
+                }
+
+
+                // Définission du chemin où on souhaite enregistrer l'image
+                if ($nomGeneration != "") {
+                    $emplacement = CSV_ETUDIANTS_FOLDER_NAME . $nomGeneration . ".csv";
+                } else {
+                    $emplacement = CSV_ETUDIANTS_FOLDER_NAME . $_FILES['fichierPromotion']['name'];
+                }
+
+
+                if (file_exists($emplacement)) {
+                    throw new Exception("La promotion existe déjà. Veuillez la renommer ou la supprimer.");
+                }
+
+                move_uploaded_file($cheminTemporaire, $emplacement);
+
                 echo '<div class="alert alert-success" role="alert">La promotion a bien été ajoutée</div>';
             }
         } catch (Exception $e) {
@@ -99,8 +97,7 @@
                 <div class="col-8">
                     <div class="input-group">
                         <input id="controleNomLong" name="nomGeneration" placeholder="Ex : Info semestre 1" type="text"
-                            class="form-control"
-                            value="<?php echo $nomGeneration; ?>">
+                            class="form-control" value="<?php echo $nomGeneration; ?>">
                     </div>
                 </div>
             </div>
@@ -109,9 +106,7 @@
                 <div class="col-8">
                     <div class="input-group">
                         <input id="controleNomCourt" name="nomFormation" placeholder="Ex: BUT Informatique S1"
-                            type="text" class="form-control"
-                            value="<?php echo $nomFormation; ?>"
-                            >
+                            type="text" class="form-control" value="<?php echo $nomFormation; ?>">
                     </div>
                 </div>
             </div>

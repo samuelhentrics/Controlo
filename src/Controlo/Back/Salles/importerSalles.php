@@ -30,7 +30,12 @@
                 $emplacement = CSV_SALLES_FOLDER_NAME . $_FILES['fichierSalle']['name'];
 
                 // Récupération du nom de la Salle et le nom du voisin
+
                 $salleNom = $_POST["salleNom"];
+                if ($salleNom == "") {
+                    $salleNom = $fichierSalleSansExtension;
+                }
+
                 $nomVoisin = $_POST["nomVoisin"];
 
                 //Vérification de l'extension CSV
@@ -41,35 +46,14 @@
 
                 // Emplacement du fichier avec le nouveau nom
                 $emplacementRenomme = CSV_SALLES_FOLDER_NAME . $salleNom . ".csv";
-                // Cas où seulement le fichier est saisi
-                move_uploaded_file($cheminTemporaire, $emplacement);
-                ajouterAffichageSalle($fichierSalleSansExtension, $nomVoisin);
-                /*
+
+                if(file_exists($emplacementRenomme)) {
+                    throw new Exception("Le fichier existe déjà");
+                }
                 
-                // Cas où le nom de et le fichier sont remplis
-                else if ($salleNom != ""& $nomVoisin == "") {
-
-                    // Déplacement de l'image du répertoire temporaire vers le répertoire de destination
-                    move_uploaded_file($cheminTemporaire, $emplacement);
-                    rename($emplacement, $emplacementRenomme);
-                    // $uneSalle = new Salle($salleNom, $salleNom);
-                    ajouterAffichageSalle($uneSalle);
-                }
-
-                // Cas où le nom de formation et le fichier sont remplis
-                else if ($salleNom == ""& $nomVoisin != "") {
-                    move_uploaded_file($cheminTemporaire, $emplacement);
-                    // $uneSalle = new Salle($fichierSalleSansExtension, $nomVoisin);
-                    ajouterAffichageSalle($uneSalle);
-                }
-
-                // Cas où les 2 champs et le fichier sont remplis 
-                else {
-                    move_uploaded_file($cheminTemporaire, $emplacement);
-                    rename($emplacement, $emplacementRenomme);
-                    // $uneSalle = new Salle($salleNom, $nomVoisin);
-                    ajouterAffichageSalle($uneSalle);
-                }*/
+                // Cas où seulement le fichier est saisi
+                move_uploaded_file($cheminTemporaire, $emplacementRenomme);
+                ajouterAffichageSalle($salleNom, $nomVoisin);
 
                 echo '<div class="alert alert-success" role="alert">La Salle a bien été ajoutée</div>';
             }
