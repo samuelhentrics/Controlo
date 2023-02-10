@@ -142,10 +142,10 @@
         <br>
         <form action="'.PAGE_MODIFIER_CONTROLE_PATH.'" method="POST">
             <div class="form-group row">
-                <label for="nom" class="col-4 col-form-label">Promotion</label>
+                <label for="nom" class="col-4 col-form-label">Promotion(s)*</label>
                 <div class="col-8">
                     <div class="input-group">
-                        <input id="promotion" name="promotion" placeholder="ex: Info semestre 1"
+                        <input id="promotion" name="promotion" placeholder="ex: Info semestre 1, Info semestre 3"
                         value="'.$nomsPromos.'" type="text" class="form-control" required="">
                     </div>
                 </div>

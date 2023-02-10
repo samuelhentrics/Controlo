@@ -20,10 +20,6 @@
             $nomFormation = null;
             if (isset($_FILES['fichierPromotion'])) {
 
-                // Récupération du nom de la promotion pour génération et pour l'affichage
-                $nomGeneration = $_POST["nomGeneration"];
-                $nomFormation = $_POST["nomFormation"];
-
                 // Récupération du nom du fichier de promotion
                 $fichierPromotion = $_FILES['fichierPromotion']['name'];
 
@@ -33,9 +29,17 @@
                 // Récupération du chemin temporaire du fichier sur le serveur
                 $cheminTemporaire = $_FILES['fichierPromotion']['tmp_name'];
 
+                // Récupération du nom de la promotion pour génération et pour l'affichage
+                $nomGeneration = $_POST["nomGeneration"];
+                if($nomGeneration == ""){
+                    $nomGeneration = $fichierPromotionSansExtension;
+                }
+
+                $nomFormation = $_POST["nomFormation"];
+
 
                 // Cas où seulement le fichier est saisi
-                if ($nomGeneration == ""& $nomFormation == "") {
+                if ($nomGeneration == "" && $nomFormation == "") {
                     // Déplacement de l'image du répertoire temporaire vers le répertoire de destination
                     $unePromotion = new Promotion($fichierPromotionSansExtension, $fichierPromotionSansExtension);
                     ajouterAffichagePromotion($unePromotion);
@@ -43,14 +47,14 @@
                 }
 
                 // Cas où le nom de génération et le fichier sont remplis
-                else if ($nomGeneration != ""& $nomFormation == "") {
+                else if ($nomGeneration != "" && $nomFormation == "") {
                     // Déplacement de l'image du répertoire temporaire vers le répertoire de destination
                     $unePromotion = new Promotion($nomGeneration, $nomGeneration);
                     ajouterAffichagePromotion($unePromotion);
                 }
 
                 // Cas où le nom de formation et le fichier sont remplis
-                else if ($nomGeneration == ""& $nomFormation != "") {
+                else if ($nomGeneration == "" && $nomFormation != "") {
                     $unePromotion = new Promotion($fichierPromotionSansExtension, $nomFormation);
                     ajouterAffichagePromotion($unePromotion);
                 }
@@ -70,11 +74,7 @@
 
 
                 // Définission du chemin où on souhaite enregistrer l'image
-                if ($nomGeneration != "") {
-                    $emplacement = CSV_ETUDIANTS_FOLDER_NAME . $nomGeneration . ".csv";
-                } else {
-                    $emplacement = CSV_ETUDIANTS_FOLDER_NAME . $_FILES['fichierPromotion']['name'];
-                }
+                $emplacement = CSV_ETUDIANTS_FOLDER_NAME . $nomGeneration . ".csv";
 
 
                 if (file_exists($emplacement)) {

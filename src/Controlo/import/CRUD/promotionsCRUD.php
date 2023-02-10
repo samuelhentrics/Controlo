@@ -215,7 +215,7 @@ function modifierPromotion($anciennePromo, $nouvellePromo){
         while (($data = fgetcsv($fichierListePromo, 1000, ";")) !== FALSE) {
 
             // On vérifie si le nom de la promotion existe
-            if ($data[0] == $nomAnciennePromo) {
+            if (strtolower(trim($data[0])) == strtolower(trim($nomAnciennePromo))) {
                 $indiceListePromo = count($infoFichierListePromo);
             }
 
@@ -233,7 +233,6 @@ function modifierPromotion($anciennePromo, $nouvellePromo){
 
         // On ouvre le fichier liste-promotions en écriture
         $fichierListePromo = fopen(CSV_ETUDIANTS_FOLDER_NAME . LISTE_PROMOTIONS_FILE_NAME, "w");
-
         if ($fichierListePromo == false) {
             throw new Exception("Impossible d'ouvrir le fichier de liste de promotions.");
         }
