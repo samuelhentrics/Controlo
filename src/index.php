@@ -222,6 +222,10 @@
                 require(BACK_PATH . "manuelUtilisateur.php");
                 break;
 
+            case '404':
+                require(BACK_PATH . "404.php");
+                break;
+
             default:
                 // Cas où la demande est incorrecte, on retourne un message 404
                 require(BACK_PATH . "404.php");

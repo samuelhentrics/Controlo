@@ -1,4 +1,9 @@
-# Redirection pour les pages principales
-# (x = /Controles, /Etudiants, /Salles) -> index.php?page=x
 
-# Pas encore programmé
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Page 404 si accès vers un fichier inexistant
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?page=404 [L,QSA]
+
+

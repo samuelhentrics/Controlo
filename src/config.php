@@ -376,28 +376,28 @@ define("JS_FOLDER_NAME" , "js/");
 
 /**
  * @brief Lien complet (sans l'adresse du serveur) où se trouve le dossier css
- * @note ex : Controlo/Front/css
+ * @note ex : localhost/src/Controlo/Front/css
  */
-define("CSS_PATH" , FRONT_PATH.CSS_FOLDER_NAME);
+define("CSS_PATH" , PATH.FRONT_PATH.CSS_FOLDER_NAME);
 
 /**
  * @brief Lien complet (sans l'adresse du serveur) où se trouve le dossier image
- * @note ex : Controlo/Front/images
+ * @note ex : localhost/src/Controlo/Front/images
  */
-define("IMG_PATH" , FRONT_PATH.IMG_FOLDER_NAME);
+define("IMG_PATH" , PATH.FRONT_PATH.IMG_FOLDER_NAME);
 
 /**
  * @brief Lien complet (sans l'adresse du serveur) où se trouve le dossier videos
- * @note ex : Controlo/Front/videos
+ * @note ex : localhost/src/Controlo/Front/videos
  */
-define("VIDEOS_PATH" , FRONT_PATH.VIDEOS_FOLDER_NAME);
+define("VIDEOS_PATH" , PATH.FRONT_PATH.VIDEOS_FOLDER_NAME);
 
 
 /**
  * @brief Lien complet (sans l'adresse du serveur) où se trouve le dossier js
- * @note ex : Controlo/Front/js
+ * @note ex : localhost/src/Controlo/Front/js
  */
-define("JS_PATH" , FRONT_PATH.JS_FOLDER_NAME);
+define("JS_PATH" , PATH.FRONT_PATH.JS_FOLDER_NAME);
 
 
 
