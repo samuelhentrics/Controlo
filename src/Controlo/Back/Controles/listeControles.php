@@ -1,21 +1,47 @@
 <div class="container">
     <div class="col-12">
         <br>
+        <script src="<?php echo JS_PATH ?>moment.min.js"></script>
+        <script src="<?php echo JS_PATH ?>datetime-moment.js"></script>
 
         <script>
+
+        // Récupérer le chemin du fichier French.json
         var lien = "<?php echo JS_PATH ?>";
         $(document).ready(function() {
+            $.fn.dataTable.moment = function ( format, locale ) {
+                var types = $.fn.dataTable.ext.type;
+            
+                // Add type detection
+                types.detect.unshift( function ( d ) {
+                    return moment( d, format, locale, true ).isValid() ?
+                        'moment-'+format :
+                        null;
+                } );
+            
+                // Add sorting method - use an integer for the sorting
+                types.order[ 'moment-'+format+'-pre' ] = function ( d ) {
+                    return moment( d, format, locale, true ).unix();
+                };
+            };
+
+
+            $.fn.dataTable.moment( 'D/M/YYYY' );
+            
             $('#controles').DataTable({
+
+                // Traduire le tableau
                 "language": {
                     "url": lien + "/French.json"
                 },
 
+                // Tri par défaut
                 order: [
-                    [1, 'asc'],
                     [2, 'asc']
                 ]
 
             });
+            
         });
 
         $(function () {

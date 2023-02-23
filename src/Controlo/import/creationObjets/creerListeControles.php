@@ -127,7 +127,7 @@ function creerControle($unControleInfo, $listePromo = null, $listeSalles = null)
     if ($laDate != null) {
         $laDate = DateTime::createFromFormat('d/m/Y', $laDate);
         if($laDate != false){
-            $laDate = $laDate->format('Y-m-d');
+            $laDate = $laDate->format('d/m/Y');
         }
     }
 

@@ -161,7 +161,7 @@ class Controle
     /**
      * @brief Permet d'affecter une date à un Controle
      *
-     * @param string $nouvelleDate Date du contrôle à affecter
+     * @param string $nouvelleDate Date du contrôle à affecter (au format DD/MM/YYYY)
      */
     public function setDate($nouvelleDate)
     {
