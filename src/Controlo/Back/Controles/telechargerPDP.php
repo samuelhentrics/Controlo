@@ -81,6 +81,21 @@ if(isset($_POST["idControle"])){
                 </form>
                 <p class='mb-0 mt-3'>Si le bouton ci-dessus ne fonctionne pas cliquez <a href='download.php?id=$idControle'>ici</a>.</p>
             </div>";
+
+            // Script pour télécharger le fichier
+            echo '<script>
+            document.getElementById("download-button").addEventListener("click", async function(){
+                let id = document.getElementById("id").value;
+                let response = await fetch("download.php?id="+id);
+                let file_name = response.headers.get("Content-Disposition").split("=")[1];
+                let blob = await response.blob();
+                let link = document.createElement("a");
+                link.href = window.URL.createObjectURL(blob);
+                link.download = file_name;
+                link.click();
+            });
+            </script>
+            ';
     }
 }
 // Cas d'erreur (pas de parametres)
