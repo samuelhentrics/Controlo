@@ -1,9 +1,20 @@
 
 RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
 
 # Page 404 si accès vers un fichier inexistant
+RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?page=404 [L,QSA]
+
+# Interdire l'accès au dossier Etudiants, Controles, Enseignants, PlansPlacement et Salles
+RewriteRule ^Etudiants/ - [F]
+RewriteRule ^Controles/ - [F]
+RewriteRule ^Enseignants/ - [F]
+RewriteRule ^PlansPlacement/ - [F]
+RewriteRule ^Salles/ - [F]
+
+
+
+
 
 
