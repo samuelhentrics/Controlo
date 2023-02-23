@@ -371,7 +371,7 @@ function genererPDF($unControle)
 
         // Affichage du plan de la salle
         $pdf->SetFont('Arial', '', 12);
-        $planSalle = $pdf->LoadData(CSV_SALLES_PATH . $nomSalle . ".csv");
+        $planSalle = $pdf->LoadData(CSV_SALLES_FOLDER_NAME . $nomSalle . ".csv");
         $pdf->Salle($planSalle, $numeroPlacesPrises);
         $pdf->Ln(15);
 
