@@ -39,13 +39,13 @@ class Etudiant
 
     /**
      * @brief TD de l'Etudiant
-     * @var int
+     * @var string
      */
     private $td;
 
     /**
      * @brief TP de l'Etudiant
-     * @var int
+     * @var string
      */
     private $tp;
 
@@ -87,8 +87,8 @@ class Etudiant
      * @brief Constructeur de la classe Etudiant
      * @param string $nom Nom de l'étudiant
      * @param string $prenom Prénom de l'étudiant
-     * @param int $td TD de l'étudiant
-     * @param int $tp TP de l'étudiant
+     * @param string $td TD de l'étudiant
+     * @param string $tp TP de l'étudiant
      * @param string $email Mail de l'étudiant
      */
     public function __construct($id, $nom, $prenom, $td, $tp, $email)
@@ -143,7 +143,7 @@ class Etudiant
 
     /**
      * @brief Affecte un TD à l'Etudiant
-     * @param int $nouveauTd Nouveau TD de l'Etudiant
+     * @param string $nouveauTd Nouveau TD de l'Etudiant
      * @return void
      */
     public function setTd($nouveauTd)
@@ -153,7 +153,7 @@ class Etudiant
 
     /**
      * @brief Retourne le TD de l'Etudiant
-     * @return int
+     * @return string
      */
     public function getTd()
     {
@@ -162,7 +162,7 @@ class Etudiant
 
     /**
      * @brief Affecte un TP à l'Etudiant
-     * @param int $nouveauTP Nouveau TP de l'Etudiant
+     * @param string $nouveauTP Nouveau TP de l'Etudiant
      * @return void
      */
     public function setTp($nouveauTP)
@@ -172,7 +172,7 @@ class Etudiant
 
     /**
      * @brief Retourne le TP de l'Etudiant
-     * @return int
+     * @return string
      */
     public function getTp()
     {
