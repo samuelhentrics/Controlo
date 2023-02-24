@@ -269,6 +269,7 @@ function genererPDF($unControle)
         // Plan de Placement de la salle actuelle
         $pdpActuelle = $unControle->getMesPlansDePlacement()[$nomSalle];
         $listePlacementsPDP = $pdpActuelle->getMesPlacements();
+        $sautDePageListeEtudiants = $pdpActuelle->getAffichageMemePage();
 
         $listePlaces = array();
         $numeroPlacesPrises = array();
@@ -398,8 +399,10 @@ function genererPDF($unControle)
         $pdf->Cell(35, 10, utf8_decode("Place occupée"), 0, 0);
         $pdf->Ln(15);
 
-        // Nouvelle page
-        $pdf->AddPage();
+        // Saut de page si demandé
+        if ($sautDePageListeEtudiants){
+            $pdf->AddPage();
+        }
 
         // Affichage du tableau avec les infos sur les étudiants et leurs places
         $header = array(utf8_decode("N° Place"), utf8_decode("Étudiant"));

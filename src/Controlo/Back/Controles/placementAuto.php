@@ -34,12 +34,14 @@
                 <th>Salles</th>
                 <th>Nombre de places séparant les étudiants</th>
                 <th>Nombre de rangées séparant les étudiants</th>
+                <th>Affichage de la liste des étudiants sur la même page ?</th>
             </tr>");
                 foreach ($unControle->getMesSalles() as $key => $uneSalle) {
                     print("<tr>");
                     print("<td>" . $uneSalle->getNom() . "</td>");
                     print("<td> <input type='number' id='nbPlacesSeparant' min='0' max='999' value=1 name='nbPlacesSeparant-" . $uneSalle->getNom() . "' value='0'></td>");
                     print("<td> <input type='number' id='nbRangeesSeparant' min='0' max='999' value=0    name='nbRangeesSeparant-" . $uneSalle->getNom() . "' value='0'></td>");
+                    print("<td> <input type='checkbox' id='affichageMemePage' name='affichageMemePage-" . $uneSalle->getNom() . "' checked></td>");
                     print("</tr>");
                 }
                 print("</table>");

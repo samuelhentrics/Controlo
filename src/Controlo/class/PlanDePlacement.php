@@ -69,6 +69,7 @@ class PlanDePlacement
         $this->setMaContrainteGenerale($uneContrainteGenerale);
         $this->setMaContrainteEspacement($uneContrainteEspacement);
         $this->setMaSalle($uneSalle);
+        $this->setAffichageMemePage($affichageMemePage);
     }
 
 
