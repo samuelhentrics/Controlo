@@ -202,14 +202,6 @@
                 break;
 
 
-
-            // Mode développement
-            case 'test':
-                require(BACK_PATH . "test.php");
-                break;
-
-
-
             case 'politiqueDeConfidentialite':
                 require(BACK_PATH . "politiqueDeConfidentialite.php");
                 break;
