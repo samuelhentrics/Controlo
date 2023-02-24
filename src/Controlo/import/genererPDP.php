@@ -285,6 +285,7 @@ try {
         throw new Exception("Erreur : Les espacements doivent être positifs");
       }
 
+
       // Création des contraintes d'espacement
       $contraintesSalle = new ContraintesEspacement($nbRangeeSeparant, $nbPlaceSeparant);
 
