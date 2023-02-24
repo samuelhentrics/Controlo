@@ -285,11 +285,18 @@ try {
         throw new Exception("Erreur : Les espacements doivent être positifs");
       }
 
+      // Affichage sur une page ?
+      if (isset($_POST["affichageMemePage-" . $nom]))
+          $affichageMemePage = true;
+        else
+          $affichageMemePage = false;
+
+
       // Création des contraintes d'espacement
       $contraintesSalle = new ContraintesEspacement($nbRangeeSeparant, $nbPlaceSeparant);
 
       // Création du plan de placement
-      $unPDP = new PlanDePlacement($contraintesGenerales, $contraintesSalle, $uneSalle);
+      $unPDP = new PlanDePlacement($contraintesGenerales, $contraintesSalle, $uneSalle, $affichageMemePage);
 
       // Ajout du plan de placement au contrôle
       $unControle->ajouterPlanDePlacement($unPDP);

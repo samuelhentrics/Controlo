@@ -43,11 +43,19 @@ class PlanDePlacement
     private $maContrainteEspacement;
 
     /**
+     * @brief Détermine si l'affichage se fait sur la même page (vrai) ou non (faux)
+     *
+     * @var boolean
+     */
+    private $affichageMemePage;
+
+    /**
      * @brief Les placements relié au PlanDePlacement
      *
      * @var array
      */
     private $mesPlacements = array();
+
 
     // Constructeur
 
@@ -57,10 +65,11 @@ class PlanDePlacement
      * @param ContraintesEspacement $uneContrainteEspacement ContraintesEspacements pour la Salle
      * @param Salle $uneSalle Salle du PlanDePlacement
      */
-    public function __construct($uneContrainteGenerale, $uneContrainteEspacement, $uneSalle){
+    public function __construct($uneContrainteGenerale, $uneContrainteEspacement, $uneSalle, $affichageMemePage = false){
         $this->setMaContrainteGenerale($uneContrainteGenerale);
         $this->setMaContrainteEspacement($uneContrainteEspacement);
         $this->setMaSalle($uneSalle);
+        $this->setAffichageMemePage($affichageMemePage);
     }
 
 
@@ -206,4 +215,21 @@ class PlanDePlacement
         }
     }
 
+
+	/**
+	 * @brief Retourne vrai si l'affichage se fait sur la même page (vrai) ou non (faux)
+	 * @return boolean
+	 */
+	public function getAffichageMemePage() {
+		return $this->affichageMemePage;
+	}
+	
+	/**
+	 * @brief Affecte vrai à affichageMemePage si l'affichage se fait sur la même page (vrai) ou non (faux)
+	 * @param boolean $affichageMemePage 
+	 * @return void
+	 */
+	public function setAffichageMemePage($affichageMemePage){
+		$this->affichageMemePage = $affichageMemePage;
+	}
 }
