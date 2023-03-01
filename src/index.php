@@ -25,13 +25,11 @@
 </head>
 
 <body>
-    <?php require(BACK_PATH . "header.php"); ?>
-
-
-    <?php
-
+    <?php 
     // Retirer les messages d'erreur PHP (par défaut on est en mode dév)
     //ini_set('display_errors', 'off');
+    
+    require(BACK_PATH . "header.php"); 
     
     // Traiter la demande de page
     if (isset($_GET['page'])) {
@@ -117,21 +115,23 @@
             // Cas où l'utilisateur souhaite s'occuper des étudiants
             case 'etudiants':
                 if (isset($_GET['action'])) {
-                    // Cas où l'utilisateur veut ajouter un étudiant
-                    if ($_GET['action'] == "ajouter") {
-                        require(BACK_PATH . "Etudiants/ajouterEtudiant.php");
-                    }
-                    // Cas où l'utilisateur veut modifier un étudiant
-                    else if ($_GET['action'] == "modifier") {
-                        require(BACK_PATH . "Etudiants/modifierEtudiant.php");
-                    }
-                    // Cas où l'utilisateur veut supprimer un étudiant
-                    else if ($_GET['action'] == "supprimer") {
-                        require(BACK_PATH . "Etudiants/supprimerEtudiant.php");
-                    }
-                    // Cas où une action n'est pas reconnue
-                    else {
-                        require(BACK_PATH . "404.php");
+                    $action = $_GET["action"];
+                    switch ($action) {
+                        case "ajouter":
+                            require(BACK_PATH . "Etudiants/ajouterEtudiant.php");
+                            break;
+
+                        case "modifier":
+                            require(BACK_PATH . "Etudiants/modifierEtudiant.php");
+                            break;
+
+                        case "supprimer":
+                            require(BACK_PATH . "Etudiants/supprimerEtudiant.php");
+                            break;
+
+                        default:
+                            require(BACK_PATH . "404.php");
+                            break;
                     }
                 }
                 // Cas où il veut voir la liste des étudiants
@@ -142,21 +142,23 @@
 
             case 'enseignants':
                 if (isset($_GET['action'])) {
-                    // Cas où l'utilisateur veut ajouter un enseignant
-                    if ($_GET['action'] == "ajouter") {
-                        require(BACK_PATH . "Enseignants/ajouterEnseignant.php");
-                    }
-                    // Cas où l'utilisateur veut modifier un enseignant
-                    else if ($_GET['action'] == "modifier") {
-                        require(BACK_PATH . "Enseignants/modifierEnseignant.php");
-                    }
-                    // Cas où l'utilisateur veut supprimer un enseignant
-                    else if ($_GET['action'] == "supprimer") {
-                        require(BACK_PATH . "Enseignants/supprimerEnseignant.php");
-                    }
-                    // Cas où une action n'est pas reconnue
-                    else {
-                        require(BACK_PATH . "404.php");
+                    $action = $_GET["action"];
+                    switch ($action) {
+                        case "ajouter":
+                            require(BACK_PATH . "Enseignants/ajouterEnseignant.php");
+                            break;
+
+                        case "modifier":
+                            require(BACK_PATH . "Enseignants/modifierEnseignant.php");
+                            break;
+
+                        case "supprimer":
+                            require(BACK_PATH . "Enseignants/supprimerEnseignant.php");
+                            break;
+
+                        default:
+                            require(BACK_PATH . "404.php");
+                            break;
                     }
                 }
                 // Cas où il veut voir la liste des enseignants
@@ -228,9 +230,9 @@
         require(BACK_PATH . "accueil.php");
 
 
+    require(BACK_PATH . "footer.php");
+    
     ?>
-
-    <?php require(BACK_PATH . "footer.php"); ?>
 
 </body>
 

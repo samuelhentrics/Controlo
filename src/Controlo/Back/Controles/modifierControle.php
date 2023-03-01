@@ -138,6 +138,15 @@
                 }
             }
 
+            // Transformer la date actuellement au format DD/MM/YYYY en YYYY-MM-DD
+            if (preg_match("#[0-9]{2}/[0-9]{2}/[0-9]{4}#", $dateControle)) {
+                trim($dateControle);
+                $dateControle = str_replace("/", "-", $dateControle);
+                $dateControle = date("Y-m-d", strtotime($dateControle));
+
+            }
+            
+
             echo '
         <br>
         <form action="'.PAGE_MODIFIER_CONTROLE_PATH.'" method="POST">

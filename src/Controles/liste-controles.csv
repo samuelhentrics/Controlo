@@ -23,7 +23,7 @@
 "Info semestre 2";23/05/2023;"BBIN204R - R2.04 Communication et fonctionnement bas niveau";"R2.04 - Communication et fonctionnement bas niveau";"R2.04 - Réseau & bas niveau";Fischer;120;24/05/2023;09:15;09:00;"S124, S125, Amphi";"Cordova, Futrell"
 "Info semestre 2";30/05/2023;"BBIN202R - R2.02 Développement d’applications avec IHM";"R2.02 - Développement d'applications avec IHM";"R2.02 - Dev. d'apps avec IHM";Fischer;120;31/05/2023;10:30;10:30;"S124, S126, Amphi";"Theodora, Harris"
 "Info semestre 2";06/06/2023;"BBIN213R - R2.13 Communication avec le milieu professionnel";"R2.13 - Communication avec le milieu professionnel";"R2.13 - Comm. professionnelle";Catherine;120;07/06/2023;14:00;14:00;"S124, S127, Amphi";"Lepley, McKinley"
-"Info semestre 3";11/10/2022;"BTIN3102-Services réseaux";"M3102 - Services réseaux";"Services réseaux - M3102";Garcia;60;12/10/2022;10:00;10:00;"S124, S125, Amphi";"Cordova, Futrell"
+"Info semestre 3";;;"M3102 - Services réseaux 2";"Services réseaux - M3102";;60;03/03/2023;10:00;10:00;"S124, S125, Amphi";
 "Info semestre 3";18/10/2022;"BTIN3103-Algorithmique avancée";"M3103 - Algorithmique avancée";"Algo. avancée - M3103";Fort;60;19/10/2022;09:30;09:00;"S124, S125, Amphi";"Theodora, Harris"
 "Info semestre 3";18/10/2022;"BTIN3103-Algorithmique avancée";"M3103 - Algorithmique avancée";"Algo. avancée - M3103";Fischer;60;19/10/2022;11:30;11:30;"S124, S126, Amphi";"Lepley, McKinley"
 "Info semestre 3";18/10/2022;"BTIN3106-Base de données avancées";"M3106C - Bases de données avancées";"BD Avancées - M3106C";Fort;60;19/10/2022;14:00;14:00;"S124, S127, Amphi";"Cordova, Futrell"
@@ -58,7 +58,7 @@
 "Info semestre 4 - Parcours PEL";21/03/2023;BTIN4117-Mathématiques;"M4202-PEL - Compléments Maths";"Compléments Maths - M4202C";Fischer;60;22/03/2023;11:30;11:30;"S124, S125, Amphi";"Lepley, McKinley"
 "Info semestre 4 - Parcours PEL";21/03/2023;BTIN4117-Mathématiques;"M4202-PEL - Compléments Maths";"Compléments Maths - M4202C";Bergeron;60;22/03/2023;14:00;14:00;"S124, S125, Amphi";"Cordova, Futrell"
 "LP-NUM profil Gen/AV";18/10/2022;"BPVGMA5C - MaN Mise à niveau audiovisuel ou info";"MaN GA-Info1/Réseaux";"MaN GA-Info1/Réseaux";Fort;60;19/10/2022;08:00;08:00;"S124, S126, Amphi";"Theodora, Harris"
-"LP-NUM profil Gen/AV";31/01/2023;"BPVGMA5C - MaN Mise à niveau audiovisuel ou info";"MaN GA-Info2/Algorithmique";"MaN GA-Info2/Algorithmique";Drame;120;01/02/2023;09:00;09:00;"S124, S127, Amphi";"Lepley, McKinley"
+"Info semestre 3";;;"MaN GA-Info2/Algorithmique";"MaN GA-Info2/Algorithmique";;;;09:00;09:00;"S124, S127, Amphi";
 "LP-NUM profil Gen/AV";14/02/2023;"BPVGMA5C - MaN Mise à niveau audiovisuel ou info";"MaN GA-Info1/SGBD";"MaN GA-Info1/SGBD";Bergeron;120;15/02/2023;08:30;08:30;"S124, S125, Amphi";"Cordova, Futrell"
 "LP-NUM profil Gen/AV";04/04/2023;"BPVGSP6C - SPE - GP  (parcours Gestion proj Mult)";"SPE GP4/Compléments juridiques";"SPE GP4/Compléments juridiques";Costes;120;05/04/2023;09:15;09:00;"S124, S125, Amphi";"Theodora, Harris"
 "LP-NUM profil Gen/AV";11/04/2023;"BPVGSP6C - SPE - GP  (parcours Gestion proj Mult)";"SPE GP1/Gestion de projets WEB";"SPE GP1/Gestion de projets WEB";Fabre;120;12/04/2023;10:30;10:30;"S124, S126, Amphi";"Lepley, McKinley"
@@ -74,5 +74,6 @@ lp-prog;18/10/2022;"BPVGP5C - Gestion de projet";"UE8 - Gestion de projet - Agil
 lp-prog;15/11/2022;"BPVAP5C - Algorithmique";"UE6 - Conception, Prog avancée (période 2)";"Conception, Prog avancée";Fischer;120;16/11/2022;10:30;10:30;"S124, S125, Amphi";"Cordova, Futrell"
 lp-prog;10/01/2023;"BPVPM6C - Programmation mobile avancée";"UE2 - Programmation mobile (période 6)";Android;Garcia;120;11/01/2023;14:00;14:00;"S124, S125, Amphi";"Theodora, Harris"
 lp-prog;28/02/2023;"BPVPW6C - Programmation web";"UE1 - Programmation Web avancée (période 5)";"Prog. web avancée";Drame;60;01/03/2023;10:00;10:00;"S124, S126, Amphi";"Lepley, McKinley"
-lp-prog;11/04/2022;"BPVET6C - Embarqué & temps réel";"UE4 - Programmation embarquée et temps réel (période 7)";"Prog embarquée";Bergeron;;12/04/2022;;09:00;;"Cordova, Futrell"
+"Info semestre 3";;;"UE4 - Programmation embarquée et temps réel (période 7)";"Prog embarquée";;;;;09:00;;
 "Info semestre 3, Info semestre 1";06/12/2022;"R1.12&R3.12 - Voltaire 2 ";"R1.12&R3.12 - Voltaire 2 ";"R1.12&R3.12 - Volt. 2 ";Fischer;60;07/12/2022;10:00;10:00;"S124, S126, Amphi";"Theodora, Harris"
+"Info semestre 3";;;TEST;TEST;;;31/03/2023;;;;
