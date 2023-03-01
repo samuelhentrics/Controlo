@@ -143,7 +143,6 @@
                 trim($dateControle);
                 $dateControle = str_replace("/", "-", $dateControle);
                 $dateControle = date("Y-m-d", strtotime($dateControle));
-
             }
             
 

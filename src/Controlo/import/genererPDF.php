@@ -242,27 +242,31 @@ function genererPDF($unControle)
 
 
     // Création du dossier dans le dossier des plans de placement
-    $dateFormatDossier = date('Y-m-d', strtotime($dateControle));
+    $nomFichierGeneration = $unControle->getNomDossierGeneration();
 
-    $nomFormatDossier = str_replace("-", "", $nomCourtControle);
-    $nomFormatDossier = str_replace(".", "-", $nomFormatDossier);
-    $nomFormatDossier = preg_replace("/\s+/", " ", $nomFormatDossier);
-    $nomFormatDossier = trim($nomFormatDossier);
-    $nomFormatDossier = str_replace("/", "-", $nomFormatDossier);
-    $nomFormatDossier = str_replace(" ", "-", $nomFormatDossier);
+    $cheminDossierControle = GENERATIONS_FOLDER_NAME . $nomFichierGeneration;
+    $cheminDossierPDP = $cheminDossierControle . "/" . PLANS_DE_PLACEMENT_FOLDER_NAME;
+    $cheminDossierPDPPDF = $cheminDossierPDP . PLANS_DE_PLACEMENT_PDF_FOLDER_NAME;
 
-    $nomDossier = PLANS_DE_PLACEMENT_FOLDER_NAME . $dateFormatDossier . "_" . $nomFormatDossier . "/";
-
-    // Crée le dossier PlansPlacement s'il n'existe pas/plus
-    if(!file_exists(PLANS_DE_PLACEMENT_FOLDER_NAME)){
-        mkdir(PLANS_DE_PLACEMENT_FOLDER_NAME);
+    // Crée le dossier Générations s'il n'existe pas/plus
+    if(!file_exists(GENERATIONS_FOLDER_NAME)){
+        mkdir(GENERATIONS_FOLDER_NAME);
     }
 
-    // Crée le dossier du contrôle s'il n'existe pas
-    if (!file_exists($nomDossier)) {
-        mkdir($nomDossier);
+    // Crée le dossier du contrôle s'il n'existe pas/plus
+    if(!file_exists($cheminDossierControle)){
+        mkdir($cheminDossierControle);
     }
 
+    // Crée le dossier des plans de placement s'il n'existe pas/plus
+    if(!file_exists($cheminDossierPDP)){
+        mkdir($cheminDossierPDP);
+    }
+
+    // Crée le dossier des plans de placement PDF s'il n'existe pas/plus
+    if(!file_exists($cheminDossierPDPPDF)){
+        mkdir($cheminDossierPDPPDF);
+    }
 
     foreach ($unControle->getMesSalles() as $nomSalle => $uneSalle) {
         // Informations sur le PDP
@@ -410,13 +414,13 @@ function genererPDF($unControle)
         $pdf->Ln(15);
 
         // Enregistrer le PDF du PlanDePlacement actuel dans le dossier
-        $nomFichier = $dateFormatDossier . "_" . $nomFormatDossier . "_Plan_Placement_" . $nomSalle . ".pdf";
+        $nomFichier = $nomFichierGeneration . "_Plan_Placement_" . $nomSalle . ".pdf";
 
         // Si le fichier existe déjà, on le supprime
-        if (file_exists($nomDossier . $nomFichier)) {
-            unlink($nomDossier . $nomFichier);
+        if (file_exists($cheminDossierPDPPDF . $nomFichier)) {
+            unlink($cheminDossierPDPPDF . $nomFichier);
         }
 
-        $pdf->Output($nomDossier . $nomFichier, 'F');
+        $pdf->Output($cheminDossierPDPPDF . $nomFichier, 'F');
     }
 }

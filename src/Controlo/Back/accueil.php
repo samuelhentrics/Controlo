@@ -1,6 +1,15 @@
 <main class="flex-shrink-0">
   <div class="container">
     <h1 class="mt-5">Bienvenue sur Controlo</h1>
+
+    <!-- Alerte bêta 2.0 --><br>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>Attention !</strong> Cette version est une version bêta, elle n'est pas encore totalement fonctionnelle.<br>
+      <strong>Information importante !!!</strong> L'ancien dossier /PlansPlacement se nomme désormais /Generations. Celui ci regroupe dans un dossier au nom
+      du contrôle, dans le dossier Generations, les plans de placement ainsi que les feuilles d'émargement.<br>
+      <br>Pour toutes informations merci de contacter l'un des membres du groupe Controlo.
+    </div>
+
     <p>Bienvenue sur Controlo, cette plateforme permet de générer des plans de placement pour des
       contrôles.</p>
     <div class="row text-center">

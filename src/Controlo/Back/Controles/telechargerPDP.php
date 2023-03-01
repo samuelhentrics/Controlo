@@ -26,18 +26,10 @@ if(isset($_POST["idControle"])){
     $dateControle = $unControle->getDate();
 
     // Récupérer le nom du dossier qui sera zippé puis télécharger au client
-    $dateFormatDossier = date('Y-m-d', strtotime($dateControle));
-    $nomDossier = str_replace("-", "", $nomCourtControle);
-    $nomDossier = str_replace(".", "-", $nomDossier);
-    $nomDossier = preg_replace("/\s+/", " ", $nomDossier);
-    $nomDossier = trim($nomDossier);
-    $nomDossier = str_replace("/", "-", $nomDossier);
-    $nomDossier = str_replace(" ", "-", $nomDossier);
-
-    $nomDossier = $dateFormatDossier . "_" . $nomDossier;
+    $nomDossier = $unControle->getNomDossierGeneration();
 
     $existePDP = false;
-    if (is_dir(PLANS_DE_PLACEMENT_FOLDER_NAME.$nomDossier)){
+    if (is_dir(GENERATIONS_FOLDER_NAME.$nomDossier."/".PLANS_DE_PLACEMENT_PDF_PATH)){
         $existePDP = true;
     }
 
@@ -65,7 +57,7 @@ if(isset($_POST["idControle"])){
     }
     // Cas où le contrôle est généré et les informations sont completes
     else {
-        $dateGeneration = date('d/m/Y H:i:s', filemtime(PLANS_DE_PLACEMENT_FOLDER_NAME.$nomDossier));
+        $dateGeneration = date('d/m/Y H:i:s', filemtime(GENERATIONS_FOLDER_NAME.$nomDossier."/".PLANS_DE_PLACEMENT_PDF_PATH));
         echo "
             <div class='alert alert-primary' role='alert'>
                 Date de dernière génération : $dateGeneration

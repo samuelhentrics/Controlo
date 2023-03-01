@@ -71,25 +71,37 @@
             echo "<div class='text-center'>";
             echo "<h2>$nomControle";
             // Etat du controle
-            if ($unControle->controleInfoComplet()){
-                            print('
-                <i class="fa-solid fa-circle text-success"
-                    data-toggle="tooltip"
-                    data-bs-html="true"
-                    title="PDP Générable">
-                </i>
-                ');
-            }
-            else{
-                print('
-                <i class="fa-solid fa-circle text-danger"
-                    data-toggle="tooltip"
-                    data-bs-html="true"
-                    title="'.$unControle->infoManquant().'">
-                </i>
+
+            switch($unControle->getEtatPDP()){
+                case 0:
+                    print('
+                    <i class="fa-solid fa-circle text-danger"
+                        data-toggle="tooltip"
+                        data-bs-html="true"
+                        title="'.$unControle->infoManquant().'">
+                    </i>
+                    ');
+                    break;
                 
-                ');
-                
+                case 1:
+                    print('
+                    <i class="fa-solid fa-circle text-warning"
+                        data-toggle="tooltip"
+                        data-bs-html="true"
+                        title="PDP Générable">
+                    </i>
+                    ');
+                    break;
+
+                case 2:
+                    print('
+                    <i class="fa-solid fa-circle text-success"
+                        data-toggle="tooltip"
+                        data-bs-html="true"
+                        title="PDP Généré">
+                    </i>
+                    ');
+                    break;
             }
             
             echo"</h2>";

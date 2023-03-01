@@ -440,4 +440,45 @@ class Controle
         return $infoManquant;
     }
 
+    /**
+     * @brief Retourne le nom du dossier de génération
+     * @return string
+     * @example 2023-02-03_R1-01-Test
+     */
+    public function getNomDossierGeneration(){
+        $dateFormatDossier = date('Y-m-d', strtotime($this->getDate()));
+        $nomDossier = str_replace("-", "", $this->getNomCourt());
+        $nomDossier = str_replace(".", "-", $nomDossier);
+        $nomDossier = preg_replace("/\s+/", " ", $nomDossier);
+        $nomDossier = trim($nomDossier);
+        $nomDossier = str_replace("/", "-", $nomDossier);
+        $nomDossier = str_replace(" ", "-", $nomDossier);
+
+        $nomDossier = $dateFormatDossier . "_" . $nomDossier;
+
+        return $nomDossier;
+    }
+
+    /**
+     * @brief Retourne l'état sur la génération du PDP, 0 si incomplet, 1 si générable, 2 si généré
+     * @return int
+     */
+    public function getEtatPDP(){
+        if($this->controleInfoComplet()){
+            // Vérifier que le dossier existe
+            $nomDossier = $this->getNomDossierGeneration();
+            $cheminDossier = GENERATIONS_FOLDER_NAME . $nomDossier;
+            if (file_exists($cheminDossier)){
+                return 2;
+            }
+            else{
+                return 1;
+            }
+        }
+        else{
+            return 0;
+        }
+
+    }
+
 }

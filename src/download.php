@@ -22,17 +22,9 @@ if (isset($_GET["id"])) {
     $dateControle = $unControle->getDate();
 
     // Récupérer le nom du dossier qui sera zippé puis télécharger au client
-    $dateFormatDossier = date('Y-m-d', strtotime($dateControle));
-    $nomDossier = str_replace("-", "", $nomCourtControle);
-    $nomDossier = str_replace(".", "-", $nomDossier);
-    $nomDossier = preg_replace("/\s+/", " ", $nomDossier);
-    $nomDossier = trim($nomDossier);
-    $nomDossier = str_replace("/", "-", $nomDossier);
-    $nomDossier = str_replace(" ", "-", $nomDossier);
+    $nomDossier = $unControle->getNomDossierGeneration();
 
-    $nomDossier = $dateFormatDossier . "_" . $nomDossier;
-
-    $pathDossier = "./".PLANS_DE_PLACEMENT_FOLDER_NAME . $nomDossier;
+    $pathDossier = "./". GENERATIONS_FOLDER_NAME . $nomDossier . "/" . PLANS_DE_PLACEMENT_PDF_PATH;
     $zip = new ZipArchive();
     $filename = "./".$nomDossier.".zip";
 

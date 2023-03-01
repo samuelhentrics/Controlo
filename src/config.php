@@ -120,12 +120,21 @@ define("CSV_SALLES_PATH", PATH.CSV_SALLES_FOLDER_NAME);
 
 
 
+// -----------------------------------------
+// DOSSIERS DE GENERATION
+// -----------------------------------------
 
+/**
+ * @brief Nom du dossier où se retrouvent les fichiers générés
+ * @note ex : Generations/
+ */
+define("GENERATIONS_FOLDER_NAME", "Generations/");
 
-
-
-
-
+/**
+ * @brief Lien complet pour accéder au dossier de génération
+ * @note ex : http://localhost/src/Generations
+ */
+define("GENERATIONS_PATH", PATH.GENERATIONS_FOLDER_NAME);
 
 
 // -----------------------------------------
@@ -140,15 +149,39 @@ define("CSV_SALLES_PATH", PATH.CSV_SALLES_FOLDER_NAME);
 define("PLANS_DE_PLACEMENT_FOLDER_NAME", "PlansPlacement/");
 
 /**
- * @brief Lien complet pour accéder au dossier des plans de placement
- * @note ex : http://localhost/src/PlansPlacement
+ * @brief Nom du dossier où se trouvent les plans de placement générés
+ * @note ex : PDF/
  */
-define("PLANS_DE_PLACEMENT_PATH", PATH.PLANS_DE_PLACEMENT_FOLDER_NAME);
+define("PLANS_DE_PLACEMENT_PDF_FOLDER_NAME", "PDF/");
+
+/**
+ * @brief Lien complet pour accéder au dossier des plans de placement
+ * @note ex : PlansPlacement/PDF
+ */
+define("PLANS_DE_PLACEMENT_PDF_PATH", PLANS_DE_PLACEMENT_FOLDER_NAME.PLANS_DE_PLACEMENT_PDF_FOLDER_NAME);
+
+/**
+ * @brief Nom du dossier où se trouvent les plans de placement générés
+ * @note ex : CSV/
+ */
+define("PLANS_DE_PLACEMENT_CSV_FOLDER_NAME", "CSV/");
+
+/**
+ * @brief Lien complet pour accéder au dossier des plans de placement
+ * @note ex : PlansPlacement/CSV
+ */
+define("PLANS_DE_PLACEMENT_CSV_PATH", PLANS_DE_PLACEMENT_FOLDER_NAME.PLANS_DE_PLACEMENT_CSV_FOLDER_NAME);
 
 
+// -----------------------------------------
+// DOSSIER GENERATION FEUILLES EMARGEMENT
+// -----------------------------------------
 
-
-
+/**
+ * @brief Nom du dossier où se trouvent les feuilles d'emargement générées
+ * @note ex : FeuillesEmargement/
+ */
+define("FEUILLES_EMARGEMENT_FOLDER_NAME", "FeuillesEmargement/");
 
 
 
