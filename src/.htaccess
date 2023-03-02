@@ -6,11 +6,11 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?page=404 [L,QSA]
 
-# Interdire l'accès au dossier Etudiants, Controles, Enseignants, PlansPlacement et Salles
+# Interdire l'accès au dossier Etudiants, Controles, Enseignants, Generations et Salles
 RewriteRule ^Etudiants/ - [F]
 RewriteRule ^Controles/ - [F]
 RewriteRule ^Enseignants/ - [F]
-RewriteRule ^PlansPlacement/ - [F]
+RewriteRule ^Generations/ - [F]
 RewriteRule ^Salles/ - [F]
 
 
