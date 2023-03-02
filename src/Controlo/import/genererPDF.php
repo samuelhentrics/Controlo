@@ -129,6 +129,27 @@ class PDF extends FPDF
         return $data;
     }
 
+    function LoadPlanSalle($file)
+    {
+        // Read file lines
+        $lines = file($file);
+        $data = array();
+        foreach ($lines as $line){
+            $data[] = explode(';', trim($line));            
+        }
+
+        // Remplacer les 0 par des espaces
+        foreach ($data as $key => $value) {
+            foreach ($value as $key2 => $value2) {
+                if ($value2 == 0) {
+                    $data[$key][$key2] = " ";
+                }
+            }
+        }
+
+        return $data;
+    }
+
     // Simple table
     function BasicTable($header, $data)
     {
@@ -376,7 +397,7 @@ function genererPDF($unControle)
 
         // Affichage du plan de la salle
         $pdf->SetFont('Arial', '', 12);
-        $planSalle = $pdf->LoadData(CSV_SALLES_FOLDER_NAME . $nomSalle . ".csv");
+        $planSalle = $pdf->LoadPlanSalle(CSV_SALLES_FOLDER_NAME . $nomSalle . ".csv");
         $pdf->Salle($planSalle, $numeroPlacesPrises);
         $pdf->Ln(15);
 
