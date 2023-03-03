@@ -146,7 +146,7 @@
 
 
                 // Heure Non TT
-                if ($listeControles[$numControle]->getHeureNonTT() != null) {
+                if ($listeControles[$numControle]->getHeureNonTT() != null && $listeControles[$numControle]->getDuree() != null) {
                     echo $listeControles[$numControle]->getHeureNonTT(), "-", ajouterMinutesHeure($listeControles[$numControle]->getHeureNonTT(), $listeControles[$numControle]->getDureeNonTT());
                 } else {
                     print("Non définie");
@@ -158,7 +158,7 @@
 
 
                 // Heure TT
-                if ($listeControles[$numControle]->getHeureTT() != null) {
+                if ($listeControles[$numControle]->getHeureTT() != null && $listeControles[$numControle]->getDuree() != null) {
                     echo $listeControles[$numControle]->getHeureTT(), "-", ajouterMinutesHeure($listeControles[$numControle]->getHeureTT(), $listeControles[$numControle]->getDuree());
                 } else {
                     print("Non définie");
