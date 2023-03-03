@@ -8,27 +8,14 @@
 
         // Récupérer le chemin du fichier French.json
         var lien = "<?php echo JS_PATH ?>";
-        $(document).ready(function() {
-            $.fn.dataTable.moment = function ( format, locale ) {
-                var types = $.fn.dataTable.ext.type;
-            
-                // Add type detection
-                types.detect.unshift( function ( d ) {
-                    return moment( d, format, locale, true ).isValid() ?
-                        'moment-'+format :
-                        null;
-                } );
-            
-                // Add sorting method - use an integer for the sorting
-                types.order[ 'moment-'+format+'-pre' ] = function ( d ) {
-                    return moment( d, format, locale, true ).unix();
-                };
-            };
-
-
-            $.fn.dataTable.moment( 'D/M/YYYY' );
-            
+        
+        $(document).ready(function() {            
             $('#controles').DataTable({
+                // datetime-moment
+                "createdRow": function ( row, data, index ) {
+                    $('td', row).eq(2).html( moment(data[2]).format('DD/MM/YYYY') );
+                },
+
 
                 // Traduire le tableau
                 "language": {
@@ -135,10 +122,20 @@
                     <td>
                 ");
 
-
+                
                 // Date du contrôle
                 if ($listeControles[$numControle]->getDate() != null) {
-                    print("{$listeControles[$numControle]->getDate()}");
+                    // Date au format YYYY-MM-DD
+                    $dateControle = $listeControles[$numControle]->getDate();
+                    // Transformer la date EN yyyy-mm-dd
+                    if (preg_match("#[0-9]{2}/[0-9]{2}/[0-9]{4}#", $dateControle)) {
+                        trim($dateControle);
+                        $dateControle = str_replace("/", "-", $dateControle);
+                        $dateControle = date("Y-m-d", strtotime($dateControle));
+                    }
+                
+
+                    print("$dateControle");
                 } else {
                     print("Non définie");
                 }
