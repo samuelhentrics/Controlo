@@ -64,7 +64,7 @@
                             <input type="checkbox" class="custom-control-input" id="rememberMe">
                             <span class="custom-control-indicator"></span>
                             <span class="custom-control-description small text-dark">Se souvenir de moi sur cet
-                                ordinateur</span>
+                                ordinateur (Non fonctionnel)</span>
                         </label>
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg float-right" id="btnLogin">

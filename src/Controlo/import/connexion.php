@@ -9,13 +9,9 @@ include_once(FONCTION_ASSOCIER_ENTETE_LIGNE_PATH);
 function seDeconnecter(){
     session_destroy();
 
-    // Supprimer les cookies
-    setcookie("id", "", time() - 3600);
-    setcookie("nom", "", time() - 3600);
-    setcookie("prenom", "", time() - 3600);
-    setcookie("email", "", time() - 3600);
-    setcookie("role", "", time() - 3600);
-    setcookie("src_pp", "", time() - 3600);
+    // Supprimer les cookies de sauvegarde de connexion
+
+    // Non codé
 
     // Redirection vers la page d'accueil
     echo "<script>window.location.replace('index.php');</script>";
@@ -60,15 +56,8 @@ function seConnecter($email, $pwd, $garderSession = false){
                 $_SESSION["avatar"] = $ligne["src_pp"];
 
                 // On vérifie si l'utilisateur souhaite garder sa session
-                if ($garderSession) {
-                    // On crée un cookie qui expire dans 1 mois
-                    setcookie("id", $ligne["id"], time() + 60 * 60 * 24 * 30);
-                    setcookie("nom", $ligne["nom"], time() + 60 * 60 * 24 * 30);
-                    setcookie("prenom", $ligne["prenom"], time() + 60 * 60 * 24 * 30);
-                    setcookie("email", $ligne["email"], time() + 60 * 60 * 24 * 30);
-                    setcookie("role", $ligne["role"], time() + 60 * 60 * 24 * 30);
-                    setcookie("src_pp", $ligne["src_pp"], time() + 60 * 60 * 24 * 30);
-                }
+
+                // Non codé
 
 
                 $connexionOk = true;
