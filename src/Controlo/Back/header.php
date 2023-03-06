@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="<?php echo PATH; ?>">
                 <img src="<?php echo IMG_PATH.'logo.png'; ?>" alt="Logo de Controlo" height="24" class="d-inline-block align-text-top">
                 Controlo
             </a>
@@ -13,22 +13,67 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="<?php echo PATH; ?>">Accueil</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo PAGE_CONTROLES_PATH; ?>">Contrôles</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo PAGE_ETUDIANTS_PATH; ?>">Étudiants</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo PAGE_ENSEIGNANTS_PATH; ?>">Enseignants</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo PAGE_PROMOTIONS_PATH; ?>">Promotions</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo PAGE_SALLES_PATH; ?>">Salles</a>
-                    </li>
+
+                    <?php
+                    if(estConnecte() && (estSecretaireAdmin() || estSecretaire())){
+                        echo '
+                        <li class="nav-item">
+                            <a class="nav-link" href="'.PAGE_CONTROLES_PATH.'">Contrôles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="'.PAGE_ETUDIANTS_PATH.'">Étudiants</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="'.PAGE_ENSEIGNANTS_PATH.'">Enseignants</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="'.PAGE_PROMOTIONS_PATH.'">Promotions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="'.PAGE_SALLES_PATH.'">Salles</a>
+                        </li>';
+                    }
+
+                    if(estConnecte() && (estSecretaireAdmin() || estAdmin())){
+                        echo '
+                        <li class="nav-item">
+                            <a class="nav-link" href="'.PAGE_UTILISATEURS_PATH.'">Utilisateurs</a>
+                        </li>';
+                    }
+                    ?>
                 </ul>
+            </div>
+            <div>
+                <?php
+                if (estConnecte()) {
+                    echo '
+                    
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <img src="'. IMG_PATH . $_SESSION['avatar'] .'" alt="Avatar de l\'utilisateur" class="rounded-circle me-2" height="30">
+                            '. $_SESSION['prenom'] .' '. $_SESSION['nom'] .'
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user me-2"></i>
+                                    Afficher mon profil
+                                </a>
+                                <a class="dropdown-item" href="'.PAGE_DECONNEXION_PATH.'">
+                                    <i class="fas fa-sign-out-alt me-2"></i>
+                                    Se déconnecter
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                    ';
+                }
+                else {
+                    echo '<a class="btn btn-outline-light" href="'. PAGE_CONNEXION_PATH .'">Connexion</a>';
+                }
+
+                ?>
             </div>
         </div>
     </nav>

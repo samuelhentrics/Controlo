@@ -379,6 +379,13 @@ define("LISTE_PROMOTIONS_FILE_NAME" , "liste-promotions.csv");
  */
 define("LISTE_ENSEIGNANTS_FILE_NAME" , "liste-enseignants.csv");
 
+/**
+ * @brief Nom du fichier de la liste des utilisateurs
+ * @note ex: liste-utilisateurs.csv
+ */
+define("LISTE_UTILISATEURS_FILE_NAME" , "liste-utilisateurs.csv");
+
+
 
 
 
@@ -965,5 +972,23 @@ define("PAGE_RESULTAT_PDP_PATH" , PATH."index.php?page=resultatPdp");
  * @note ex : http://localhost/src/index.php?page=manuelUtilisateur
  */
 define("PAGE_MANUELUTILISATEUR_PATH" , PATH."index.php?page=manuelUtilisateur");
+
+/**
+ * @brief Lien complet vers la page de connexion
+ * @note ex : http://localhost/src/index.php?page=login
+ */
+define("PAGE_CONNEXION_PATH" , PATH."index.php?page=login");
+
+/**
+ * @brief Lien complet vers la page de déconnexion
+ * @note ex : http://localhost/src/index.php?page=logout
+ */
+define("PAGE_DECONNEXION_PATH", PATH."index.php?page=logout");
+
+/**
+ * @brief Lien complet vers la page des utilisateurs
+ * @note ex : http://localhost/src/index.php?page=utilisateurs
+ */
+define("PAGE_UTILISATEURS_PATH", PATH."index.php?page=utilisateurs");
 
 ?>

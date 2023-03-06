@@ -1,3 +1,7 @@
+<?php
+session_start();
+include("config.php");
+?>
 <!doctype html>
 <html lang="fr">
 
@@ -5,7 +9,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Controlo</title>
-    <?php include("config.php"); ?>
 
     <!-- CSS -->
     <link href="<?php echo CSS_PATH; ?>bootstrap.min.css" rel="stylesheet">
@@ -28,17 +31,30 @@
     <?php 
     // Retirer les messages d'erreur PHP (par défaut on est en mode dév)
     //ini_set('display_errors', 'off');
-    
+    include_once(IMPORT_PATH."connexion.php");
+
     require(BACK_PATH . "header.php"); 
-    
+
+    $demandePageConnexion = false;
+
+
     // Traiter la demande de page
     if (isset($_GET['page'])) {
         $page = $_GET['page'];
+        $estConnecte = estConnecte();
+        if($estConnecte)
+            $role = $_SESSION["role"];
 
         switch ($page) {
 
             // Cas ou l'utilisateur souhaite ajouter une promotion
             case 'promotions':
+                // Vérifier si l'utilisateur est connecté
+                if (!$estConnecte) {
+                    $demandePageConnexion = true;
+                    break;
+                }
+
                 if (isset($_GET["action"])) {
                     $action = $_GET["action"];
                     switch ($action) {
@@ -71,6 +87,12 @@
 
             // Cas où l'utilisateur souhaite voir la liste des contrôles
             case 'controles':
+                // Vérifier si l'utilisateur est connecté
+                if (!$estConnecte) {
+                    $demandePageConnexion = true;
+                    break;
+                }
+
                 if (isset($_GET["action"])) {
                     $action = $_GET["action"];
                     switch ($action) {
@@ -114,6 +136,12 @@
 
             // Cas où l'utilisateur souhaite s'occuper des étudiants
             case 'etudiants':
+                // Vérifier si l'utilisateur est connecté
+                if (!$estConnecte) {
+                    $demandePageConnexion = true;
+                    break;
+                }
+
                 if (isset($_GET['action'])) {
                     $action = $_GET["action"];
                     switch ($action) {
@@ -141,6 +169,12 @@
                 break;
 
             case 'enseignants':
+                // Vérifier si l'utilisateur est connecté
+                if (!$estConnecte) {
+                    $demandePageConnexion = true;
+                    break;
+                }
+
                 if (isset($_GET['action'])) {
                     $action = $_GET["action"];
                     switch ($action) {
@@ -169,6 +203,12 @@
 
             // Cas où l'utilisateur souhaite voir la liste des salles
             case 'salles':
+                // Vérifier si l'utilisateur est connecté
+                if (!$estConnecte) {
+                    $demandePageConnexion = true;
+                    break;
+                }
+
                 if (isset($_GET['action'])) {
                     $action = $_GET['action'];
                     switch ($action) {
@@ -213,7 +253,31 @@
                 break;
 
             case 'manuelUtilisateur':
+                // Vérifier si l'utilisateur est connecté
+                if (!$estConnecte) {
+                    $demandePageConnexion = true;
+                    break;
+                }
+
                 require(BACK_PATH . "manuelUtilisateur.php");
+                break;
+
+            case 'login':
+                // Vérifier si l'utilisateur est connecté
+                if (!$estConnecte){
+                require(BACK_PATH . "Connexion/seConnecter.php");
+                }
+                else{
+                    require(BACK_PATH . "accueil.php");
+                }
+                break;
+
+            case 'logout':
+                // Vérifier si l'utilisateur est connecté
+                if ($estConnecte) {
+                    seDeconnecter();
+                    echo "<meta http-equiv='refresh' content='0;url=index.php'>";
+                }
                 break;
 
             case '404':
@@ -225,9 +289,15 @@
                 require(BACK_PATH . "404.php");
                 break;
         }
-    } else
+    }
+    else{
         // Cas où l'utilisateur est sur la page d'accueil
         require(BACK_PATH . "accueil.php");
+    }
+
+    if($demandePageConnexion){
+        require(BACK_PATH . "Connexion/seConnecter.php");
+    }
 
 
     require(BACK_PATH . "footer.php");

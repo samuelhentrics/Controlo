@@ -1,3 +1,4 @@
-id;email;mdp;role;nom;prenom
-1;amaia.kersten@iutbayonne.univ-pau.fr;Controlo1.;2;KERSTEN;Amaia
-2;geraldine.blin@iutbayonne.univ-pau.fr;Controlo2!;1;BLIN;Geraldine
+id;email;mdp;role;nom;prenom;src_pp
+1;amaia.kersten@iutbayonne.univ-pau.fr;5d5616c9738ee6435abedbb69a118f6821a4ced5eacc6322419d68c2519ed314;1;KERSTEN;Amaia;profil/default.png
+2;geraldine.blin@iutbayonne.univ-pau.fr;5d5616c9738ee6435abedbb69a118f6821a4ced5eacc6322419d68c2519ed314;2;BLIN;Geraldine;profil/default.png
+3;sec-info@iutbayonne.univ-pau.fr;c3a309d9403f16a12fd81aa5921ab654f345c36071d9a85ca750e0a76a40ce35;0;;Administrateur;profil/default.png

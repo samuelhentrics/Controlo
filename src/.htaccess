@@ -12,6 +12,7 @@ RewriteRule ^Controles/ - [F]
 RewriteRule ^Enseignants/ - [F]
 RewriteRule ^Generations/ - [F]
 RewriteRule ^Salles/ - [F]
+RewriteRule ^Utilisateurs/ - [F]
 
 
 
