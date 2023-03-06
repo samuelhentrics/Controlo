@@ -97,6 +97,13 @@ define("CSV_SALLES_FOLDER_NAME","Salles/");
 define("CSV_PROMOTIONS_FOLDER_NAME","Promotions/");
 
 /**
+ * @brief Nom du dossier où se retrouvent les CSV (partie Utilisateurs)
+ * (La liste des utilisateurs)
+ * @note ex : Utilisateurs/
+ */
+define("CSV_UTILISATEURS_FOLDER_NAME","Utilisateurs/");
+
+/**
  * @brief Lien complet pour accéder au dossier CSV (Controles)
  * @note ex : http://localhost/src/Controles
  */
@@ -114,6 +121,11 @@ define("CSV_ETUDIANTS_PATH",PATH.CSV_ETUDIANTS_FOLDER_NAME);
  */
 define("CSV_SALLES_PATH", PATH.CSV_SALLES_FOLDER_NAME);
 
+/**
+ * @brief Lien complet pour accéder au dossier CSV (Utilisateurs)
+ * @note ex : http://localhost/src/Utilisateurs
+ */
+define("CSV_UTILISATEURS_PATH", PATH.CSV_UTILISATEURS_FOLDER_NAME);
 
 
 

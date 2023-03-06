@@ -210,16 +210,8 @@ function saisirLigneEtudiant($infoEtudiant, $unEtudiant)
         $infoEtudiant[NOM_NOM_COLONNE_ETUDIANT] = $nomEtudiant;
         $infoEtudiant[PRENOM_NOM_COLONNE_ETUDIANT] = $prenomEtudiant;
 
-        // Vérifier que le numéro de TD est un entier
-        if (!is_numeric($tdEtudiant)) {
-            throw new Exception("Le numéro de TD de l'étudiant n'est pas un entier");
-        }
         $infoEtudiant[TD_NOM_COLONNE_ETUDIANT] = $tdEtudiant;
 
-        // Vérifier que le numéro de TP est un entier
-        if (!is_numeric($tpEtudiant)) {
-            throw new Exception("Le numéro de TP de l'étudiant n'est pas un entier");
-        }
         $infoEtudiant[TP_NOM_COLONNE_ETUDIANT] = $tpEtudiant;
 
         // Vérifier que le mail est valide
