@@ -446,7 +446,10 @@ class Controle
      * @example 2023-02-03_R1-01-Test
      */
     public function getNomDossierGeneration(){
-        $dateFormatDossier = date('Y-m-d', strtotime($this->getDate()));
+        $date = $this->getDate();
+        // Date actuellement au format DD/MM/YYYY en YYYY-MM-DD
+        $date = str_replace("/", "-", $date);
+        $date = date('Y-m-d', strtotime($date));
         $nomDossier = str_replace("-", "", $this->getNomCourt());
         $nomDossier = str_replace(".", "-", $nomDossier);
         $nomDossier = preg_replace("/\s+/", " ", $nomDossier);
@@ -454,7 +457,7 @@ class Controle
         $nomDossier = str_replace("/", "-", $nomDossier);
         $nomDossier = str_replace(" ", "-", $nomDossier);
 
-        $nomDossier = $dateFormatDossier . "_" . $nomDossier;
+        $nomDossier = $date . "_" . $nomDossier;
 
         return $nomDossier;
     }

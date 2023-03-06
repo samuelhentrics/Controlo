@@ -120,9 +120,18 @@ class Plan
     public function planAvecPlacesUniquement(){
         $plan = new Plan();
         for ($numLigne = 0; $numLigne <= count($this->mesZones) - 1; $numLigne++) {
+            $placeVide = true;
             for ($numCol = 0; $numCol <= count($this->mesZones[$numLigne]) - 1; $numCol++) {
                 $uneZone = $this->mesZones[$numLigne][$numCol];
+                if ($uneZone->getType() == "vide") {
+                    if($placeVide){
+                        $plan->ajouterUneZone($uneZone);
+                    }
+                    $placeVide = true;
+                }
+
                 if ($uneZone->getType() == "place") {
+                    $placeVide = false;
                     $plan->ajouterUneZone($uneZone);
                 }
             }

@@ -234,8 +234,8 @@ function genererPDF($unControle)
     $nomControle = substr($nomTotalControle, $premierTiret + 1);
 
     // Récupération de la date du contrôle
-    $dateControle = $unControle->getDate();
-    $date = date('d/m/Y', strtotime($dateControle));
+    $date = $unControle->getDate();
+    // $date = date('d/m/Y', strtotime($dateControle));
 
     // Récupération de l'heure du contrôle
     $heureTT = str_replace(":", "h", $unControle->getHeureTT());

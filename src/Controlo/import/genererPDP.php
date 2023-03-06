@@ -166,22 +166,23 @@ function placerEtudiants(&$listeEtudiants, &$unControle, &$erreur)
 
             // Vérifier qu'on est sur une colonne acceptable
             if ($numeroColonne % ($nbPlacesSeparant + 1) == 0) {
+              // Vérifier que la place n'est pas une place "vide" 
+              if ($unePlace->getType() == "place") {
+                // Vérifier que la place n'est pas prise
+                if (!$unPDP->existePlace($unePlace)) {
 
-              // Vérifier que la place n'est pas prise
-              if (!$unPDP->existePlace($unePlace)) {
+                  // Vérifier que la place a une prise si l'on dispose d'un ordinateur
+                  if ($unEtudiant->getAOrdi()) {
+                    if ($unePlace->getInfoPrise()) {
+                      $trouve = true;
+                    }
+                  }
 
-                // Vérifier que la place a une prise si l'on dispose d'un ordinateur
-                if ($unEtudiant->getAOrdi()) {
-                  if ($unePlace->getInfoPrise()) {
+                  // Cas où l'Etudiant n'a pas besoin d'une prise
+                  else {
                     $trouve = true;
                   }
                 }
-
-                // Cas où l'Etudiant n'a pas besoin d'une prise
-                else {
-                  $trouve = true;
-                }
-              }
 
 
               // Véfifier que la place n'est pas prise
@@ -199,7 +200,7 @@ function placerEtudiants(&$listeEtudiants, &$unControle, &$erreur)
                 break;
               }
 
-
+            }
             }
 
             // Incrémenter le numéro de colonne
