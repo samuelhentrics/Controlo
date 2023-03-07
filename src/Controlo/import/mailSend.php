@@ -25,11 +25,10 @@ function envoyerMailEtudiants($unControle, $intitule, $contenuMail, $expediteur)
         $nomDossierGeneration = $unControle->getNomDossierGeneration();
         $nomFichierPDF = $unControle->getNomDossierGeneration() . "_Plan_Placement_" . $nomSalle . ".pdf";
         $cheminFichierPDF = GENERATIONS_FOLDER_NAME . $nomDossierGeneration . "/" . PLANS_DE_PLACEMENT_PDF_PATH . $nomFichierPDF;
-        $file = fopen($cheminFichierPDF, "r");
         
         // Envoi du mail
         $emailDestinataire = $infoEtudiantPlace["Mail"];
-        $resultat = envoieUnMail($expediteur, $emailDestinataire, $intitule, $contenuPerso, $file);
+        $resultat = envoieUnMail($expediteur, $emailDestinataire, $intitule, $contenuPerso, $cheminFichierPDF);
 
 
         if ($resultat){
@@ -87,24 +86,16 @@ function envoieUnMail($emailEnvoyeur, $emailDestinataire, $sujet, $message, $fil
     $body .= $message . "\r\n";
 
 
-    if (isset($file['name']) && $file['size'] > 0) {
-        $file_name = $file['name'];
-        $file_size = $file['size'];
-        $file_tmp = $file['tmp_name'];
-        $file_type = $file['type'];
+    $file = 'test.pdf';
+    $content = file_get_contents($file);
+    $content = chunk_split(base64_encode($content));
 
-        $handle = fopen($file_tmp, "r");
-        $content = fread($handle, $file_size);
-        fclose($handle);
-
-        $content = chunk_split(base64_encode($content));
 
         $body .= "--$boundary\r\n";
-        $body .= "Content-Type: $file_type; name=\"$file_name\"\r\n";
+        $body .= "Content-Type: application/pdf; name=\"$file\"\r\n";
         $body .= "Content-Transfer-Encoding: base64\r\n";
-        $body .= "Content-Disposition: attachment; filename=\"$file_name\"\r\n\r\n";
+        $body .= "Content-Disposition: attachment; filename=\"$file\"\r\n\r\n";
         $body .= $content . "\r\n";
-    }
 
     $body .= "--$boundary--";
 
