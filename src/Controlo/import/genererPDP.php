@@ -380,7 +380,8 @@ try {
     // Tentative de génération des PDF
     if (!$erreur) {
       // Génération des PDF
-      genererPDF($unControle);
+      genererPDFPDP($unControle);
+      genererCSVPDP($unControle);
     }
   }
   catch (Exception $e) {

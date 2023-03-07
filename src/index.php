@@ -123,6 +123,10 @@ include("config.php");
                             require(BACK_PATH . "Controles/telechargerPDP.php");
                             break;
 
+                        case "envoyerMails":
+                            require(BACK_PATH . "Controles/envoyerMails.php");
+                            break;
+
                         default:
                             require(BACK_PATH . "404.php");
                             break;

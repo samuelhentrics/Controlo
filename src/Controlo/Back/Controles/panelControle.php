@@ -2,9 +2,9 @@
     <div class="col-12">
         <br>
         <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
         </script>
         <?php
 
@@ -13,7 +13,7 @@
             include_once(FONCTION_AJOUTER_MINUTES_HEURE_PATH);
 
             // Préparation infos contrôle
-
+        
             $idControle = $_POST["idControle"];
             $unControle = recupererUnControle($idControle);
 
@@ -24,7 +24,7 @@
             $dureeNonTT = $unControle->getDureeNonTT();
 
             $infoHeureNonTT = "Non renseignée";
-            if($heureNonTT != null && $dureeNonTT != null){
+            if ($heureNonTT != null && $dureeNonTT != null) {
                 $infoHeureNonTT = $heureNonTT . " - " . ajouterMinutesHeure($heureNonTT, $dureeNonTT);
             }
 
@@ -32,20 +32,19 @@
             $dureeTT = $unControle->getDuree();
 
             $infoHeureTT = "Non renseignée";
-            if($heureTT != null && $dureeTT != null){
+            if ($heureTT != null && $dureeTT != null) {
                 $infoHeureTT = $heureTT . " - " . ajouterMinutesHeure($heureTT, $dureeTT);
             }
 
             $listePromotions = $unControle->getMesPromotions();
 
             $promotions = "";
-            if($listePromotions != null){
+            if ($listePromotions != null) {
                 foreach ($listePromotions as $unePromotion) {
                     $promotions .= $unePromotion->getNom() . ", ";
                 }
                 $promotions = substr($promotions, 0, -2);
-            }
-            else {
+            } else {
                 $promotions = "Non renseignée";
             }
 
@@ -59,30 +58,29 @@
                     $salles .= $uneSalle->getNom() . ", ";
                 }
                 $salles = substr($salles, 0, -2);
-            }
-            else {
+            } else {
                 $salles = "Non renseignée";
             }
 
 
             // Affichage
-
+        
             // Centrer les infos du contrôle
             echo "<div class='text-center'>";
             echo "<h2>$nomControle";
             // Etat du controle
-
-            switch($unControle->getEtatPDP()){
+        
+            switch ($unControle->getEtatPDP()) {
                 case 0:
                     print('
                     <i class="fa-solid fa-circle text-danger"
                         data-toggle="tooltip"
                         data-bs-html="true"
-                        title="'.$unControle->infoManquant().'">
+                        title="' . $unControle->infoManquant() . '">
                     </i>
                     ');
                     break;
-                
+
                 case 1:
                     print('
                     <i class="fa-solid fa-circle text-warning"
@@ -103,11 +101,11 @@
                     ');
                     break;
             }
-            
-            echo"</h2>";
+
+            echo "</h2>";
             echo "<h3>$nomCourt</h3>";
 
-            
+
             // Afficher les informations du contrôle
             echo "<a>
             Date : $date - Heure : $infoHeureNonTT - TT : $infoHeureTT - Promotion(s) : $promotions<br>
@@ -125,8 +123,8 @@
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-3">
-                            <form id="modifier" action="'.PAGE_MODIFIER_CONTROLE_PATH.'" method="POST">
-                                <input type="hidden" name="idControle" value="'.$idControle.'">
+                            <form id="modifier" action="' . PAGE_MODIFIER_CONTROLE_PATH . '" method="POST">
+                                <input type="hidden" name="idControle" value="' . $idControle . '">
                                 <a onClick="document.getElementById(\'modifier\').submit();">
                                     <div class="card text-white bg-primary text-center">
                                         <div class="card-body text-center">
@@ -137,10 +135,10 @@
                                 </a>
                             </form>
 
-                            <form id="supprimer" action="'.PAGE_SUPPRIMER_CONTROLE_PATH.'" method="POST">
-                                <input type="hidden" name="idControle" value="'.$idControle.'">
+                            <form id="supprimer" action="' . PAGE_SUPPRIMER_CONTROLE_PATH . '" method="POST">
+                                <input type="hidden" name="idControle" value="' . $idControle . '">
                                 <a onClick="
-                                if(confirm(\'Confirmer la suppression de: '.$nomControle.' ?\')){ 
+                                if(confirm(\'Confirmer la suppression de: ' . $nomControle . ' ?\')){ 
                                     document.getElementById(\'supprimer\').submit();
                                 }
                                 ">
@@ -159,8 +157,8 @@
                         </div>
                         
                         <div class="col-md-4">
-                            <form id="placerAuto" action="'.PAGE_PLACEMENT_AUTO_PATH.'" method="POST">
-                                <input type="hidden" name="idControle" value="'.$idControle.'">
+                            <form id="placerAuto" action="' . PAGE_PLACEMENT_AUTO_PATH . '" method="POST">
+                                <input type="hidden" name="idControle" value="' . $idControle . '">
                                 <a onClick="document.getElementById(\'placerAuto\').submit();">
                                     <div class="card text-white bg-primary text-center">
                                         <div class="card-body">
@@ -191,8 +189,8 @@
                                 </div>
                             </div>
 
-                            <form id="telechargerPDP" action="'.PAGE_TELECHARGER_PDP_CONTROLE_PATH .'" method="POST">
-                                <input type="hidden" name="idControle" value="'.$idControle.'">
+                            <form id="telechargerPDP" action="' . PAGE_TELECHARGER_PDP_CONTROLE_PATH . '" method="POST">
+                                <input type="hidden" name="idControle" value="' . $idControle . '">
                                 <a onClick="document.getElementById(\'telechargerPDP\').submit();">
                                     <div class="card text-white bg-primary">
                                         <div class="card-body">
@@ -205,15 +203,19 @@
                                 </a>
                             </form>
 
-
-                            <div class="card bg-secondary">
-                                <div class="card-body">
-                                    <h5>
-                                        <i class="fa fa-envelope fa-2x"></i>
-                                        Envoyer un mail aux étudiants
-                                    </h5>
-                                </div>
-                            </div>
+                            <form id="envoyerMails" action="' . PAGE_ENVOYER_MAILS_CONTROLE_PATH . '" method="POST">
+                                <input type="hidden" name="idControle" value="' . $idControle . '">
+                                <a onClick="document.getElementById(\'envoyerMails\').submit();">
+                                    <div class="card text-white bg-primary">
+                                        <div class="card-body">
+                                            <h5>
+                                                <i class="fa fa-envelope fa-2x"></i>
+                                                Envoyer un mail aux étudiants
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </a>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -221,8 +223,7 @@
             ';
             echo '</div>';
 
-        }
-        else {
+        } else {
             // Afficher un message d'erreur (boostrap)
             echo "<div class='alert alert-danger' role='alert'>";
             echo "Aucun contrôle n'a été sélectionné.<br>";
@@ -232,7 +233,7 @@
 
         }
 
-    ?>
+        ?>
 
     </div>
 </div>

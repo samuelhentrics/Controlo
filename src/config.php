@@ -53,7 +53,15 @@ define("PATH",'http://'.$_SERVER['HTTP_HOST'].retrouverCheminApp());
 
 
 
+// -----------------------------------------
+// DOSSIER SAUVEGARDE
+// -----------------------------------------
 
+/**
+ * @brief Nom du dossier où se retrouvent les sauvegardes
+ * @note ex : Sauvegardes/
+ */
+define("SAUVEGARDES_FOLDER_NAME","Sauvegardes/");
 
 
 
@@ -815,6 +823,12 @@ define("PAGE_SUPPRIMER_CONTROLE_PATH" , PATH."index.php?page=controles&action=su
 define("PAGE_TELECHARGER_PDP_CONTROLE_PATH" , PATH."index.php?page=controles&action=telechargerPDP");
 
 /**
+ * @brief Lien complet vers la page d'envoi de mails d'un contrôle
+ * @note ex : http://localhost/src/index.php?page=controles&action=envoyerMails
+ */
+define("PAGE_ENVOYER_MAILS_CONTROLE_PATH" , PATH."index.php?page=controles&action=envoyerMails");
+
+/**
  * @brief Lien complet vers la page de la liste des etudiants
  * @note ex : http://localhost/src/index.php?page=etudiants
  */
@@ -990,5 +1004,10 @@ define("PAGE_DECONNEXION_PATH", PATH."index.php?page=logout");
  * @note ex : http://localhost/src/index.php?page=utilisateurs
  */
 define("PAGE_UTILISATEURS_PATH", PATH."index.php?page=utilisateurs");
+
+
+// Lancement de la sauvegarde
+//include_once(IMPORT_PATH."sauvegarde.php");
+//sauvegarde();
 
 ?>

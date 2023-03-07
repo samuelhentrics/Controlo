@@ -110,7 +110,7 @@ class Etudiant
      */
     public function setNom($nouveauNom)
     {
-        $this->nom = $nouveauNom;
+        $this->nom = strtoupper($nouveauNom);
     }
 
     /**

@@ -134,8 +134,8 @@ class PDF extends FPDF
         // Read file lines
         $lines = file($file);
         $data = array();
-        foreach ($lines as $line){
-            $data[] = explode(';', trim($line));            
+        foreach ($lines as $line) {
+            $data[] = explode(';', trim($line));
         }
 
         // Remplacer les 0 par des espaces
@@ -220,7 +220,7 @@ class PDF extends FPDF
  * @param Controle $unControle Controle auquel nous souhaitons générer un PlanDePlacement
  * @return void
  */
-function genererPDF($unControle)
+function genererPDFPDP($unControle)
 {
     // Données de l'entête pour chaque page
     //      Récupération des variables importantes pour l'entête
@@ -247,10 +247,9 @@ function genererPDF($unControle)
     $dureeNonTT = $unControle->getDureeNonTT();
     $dureeNonTT = sprintf("%02dh%02d", floor($dureeNonTT / 60), ($dureeNonTT % 60));
 
-    if(count($unControle->getMesPromotions()) > 1) {
+    if (count($unControle->getMesPromotions()) > 1) {
         $affichagePromotion = "Promotions";
-    }
-    else{
+    } else {
         $affichagePromotion = "Promotion";
     }
 
@@ -270,22 +269,22 @@ function genererPDF($unControle)
     $cheminDossierPDPPDF = $cheminDossierPDP . PLANS_DE_PLACEMENT_PDF_FOLDER_NAME;
 
     // Crée le dossier Générations s'il n'existe pas/plus
-    if(!file_exists(GENERATIONS_FOLDER_NAME)){
+    if (!file_exists(GENERATIONS_FOLDER_NAME)) {
         mkdir(GENERATIONS_FOLDER_NAME);
     }
 
     // Crée le dossier du contrôle s'il n'existe pas/plus
-    if(!file_exists($cheminDossierControle)){
+    if (!file_exists($cheminDossierControle)) {
         mkdir($cheminDossierControle);
     }
 
     // Crée le dossier des plans de placement s'il n'existe pas/plus
-    if(!file_exists($cheminDossierPDP)){
+    if (!file_exists($cheminDossierPDP)) {
         mkdir($cheminDossierPDP);
     }
 
     // Crée le dossier des plans de placement PDF s'il n'existe pas/plus
-    if(!file_exists($cheminDossierPDPPDF)){
+    if (!file_exists($cheminDossierPDPPDF)) {
         mkdir($cheminDossierPDPPDF);
     }
 
@@ -303,7 +302,7 @@ function genererPDF($unControle)
         // des places attribués dans listePlaces
 
         foreach ($listePlacementsPDP as $ligne) {
-            foreach($ligne as $unPlacement) {
+            foreach ($ligne as $unPlacement) {
 
                 $place = $unPlacement->getMaZone();
                 $etudiant = $unPlacement->getMonEtudiant();
@@ -313,7 +312,7 @@ function genererPDF($unControle)
                 if ($place->getInfoPrise()) {
                     $numeroPlace .= "E";
                 }
-                
+
                 // Ajouter le numéro de place si celle-ci est prise
                 array_push($numeroPlacesPrises, $numeroPlace);
 
@@ -324,11 +323,9 @@ function genererPDF($unControle)
                 // (Ordi) si l'étudiant a un ordi
                 if ($etudiant->getEstTT() and $etudiant->getAOrdi()) {
                     $nomCompletEtudiant .= " (TT + Ordi)";
-                }
-                elseif($etudiant->getAOrdi()){
+                } elseif ($etudiant->getAOrdi()) {
                     $nomCompletEtudiant .= " (Ordi)";
-                }
-                elseif($etudiant->getEstTT()){
+                } elseif ($etudiant->getEstTT()) {
                     $nomCompletEtudiant .= " (TT)";
                 }
 
@@ -376,11 +373,11 @@ function genererPDF($unControle)
         $totalEtudiants = count($listePlaces);
 
         $entete = '<u>Nom du contrôle</u> : ' . $nomTotalControle . '<br>' .
-        '<u>'.$affichagePromotion.'</u> : ' . $lesPromotions . '            '.
-        '<u>Nombre d\'étudiants</u> : ' . $totalEtudiants . '<br>'  .
-        '<u>Date</u> : ' . $date . '            ' .
-        '<u>Heure</u> : ' . $heureNonTT . ' (TT : ' . $heureTT . ')' . '            ' .
-        '<u>Durée</u> : ' . $dureeNonTT . ' (TT : ' . $dureeTT . ')';
+            '<u>' . $affichagePromotion . '</u> : ' . $lesPromotions . '            ' .
+            '<u>Nombre d\'étudiants</u> : ' . $totalEtudiants . '<br>' .
+            '<u>Date</u> : ' . $date . '            ' .
+            '<u>Heure</u> : ' . $heureNonTT . ' (TT : ' . $heureTT . ')' . '            ' .
+            '<u>Durée</u> : ' . $dureeNonTT . ' (TT : ' . $dureeTT . ')';
 
 
         // Affichage de l'entête
@@ -425,7 +422,7 @@ function genererPDF($unControle)
         $pdf->Ln(15);
 
         // Saut de page si demandé
-        if ($sautDePageListeEtudiants){
+        if ($sautDePageListeEtudiants) {
             $pdf->AddPage();
         }
 
@@ -444,4 +441,94 @@ function genererPDF($unControle)
 
         $pdf->Output($cheminDossierPDPPDF . $nomFichier, 'F');
     }
+}
+
+
+function genererCSVPDP($unControle)
+{
+
+    // Récupérer les infos du contrôle
+    $listePDP = $unControle->getMesPlansDePlacement();
+
+    $nomFichierGeneration = $unControle->getNomDossierGeneration();
+    $cheminDossierPDPCSV = GENERATIONS_FOLDER_NAME . $nomFichierGeneration . "/" . PLANS_DE_PLACEMENT_CSV_PATH;
+
+    // Créer le dossier CSV s'il n'existe pas
+    if (!file_exists($cheminDossierPDPCSV)) {
+        mkdir($cheminDossierPDPCSV);
+    }
+
+    $csvPDP = array();
+
+    // Pour chaque plan de placement
+    foreach ($listePDP as $unPDP) {
+
+        // Récupérer les infos du plan de placement
+        $nomSalle = $unPDP->getMaSalle()->getNom();
+        $listePlaces = $unPDP->getMesPlacements();
+
+        // Pour chaque place
+        foreach ($listePlaces as $uneLigne) {
+            foreach ($uneLigne as $unPlacement) {
+                // Récupérer les infos de la place
+                $unePlace = $unPlacement->getMaZone();
+
+                $numeroPlace = $unePlace->getNumero();
+                $etudiant = $unPlacement->getMonEtudiant();
+
+                // Si l'étudiant est null, on ne fait rien
+                if ($etudiant != null) {
+
+                    // Récupérer les infos de l'étudiant
+                    $nom = $etudiant->getNom();
+                    $prenom = $etudiant->getPrenom();
+                    // Ajouter (TT) si l'étudiant a un tiers-temps ou
+                    // (TT + Ordi) si l'étudiant a un tiers-temps et un ordinateur ou
+                    // (Ordi) si l'étudiant a un ordi
+                    if ($etudiant->getEstTT() and $etudiant->getAOrdi()) {
+                        $statut = "TT";
+                    } else {
+                        $statut = "";
+                    }
+
+                    // Mail étudiant
+                    $mailEtudiant = $etudiant->getEmail();
+
+
+                    $infoUnePlace = array();
+                    array_push($infoUnePlace, $nomSalle);
+                    array_push($infoUnePlace, $numeroPlace);
+                    array_push($infoUnePlace, $nom);
+                    array_push($infoUnePlace, $prenom);
+                    array_push($infoUnePlace, $statut);
+                    array_push($infoUnePlace, $mailEtudiant);
+
+
+                    // Ajouter les infos de la place au tableau
+                    array_push($csvPDP, $infoUnePlace);
+                }
+            }
+        }
+
+    }
+
+    // Création du CSV
+    $nomFichier =  "listeEtudiants.csv";
+
+    // Si le fichier existe déjà, on le supprime
+    if (file_exists($cheminDossierPDPCSV . $nomFichier)) {
+        unlink($cheminDossierPDPCSV . $nomFichier);
+    }
+
+    // Création du fichier CSV
+    $fichierCSV = fopen($cheminDossierPDPCSV . $nomFichier, 'w');
+
+    // Ajout des infos dans le fichier CSV
+    foreach ($csvPDP as $uneLigne) {
+        fputcsv($fichierCSV, $uneLigne, ";");
+    }
+
+    // Fermeture du fichier CSV
+    fclose($fichierCSV);
+
 }
