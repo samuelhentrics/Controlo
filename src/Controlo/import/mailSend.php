@@ -86,7 +86,6 @@ function envoieUnMail($emailEnvoyeur, $emailDestinataire, $sujet, $message, $fil
     $body .= $message . "\r\n";
 
 
-    $file = 'test.pdf';
     $content = file_get_contents($file);
     $content = chunk_split(base64_encode($content));
 
