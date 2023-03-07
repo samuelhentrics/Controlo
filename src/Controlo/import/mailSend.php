@@ -23,7 +23,7 @@ function envoyerMailEtudiants($unControle, $intitule, $contenuMail, $expediteur)
         $resultat = envoieUnMail($expediteur, $emailDestinataire, $intitule, $contenuPerso, $file);
 
         if ($resultat){
-            array_push($listeOk, $infoEtudiantPlace["Email"]);
+            array_push($listeOk, $infoEtudiantPlace["Mail"]);
         }
     }
 
