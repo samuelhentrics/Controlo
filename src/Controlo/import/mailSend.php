@@ -28,7 +28,7 @@ function envoyerMailEtudiants($unControle, $intitule, $contenuMail, $expediteur)
         
         // Envoi du mail
         $emailDestinataire = $infoEtudiantPlace["Mail"];
-        $resultat = envoieUnMail($expediteur, $emailDestinataire, $intitule, $contenuPerso, $cheminFichierPDF);
+        $resultat = envoieUnMail($expediteur, $emailDestinataire, $intitule, $contenuPerso, $cheminFichierPDF, $nomFichierPDF);
 
 
         if ($resultat){
@@ -64,7 +64,7 @@ function contenuMailSelonEtudiant($unControle, $infoEtudiantPlace, $contenu){
     return $contenu;
 }
 
-function envoieUnMail($emailEnvoyeur, $emailDestinataire, $sujet, $message, $file)
+function envoieUnMail($emailEnvoyeur, $emailDestinataire, $sujet, $message, $file, $filename)
 {
 
     // if (isset($_POST['emailEnvoyeur']) && isset($_POST['emailDestinataire']) && isset($_POST['sujet']) && isset($_POST['message'])) {
@@ -91,9 +91,9 @@ function envoieUnMail($emailEnvoyeur, $emailDestinataire, $sujet, $message, $fil
 
 
         $body .= "--$boundary\r\n";
-        $body .= "Content-Type: application/pdf; name=\"$file\"\r\n";
+        $body .= "Content-Type: application/pdf; name=\"$filename\"\r\n";
         $body .= "Content-Transfer-Encoding: base64\r\n";
-        $body .= "Content-Disposition: attachment; filename=\"$file\"\r\n\r\n";
+        $body .= "Content-Disposition: attachment; filename=\"$filename\"\r\n\r\n";
         $body .= $content . "\r\n";
 
     $body .= "--$boundary--";
