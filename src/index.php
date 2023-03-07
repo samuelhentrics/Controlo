@@ -262,6 +262,21 @@ include("config.php");
                 require(BACK_PATH . "manuelUtilisateur.php");
                 break;
 
+            case 'utilisateurs':
+                // Vérifier si l'utilisateur est connecté
+                if (!$estConnecte) {
+                    $demandePageConnexion = true;
+                    break;
+                }
+
+                if(!(estSecretaireAdmin() || estAdmin())){
+                    echo "<meta http-equiv='refresh' content='0;url=index.php'>";
+                    break;
+                }
+
+                require(BACK_PATH . "Utilisateurs/listeUtilisateurs.php");
+                break;
+
             case 'login':
                 // Vérifier si l'utilisateur est connecté
                 if (!$estConnecte){
