@@ -1,4 +1,60 @@
 <?php
+
+include_once(FONCTION_ASSOCIER_ENTETE_LIGNE_PATH);
+
+function envoyerMailEtudiants($unControle, $intitule, $contenuMail, $expediteur){
+    // Ouvrir le fichier contenant la liste des étudiants pour ce contrôle
+    $nomFichier = "listeEtudiants.csv";
+    $cheminFichier = GENERATIONS_FOLDER_NAME . $unControle->getNomDossierGeneration() . "/" . PLANS_DE_PLACEMENT_CSV_PATH . $nomFichier;
+
+    $file = fopen($cheminFichier, "r");
+
+    // Récupérer l'entête
+    $entete = fgetcsv($file, 0, ";");
+
+    $listeOk = array();
+
+    // Traiter étudiant par étudiant
+    while (($ligne = fgetcsv($file, 0, ";")) !== FALSE) {
+        $infoEtudiantPlace = associerEnteteLigne($entete, $ligne);
+        $contenuPerso = contenuMailSelonEtudiant($unControle, $infoEtudiantPlace, $contenuMail);
+        
+        $emailDestinataire = $infoEtudiantPlace["Mail"];
+        $resultat = envoieUnMail($expediteur, $emailDestinataire, $intitule, $contenuPerso, $file);
+
+        if ($resultat){
+            array_push($listeOk, $infoEtudiantPlace["Email"]);
+        }
+    }
+
+    fclose($file);
+
+    return $listeOk;
+}
+
+function contenuMailSelonEtudiant($unControle, $infoEtudiantPlace, $contenu){
+    $contenu = str_replace("[Prénom]", $infoEtudiantPlace["Prenom"], $contenu);
+    $contenu = str_replace("[Nom]", $infoEtudiantPlace["Nom"], $contenu);
+    $contenu = str_replace("[NomLongControle]", $unControle->getNomLong(), $contenu);
+    $contenu = str_replace("[NomCourtControle]", $unControle->getNomCourt(), $contenu);
+    $contenu = str_replace("[Date]", $unControle->getDate(), $contenu);
+
+    $statut = $infoEtudiantPlace["Statut"];
+
+    if ($statut == "TT"){
+        $contenu = str_replace("[Heure]", $unControle->getHeureTT(), $contenu);
+        $contenu = str_replace("[Durée]", $unControle->getDuree(), $contenu);
+    } else {
+        $contenu = str_replace("[Heure]", $unControle->getHeureNonTT(), $contenu);
+        $contenu = str_replace("[Durée]", $unControle->getDureeNonTT(), $contenu);
+    } 
+
+    $contenu = str_replace("[Salle]", $infoEtudiantPlace["Salle"], $contenu);
+    $contenu = str_replace("[Place]", $infoEtudiantPlace["NumeroPlace"], $contenu);
+
+    return $contenu;
+}
+
 function envoieUnMail($emailEnvoyeur, $emailDestinataire, $sujet, $message, $file)
 {
 
@@ -44,21 +100,26 @@ function envoieUnMail($emailEnvoyeur, $emailDestinataire, $sujet, $message, $fil
 
     // Envoi de l'email
     if (mail($emailDestinataire, $sujet, $body, $headers)) {
-        echo "Votre e-mail a été envoyé avec succès.";
+        return true;
     } else {
-        echo "Erreur : Impossible d'envoyer l'e-mail.";
+        return false;
     }
     // }
 }
-//Example:
-if (isset($_POST['emailEnvoyeur']) && isset($_POST['emailDestinataire']) && isset($_POST['sujet']) && isset($_POST['message'])) {
-    $emailEnvoyeur = $_POST['emailEnvoyeur'];
-    $emailDestinataire = $_POST['emailDestinataire'];
-    $sujet = $_POST['sujet'];
-    $message = $_POST['message'];
-    $file = $_FILES['file'];
 
-    envoieUnMail($emailEnvoyeur, $emailDestinataire, $sujet, $message, $file);
+function recupererMessageMailDefaut(){
+    // Tentative ouverture fichier Utilisateurs/messageDefaut.txt
+
+    $fichier = fopen(MESSAGE_MAIL_DEFAUT_PATH, "r");
+    if($fichier){
+        $message = fread($fichier, filesize(MESSAGE_MAIL_DEFAUT_PATH));
+        fclose($fichier);
+        return $message;
+    }
+    else{
+        return "";
+    }
+
 }
 
 ?>

@@ -459,6 +459,16 @@ function genererCSVPDP($unControle)
     }
 
     $csvPDP = array();
+    
+    // Ajout de l'entête
+    $entete = array("Salle",
+    "NumeroPlace",
+    "Nom",
+    "Prenom",
+    "Statut",
+    "Mail");
+
+    array_push($csvPDP, $entete);
 
     // Pour chaque plan de placement
     foreach ($listePDP as $unPDP) {
@@ -485,7 +495,7 @@ function genererCSVPDP($unControle)
                     // Ajouter (TT) si l'étudiant a un tiers-temps ou
                     // (TT + Ordi) si l'étudiant a un tiers-temps et un ordinateur ou
                     // (Ordi) si l'étudiant a un ordi
-                    if ($etudiant->getEstTT() and $etudiant->getAOrdi()) {
+                    if ($etudiant->getEstTT()) {
                         $statut = "TT";
                     } else {
                         $statut = "";

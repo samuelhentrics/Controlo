@@ -24,7 +24,7 @@
 "Info semestre 2";30/05/2023;"BBIN202R - R2.02 Développement d’applications avec IHM";"R2.02 - Développement d'applications avec IHM";"R2.02 - Dev. d'apps avec IHM";Fischer;120;31/05/2023;10:30;10:30;"S124, S126, Amphi";"Theodora, Harris"
 "Info semestre 2";06/06/2023;"BBIN213R - R2.13 Communication avec le milieu professionnel";"R2.13 - Communication avec le milieu professionnel";"R2.13 - Comm. professionnelle";Catherine;120;07/06/2023;14:00;14:00;"S124, S127, Amphi";"Lepley, McKinley"
 "Info semestre 3";;;"M3102 - Services réseaux 2";"Services réseaux - M3102";;60;03/03/2023;10:00;10:00;"S124, S125, Amphi";
-"Info semestre 3";;;"M3103 - Algorithmique avancée";"Algo. avancée - M3103";;60;19/10/2022;09:30;09:00;"S124, S125, Amphi";
+"Info semestre 1";;;"M3103 - Algorithmique avancée";"Algo. avancée - M3103";;60;19/10/2022;09:30;09:00;"S124, S125, Amphi";
 "Info semestre 3";18/10/2022;"BTIN3103-Algorithmique avancée";"M3103 - Algorithmique avancée";"Algo. avancée - M3103";Fischer;60;19/10/2022;11:30;11:30;"S124, S126, Amphi";"Lepley, McKinley"
 "Info semestre 3";18/10/2022;"BTIN3106-Base de données avancées";"M3106C - Bases de données avancées";"BD Avancées - M3106C";Fort;60;19/10/2022;14:00;14:00;"S124, S127, Amphi";"Cordova, Futrell"
 "Info semestre 3";18/10/2022;"BTIN3106-Base de données avancées";"M3106C - Bases de données avancées";"BD Avancées - M3106C";Bergeron;60;19/10/2022;08:00;08:00;"S124, S125, Amphi";"Theodora, Harris"
@@ -78,3 +78,4 @@ lp-prog;28/02/2023;"BPVPW6C - Programmation web";"UE1 - Programmation Web avanc�
 "Info semestre 3, Info semestre 1";06/12/2022;"R1.12&R3.12 - Voltaire 2 ";"R1.12&R3.12 - Voltaire 2 ";"R1.12&R3.12 - Volt. 2 ";Fischer;60;07/12/2022;10:00;10:00;"S124, S126, Amphi";"Theodora, Harris"
 "Info semestre 3";;;TEST;TEST;;;31/03/2023;;;;
 "Promotion Test";;;"R4.A.01 - Test";"R4.A.01 - Test";;60;02/03/2023;10:00;11:00;S129;
+"Promo Envoi Test";;;"R2.01 - Test";test;;20;08/03/2023;08:00;08:30;"S124, S125";

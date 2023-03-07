@@ -136,6 +136,11 @@ define("CSV_SALLES_PATH", PATH.CSV_SALLES_FOLDER_NAME);
 define("CSV_UTILISATEURS_PATH", PATH.CSV_UTILISATEURS_FOLDER_NAME);
 
 
+/**
+ * @brief Lien vers le message de mail par defaut
+ * @note ex : Utilisateurs/MessageMailDefaut.txt
+ */
+define("MESSAGE_MAIL_DEFAUT_PATH", CSV_UTILISATEURS_FOLDER_NAME."MessageMailDefaut.txt");
 
 
 
@@ -487,6 +492,20 @@ define("FONCTION_AJOUTER_MINUTES_HEURE_FILE_NAME" , "ajouterMinutesHeure.php");
  * @note ex : Controlo/import/ajouterMinutesHeure.php
  */
 define("FONCTION_AJOUTER_MINUTES_HEURE_PATH" , IMPORT_PATH.FONCTION_AJOUTER_MINUTES_HEURE_FILE_NAME);
+
+/**
+ * @brief Nom du fichier où se trouve la fonction mailSend
+ * @note ex : mailSend.php
+ */
+define("FONCTION_MAILS_FILE_NAME" , "mailSend.php");
+
+/**
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve la fonction mailSend
+ * @note ex : Controlo/import/mailSend.php
+ */
+define("FONCTION_MAILS_PATH" , IMPORT_PATH.FONCTION_MAILS_FILE_NAME);
+
+
 
 /**
  * @brief Nom du fichier où se trouve la fonction associerEnteteLigne
