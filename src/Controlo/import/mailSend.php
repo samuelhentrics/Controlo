@@ -16,11 +16,21 @@ function envoyerMailEtudiants($unControle, $intitule, $contenuMail, $expediteur)
 
     // Traiter étudiant par étudiant
     while (($ligne = fgetcsv($file, 0, ";")) !== FALSE) {
+        // Récupérer les infos de l'étudiant
         $infoEtudiantPlace = associerEnteteLigne($entete, $ligne);
         $contenuPerso = contenuMailSelonEtudiant($unControle, $infoEtudiantPlace, $contenuMail);
+
+        // Récupérer le fichier PDF
+        $nomSalle = $infoEtudiantPlace["Salle"];
+        $nomDossierGeneration = $unControle->getNomDossierGeneration();
+        $nomFichierPDF = $unControle->getNomDossierGeneration() . "_Plan_Placement_" . $nomSalle . ".pdf";
+        $cheminFichierPDF = GENERATIONS_FOLDER_NAME . $nomDossierGeneration . "/" . PLANS_DE_PLACEMENT_PDF_PATH . $nomFichierPDF;
+        $file = fopen($cheminFichierPDF, "r");
         
+        // Envoi du mail
         $emailDestinataire = $infoEtudiantPlace["Mail"];
         $resultat = envoieUnMail($expediteur, $emailDestinataire, $intitule, $contenuPerso, $file);
+
 
         if ($resultat){
             array_push($listeOk, $infoEtudiantPlace["Mail"]);
