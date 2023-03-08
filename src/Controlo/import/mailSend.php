@@ -97,6 +97,8 @@ function envoieUnMail($emailEnvoyeur, $emailDestinataire, $sujet, $message, $fil
 
     $body .= "--$boundary--";
 
+
+    $sujet = utf8_encode($sujet);
     // Envoi de l'email
     if (mail($emailDestinataire, $sujet, $body, $headers)) {
         return true;
