@@ -1,4 +1,3 @@
-
 RewriteEngine On
 
 # Page 404 si accès vers un fichier inexistant
@@ -14,7 +13,5 @@ RewriteRule ^Generations/ - [F]
 RewriteRule ^Salles/ - [F]
 RewriteRule ^Utilisateurs/ - [F]
 
-
-
-
+ErrorDocument 403 "/S3.01A-Developpement-d-application-et-Gestion-de-projet/src/"
 
