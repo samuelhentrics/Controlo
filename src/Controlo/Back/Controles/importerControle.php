@@ -50,7 +50,24 @@
         </h2>';
 
         echo "<div class='alert alert-warning' role='alert'>";
-        echo "Attention!<br>En important une nouvelle liste de contrôles, vous effacez l'ancien fichier.<br>";
+        echo "Attention!<br>En important une nouvelle liste de contrôles, vous effacez l'ancien fichier.<br>
+        Les champs nécéssaires sont les suivants :<br>
+        <ul>
+            <li>".PROMOTION_NOM_COLONNE_CONTROLE."</li>
+            <li>".NOM_COURT_NOM_COLONNE_CONTROLE."</li>
+            <li>".NOM_LONG_NOM_COLONNE_CONTROLE."</li>
+            <li>".DATE_NOM_COLONNE_CONTROLE."</li>
+            <li>".ENSEIGNANT_REF_NOM_COLONNE_CONTROLE."</li>
+            <li>".DUREE_NOM_COLONNE_CONTROLE."</li>
+            <li>".DATE_NOM_COLONNE_CONTROLE."</li>
+            <li>".HEURE_NOM_COLONNE_CONTROLE."</li>
+            <li>".HEURE_TT_NOM_COLONNE_CONTROLE."</li>
+            <li>".SALLES_NOM_COLONNE_CONTROLE."</li>
+            <li>".SURVEILLANTS_NOM_COLONNE_CONTROLE."</li>
+        </ul>
+
+        
+        ";
         echo "</div>";?>
         <form action="<?php echo PAGE_IMPORTER_CONTROLE_PATH ?>" method="POST" enctype="multipart/form-data">
             <div class="form-group row">

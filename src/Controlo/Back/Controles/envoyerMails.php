@@ -20,7 +20,21 @@
         $intitule = $_POST["emailSubject"];
         $contenuMail = $_POST["emailContent"];
 
-        envoyerMailEtudiants($unControle, $intitule, $contenuMail, $expediteur);
+        $listeOk = array();
+        $listePasOk = array();
+        envoyerMailEtudiants($unControle, $intitule, $contenuMail, $expediteur, $listeOk, $listePasOk);
+
+        if($listePasOk){
+          echo '<div class="alert alert-danger" role="alert">
+          <h4 class="alert-heading">Erreur</h4>
+          <p>Les mails n\'ont pas pu être envoyés aux étudiants suivants :</p>
+          <ul>';
+          foreach ($listePasOk as $key => $value) {
+            echo '<li>'.$value.'</li>';
+          }
+          echo '</ul>
+          </div>';
+        }
       }
 
       echo '

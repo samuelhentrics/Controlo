@@ -2,7 +2,7 @@
 
 include_once(FONCTION_ASSOCIER_ENTETE_LIGNE_PATH);
 
-function envoyerMailEtudiants($unControle, $intitule, $contenuMail, $expediteur){
+function envoyerMailEtudiants($unControle, $intitule, $contenuMail, $expediteur, &$listeOk, &$listePasOk){
     // Ouvrir le fichier contenant la liste des étudiants pour ce contrôle
     $nomFichier = "listeEtudiants.csv";
     $cheminFichier = GENERATIONS_FOLDER_NAME . $unControle->getNomDossierGeneration() . "/" . PLANS_DE_PLACEMENT_CSV_PATH . $nomFichier;
@@ -11,8 +11,6 @@ function envoyerMailEtudiants($unControle, $intitule, $contenuMail, $expediteur)
 
     // Récupérer l'entête
     $entete = fgetcsv($file, 0, ";");
-
-    $listeOk = array();
 
     // Traiter étudiant par étudiant
     while (($ligne = fgetcsv($file, 0, ";")) !== FALSE) {
@@ -32,13 +30,14 @@ function envoyerMailEtudiants($unControle, $intitule, $contenuMail, $expediteur)
 
 
         if ($resultat){
-            array_push($listeOk, $infoEtudiantPlace["Mail"]);
+            array_push($listeOk, $emailDestinataire);
+        }
+        else{
+            array_push($listePasOk, $emailDestinataire);
         }
     }
 
     fclose($file);
-
-    return $listeOk;
 }
 
 function contenuMailSelonEtudiant($unControle, $infoEtudiantPlace, $contenu){
