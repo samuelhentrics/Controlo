@@ -86,7 +86,13 @@
                     if ($nomsPromos != "" || $nomsPromos != null) {
                         $listeNomPromotion = explode(",", $nomsPromos);
                         foreach ($listeNomPromotion as $key => $nomPromo) {
+                            try{
                             $unePromotion = creerUnePromotion(trim($nomPromo));
+                            }
+                            catch (Exception $e){
+                                throw new Exception("La promotion " . trim($nomPromo) . " n'existe pas.
+                                Veuillez la créer avant de l'ajouter à un contrôle.");
+                            }
                             $nouveauControle->ajouterPromotion($unePromotion);
                         }
                     }

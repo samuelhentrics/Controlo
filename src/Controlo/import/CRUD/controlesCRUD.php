@@ -208,6 +208,10 @@ function modifierControle($id, $nouveauControle) {
         // Ouvrir le fichier en mode modification
         $monFichier = fopen($lienFichier, "r+");
 
+        if (!$monFichier) {
+            throw new Exception("Impossible d'ouvrir le fichier CSV");
+        }
+
         $data = array();
         $i = 0;
         // Aller sur la ligne de l'étudiant à modifier
