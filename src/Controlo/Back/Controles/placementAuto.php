@@ -34,7 +34,7 @@
                 <th>Salles</th>
                 <th>Nombre de places séparant les étudiants</th>
                 <th>Nombre de rangées séparant les étudiants</th>
-                <th>Affichage de la liste des étudiants sur la même page ?</th>
+                <th>Liste des étudiants sur une autre<br>page que celle du plan de salle ?</th>
             </tr>");
                 foreach ($unControle->getMesSalles() as $key => $uneSalle) {
                     print("<tr>");
