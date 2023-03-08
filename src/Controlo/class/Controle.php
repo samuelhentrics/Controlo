@@ -400,7 +400,7 @@ class Controle
     public function ajouterEnseignantReferent($unEnseignantReferent)
     {
         if (!$this->existeEnseignantReferent($unEnseignantReferent)) {
-            array_push($this->$mesReferents, $unEnseignantReferent);
+            array_push($this->mesReferents, $unEnseignantReferent);
         }
     }
 
@@ -436,7 +436,7 @@ class Controle
      */
     public function getMesEnseignantsReferents()
     {
-        return $this->$mesReferents;
+        return $this->mesReferents;
     }
 
     /**
@@ -447,7 +447,7 @@ class Controle
     public function ajouterEnseignantSurveillant($unEnseignantSurveillant)
     {
         if (!$this->existeEnseignantSurveillant($unEnseignantSurveillant)) {
-            array_push($this->$mesSurveillants, $unEnseignantSurveillant);
+            array_push($this->mesSurveillants, $unEnseignantSurveillant);
         }
     }
 
@@ -470,7 +470,7 @@ class Controle
      */
     public function existeEnseignantSurveillant($unEnseignantSurveillant)
     {
-        if (in_array($unEnseignantSurveillant, $this->getMesEnseignantsSurveillant())) {
+        if (in_array($unEnseignantSurveillant, $this->getMesEnseignantsSurveillants())) {
             return true;
         } else {
             return false;
@@ -483,7 +483,7 @@ class Controle
      */
     public function getMesEnseignantsSurveillants()
     {
-        return $this->$mesSurveillants;
+        return $this->mesSurveillants;
     }
     // METHODES SPECIFIQUES
 
