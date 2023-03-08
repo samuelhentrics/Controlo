@@ -2,7 +2,14 @@
 
 include_once(FONCTION_ASSOCIER_ENTETE_LIGNE_PATH);
 
-function envoyerMailEtudiants($unControle, $intitule, $contenuMail, $expediteur, &$listeOk, &$listePasOk){
+function envoyerMailEtudiants($unControle, $intitule, $contenuMail, $expediteur){
+   
+    // if (isset($_POST['emailEnvoyeur']) && isset($_POST['emailDestinataire']) && isset($_POST['sujet']) && isset($_POST['message'])) {
+    // $emailEnvoyeur = $_POST['emailEnvoyeur'];
+    // $emailDestinataire = $_POST['emailDestinataire'];
+    // $sujet = $_POST['sujet'];
+    // $message = $_POST['message'];
+   
     // Ouvrir le fichier contenant la liste des étudiants pour ce contrôle
     $nomFichier = "listeEtudiants.csv";
     $cheminFichier = GENERATIONS_FOLDER_NAME . $unControle->getNomDossierGeneration() . "/" . PLANS_DE_PLACEMENT_CSV_PATH . $nomFichier;
@@ -11,6 +18,8 @@ function envoyerMailEtudiants($unControle, $intitule, $contenuMail, $expediteur,
 
     // Récupérer l'entête
     $entete = fgetcsv($file, 0, ";");
+
+    $listeOk = array();
 
     // Traiter étudiant par étudiant
     while (($ligne = fgetcsv($file, 0, ";")) !== FALSE) {
@@ -30,14 +39,13 @@ function envoyerMailEtudiants($unControle, $intitule, $contenuMail, $expediteur,
 
 
         if ($resultat){
-            array_push($listeOk, $emailDestinataire);
-        }
-        else{
-            array_push($listePasOk, $emailDestinataire);
+            array_push($listeOk, $infoEtudiantPlace["Mail"]);
         }
     }
 
     fclose($file);
+
+    return $listeOk;
 }
 
 function contenuMailSelonEtudiant($unControle, $infoEtudiantPlace, $contenu){
@@ -65,18 +73,16 @@ function contenuMailSelonEtudiant($unControle, $infoEtudiantPlace, $contenu){
 
 function envoieUnMail($emailEnvoyeur, $emailDestinataire, $sujet, $message, $file, $filename)
 {
-
-    // if (isset($_POST['emailEnvoyeur']) && isset($_POST['emailDestinataire']) && isset($_POST['sujet']) && isset($_POST['message'])) {
-    // $emailEnvoyeur = $_POST['emailEnvoyeur'];
-    // $emailDestinataire = $_POST['emailDestinataire'];
-    // $sujet = $_POST['sujet'];
-    // $message = $_POST['message'];
-
     // Construction de l'en-tête du message
     $boundary = md5(time());
     $headers = "From: $emailEnvoyeur\r\n";
     $headers .= "Reply-To: $emailEnvoyeur\r\n";
     $headers .= "Content-type: multipart/mixed; boundary=\"$boundary\"\r\n";
+
+    // Convertir le message en UTF-8 si nécessaire
+    if (mb_detect_encoding($message, 'UTF-8', true) === false) {
+        $message = utf8_encode($message);
+    }
 
     // Création du corps du message
     $body = "--$boundary\r\n";
@@ -84,29 +90,30 @@ function envoieUnMail($emailEnvoyeur, $emailDestinataire, $sujet, $message, $fil
     $body .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
     $body .= $message . "\r\n";
 
-
-    $content = file_get_contents($file);
-    $content = chunk_split(base64_encode($content));
-
-
+    // Ajouter la pièce jointe (si spécifiée)
+    if (!empty($file) && file_exists($file)) {
+        $content = file_get_contents($file);
+        $content = chunk_split(base64_encode($content));
         $body .= "--$boundary\r\n";
         $body .= "Content-Type: application/pdf; name=\"$filename\"\r\n";
         $body .= "Content-Transfer-Encoding: base64\r\n";
         $body .= "Content-Disposition: attachment; filename=\"$filename\"\r\n\r\n";
         $body .= $content . "\r\n";
+    }
 
     $body .= "--$boundary--";
 
+    // Encoder le sujet en base64
+    $sujet= "=?utf-8?b?".base64_encode($sujet)."?=";
 
-    $sujet = utf8_encode($sujet);
     // Envoi de l'email
     if (mail($emailDestinataire, $sujet, $body, $headers)) {
         return true;
     } else {
         return false;
     }
-    // }
 }
+
 
 function recupererMessageMailDefaut(){
     // Tentative ouverture fichier Utilisateurs/messageDefaut.txt
