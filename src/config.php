@@ -8,7 +8,7 @@
  */
 
 // Désactive les informations d'erreur (pour le mode non-dev)
-ini_set('display_errors','off');
+//ini_set('display_errors','off');
 
 if (! function_exists('retrouverCheminApp'))
 {

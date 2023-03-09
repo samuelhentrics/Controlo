@@ -266,6 +266,12 @@ include("config.php");
                 require(BACK_PATH . "manuelUtilisateur.php");
                 break;
 
+
+            // Test générer PDP 2
+            case 'genererPDP2Test':
+                require(BACK_PATH . "genererPDP2Test.php");
+                break;
+
             case 'utilisateurs':
                 // Vérifier si l'utilisateur est connecté
                 if (!$estConnecte) {
