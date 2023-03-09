@@ -21,6 +21,7 @@ include_once(IMPORT_PATH . "fpdf.php");
 include_once(FONCTION_CREER_LISTE_CONTROLES_PATH);
 include_once(CLASS_PATH . CLASS_PLAN_PLACEMENT_FILE_NAME);
 include_once(CLASS_PATH . CLASS_UN_PLACEMENT_FILE_NAME);
+include_once(FONCTION_AJOUTER_MINUTES_HEURE_PATH);
 
 
 // ----------------------------------------------------------------------------
@@ -237,15 +238,18 @@ function genererPDFPDP($unControle)
     $date = $unControle->getDate();
     // $date = date('d/m/Y', strtotime($dateControle));
 
-    // Récupération de l'heure du contrôle
-    $heureTT = str_replace(":", "h", $unControle->getHeureTT());
-    $heureNonTT = str_replace(":", "h", $unControle->getHeureNonTT());
-
     // Récupération de la durée du contrôle
     $dureeTT = $unControle->getDuree();
     $dureeTT = sprintf("%02dh%02d", floor($dureeTT / 60), ($dureeTT % 60));
     $dureeNonTT = $unControle->getDureeNonTT();
     $dureeNonTT = sprintf("%02dh%02d", floor($dureeNonTT / 60), ($dureeNonTT % 60));
+
+    // Récupération de l'heure du contrôle
+    $heureTT = str_replace(":", "h", $unControle->getHeureTT());
+    $heureNonTT = str_replace(":", "h", $unControle->getHeureNonTT());
+
+    $heureFinTT = str_replace(":", "h", ajouterMinutesHeure($unControle->getHeureTT(), $unControle->getDuree()));
+    $heureFinNonTT = str_replace(":", "h", ajouterMinutesHeure($unControle->getHeureNonTT(), $unControle->getDureeNonTT()));
 
     if (count($unControle->getMesPromotions()) > 1) {
         $affichagePromotion = "Promotions";
@@ -376,8 +380,8 @@ function genererPDFPDP($unControle)
             '<u>' . $affichagePromotion . '</u> : ' . $lesPromotions . '            ' .
             '<u>Nombre d\'étudiants</u> : ' . $totalEtudiants . '<br>' .
             '<u>Date</u> : ' . $date . '            ' .
-            '<u>Heure</u> : ' . $heureNonTT . ' (TT : ' . $heureTT . ')' . '            ' .
-            '<u>Durée</u> : ' . $dureeNonTT . ' (TT : ' . $dureeTT . ')';
+            '<u>Heure</u> : ' . $heureNonTT . '-' . $heureFinNonTT .' (' . $dureeNonTT . ')' . '            ' .
+            '<u>TT</u> : ' . $heureTT . '-' . $heureFinTT . ' (' . $dureeTT . ')';
 
 
         // Affichage de l'entête
