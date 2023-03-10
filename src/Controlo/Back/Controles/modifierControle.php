@@ -36,6 +36,8 @@
             $heureTT = $unControle->getHeureTT();
             $listePromotions = $unControle->getMesPromotions();
             $listeSalles = $unControle->getMesSalles();
+            $mesReferents = $unControle->getMesEnseignantsReferents();
+            $mesSurveillants = $unControle->getMesEnseignantsSurveillants();
 
             // Récupérer les noms des promotions
             $nomsPromos = "";
@@ -51,6 +53,20 @@
             }
             $nomsSalles = substr($nomsSalles, 0, -2);
 
+            // Récupérer les noms des referents
+            $nomsReferents = "";
+            foreach ($mesReferents as $keys => $unReferent) {
+                $nomsReferents .= $unReferent . ", ";
+            }
+            $nomsReferents = substr($nomsReferents, 0, -2);
+
+            // Récupérer les noms des surveillants
+            $nomsSurveillants = "";
+            foreach ($mesSurveillants as $keys => $unSurveillant) {
+                $nomsSurveillants .= $unSurveillant . ", ";
+            }
+            $nomsSurveillants = substr($nomsSurveillants, 0, -2);
+
             // Récuperer le controle
             $unControle = recupererUnControle($id);
 
@@ -61,7 +77,7 @@
                 isset($_POST["promotion"]) && isset($_POST["controleNomLong"]) &&
                 isset($_POST["controleNomCourt"]) && isset($_POST["dateDebutControle"])
                 && isset($_POST["dureeTotale"]) && isset($_POST["heureNonTT"])
-                && isset($_POST["heureTT"]) && isset($_POST["choixSalles"])
+                && isset($_POST["heureTT"]) && isset($_POST["enseignant"]) && isset($_POST["surveillant"]) && isset($_POST["choixSalles"])
             ) {
                 try {
                     // Variables
@@ -73,6 +89,9 @@
                     $heureNonTT = $_POST['heureNonTT'];
                     $heureTT = $_POST['heureTT'];
                     $dateControle = $_POST['dateDebutControle'];
+                    $mesReferents = $_POST['enseignant'];
+                    $mesSurveillants = $_POST['surveillant'];
+
                     // Transformer la date au format DD/MM/YYYY si elle est au format YYYY-MM-DD
                     if (preg_match("#[0-9]{4}-[0-9]{2}-[0-9]{2}#", $dateControle)) {
                         $dateControle = date("d/m/Y", strtotime($dateControle));
@@ -97,6 +116,7 @@
                         }
                     }
 
+                    // Ajouter les salles
                     $nomsSalles = trim($nomsSalles);
                     if ($nomsSalles != "" || $nomsSalles != null) {
                         $listeNomSalle = explode(",", $nomsSalles);
@@ -106,6 +126,23 @@
                                 throw new Exception("La salle " . trim($nomSalle) . " n'existe pas. Veuillez la créer avant de l'ajouter à un contrôle.");
                             }
                             $nouveauControle->ajouterSalle($uneSalle);
+                        }
+                    }
+
+                    // Ajouter les enseignants référents
+                    $mesReferents = trim($mesReferents);
+                    if ($mesReferents != "" || $mesReferents != null) {
+                        $listeMesReferents = explode(",", $mesReferents);
+                        foreach ($listeMesReferents as $monReferent) {
+                            $nouveauControle->ajouterEnseignantReferent($monReferent);
+                        }
+                    }
+                    // Ajouter les surveillants
+                    $mesSurveillants = trim($mesSurveillants);
+                    if ($mesSurveillants != "" || $mesSurveillants != null) {
+                        $listeMesSurveillants= explode(",", $mesSurveillants);
+                        foreach ($listeMesSurveillants as $monSurveillant) {
+                            $nouveauControle->ajouterEnseignantSurveillant($monSurveillant);
                         }
                     }
 
@@ -122,6 +159,8 @@
                     $heureTT = $unControle->getHeureTT();
                     $listePromotions = $unControle->getMesPromotions();
                     $listeSalles = $unControle->getMesSalles();
+                    $mesReferents = $unControle->getMesEnseignantsReferents();
+                    $mesSurveillants = $unControle->getMesEnseignantsSurveillants();
 
                     // Récupérer les noms des promotions
                     $nomsPromos = "";
@@ -137,6 +176,21 @@
                     }
                     $nomsSalles = substr($nomsSalles, 0, -2);
 
+                    // Récupérer les noms des referents
+                    $nomsReferents = "";
+                    foreach ($mesReferents as $keys => $unReferent) {
+                        $nomsReferents .= $unReferent . ", ";
+                    }
+                    $nomsReferents = substr($nomsReferents, 0, -2);
+
+                    // Récupérer les noms des surveillants
+                    $nomsSurveillants = "";
+                    foreach ($mesSurveillants as $keys => $unSurveillant) {
+                        $nomsSurveillants .= $unSurveillant . ", ";
+                    }
+                    $nomsSurveillants = substr($nomsSurveillants, 0, -2);
+
+                
                     echo "<div class='alert alert-success' role='alert'>Le contrôle a bien été modifié.</div>";
                 } catch (Exception $e) {
                     echo "<div class='alert alert-danger' role='alert'>
@@ -215,11 +269,10 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="nom" class="col-4 col-form-label">Enseignant référent</label>
+                <label for="nom" class="col-4 col-form-label">Enseignant(s) référent(s)</label>
                 <div class="col-8">
                     <div>
-                        <input id="enseignant" name="enseignant" placeholder="Dupont" type="text" class="form-control"
-                            disabled>
+                        <input id="enseignant" name="enseignant" value="'. $nomsReferents .'" placeholder="Dupont" type="text" class="form-control">
                     </div>
                     <!-- <input id="controleNomLong" name="controleNomLong" placeholder="ex: Cordova,Futrell" type="text" class="form-control" required="required"> -->
                 </div>
@@ -228,8 +281,8 @@
                 <label for="nom" class="col-4 col-form-label">Surveillant(s)</label>
                 <div class="col-8">
                     <div>
-                        <input id="surveillant" name="surveillant" placeholder="Dupont, Lamarque" type="text"
-                            class="form-control" disabled>
+                        <input id="surveillant" name="surveillant" value="'. $nomsSurveillants .'" placeholder="Dupont, Lamarque" type="text"
+                            class="form-control">
                     </div>
                     <!-- <input id="controleNomLong" name="controleNomLong" placeholder="ex: Cordova,Futrell" type="text" class="form-control" required="required"> -->
                 </div>

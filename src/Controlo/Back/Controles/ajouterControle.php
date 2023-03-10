@@ -22,6 +22,8 @@
         $heureNonTT = null;
         $heureTT = null;
         $dateControle = null;
+        $surveillant = null;
+        $referent = null;
         if (
             isset($_POST["promotion"]) && isset($_POST["controleNomLong"]) &&
             isset($_POST["controleNomCourt"]) && isset($_POST["dateDebutControle"])
@@ -42,6 +44,9 @@
                 $heureNonTT = $_POST['heureNonTT'];
                 $heureTT = $_POST['heureTT'];
                 $dateControle = $_POST['dateDebutControle'];
+                $referent = $_POST['referent'];
+                $surveillant = $_POST['surveillant'];
+
                 // Transformer la date au format DD/MM/YYYY si elle est au format YYYY-MM-DD
                 if (preg_match("#[0-9]{4}-[0-9]{2}-[0-9]{2}#", $dateControle)) {
                     $dateControle = date("d/m/Y", strtotime($dateControle));
@@ -72,6 +77,26 @@
                     }
                 }
 
+                // Ajouter enseignant referent
+                $referent = trim($referent);
+                if ($referent != "" || $referent != null) {
+                    $listeReferent = explode(",", $referent);
+                    foreach ($listeReferent as $unReferent) {
+                        $nouveauControle->ajouterEnseignantReferent($unReferent);
+                    }
+                }
+
+                // Ajouter surveillant
+                $surveillant = trim($surveillant);
+                if ($surveillant != "" || $surveillant != null) {
+                    $listeSurveillant = explode(",", $surveillant);
+                    foreach ($listeSurveillant as $unSurveillant) {
+                        $nouveauControle->ajouterEnseignantSurveillant($unSurveillant);
+                    }
+                }
+
+
+
 
                 ajouterControle($nouveauControle);
 
@@ -84,6 +109,8 @@
                 $heureNonTT = null;
                 $heureTT = null;
                 $dateControle = null;
+                $referent = null;
+                $surveillant = null;
 
                 echo "<div class='alert alert-success' role='alert'>Le contrôle a bien été ajouté.</div>";
             } catch (Exception $e) {
@@ -155,8 +182,8 @@
                 <label for="nom" class="col-4 col-form-label">Enseignant référent</label>
                 <div class="col-8">
                     <div>
-                        <input id="enseignant" name="enseignant" placeholder="Ex : Dupont" type="text"
-                            class="form-control" disabled>
+                        <input id="enseignant" name="referent" placeholder="Ex : Dupont" type="text"class="form-control"
+                        value="<?php echo $referent ?>">
                     </div>
                 </div>
             </div>
@@ -164,8 +191,8 @@
                 <label for="nom" class="col-4 col-form-label">Surveillant(s)</label>
                 <div class="col-8">
                     <div>
-                        <input id="surveillant" name="surveillant" placeholder="Ex : Dupont, Lamarque" type="text"
-                            class="form-control" disabled>
+                        <input id="surveillant" name="surveillant" placeholder="Ex : Dupont, Lamarque" type="text" class="form-control"
+                        value="<?php echo $surveillant ?>">
                     </div>
                 </div>
             </div>

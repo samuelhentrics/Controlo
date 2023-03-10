@@ -161,6 +161,8 @@ function saisirLigneControle($infoControle, $unControle)
         $dateControle = $unControle->getDate();
         $heureNonTTControle = $unControle->getHeureNonTT();
         $heureTTControle = $unControle->getHeureTT();
+        $enseignantRefControle = $unControle->getMesEnseignantsReferents();
+        $enseignantSurControle = $unControle->getMesEnseignantsSurveillants();
 
         $lesPromos = $unControle->getMesPromotions();
         $nomsPromos = "";
@@ -178,6 +180,18 @@ function saisirLigneControle($infoControle, $unControle)
         }
         $nomsSalles = substr($nomsSalles, 0, -2);
 
+        $nomsSurveillants = "";
+        foreach($enseignantSurControle as $unMesSurveillant){
+            $nomsSurveillants.= $unMesSurveillant . ", ";
+        }
+        $nomsSurveillants = substr($nomsSurveillants, 0, -2);
+
+        $nomsRef = "";
+        foreach($enseignantRefControle as $unMesReferent){
+            $nomsRef.= $unMesReferent . ", ";
+        }
+        $nomsRef = substr($nomsRef, 0, -2);
+
         // Créer les données à écrire dans le fichier CSV
         $infoControle[PROMOTION_NOM_COLONNE_CONTROLE] = $nomsPromos;
         $infoControle[NOM_LONG_NOM_COLONNE_CONTROLE] = $nomLongControle;
@@ -187,6 +201,8 @@ function saisirLigneControle($infoControle, $unControle)
         $infoControle[HEURE_NOM_COLONNE_CONTROLE] = $heureNonTTControle;
         $infoControle[HEURE_TT_NOM_COLONNE_CONTROLE] = $heureTTControle;
         $infoControle[SALLES_NOM_COLONNE_CONTROLE] = $nomsSalles;
+        $infoControle[ENSEIGNANT_REF_NOM_COLONNE_CONTROLE] = $nomsRef;
+        $infoControle[SURVEILLANTS_NOM_COLONNE_CONTROLE] = $nomsSurveillants;
 
     } catch (Exception $e) {
         throw $e;

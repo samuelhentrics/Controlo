@@ -30,7 +30,7 @@ include("config.php");
 <body>
     <?php 
     // Retirer les messages d'erreur PHP (par défaut on est en mode dév)
-    //ini_set('display_errors', 'off');
+    // ini_set('display_errors', 'off');
     include_once(IMPORT_PATH."connexion.php");
 
     require(BACK_PATH . "header.php"); 

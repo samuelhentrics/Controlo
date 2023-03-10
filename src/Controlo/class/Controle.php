@@ -395,19 +395,19 @@ class Controle
     /**
      * @brief Permet d'ajouter un EnseignantReferant à la liste des enseignants référents du Controle
      *
-     * @param Enseignant $unEnseignantReferent Enseignant référent du contrôle à ajouter
+     * @param string $unEnseignantReferent Enseignant référent du contrôle à ajouter
      */
     public function ajouterEnseignantReferent($unEnseignantReferent)
     {
         if (!$this->existeEnseignantReferent($unEnseignantReferent)) {
-            array_push($this->mesReferents, $unEnseignantReferent);
+            $this->mesReferents[] = $unEnseignantReferent;
         }
     }
 
     /**
      * @brief Permet de supprimer un EnseignantReferant de la liste des enseignants référents du Controle
      *
-     * @param Enseignant $unEnseignantReferent Enseignant référent du contrôle à supprimer
+     * @param string $unEnseignantReferent Enseignant référent du contrôle à supprimer
      */
     public function supprimerEnseignantReferent($unEnseignantReferent)
     {
@@ -418,7 +418,7 @@ class Controle
 
     /**
      * Retourne vrai si l'Enseignant référent est celui du Controle, faux sinon
-     * @param Enseignant $unEnseignantReferent Enseignant référent
+     * @param string $unEnseignantReferent Enseignant référent
      * @return bool
      */
     public function existeEnseignantReferent($unEnseignantReferent)
@@ -442,19 +442,19 @@ class Controle
     /**
      * @brief Permet d'ajouter un EnseignantSurveillant à la liste des enseignants surveillants du Controle
      *
-     * @param Enseignant $unEnseignantSurveillant Enseignant surveillant du contrôle à ajouter
+     * @param string $unEnseignantSurveillant Enseignant surveillant du contrôle à ajouter
      */
     public function ajouterEnseignantSurveillant($unEnseignantSurveillant)
     {
         if (!$this->existeEnseignantSurveillant($unEnseignantSurveillant)) {
-            array_push($this->mesSurveillants, $unEnseignantSurveillant);
+            $this->mesSurveillants[] = $unEnseignantSurveillant;
         }
     }
 
     /**
      * @brief Permet de supprimer un EnseignantSurveillant de la liste des enseignants surveillants du Controle
      *
-     * @param Enseignant $unEnseignantSurveillant Enseignant surveillant du contrôle à supprimer
+     * @param string $unEnseignantSurveillant Enseignant surveillant du contrôle à supprimer
      */
     public function supprimerEnseignantSurveillant($unEnseignantSurveillant)
     {
@@ -465,7 +465,7 @@ class Controle
 
     /**
      * Retourne vrai si l'Enseignant surveillant est celui du Controle, faux sinon
-     * @param Enseignant $unEnseignantSurveillant Enseignant surveillant
+     * @param string $unEnseignantSurveillant Enseignant surveillant
      * @return bool
      */
     public function existeEnseignantSurveillant($unEnseignantSurveillant)

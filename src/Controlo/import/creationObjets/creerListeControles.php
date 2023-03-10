@@ -137,10 +137,23 @@ function creerControle($unControleInfo, $listePromo = null, $listeSalles = null)
     $laDuree = $unControleInfo[DUREE_NOM_COLONNE_CONTROLE];
     $lHeureNonTT = $unControleInfo[HEURE_NOM_COLONNE_CONTROLE];
     $lHeureTT = $unControleInfo[HEURE_TT_NOM_COLONNE_CONTROLE];
+    $mesSurveillants = $unControleInfo[SURVEILLANTS_NOM_COLONNE_CONTROLE];
+    $mesEnseignants = $unControleInfo[ENSEIGNANT_REF_NOM_COLONNE_CONTROLE];
 
     // Création d'un objet de type Controle avec les informations
     // de la ligne courante que l'on traite dans le CSV
     $leControle = new Controle($leNomLong, $leNomCourt, $laDuree, $laDate, $lHeureNonTT, $lHeureTT);
+
+    $listeSurv = explode(",", $mesSurveillants);
+    $listeEnseignant = explode(",", $mesEnseignants);
+
+    foreach ($listeSurv as $unSurv) {
+        $leControle->ajouterEnseignantSurveillant($unSurv);
+    }
+
+    foreach ($listeEnseignant as $unEnseignant) {
+        $leControle->ajouterEnseignantReferent($unEnseignant);
+    }
 
     // Création du lien entre les promotions et le contrôle
     $leControle = creerRelationPromotionControle($leControle, $unControleInfo[PROMOTION_NOM_COLONNE_CONTROLE], $listePromo);
