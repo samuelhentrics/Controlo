@@ -172,6 +172,34 @@ class PDF extends FPDF
         }
     }
 
+    function TableListeEmarg($header, $data)
+    {
+        //En-tête
+        $taille = 20;
+        $num = 0;
+        foreach ($header as $col) {
+            $this->Cell($taille, 6, $col, 1);
+            if($num == 0){
+                $taille *= 2.85;
+                $num++;
+            }
+        }
+        $this->Ln();
+        //Données
+        foreach ($data as $row) {
+            $taille = 20;
+            $num = 0;
+            foreach ($row as $col) {
+                $this->Cell($taille, 10, $col, 1);
+                if($num == 0){
+                    $taille *= 2.85;
+                    $num++;
+                }
+            }
+            $this->Ln();
+        }
+    }
+
     // Table spéciale Salle
     function Salle($plan, $listePlacesPrises)
     {
@@ -545,4 +573,200 @@ function genererCSVPDP($unControle)
     // Fermeture du fichier CSV
     fclose($fichierCSV);
 
+}
+
+
+
+/**
+ * @brief Fonction qui génère le PDF des feuilles d'émargement
+ * @param $unControle Controle
+ */
+function genererPDFFE($unControle)
+{
+    // Données de l'entête pour chaque page
+    //      Récupération des variables importantes pour l'entête
+    $nomTotalControle = $unControle->getNomLong();
+    $nomCourtControle = $unControle->getNomCourt();
+
+    // Prendre le code ressource du controle (partie avant le -)
+    $codeRessource = explode("-", $nomTotalControle)[0];
+    // Prendre le nom du contrôle
+    $premierTiret = strpos($nomTotalControle, "-");
+    $nomControle = substr($nomTotalControle, $premierTiret + 1);
+
+    // Récupération de la date du contrôle
+    $date = $unControle->getDate();
+    // $date = date('d/m/Y', strtotime($dateControle));
+
+    // Récupération de la durée du contrôle
+    $dureeTT = $unControle->getDuree();
+    $dureeTT = sprintf("%02dh%02d", floor($dureeTT / 60), ($dureeTT % 60));
+    $dureeNonTT = $unControle->getDureeNonTT();
+    $dureeNonTT = sprintf("%02dh%02d", floor($dureeNonTT / 60), ($dureeNonTT % 60));
+
+
+    // Enseignants référents
+    $listeEnseignants = $unControle->getMesEnseignantsReferents();
+    $enseignants = "";
+    foreach($listeEnseignants as $unEnseignant) {
+        $enseignants .= $unEnseignant + ", ";
+    }
+    $enseignants = substr($enseignants, 0, -2);
+
+
+    // Surveillants
+    $listeSurveillants = $unControle->getMesEnseignantsSurveillants();
+    $surveillants = "";
+    foreach($listeSurveillants as $unSurveillant) {
+        $surveillants .= $unSurveillant + ", ";
+    }
+    $surveillants = substr($surveillants, 0, -2);
+
+    // Récupération de l'heure du contrôle
+    $heureTT = str_replace(":", "h", $unControle->getHeureTT());
+    $heureNonTT = str_replace(":", "h", $unControle->getHeureNonTT());
+
+    $heureFinTT = str_replace(":", "h", ajouterMinutesHeure($unControle->getHeureTT(), $unControle->getDuree()));
+    $heureFinNonTT = str_replace(":", "h", ajouterMinutesHeure($unControle->getHeureNonTT(), $unControle->getDureeNonTT()));
+
+    if (count($unControle->getMesPromotions()) > 1) {
+        $affichagePromotion = "Promotions";
+    } else {
+        $affichagePromotion = "Promotion";
+    }
+
+    // Récupération des promotions du contrôle
+    $lesPromotions = "";
+    foreach ($unControle->getMesPromotions() as $numPromo => $unePromotion) {
+        $lesPromotions .= $unePromotion->getNomAffichage() . " - ";
+    }
+    $lesPromotions = substr($lesPromotions, 0, -2);
+
+
+    // Création du dossier dans le dossier des plans de placement
+    $nomFichierGeneration = $unControle->getNomDossierGeneration();
+
+    $cheminDossierControle = GENERATIONS_FOLDER_NAME . $nomFichierGeneration;
+    $cheminDossierPDP = $cheminDossierControle . "/" . PLANS_DE_PLACEMENT_FOLDER_NAME;
+    $cheminDossierPDPCSV = $cheminDossierPDP . PLANS_DE_PLACEMENT_CSV_FOLDER_NAME;
+    $fichierListeEtudiants = $cheminDossierPDPCSV . "listeEtudiants.csv";
+    $cheminDossierFE = $cheminDossierControle . "/" . FEUILLES_EMARGEMENT_FOLDER_NAME;
+
+    // Crée le dossier Générations s'il n'existe pas/plus
+    if (!file_exists(GENERATIONS_FOLDER_NAME)) {
+        mkdir(GENERATIONS_FOLDER_NAME);
+    }
+
+    // Crée le dossier du contrôle s'il n'existe pas/plus
+    if (!file_exists($cheminDossierControle)) {
+        mkdir($cheminDossierControle);
+    }
+
+    // Crée le dossier des plans de placement s'il n'existe pas/plus
+    if (!file_exists($cheminDossierPDPCSV)) {
+        mkdir($cheminDossierPDP);
+    }
+
+    // Arret du code si le dossier n'existe pas
+    if (!file_exists($cheminDossierPDPCSV)) {
+        return;
+    }
+
+    if (!file_exists($cheminDossierFE)) {
+        mkdir($cheminDossierFE);
+    }
+
+    // Tentative ouverture du fichier CSV
+    if (($fichierCSV = fopen($fichierListeEtudiants, "r")) !== FALSE) {
+        // Enlever l'entete
+        fgetcsv($fichierCSV, 1000, ";");
+        // Récupération des données du fichier CSV
+        $csvPDP = array();
+        while (($uneLigne = fgetcsv($fichierCSV, 1000, ";")) !== FALSE) {
+            $infoPlace = array();
+            // Récupération des informations de la place
+            $infoPlace["NumeroPlace"] = $uneLigne[1];
+            $infoPlace["Nom"] = $uneLigne[2];
+            $infoPlace["Prenom"] = $uneLigne[3];
+            $infoPlace["emargement"] = null;
+
+            // Vérifier que l'id de la salle existe
+            if (!array_key_exists($uneLigne[0], $csvPDP)) {
+                $csvPDP[$uneLigne[0]] = array();
+            }
+
+            array_push($csvPDP[$uneLigne[0]], $infoPlace);
+        }
+
+        // Fermeture du fichier CSV
+        fclose($fichierCSV);
+    }
+
+
+    $anneeUniversitaire = ANNEE_UNIVERSITAIRE;
+
+    foreach ($csvPDP as $nomSalle => $placesSalle) {
+        // Création du PDF
+        $pdf = new PDF();
+        $pdf->AliasNbPages();
+        // Créer une nouvelle page
+        $pdf->AddPage();
+
+        // Création de l'entête n°1
+        $entete1 = 
+        NOM_IUT.'<br>'.
+        DEPARTEMENT.'<br>'.
+        'Année Universitaire '.$anneeUniversitaire.'<br>'.
+        'Feuille d\'émargement de contrôle';
+
+        $pdf->SetFont('Arial', '', 12);
+        $pdf->WriteHTML(utf8_decode($entete1));
+        $pdf->Ln(10);
+
+        // Affichage du titre
+        $pdf->SetFont('Arial', 'B', 16);
+        $pdf->Cell(0, 10, utf8_decode($nomSalle), 0, 1, 'C');
+        $pdf->Ln(10);
+
+        $pdf->SetFont('Arial', '', 12);
+        // Création de l'entête n°2
+        $totalEtudiants = count($placesSalle);
+
+        $entete2 =
+            '<u>Nom du contrôle</u> : ' . $nomTotalControle . '<br>' .
+            '<u>' . $affichagePromotion . '</u> : ' . $lesPromotions . '            ' .
+            '<u>Nombre d\'étudiants</u> : ' . $totalEtudiants . '<br>' .
+            '<u>Date</u> : ' . $date . '            ' .
+            '<u>Heure</u> : ' . $heureNonTT . '-' . $heureFinNonTT .' (' . $dureeNonTT . ')' . '            ' .
+            '<u>TT</u> : ' . $heureTT . '-' . $heureFinTT . ' (' . $dureeTT . ')<br>'.
+            '<u>Enseignant(s)</u> : ' . $enseignants . '<br>' .
+            '<u>Surveillant(s)</u> : ' . $surveillants;
+            ;
+
+
+        // Affichage de l'entête
+        $pdf->SetFont('Arial', '', 12);
+        $pdf->WriteHTML(utf8_decode($entete2));
+        $pdf->Ln(15);
+
+
+        $pdf->SetFont('Arial', '', 12);
+
+        // Affichage du tableau avec les infos sur les étudiants et leurs places
+        $header = array(utf8_decode("N° Place"), utf8_decode("Nom"), utf8_decode("Prénom"), utf8_decode("Signature"));
+        $pdf->TableListeEmarg($header, $placesSalle);
+        $pdf->Ln(15);
+
+
+        
+        // Enregistrer le PDF du PlanDePlacement actuel dans le dossier
+        $nomFichier = $nomFichierGeneration . "_Feuille_Emargement_".$nomSalle.".pdf";
+
+        // Si le fichier existe déjà, on le supprime
+        if (file_exists($cheminDossierFE . $nomFichier)) {
+            unlink($cheminDossierFE . $nomFichier);
+        }
+
+        $pdf->Output($cheminDossierFE . $nomFichier, 'F');
+    }
 }

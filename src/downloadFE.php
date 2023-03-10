@@ -1,7 +1,7 @@
 <?php
 /**
  * @file download.php
- * @brief Telecharge un ZIP des plans de placement
+ * @brief Telecharge un ZIP des feuilles d'émargement
  * @version 1.0
  * @date 2023-01-07
  * @author Samuel HENTRICS LOISTINE
@@ -9,9 +9,9 @@
 
 include_once("config.php");
 include_once(FONCTION_CREER_LISTE_CONTROLES_PATH);
-include_once(IMPORT_PATH."connexion.php");
 
-if (isset($_GET["id"])) {
+
+if (isset($_GET["id"]) ) {
     // Récuperer l'id du controle
     $id = $_GET["id"];
 
@@ -25,7 +25,7 @@ if (isset($_GET["id"])) {
     // Récupérer le nom du dossier qui sera zippé puis télécharger au client
     $nomDossier = $unControle->getNomDossierGeneration();
 
-    $pathDossier = "./". GENERATIONS_FOLDER_NAME . $nomDossier . "/" . PLANS_DE_PLACEMENT_PDF_PATH;
+    $pathDossier = "./". GENERATIONS_FOLDER_NAME . $nomDossier . "/" . FEUILLES_EMARGEMENT_FOLDER_NAME;
     $zip = new ZipArchive();
     $filename = "./".$nomDossier.".zip";
 
