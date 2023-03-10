@@ -591,4 +591,26 @@ class Controle
 
     }
 
+
+    /**
+     * Retourne la liste des enseignants associés a leurs salles ou false
+     * @return array|null
+     */
+    public function obtenirEnsSalles()
+    {
+        $ensSalles = array();
+        $salles = $this->getMesSalles();
+        $surveillants = $this->getMesEnseignantsSurveillants();
+        if (count($salles)== count($surveillants)){
+        $i = 0;
+        foreach ($salles as $uneSalle) {
+            $nomSalle = $uneSalle->getNom();
+            $ensSalles[$nomSalle]=$surveillants[$i];
+            $i++;
+        }
+        return $ensSalles;
+    }
+        return null;
+    }
+
 }
