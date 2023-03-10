@@ -1,4 +1,5 @@
 Salle;NumeroPlace;Nom;Prenom;Statut;Mail
+<<<<<<< HEAD
 S124;2;FERRY;Lagarde;TT;flagarde@iutbayonne.univ-pau.fr
 S124;12;BOULET;Bouvet;TT;bbouvet@iutbayonne.univ-pau.fr
 S124;22;COMTE;Gros;TT;cgros@iutbayonne.univ-pau.fr
@@ -15,6 +16,24 @@ S124;10;BOURDIN;Chambon;;bchambon@iutbayonne.univ-pau.fr
 S124;20;BRUNEL;Leconte;;bleconte@iutbayonne.univ-pau.fr
 S124;30;CARTIER;Levy;;clevy@iutbayonne.univ-pau.fr
 S125;2;CHAPUIS;Masse;;cmasse@iutbayonne.univ-pau.fr
+=======
+S124;2;BOULET;Bouvet;TT;bbouvet@iutbayonne.univ-pau.fr
+S124;12;COMTE;Gros;TT;cgros@iutbayonne.univ-pau.fr
+S124;22;GRAS;Pascal;TT;gpascal@iutbayonne.univ-pau.fr
+S124;4;SABATIER;Lacoste;TT;slacoste@iutbayonne.univ-pau.fr
+S124;14;ANDRIEU;Clerc;;aclerc@iutbayonne.univ-pau.fr
+S124;24;BATAILLE;Brunel;;bbrunel@iutbayonne.univ-pau.fr
+S124;6;BAUER;Gallet;;bgallet@iutbayonne.univ-pau.fr
+S124;16;BELLANGER;Lemonnier;;blemonnier@iutbayonne.univ-pau.fr
+S124;26;BIGOT;Legros;;blegros@iutbayonne.univ-pau.fr
+S124;8;BIGOT;Guillou;;bguillou@iutbayonne.univ-pau.fr
+S124;18;BOCQUET;Morvan;;bmorvan@iutbayonne.univ-pau.fr
+S124;28;BOURDIN;Chambon;;bchambon@iutbayonne.univ-pau.fr
+S124;10;BRUNEL;Leconte;;bleconte@iutbayonne.univ-pau.fr
+S124;20;CARTIER;Levy;;clevy@iutbayonne.univ-pau.fr
+S124;30;CHAPUIS;Masse;;cmasse@iutbayonne.univ-pau.fr
+S125;2;FERRY;Lagarde;TT;flagarde@iutbayonne.univ-pau.fr
+>>>>>>> b850b2542c7f15393b375806c8b630384e3c3696
 S125;12;CLERC;Clerc;;cclerc@iutbayonne.univ-pau.fr
 S125;22;CORNU;Didier;;cdidier@iutbayonne.univ-pau.fr
 S125;4;DELANNOY;Lebon;;dlebon@iutbayonne.univ-pau.fr

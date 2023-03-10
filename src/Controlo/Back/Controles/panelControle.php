@@ -183,11 +183,16 @@
 
                         </div>
                         <div class="col-md-5">
-                            <div class="card bg-secondary">
-                                <div class="card-body">
-                                        <h5> <i class="fa fa-download fa-2x"></i> Télécharger feuille d\'émargement</h5>   
-                                </div>
-                            </div>
+                            <form id="telechargerFE" action="' . PAGE_TELECHARGER_FE_CONTROLE_PATH . '" method="POST">
+                                <input type="hidden" name="idControle" value="' . $idControle . '">
+                                <a onClick="document.getElementById(\'telechargerFE\').submit();">
+                                    <div class="card text-white bg-primary">
+                                        <div class="card-body">
+                                                <h5> <i class="fa fa-download fa-2x"></i> Télécharger feuille d\'émargement</h5>   
+                                        </div>
+                                    </div>
+                                </a>
+                            </form>
 
                             <form id="telechargerPDP" action="' . PAGE_TELECHARGER_PDP_CONTROLE_PATH . '" method="POST">
                                 <input type="hidden" name="idControle" value="' . $idControle . '">

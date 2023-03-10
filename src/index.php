@@ -123,6 +123,10 @@ include("config.php");
                             require(BACK_PATH . "Controles/telechargerPDP.php");
                             break;
 
+                        case "telechargerFE":
+                            require(BACK_PATH . "Controles/telechargerFE.php");
+                            break;
+
                         case "envoyerMails":
                             require(BACK_PATH . "Controles/envoyerMails.php");
                             break;
@@ -264,6 +268,12 @@ include("config.php");
                 }
 
                 require(BACK_PATH . "manuelUtilisateur.php");
+                break;
+
+
+            // Test générer PDP 2
+            case 'genererPDP2Test':
+                require(BACK_PATH . "genererPDP2Test.php");
                 break;
 
             case 'utilisateurs':

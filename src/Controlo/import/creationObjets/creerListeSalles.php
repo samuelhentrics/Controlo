@@ -146,7 +146,6 @@ function creerUneSalle($nomSalle){
             $salleVoisine = $listeSalles[$nomSalleVoisine];
             $uneSalle->lierVoisin($salleVoisine);
         }
-
         return $uneSalle;
     }
     catch (Exception $e) {

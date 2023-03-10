@@ -8,7 +8,7 @@
  */
 
 // Désactive les informations d'erreur (pour le mode non-dev)
-// ini_set('display_errors','off');
+ini_set('display_errors','off');
 
 if (! function_exists('retrouverCheminApp'))
 {
@@ -47,7 +47,9 @@ if (! function_exists('retrouverCheminApp'))
  */
 define("PATH",'http://'.$_SERVER['HTTP_HOST'].retrouverCheminApp());
 
-
+define("NOM_IUT", "IUT DE BAYONNE ET DU PAYS BASQUE");
+define("DEPARTEMENT", "Département Informatique");
+define("ANNEE_UNIVERSITAIRE", "2022-2023");
 
 
 
@@ -840,6 +842,12 @@ define("PAGE_SUPPRIMER_CONTROLE_PATH" , PATH."index.php?page=controles&action=su
  * @note ex : http://localhost/src/index.php?page=controles&action=telechargerPDP
  */
 define("PAGE_TELECHARGER_PDP_CONTROLE_PATH" , PATH."index.php?page=controles&action=telechargerPDP");
+
+/**
+ * @brief Lien complet vers la page de téléchargement des feuilles d'émargement d'un contrôle
+ * @note ex : http://localhost/src/index.php?page=controles&action=telechargerFE
+ */
+define("PAGE_TELECHARGER_FE_CONTROLE_PATH" , PATH."index.php?page=controles&action=telechargerFE");
 
 /**
  * @brief Lien complet vers la page d'envoi de mails d'un contrôle
