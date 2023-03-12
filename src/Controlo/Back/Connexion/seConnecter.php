@@ -59,14 +59,14 @@
                             required="">
                         <div class="invalid-feedback">Veuillez saisir votre mot de passe.</div>
                     </div>
-                    <div>
+                    <!-- <div>
                         <label class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="rememberMe">
                             <span class="custom-control-indicator"></span>
                             <span class="custom-control-description small text-dark">Se souvenir de moi sur cet
                                 ordinateur (Non fonctionnel)</span>
                         </label>
-                    </div>
+                    </div> -->
                     <button type="submit" class="btn btn-primary btn-lg float-right" id="btnLogin">
                         Se connecter
                     </button>

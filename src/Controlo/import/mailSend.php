@@ -2,7 +2,7 @@
 
 include_once(FONCTION_ASSOCIER_ENTETE_LIGNE_PATH);
 
-function envoyerMailEtudiants($unControle, $intitule, $contenuMail, $expediteur){
+function envoyerMailEtudiants($unControle, $intitule, $contenuMail, $expediteur, &$listeOk, &$listePasOk){
    
     // if (isset($_POST['emailEnvoyeur']) && isset($_POST['emailDestinataire']) && isset($_POST['sujet']) && isset($_POST['message'])) {
     // $emailEnvoyeur = $_POST['emailEnvoyeur'];
@@ -41,11 +41,12 @@ function envoyerMailEtudiants($unControle, $intitule, $contenuMail, $expediteur)
         if ($resultat){
             array_push($listeOk, $infoEtudiantPlace["Mail"]);
         }
+        else {
+            array_push($listePasOk, $infoEtudiantPlace["Mail"]);
+        }
     }
 
     fclose($file);
-
-    return $listeOk;
 }
 
 function contenuMailSelonEtudiant($unControle, $infoEtudiantPlace, $contenu){

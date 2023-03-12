@@ -609,18 +609,13 @@ function genererPDFFE($unControle)
     $listeEnseignants = $unControle->getMesEnseignantsReferents();
     $enseignants = "";
     foreach($listeEnseignants as $unEnseignant) {
-        $enseignants .= $unEnseignant + ", ";
+        $enseignants .= $unEnseignant . ", ";
     }
     $enseignants = substr($enseignants, 0, -2);
 
 
     // Surveillants
-    $listeSurveillants = $unControle->getMesEnseignantsSurveillants();
-    $surveillants = "";
-    foreach($listeSurveillants as $unSurveillant) {
-        $surveillants .= $unSurveillant + ", ";
-    }
-    $surveillants = substr($surveillants, 0, -2);
+    $listeSurveillants = $unControle->obtenirEnsSalles();
 
     // Récupération de l'heure du contrôle
     $heureTT = str_replace(":", "h", $unControle->getHeureTT());
@@ -700,6 +695,14 @@ function genererPDFFE($unControle)
 
         // Fermeture du fichier CSV
         fclose($fichierCSV);
+
+        // Trier les places
+        foreach ($csvPDP as $nomSalle => $placesSalle) {
+            // Trier les places par numéro de place
+            usort($csvPDP[$nomSalle], function($a, $b) {
+                return $a['NumeroPlace'] - $b['NumeroPlace'];
+            });
+        }
     }
 
 
@@ -740,7 +743,7 @@ function genererPDFFE($unControle)
             '<u>Heure</u> : ' . $heureNonTT . '-' . $heureFinNonTT .' (' . $dureeNonTT . ')' . '            ' .
             '<u>TT</u> : ' . $heureTT . '-' . $heureFinTT . ' (' . $dureeTT . ')<br>'.
             '<u>Enseignant(s)</u> : ' . $enseignants . '<br>' .
-            '<u>Surveillant(s)</u> : ' . $surveillants;
+            '<u>Surveillant(s)</u> : ' . $listeSurveillants[$nomSalle];
             ;
 
 

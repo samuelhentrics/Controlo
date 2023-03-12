@@ -591,6 +591,44 @@ class Controle
 
     }
 
+    public function getEtatFE(){
+        if($this->controleInfoComplet()){
+            // Vérifier que le dossier existe
+            $nomDossier = $this->getNomDossierGeneration();
+            $cheminDossier = GENERATIONS_FOLDER_NAME . $nomDossier . "/" . FEUILLES_EMARGEMENT_FOLDER_NAME;
+            if (file_exists($cheminDossier)){
+                // Dossier existe
+                return 2;
+            }
+            // S'il y a un enseignant référent et qu'il y a autant de salles que d'enseignants surveillants
+            elseif(
+                $this->getMesEnseignantsReferents() != null 
+                && count($this->getMesSalles()) == count($this->getMesEnseignantsSurveillants())
+                && $this->getEtatPDP() == 2)
+            {
+                return 1;
+            }
+            else{
+                return 0;
+            }
+        }
+        else{
+            return 0;
+        }
+
+    }
+
+    public function getEtatMail(){
+        if($this->getEtatPDP() == 2){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+
+
+
 
     /**
      * Retourne la liste des enseignants associés a leurs salles ou false

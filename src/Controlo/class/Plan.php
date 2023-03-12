@@ -164,4 +164,17 @@ class Plan
         }
         return $placesUniques;
     }
+
+    public function ligneAvecPlace($numLigne){
+        $ligneAvecPlace = false;
+        for ($numCol = 0; $numCol <= count($this->mesZones[$numLigne]) - 1; $numCol++) {
+            $uneZone = $this->mesZones[$numLigne][$numCol];
+            if ($uneZone->getType() == "place") {
+                $ligneAvecPlace = true;
+                break;
+            }
+        }
+        return $ligneAvecPlace;
+    }
+
 }

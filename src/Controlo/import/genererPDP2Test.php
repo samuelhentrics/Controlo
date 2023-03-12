@@ -13,6 +13,7 @@ include_once(IMPORT_PATH . "genererPDF.php");
  *      et qui n'ont pas d'ordinateur OU qui disposent d'un ordinateur (selon le paramètre $avecOrdi)
  * @param array $listeEtudiants Liste des étudiants
  * @param bool $avecOrdi Si true, on récupère les étudiants qui ont un ordinateur et un tiers temps
+ * @return array Liste des indices des étudiants qui disposent d'un tiers temps
  */
 function recupererIndiceEtudiantsTT($listeEtudiants, $avecOrdi = false)
 {
@@ -32,6 +33,16 @@ function recupererIndiceEtudiantsTT($listeEtudiants, $avecOrdi = false)
     return $listeIndiceTT;
 }
 
+/**
+ * @brief Place un étudiant dans le tableau de placement
+ * @param array $listeEtudiants Liste des étudiants
+ * @param array $placementEtudiants Tableau de placement des étudiants
+ * @param int $nbEtudiantsPlaces Nombre d'étudiants placés
+ * @param int $numLigneCourante Numéro de ligne courant
+ * @param int $numColonneCourante Numéro de colonne courant
+ * @param int $indiceEtudiantAPlacer Indice de l'étudiant à placer
+ * @return void
+ */
 function placerEtudiant(&$listeEtudiants, &$placementEtudiants, &$nbEtudiantsPlaces, $numLigneCourante, $numColonneCourante, $indiceEtudiantAPlacer){
     $placementEtudiants[$numLigneCourante][$numColonneCourante] = $listeEtudiants[$indiceEtudiantAPlacer];
 
@@ -41,6 +52,80 @@ function placerEtudiant(&$listeEtudiants, &$placementEtudiants, &$nbEtudiantsPla
     $nbEtudiantsPlaces++;
 }
 
+/**
+ * @brief Passe à la ligne suivante. Si la ligne est supérieure au nombre de lignes du plan de salle,
+ *     on retourne false sinon on retourne true
+ * @param int $numColonneCourante Numéro de colonne courant
+ * @param int $numLigneCourante Numéro de ligne courant
+ * @param Plan $planSalle Plan de la salle
+ * @param int $nbRangeesEspacement Nombre de rangées d'espacement
+ * @param int $indiceColonneDepartRemplissage Indice de la colonne de départ du remplissage
+ * @return bool True si on peut passer à la ligne suivante, false sinon
+ */
+function passerLigneSuivante(
+    &$numColonneCourante,
+    &$numLigneCourante,
+    $planSalle,
+    $nbRangeesEspacement,
+    $indiceColonneDepartRemplissage){
+
+    $etatOk = true;
+    if (($numColonneCourante < 0) || ($numColonneCourante >= $planSalle->getNbColonnes())) {
+
+        $indice = 0;
+        while($indice < $nbRangeesEspacement + 1){
+            $numLigneCourante += 1;
+            if($numLigneCourante >= $planSalle->getNbRangees()){
+                break;
+            }
+            if($planSalle->ligneAvecPlace($numLigneCourante)){
+                $indice++;
+            }
+        }
+
+        if($numLigneCourante >= $planSalle->getNbRangees()){
+            $etatOk = false;
+        }
+
+        $numColonneCourante = $indiceColonneDepartRemplissage;
+    }
+    return $etatOk;
+    
+}
+
+/**
+ * @brief Passe à la colonne suivante
+ * @param int $numColonneCourante Numéro de colonne courant
+ * @param int $nbPlacesEspacement Nombre de places d'espacement
+ * @param int $sensRemplissage Sens du remplissage
+ * @return void
+ */
+function passerColonneSuivante(
+    &$numColonneCourante,
+    $nbPlacesEspacement,
+    $sensRemplissage
+){
+        if ($sensRemplissage == "versLaGauche") {
+            $numColonneCourante -= $nbPlacesEspacement + 1;
+        } else {
+            $numColonneCourante += $nbPlacesEspacement + 1;
+        }
+}
+
+/**
+ * @brief Remplit la salle avec les étudiants (avec recherche de la meilleure place)
+ * @param Plan $planSalle Plan de la salle
+ * @param array $listeEtudiants Liste des étudiants
+ * @param int $nbRangeesEspacement Nombre de rangées d'espacement
+ * @param int $nbPlacesEspacement Nombre de places d'espacement
+ * @param int $indiceColonneDepartRemplissage Indice de la colonne de départ du remplissage
+ * @param int $indiceLigneDepartRemplissage Indice de la ligne de départ du remplissage
+ * @param int $sensRemplissage Sens du remplissage
+ * @param array $placementEtudiants Tableau de placement des étudiants
+ * @param int $nbEtudiantsPlaces Nombre d'étudiants placés
+ * @param bool $tousTTplaces Si tous les étudiants avec un tiers temps ont été placés
+ * @return void
+ */
 function remplirSalle(
     $planSalle,
     &$listeEtudiants,
@@ -63,15 +148,14 @@ function remplirSalle(
 
     while (true) {
         // Vérifier si l'on passe à la ligne suivante
-        if (($numColonneCourante < 0) || ($numColonneCourante >= $planSalle->getNbColonnes())) {
-
-            $numLigneCourante += $nbRangeesEspacement + 1; // Fct rangée suivante
-
-
-            $numColonneCourante = $indiceColonneDepartRemplissage;
-            if($numLigneCourante >= $planSalle->getNbRangees()){
-                break;
-            }
+        if(!passerLigneSuivante(
+            $numColonneCourante,
+            $numLigneCourante,
+            $planSalle,
+            $nbRangeesEspacement,
+            $indiceColonneDepartRemplissage))
+        {
+            break;
         }
 
         // Cas où tous les étudiants ont été placés
@@ -162,11 +246,10 @@ function remplirSalle(
         // -- nbRangeesEspacement + 1 car parametre = 0
 
         // Calculer le numéro de colonne de la prochaine case
-        if ($sensRemplissage == "versLaGauche") {
-            $numColonneCourante -= $nbPlacesEspacement + 1;
-        } else {
-            $numColonneCourante += $nbPlacesEspacement + 1;
-        }
+        passerColonneSuivante(
+            $numColonneCourante,
+            $nbPlacesEspacement,
+            $sensRemplissage);
 
         // Vérifier la pertinence du numéro de ligne courante
         if ($numLigneCourante >= $planSalle->getNbRangees()) {
@@ -191,8 +274,9 @@ $listePromotions = $unControle->getMesPromotions();
 
 $uneSalle = $listeSalles["S124"];
 
-$uneSalle = creerUneSalle("S129");
-$uneSalle = creerRelationSallePlan($uneSalle);
+// $uneSalle = creerUneSalle("S129");
+// $uneSalle = creerRelationSallePlan($uneSalle);
+
 $planSalle = $uneSalle->getMonPlan();
 
 $listeEtudiants = array();
@@ -200,13 +284,13 @@ foreach ($listePromotions as $unePromotion) {
     $listeEtudiants = array_merge($listeEtudiants, $unePromotion->getMesEtudiants());
 }
 
-$nbRangeesEspacement = 0;
+$nbRangeesEspacement = 1;
 $nbPlacesEspacement = 1;
 
 $indiceColDepart = 0;
 $indiceLigneDepart = 0;
 
-$sens = "versLaDroite";
+$tabSens = array("versLaDroite", "versLaGauche");
 
 
 $nbEtudiantsPlaces = 0;
@@ -224,27 +308,39 @@ $tousTTplacesFinal = false;
 // Appel de la fonction
 
 // (Sens vers la droite)
-for($indiceLigneDepart = 0; $indiceLigneDepart < $tailleTableauLigne; $indiceLigneDepart++){
-    for($indiceColDepart = 0; $indiceColDepart < $tailleTableauColonne; $indiceColDepart++){
-        $listeEtudiantsCopie = $listeEtudiants;
+foreach($tabSens as $sens){
+    for($indiceLigneDepart = 0; $indiceLigneDepart < $tailleTableauLigne; $indiceLigneDepart++){
+        for($indiceColDepart = 0; $indiceColDepart < $tailleTableauColonne; $indiceColDepart++){
+            $listeEtudiantsCopie = $listeEtudiants;
 
-        remplirSalle(
-            $planSalle,
-            $listeEtudiantsCopie,
-            $nbRangeesEspacement,
-            $nbPlacesEspacement,
-            $indiceColDepart,
-            $indiceLigneDepart,
-            $sens,
-            $placementEtudiants,
-            $nbEtudiantsPlaces,
-            $tousTTplaces
-        );
+            remplirSalle(
+                $planSalle,
+                $listeEtudiantsCopie,
+                $nbRangeesEspacement,
+                $nbPlacesEspacement,
+                $indiceColDepart,
+                $indiceLigneDepart,
+                $sens,
+                $placementEtudiants,
+                $nbEtudiantsPlaces,
+                $tousTTplaces
+            );
 
-        // Comparer le nombre d'étudiants placés
-        if($tousTTplacesFinal){
-            if($tousTTplaces){
-                if($nbEtudiantsPlaces >= $nbEtudiantsPlacesFinal){
+            // Comparer le nombre d'étudiants placés
+            if($tousTTplacesFinal){
+                if($tousTTplaces){
+                    if($nbEtudiantsPlaces >= $nbEtudiantsPlacesFinal){
+                        $placementEtudiantsFinal = $placementEtudiants;
+                        $nbEtudiantsPlacesFinal = $nbEtudiantsPlaces;
+                        $indiceColDepartFinal = $indiceColDepart;
+                        $indiceLigneDepartFinal = $indiceLigneDepart;
+                        $sensFinal = $sens;
+                        $tousTTplacesFinal = $tousTTplaces;
+                    }
+                }
+            }
+            else{
+                if($nbEtudiantsPlaces >= $nbEtudiantsPlacesFinal || $tousTTplaces){
                     $placementEtudiantsFinal = $placementEtudiants;
                     $nbEtudiantsPlacesFinal = $nbEtudiantsPlaces;
                     $indiceColDepartFinal = $indiceColDepart;
@@ -254,18 +350,15 @@ for($indiceLigneDepart = 0; $indiceLigneDepart < $tailleTableauLigne; $indiceLig
                 }
             }
         }
-        else{
-            if($nbEtudiantsPlaces >= $nbEtudiantsPlacesFinal || $tousTTplaces){
-                $placementEtudiantsFinal = $placementEtudiants;
-                $nbEtudiantsPlacesFinal = $nbEtudiantsPlaces;
-                $indiceColDepartFinal = $indiceColDepart;
-                $indiceLigneDepartFinal = $indiceLigneDepart;
-                $sensFinal = $sens;
-                $tousTTplacesFinal = $tousTTplaces;
-            }
-        }
     }
 }
+$placementEtudiants = $placementEtudiantsFinal;
+$nbEtudiantsPlaces = $nbEtudiantsPlacesFinal;
+$indiceColDepart = $indiceColDepartFinal;
+$indiceLigneDepart = $indiceLigneDepartFinal;
+$sens = $sensFinal;
+$tousTTplaces = $tousTTplacesFinal;
+
 
 
 
@@ -273,14 +366,14 @@ for($indiceLigneDepart = 0; $indiceLigneDepart < $tailleTableauLigne; $indiceLig
 
 // Affichage du résultat
 
-if($tousTTplacesFinal){
+if($tousTTplaces){
     $ttPlaces = "oui";
 }
 else{
     $ttPlaces = "non";
 }
 
-
+echo "<div class='container'>";
 // Nom du contrôle
 echo "Contrôle : " . $unControle->getNomLong() . "<br>";
 echo "Salle : " . $uneSalle->getNom() . "<br>";
@@ -294,24 +387,24 @@ echo "Nombre d'étudiants TT Sans Ordi: " . count(recupererIndiceEtudiantsTT($li
 echo "Nombre d'étudiants TT Ordi : " . count(recupererIndiceEtudiantsTT($listeEtudiants, true)) . "<br>";
 echo "<br>";
 
-echo "La stratégie choisie est : $sensFinal <br>";
-echo "Nombre d'étudiants placés : $nbEtudiantsPlacesFinal <br>";
+echo "La stratégie choisie est : $sens <br>";
+echo "Nombre d'étudiants placés : $nbEtudiantsPlaces <br>";
 echo "Tous les étudiants TT ont été placés dans la salle : $ttPlaces <br>";
-echo "Indice colonne de départ : $indiceColDepartFinal <br>";
-echo "Indice ligne de départ : $indiceLigneDepartFinal <br>";
+echo "Indice colonne de départ : $indiceColDepart <br>";
+echo "Indice ligne de départ : $indiceLigneDepart <br>";
 echo "<br>";
 
-afficherTableau($placementEtudiantsFinal);
+afficherTableau($placementEtudiants);
+echo "</div>";
 
 // Table bootstrap
 
 
 
 
-function afficherTableau($placementEtudiantsFinal){
-echo "<div class='container'>";
+function afficherTableau($placementEtudiants){
 echo "<table class='table table-bordered'>";
-foreach($placementEtudiantsFinal as $uneLigne){
+foreach($placementEtudiants as $uneLigne){
     echo "<tr>";
     foreach($uneLigne as $uneZoneOuEtudiant){
         // Centrer le texte
@@ -358,5 +451,4 @@ foreach($placementEtudiantsFinal as $uneLigne){
     echo "</tr>";
 }
 echo "</table>";
-echo "</div>";
 }

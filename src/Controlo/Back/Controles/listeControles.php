@@ -13,7 +13,7 @@
             $('#controles').DataTable({
                 // datetime-moment
                 "createdRow": function ( row, data, index ) {
-                    $('td', row).eq(2).html( moment(data[2]).format('DD/MM/YYYY') );
+                    $('td', row).eq(4).html( moment(data[4]).format('DD/MM/YYYY') );
                 },
 
 
@@ -24,7 +24,7 @@
 
                 // Tri par défaut
                 order: [
-                    [2, 'asc']
+                    [4, 'asc']
                 ]
 
             });
@@ -58,7 +58,16 @@
             <table id="controles" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Statut</th>
+                        <th>
+                        <i class="fas fa-user-graduate"></i>
+    </th>
+    <th>
+        <i class="fas fa-file-alt"></i>
+    </th>
+    <th>
+        <i class="fas fa-envelope"></i>
+    </th>
+                        
                         <th>Nom long</th>
                         <th>Date</th>
                         <th>Heure</th>
@@ -81,6 +90,7 @@
 
             print("<tr><td class='text-center'>");
 
+            // Afficher l'état du PDP
             switch($listeControles[$numControle]->getEtatPDP()){
                 case 0:
                     print('
@@ -107,6 +117,72 @@
                         data-toggle="tooltip"
                         data-bs-html="true"
                         title="PDP Généré">
+                    </i>
+                    ');
+                    break;
+            }
+
+            print("</td><td class='text-center'>");
+
+            // Afficher l'état de la feuille d'émargement
+            switch($listeControles[$numControle]->getEtatFE()){
+                case 0:
+                    print('
+                    <i class="fa-solid fa-circle text-danger"
+                        data-toggle="tooltip"
+                        data-bs-html="true"
+                        title="Feuilles d\'émargement non générables">
+                    </i>
+                    ');
+                    break;
+                case 1:
+                    print('
+                    <i class="fa-solid fa-circle text-warning"
+                        data-toggle="tooltip"
+                        data-bs-html="true"
+                        title="Feuilles d\'émargement générables">
+                    </i>
+                    ');
+                    break;
+                case 2:
+                    print('
+                    <i class="fa-solid fa-circle text-success"
+                        data-toggle="tooltip"
+                        data-bs-html="true"
+                        title="Feuilles d\'émargement générées">
+                    </i>
+                    ');
+                    break;
+            }
+
+            print("</td><td class='text-center'>");
+
+            // Afficher l'état de l'envoi des mails
+            switch($listeControles[$numControle]->getEtatMail()){
+                case 0:
+                    print('
+                    <i class="fa-solid fa-circle text-danger"
+                        data-toggle="tooltip"
+                        data-bs-html="true"
+                        title="Envoi des mails non possible">
+                    </i>
+                    ');
+                    break;
+                case 1:
+                    print('
+                    <i class="fa-solid fa-circle text-warning"
+                        data-toggle="tooltip"
+                        data-bs-html="true"
+                        title="Envoi des mails en attente">
+                    </i>
+                    ');
+                    break;
+                case 2:
+                    print('
+                    <i class="fa-solid fa-circle text-success"
+                        data-toggle="tooltip"
+                        data-bs-html="true"
+                        title="Envoi des mails effectué">
                     </i>
                     ');
                     break;

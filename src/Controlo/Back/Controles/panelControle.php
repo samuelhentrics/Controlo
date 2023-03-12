@@ -62,6 +62,29 @@
                 $salles = "Non renseignée";
             }
 
+            $enseignantsRef = "";
+            $listeEnseignantsRef = $unControle->getMesEnseignantsReferents();
+            if ($listeEnseignantsRef != null) {
+                foreach ($listeEnseignantsRef as $unEnseignantRef) {
+                    $enseignantsRef .= $unEnseignantRef . ", ";
+                }
+                $enseignantsRef = substr($enseignantsRef, 0, -2);
+            } else {
+                $enseignantsRef = "Non renseignée";
+            }
+
+            $enseignantsSurveillants = "";
+            $listeEnseignantsSurveillants = $unControle->getMesEnseignantsSurveillants();
+            if ($listeEnseignantsSurveillants != null) {
+                foreach ($listeEnseignantsSurveillants as $unEnseignantSurveillant) {
+                    $enseignantsSurveillants .= $unEnseignantSurveillant . ", ";
+                }
+                $enseignantsSurveillants = substr($enseignantsSurveillants, 0, -2);
+            } else {
+                $enseignantsSurveillants = "Non renseignée";
+            }
+
+
 
             // Affichage
         
@@ -70,6 +93,7 @@
             echo "<h2>$nomControle";
             // Etat du controle
         
+            // Etat des PDP
             switch ($unControle->getEtatPDP()) {
                 case 0:
                     print('
@@ -86,7 +110,7 @@
                     <i class="fa-solid fa-circle text-warning"
                         data-toggle="tooltip"
                         data-bs-html="true"
-                        title="PDP Générable">
+                        title="Plans de placement générables">
                     </i>
                     ');
                     break;
@@ -96,7 +120,73 @@
                     <i class="fa-solid fa-circle text-success"
                         data-toggle="tooltip"
                         data-bs-html="true"
-                        title="PDP Généré">
+                        title="Plans de placement générés">
+                    </i>
+                    ');
+                    break;
+            }
+
+            // Etat des FE
+            switch ($unControle->getEtatFE()) {
+                case 0:
+                    print('
+                    <i class="fa-solid fa-circle text-danger"
+                        data-toggle="tooltip"
+                        data-bs-html="true"
+                        title="Feuilles d\'émargement non générables">
+                    </i>
+                    ');
+                    break;
+
+                case 1:
+                    print('
+                    <i class="fa-solid fa-circle text-warning"
+                        data-toggle="tooltip"
+                        data-bs-html="true"
+                        title="Feuilles d\'émargement générables">
+                    </i>
+                    ');
+                    break;
+
+                case 2:
+                    print('
+                    <i class="fa-solid fa-circle text-success"
+                        data-toggle="tooltip"
+                        data-bs-html="true"
+                        title="Feuilles d\'émargement générées">
+                    </i>
+                    ');
+                    break;
+            }
+
+            // Etat des mails
+            switch ($unControle->getEtatMail()) {
+                case 0:
+                    print('
+                    <i class="fa-solid fa-circle text-danger"
+                        data-toggle="tooltip"
+                        data-bs-html="true"
+                        title="Mails non envoyés">
+                    </i>
+                    ');
+                    break;
+
+                case 1:
+                    print('
+                    <i class="fa-solid fa-circle text-success"
+                        data-toggle="tooltip"
+                        data-bs-html="true"
+                        title="Mails envoyables">
+                    </i>
+                    ');
+                    break;
+
+                case 2:
+                    print('
+                    <i class="fa-solid fa-circle text-success"
+                        data-toggle="tooltip"
+                        data-bs-html="true"
+                        title="Mails envoyés">
                     </i>
                     ');
                     break;
@@ -109,7 +199,7 @@
             // Afficher les informations du contrôle
             echo "<a>
             Date : $date - Heure : $infoHeureNonTT - TT : $infoHeureTT - Promotion(s) : $promotions<br>
-            Enseignant(s) référent(s) : ...   Enseignant(s) surveillant(s) : ...<br>
+            Enseignant(s) référent(s) : $enseignantsRef - Enseignant(s) surveillant(s) : $enseignantsSurveillants<br>
             Salles : $salles
             
             </a>";
@@ -176,24 +266,14 @@
                                 <div class="card-body text-center">
                                     <p class="card-text">
                                         <i class="fa fa-chalkboard-user fa-3x"></i>
-                                        <h5>Placer manuellement</h5>
+                                        <h5>Générer feuilles d\'émargement</h5>
                                     </p>
                                 </div>
                             </div>
 
                         </div>
                         <div class="col-md-5">
-                            <form id="telechargerFE" action="' . PAGE_TELECHARGER_FE_CONTROLE_PATH . '" method="POST">
-                                <input type="hidden" name="idControle" value="' . $idControle . '">
-                                <a onClick="document.getElementById(\'telechargerFE\').submit();">
-                                    <div class="card text-white bg-primary">
-                                        <div class="card-body">
-                                                <h5> <i class="fa fa-download fa-2x"></i> Télécharger feuille d\'émargement</h5>   
-                                        </div>
-                                    </div>
-                                </a>
-                            </form>
-
+                        
                             <form id="telechargerPDP" action="' . PAGE_TELECHARGER_PDP_CONTROLE_PATH . '" method="POST">
                                 <input type="hidden" name="idControle" value="' . $idControle . '">
                                 <a onClick="document.getElementById(\'telechargerPDP\').submit();">
@@ -203,6 +283,17 @@
                                             <i class="fa fa-download fa-2x"></i>
                                             Télécharger plans de placement
                                             </h5>
+                                        </div>
+                                    </div>
+                                </a>
+                            </form>
+
+                            <form id="telechargerFE" action="' . PAGE_TELECHARGER_FE_CONTROLE_PATH . '" method="POST">
+                                <input type="hidden" name="idControle" value="' . $idControle . '">
+                                <a onClick="document.getElementById(\'telechargerFE\').submit();">
+                                    <div class="card text-white bg-primary">
+                                        <div class="card-body">
+                                                <h5> <i class="fa fa-download fa-2x"></i> Télécharger feuilles d\'émargement</h5>   
                                         </div>
                                     </div>
                                 </a>
