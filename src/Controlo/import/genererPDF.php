@@ -310,6 +310,13 @@ function genererPDFPDP($unControle)
         mkdir($cheminDossierControle);
     }
 
+    // Créer le fichier "mail.txt" s'il n'existe pas/plus et lui mettre 0 en première ligne
+    if (!file_exists($cheminDossierControle . "/mails.txt")) {
+        $fichier = fopen($cheminDossierControle . "/mails.txt", "w");
+        fwrite($fichier, "0");
+        fclose($fichier);
+    }
+
     // Crée le dossier des plans de placement s'il n'existe pas/plus
     if (!file_exists($cheminDossierPDP)) {
         mkdir($cheminDossierPDP);
@@ -657,9 +664,9 @@ function genererPDFFE($unControle)
         mkdir($cheminDossierControle);
     }
 
-    // Crée le dossier des plans de placement s'il n'existe pas/plus
+    // Crée le dossier des plans de placement en csv s'il n'existe pas/plus
     if (!file_exists($cheminDossierPDPCSV)) {
-        mkdir($cheminDossierPDP);
+        mkdir($cheminDossierPDPCSV);
     }
 
     // Arret du code si le dossier n'existe pas

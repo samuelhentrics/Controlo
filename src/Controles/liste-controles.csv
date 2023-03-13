@@ -1,5 +1,5 @@
 "  Promotion ";" Semaine  ";"Code Apogee";"  Module/Ressource nom Complet  ";"Modules/Ressource nom EDT";Enseignant;"  Durée";Date;Heure;HeureTT;Salles;Surveillants
-"Info semestre 1";15/11/2022;"BBIN105R - R1.05 Introduction aux bases de données et SQL";"R1.05 - Introduction aux bases de données et SQL - Manipulation";"R1.05 - Introduction BD - Manipulation";Fischer;60;16/11/2022;08:30;08:30;"S124, S125, Amphi";"Cordova, Futrell"
+"Info semestre 1";;;"R1.05 - Introduction aux bases de données et SQL - Manipulation";"R1.05 - Introduction BD - Manipulation";Fischer;60;16/11/2022;08:30;08:30;"S124, S125, Amphi";"Cordova,   Futrell,  Futrell"
 "Info semestre 1";22/11/2022;"BBIN108R - R1.08 Gestion de projet & des organisations";"R1.08 - Gestion de projet et des organisations";"R1.08 - Gestion Proj. & Orga.";Bergeron;60;23/11/2022;09:15;09:00;"S124, S125, Amphi";"Theodora, Harris"
 "Info semestre 1";29/11/2022;"BBIN109R - R1.09 Économie durable et numérique";"R1.09 - Économie durable et numérique";"R1.09 - Économie Durable et Num.";Drame;120;30/11/2022;10:30;10:30;"S124, S126, Amphi";"Lepley, McKinley"
 "Info semestre 1";06/12/2022;"BBIN103R - R1.03 Introduction à l’architecture des ordinateurs";"R1.03 - Introduction à l'architecture des ordinateurs";"R1.03 - Intro. archi.";Drame;120;07/12/2022;14:00;14:00;"S124, S127, Amphi";"Cordova, Futrell"
@@ -24,7 +24,7 @@
 "Info semestre 2";30/05/2023;"BBIN202R - R2.02 Développement d’applications avec IHM";"R2.02 - Développement d'applications avec IHM";"R2.02 - Dev. d'apps avec IHM";Fischer;120;31/05/2023;10:30;10:30;"S124, S126, Amphi";"Theodora, Harris"
 "Info semestre 2";06/06/2023;"BBIN213R - R2.13 Communication avec le milieu professionnel";"R2.13 - Communication avec le milieu professionnel";"R2.13 - Comm. professionnelle";Catherine;120;07/06/2023;14:00;14:00;"S124, S127, Amphi";"Lepley, McKinley"
 "Info semestre 3";;;"M3102 - Services réseaux 2";"Services réseaux - M3102";;60;03/03/2023;10:00;10:00;"S124, S125, Amphi";
-"Info semestre 3";;;"M3103 - Algorithmique avancée";"Algo. avancée - M3103";HEHE;60;19/10/2022;09:30;09:00;"S124, S125, Amphi";"HOHO,      HOHO,      HIHI"
+"Info semestre 3";;;"M3103 - Algorithmique avancée";"Algo. avancé - M3103";HEHE;60;19/10/2022;09:30;09:00;"S124, S125, Amphi";"HOHO,                                HOHO, HIHI"
 "Info semestre 3";;;"M3103 - Algorithmique avancée";"Algo. avancée - M3103";;60;19/10/2022;11:30;11:30;"S124, S125, Amphi";
 "Info semestre 3";;;"M3106C - Bases de données avancées";"BD Avancées - M3106C";Fort;60;19/10/2022;14:00;14:00;"S124, S127, Amphi";"Cordova,     Futrell,  Futrell"
 "Info semestre 3";18/10/2022;"BTIN3106-Base de données avancées";"M3106C - Bases de données avancées";"BD Avancées - M3106C";Bergeron;60;19/10/2022;08:00;08:00;"S124, S125, Amphi";"Theodora, Harris"

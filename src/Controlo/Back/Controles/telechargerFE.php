@@ -44,8 +44,6 @@ if(isset($_POST["idControle"])){
     $nbEnseignantsSurveillants = count($unControle->getMesEnseignantsSurveillants());
     $nbSalles = count($unControle->getMesSalles());
 
-    genererPDFFE($unControle);
-
     // Cas où le contrôle n'a pas toutes les informations nécessaires
     if($unControle->getEtatPDP()!=2){
         echo "
@@ -73,6 +71,7 @@ if(isset($_POST["idControle"])){
             </div>";
     }
     else {
+        genererPDFFE($unControle);
         echo "
             <div class='alert alert-success' role='alert'>
                 <h4 class='alert-heading'>Télécharger les feuilles d'émargement</h4>

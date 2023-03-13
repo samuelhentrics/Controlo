@@ -173,7 +173,7 @@
 
                 case 1:
                     print('
-                    <i class="fa-solid fa-circle text-success"
+                    <i class="fa-solid fa-circle text-warning"
                         data-toggle="tooltip"
                         data-bs-html="true"
                         title="Mails envoyables">
