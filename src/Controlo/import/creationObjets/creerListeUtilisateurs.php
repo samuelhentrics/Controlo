@@ -9,10 +9,10 @@ function creerListeUtilisateurs($affichageErreur = false){
         $listeUtilisateurs = array();
 
         // Ouvrir le fichier CSV
-        $fichier = fopen(CSV_UTILISATEURS_FOLDER_NAME, "r");
+        $fichier = fopen(CSV_UTILISATEURS_FOLDER_NAME . LISTE_UTILISATEURS_FILE_NAME, "r");
 
         // Cas d'erreur : le fichier ne peut pas être ouvert
-        if($fichier == false){
+        if($fichier === false){
             throw new Exception("Impossible d'ouvrir le fichier CSV ".LISTE_UTILISATEURS_FILE_NAME);
         }
 
@@ -27,16 +27,16 @@ function creerListeUtilisateurs($affichageErreur = false){
             // Si la ligne n'est pas vide
             if($ligne != false){
                 // Récupérer les informations de l'enseignant
-                $nom = $ligne[4];
-                $prenom = $ligne[5];
-                $role = $ligne[3];
-                $mail = $ligne[1];
-
+                $nom = utf8_encode($ligne[4]);
+                $prenom = utf8_encode($ligne[5]);
+                $role = utf8_encode($ligne[3]);
+                $mail = utf8_encode($ligne[1]);
+                $mdp = utf8_encode($ligne[2]);
                 // Créer l'objet Utilisateur
-                $utilisateur = new Utilisateur($nom, $prenom, $role, $mail);
+                $utilisateur = new Utilisateur($id,$nom, $prenom, $role, $mail, $mdp);
 
                 // Ajouter l'objet Utilisateur à la liste
-                array_push($listeUtilisateurs, $utilsateur);
+                array_push($listeUtilisateurs, $utilisateur);
             }
             
             $id++;
