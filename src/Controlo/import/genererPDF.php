@@ -190,7 +190,7 @@ class PDF extends FPDF
             $taille = 20;
             $num = 0;
             foreach ($row as $col) {
-                $this->Cell($taille, 10, $col, 1);
+                $this->Cell($taille, 6, $col, 1);
                 if($num == 0){
                     $taille *= 2.85;
                     $num++;
@@ -726,16 +726,15 @@ function genererPDFFE($unControle, $anneeUniversitaire)
         'Année Universitaire '.$anneeUniversitaire.'<br>'.
         'Feuille d\'émargement de contrôle';
 
-        $pdf->SetFont('Arial', '', 12);
+        $pdf->SetFont('Arial', '', 11);
         $pdf->WriteHTML(utf8_decode($entete1));
-        $pdf->Ln(10);
+        $pdf->Ln(1);
 
         // Affichage du titre
-        $pdf->SetFont('Arial', 'B', 16);
+        $pdf->SetFont('Arial', 'B', 14);
         $pdf->Cell(0, 10, utf8_decode($nomSalle), 0, 1, 'C');
-        $pdf->Ln(10);
 
-        $pdf->SetFont('Arial', '', 12);
+        $pdf->SetFont('Arial', '', 11);
         // Création de l'entête n°2
         $totalEtudiants = count($placesSalle);
 
@@ -752,17 +751,17 @@ function genererPDFFE($unControle, $anneeUniversitaire)
 
 
         // Affichage de l'entête
-        $pdf->SetFont('Arial', '', 12);
+        $pdf->SetFont('Arial', '', 11);
         $pdf->WriteHTML(utf8_decode($entete2));
-        $pdf->Ln(15);
+        $pdf->Ln(7);
 
 
-        $pdf->SetFont('Arial', '', 12);
+        $pdf->SetFont('Arial', '', 11);
 
         // Affichage du tableau avec les infos sur les étudiants et leurs places
         $header = array(utf8_decode("N° Place"), utf8_decode("Nom"), utf8_decode("Prénom"), utf8_decode("Signature"));
         $pdf->TableListeEmarg($header, $placesSalle);
-        $pdf->Ln(15);
+        $pdf->Ln(10);
 
 
         
