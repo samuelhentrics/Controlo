@@ -292,7 +292,26 @@ include("config.php");
                     break;
                 }
 
-                require(BACK_PATH . "Utilisateurs/listeUtilisateurs.php");
+                if (isset($_GET['action'])) {
+                    $action = $_GET['action'];
+                    switch ($action) {
+                        case "modifier":
+                            require(BACK_PATH . "Utilisateurs/modifierUtilisateur.php");
+                            break;
+                        case "ajouter":
+                            require(BACK_PATH . "Utilisateurs/ajouterUtilisateur.php");
+                            break;
+                        case "supprimer":
+                            require(BACK_PATH . "Utilisateurs/supprimerUtilisateur.php");
+                            break;
+                        default:
+                            require(BACK_PATH . "404.php");
+                            break;
+                    }
+                }
+                else{
+                    require(BACK_PATH . "Utilisateurs/listeUtilisateurs.php");
+                }
                 break;
 
             case 'login':
