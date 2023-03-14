@@ -72,19 +72,7 @@
                             default: $role='Secrétaire';break;
                         };
                     
-//  <form style='display:inline;' method=\"post\" action=" . PAGE_MODIFIER_UTILISATEUR_PATH . ">
-// <input type=\"hidden\" name=\"nomPromotion\" value=\"" . $nomPromotion . "\">
-// <button type=\"submit\" class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Modifier\">
-//     <i class=\"fas fa-edit\"></i>
-// </button>
-// </form>
-// <form style='display:inline;' method=\"post\" action=" . PAGE_SUPPRIMER_UTILISATEUR_PATH . ">
-// <input type=\"hidden\" name=\"nomPromotion\" value=\"" . $nomPromotion . "\">
 
-// <button type=\"submit\" onclick=\"return confirm('Confirmer la suppression de: ".$nomUtilisateur."')\" name=\"action\" class=\"btn btn-danger\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Supprimer\">
-//     <i class=\"fas fa-trash-alt\"></i>
-// </button>
-// </form>
                         print("
 
                         <tr>
@@ -93,7 +81,19 @@
                             <td>" . $role . "</td>
                             <td>" . $mailUtilisateur . "</td>
                         <td class=\"text-center\">
-                           
+                          <form style='display:inline;' method=\"post\" action=" . PAGE_MODIFIER_UTILISATEUR_PATH . ">
+                         <input type=\"hidden\" name=\"nomUtilisateur\" value=\"" . $nomUtilisateur . "\">
+                         <button type=\"submit\" class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Modifier\">
+                             <i class=\"fas fa-edit\"></i>
+                         </button>
+                         </form>
+                         <form style='display:inline;' method=\"post\" action=" . PAGE_SUPPRIMER_UTILISATEUR_PATH . ">
+                         <input type=\"hidden\" name=\"nomUtilisateur\" value=\"" . $nomUtilisateur . "\">
+                        
+                         <button type=\"submit\" onclick=\"return confirm('Confirmer la suppression de: ".$nomUtilisateur."')\" name=\"action\" class=\"btn btn-danger\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Supprimer\">
+                             <i class=\"fas fa-trash-alt\"></i>
+                         </button>
+                         </form> 
                         </td>
 
 
