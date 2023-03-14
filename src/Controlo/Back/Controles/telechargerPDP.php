@@ -6,7 +6,7 @@
 if(isset($_POST["idControle"])){
     include(FONCTION_CREER_LISTE_CONTROLES_PATH);
 
-    $idControle = $_POST["idControle"];
+    $idControle = htmlspecialchars($_POST["idControle"]);
     echo '
     <h2>
         <form action="'.PAGE_PANEL_CONTROLE_PATH.'" method="post" style="display:inline;">

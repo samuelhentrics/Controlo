@@ -21,9 +21,9 @@
 
             if (isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["statut"])) {
                 include_once(FONCTION_CRUD_ENSEIGNANTS_PATH);
-                $nom = $_POST["nom"];
-                $prenom = $_POST["prenom"];
-                $statut = $_POST["statut"];
+                $nom = htmlspecialchars($_POST["nom"]);
+                $prenom = htmlspecialchars($_POST["prenom"]);
+                $statut = htmlspecialchars($_POST["statut"]);
 
                 try {
                     $nouvelEnseignant = new Enseignant($idEnseignant, $nom, $prenom, $statut);

@@ -12,7 +12,7 @@ echo '
         </h2><br>';
 
 if (isset($_POST["nomPromotion"])){
-    $nomPromotion = $_POST["nomPromotion"];
+    $nomPromotion = htmlspecialchars(["nomPromotion"]);
     try{
         supprimerPromotion($nomPromotion);
         // Affichage d'un message de succès

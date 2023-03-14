@@ -16,10 +16,10 @@
 
 
   // Récupérer les données saisies dans le formulaire précédent
-  $nomSalle = $_POST["nomSalle"];
-  $nomSalleVoisine = $_POST["salleVoisine"];
-  $nbrLigne = $_POST["nbrLigne"];
-  $nbrColonne = $_POST["nbrColonne"];
+  $nomSalle = htmlspecialchars($_POST["nomSalle"]);
+  $nomSalleVoisine = htmlspecialchars($_POST["salleVoisine"]);
+  $nbrLigne = htmlspecialchars($_POST["nbrLigne"]);
+  $nbrColonne = htmlspecialchars($_POST["nbrColonne"]);
 
   // Faire un array de 2 dimensions pour le plan de salle
   $planSalleWeb = array();
@@ -38,7 +38,7 @@
       // Completer $planSalleWeb
       for ($indiceLigne = 0; $indiceLigne < $nbrLigne; $indiceLigne++) {
         for ($indiceColonne = 0; $indiceColonne < $nbrColonne; $indiceColonne++) {
-          $planSalleWeb[$indiceLigne][$indiceColonne] = $_POST["cell-" . $indiceLigne . "-" . $indiceColonne];
+          $planSalleWeb[$indiceLigne][$indiceColonne] =htmlspecialchars($_POST["cell-" . $indiceLigne . "-" . $indiceColonne]);
         }
       }
 
@@ -55,7 +55,7 @@
       for ($indiceLigne = 0; $indiceLigne < $nbrLigne; $indiceLigne++) {
         for ($indiceColonne = 0; $indiceColonne < $nbrColonne; $indiceColonne++) {
           $uneZone = new Zone(); // Créer une zone
-          $infoZone = $_POST["cell-" . $indiceLigne . "-" . $indiceColonne]; // Récupérer la donnée saisi dans le formulaire
+          $infoZone = htmlspecialchars($_POST["cell-" . $indiceLigne . "-" . $indiceColonne]); // Récupérer la donnée saisi dans le formulaire
           // Informer de la position de cette zone
           $uneZone->setNumLigne($indiceLigne);
           $uneZone->setNumCol($indiceColonne);

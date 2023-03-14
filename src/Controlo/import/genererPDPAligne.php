@@ -302,8 +302,9 @@ function placementAligne(&$unControle, &$erreur = true){
         }
 
         // -- Récupération des contraintes générales
-        $typePlacement = $_POST["typePlacement"];
-        $typeSeparation = $_POST["typeSeparation"];
+        
+        $typePlacement = htmlspecialchars($_POST["typePlacement"]);
+        $typeSeparation = htmlspecialchars($_POST["typeSeparation"]);
 
         // -- Création des contraintes générales
         $contraintesGenerales = new ContraintesGenerales($typePlacement, $typeSeparation);

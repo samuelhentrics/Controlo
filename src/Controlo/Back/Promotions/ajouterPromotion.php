@@ -21,8 +21,8 @@
         // Vérifier si le formulaire a été envoyé
         if (isset($_POST['nomGeneration']) && isset($_POST['nomFormation'])) {
         // Récupérer les données du formulaire
-        $nomPromotion = $_POST["nomGeneration"];
-        $nomPromotionAffichage = $_POST["nomFormation"];
+        $nomPromotion = htmlspecialchars($_POST["nomGeneration"]);
+        $nomPromotionAffichage = htmlspecialchars($_POST["nomFormation"]);
         
         // Ajouter la promotion
 

@@ -16,8 +16,9 @@ echo '
 
 
 if (isset($_POST["idEtudiant"]) && isset($_POST["nomPromotion"])) {
-    $etudiantId = $_POST["idEtudiant"];
-    $nomPromotion = $_POST["nomPromotion"];
+    $etudiantId = htmlspecialchars($_POST["idEtudiant"]);
+    $nomPromotion = htmlspecialchars($_POST["nomPromotion"]);
+    
     try {
         supprimerEtudiant($etudiantId, $nomPromotion);
         // Affichage d'un message de succès

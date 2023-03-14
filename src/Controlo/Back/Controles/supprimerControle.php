@@ -15,7 +15,8 @@ echo '
         </h2><br>';
 
 if (isset($_POST["idControle"])) {
-    $controleId = $_POST["idControle"];
+    
+    $controleId = htmlspecialchars($_POST["idControle"]);
     try {
         supprimerControle($controleId);
         // Affichage d'un message de succès

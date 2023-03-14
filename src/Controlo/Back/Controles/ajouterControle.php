@@ -46,6 +46,20 @@
                 $dateControle = $_POST['dateDebutControle'];
                 $referent = $_POST['referent'];
                 $surveillant = $_POST['surveillant'];
+                                
+                //Filtre faille xss
+                $nomsPromos = htmlspecialchars($_POST["promotion"]);
+                $nomsSalles = htmlspecialchars($_POST["choixSalles"]);
+                $nomLong = htmlspecialchars($_POST['controleNomLong']);
+                $nomCourt = htmlspecialchars($_POST['controleNomCourt']);
+                $dureeTotale = htmlspecialchars($_POST['dureeTotale']);
+                $heureNonTT = htmlspecialchars($_POST['heureNonTT']);
+                $heureTT = htmlspecialchars($_POST['heureTT']);
+                $dateControle = htmlspecialchars($_POST['dateDebutControle']);
+                $referent = htmlspecialchars($_POST['referent']);
+                $surveillant = htmlspecialchars($_POST['surveillant']);
+                
+
 
                 // Transformer la date au format DD/MM/YYYY si elle est au format YYYY-MM-DD
                 if (preg_match("#[0-9]{4}-[0-9]{2}-[0-9]{2}#", $dateControle)) {

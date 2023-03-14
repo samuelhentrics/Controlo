@@ -17,7 +17,7 @@ echo '
         
 
 if (isset($_POST["idEnseignant"])) {
-    $idEnseignant = $_POST["idEnseignant"];
+    $idEnseignant = htmlspecialchars($_POST["idEnseignant"]);
     try {
         supprimerEnseignant($idEnseignant);
         // Affichage d'un message de succès

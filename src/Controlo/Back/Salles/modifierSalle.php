@@ -7,7 +7,7 @@
   include_once(FONCTION_CREER_LISTE_SALLES_PATH);
 
   // Récupérer les données saisies dans le formulaire précédent
-  $nomSalle = $_POST["nomSalle"];
+  $nomSalle = htmlspecialchars($_POST["nomSalle"]);
 
   echo '
         <h2>
@@ -25,7 +25,7 @@
   //Traitement
   if (isset($_POST["nomVoisinSalle"])) {
     try {
-      $nomSalleVoisine = $_POST["nomVoisinSalle"];
+      $nomSalleVoisine = htmlspecialchars(["nomVoisinSalle"]);
       modifierVoisinSalle($nomSalle, $nomSalleVoisine);
       echo "<div class='alert alert-success' role='alert'>La salle a été modifiée avec succès</div>";
     } catch (Exception $e) {
@@ -140,7 +140,7 @@
       // Completer $planSalleWeb
       for ($indiceLigne = 0; $indiceLigne < $nbrLigne; $indiceLigne++) {
         for ($indiceColonne = 0; $indiceColonne < $nbrColonne; $indiceColonne++) {
-          $planSalleWeb[$indiceLigne][$indiceColonne] = $_POST["cell-" . $indiceLigne . "-" . $indiceColonne];
+          $planSalleWeb[$indiceLigne][$indiceColonne] = htmlspecialchars($_POST["cell-" . $indiceLigne . "-" . $indiceColonne]);
         }
       }
 
@@ -153,7 +153,7 @@
       for ($indiceLigne = 0; $indiceLigne < count($mesZones); $indiceLigne++) {
         for ($indiceColonne = 0; $indiceColonne < count($mesZones[$indiceLigne]); $indiceColonne++) {
           $uneZone = new Zone(); // Créer une zone
-          $infoZone = $_POST["cell-" . $indiceLigne . "-" . $indiceColonne]; // Récupérer la donnée saisi dans le formulaire
+          $infoZone = htmlspecialchars($_POST["cell-" . $indiceLigne . "-" . $indiceColonne]); // Récupérer la donnée saisi dans le formulaire
           // Informer de la position de cette zone
           $uneZone->setNumLigne($indiceLigne);
           $uneZone->setNumCol($indiceColonne);

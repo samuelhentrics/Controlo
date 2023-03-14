@@ -16,12 +16,12 @@
         </h2><br>';
 
     if (isset($_POST["nomPromotion"])) {
-        $nomPromotion = $_POST["nomPromotion"];
+        $nomPromotion = htmlspecialchars($_POST["nomPromotion"]);
 
         if(isset($_POST["nouveauNomGeneration"])){
             include_once(FONCTION_CRUD_ENSEIGNANTS_PATH);
-            $nouveauNomGeneration = $_POST["nouveauNomGeneration"];
-            $nouveauNomAffichage = $_POST["nouveauNomAffichage"];
+            $nouveauNomGeneration = htmlspecialchars($_POST["nouveauNomGeneration"]);
+            $nouveauNomAffichage = htmlspecialchars($_POST["nouveauNomAffichage"]);
 
             try {
 

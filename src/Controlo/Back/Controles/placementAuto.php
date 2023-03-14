@@ -59,7 +59,8 @@
                 print("</table>");
             }
 
-            $idControle = $_POST["idControle"];
+            $idControle = $_POST["idControle"]; 
+            $idControle = htmlspecialchars($idControle);            
             echo '
             <h2>
                 <form action="'.PAGE_PANEL_CONTROLE_PATH.'" method="post" style="display:inline;">

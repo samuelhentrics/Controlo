@@ -4,6 +4,7 @@
   if(isset($_POST["idControle"])){
     include_once(FONCTION_CREER_LISTE_CONTROLES_PATH);
     $idControle = $_POST["idControle"];
+    $idControle = htmlspecialchars($idControle);
     $unControle = recupererUnControle($idControle);
 
     if($unControle->getEtatPDP() == 2){
@@ -17,8 +18,8 @@
 
       if (isset($_POST["emailSubject"]) && isset($_POST["emailContent"])){
         $expediteur = $_SESSION["email"];
-        $intitule = $_POST["emailSubject"];
-        $contenuMail = $_POST["emailContent"];
+        $intitule = htmlspecialchars($_POST["emailSubject"]);
+        $contenuMail = htmlspecialchars($_POST["emailContent"]);
 
         $listeOk = array();
         $listePasOk = array();
