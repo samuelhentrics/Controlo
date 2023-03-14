@@ -326,7 +326,6 @@ function placementAligne(&$unControle, &$erreur = true){
         $indiceColDepart = 0;
         $indiceLigneDepart = 0;
     
-        $placementEtudiants = array();
         $nbEtudiantsPlaces = 0;
         $tousTTplaces = false;
 
@@ -338,13 +337,13 @@ function placementAligne(&$unControle, &$erreur = true){
         $nbEtudiantsPlacesFinal = 0;
 
         $planSalle = $uneSalle->getMonPlan();
-        $listeEtudiantsFinal = $listeEtudiants;
 
         // Exploration des différents sens de remplissage et du meilleur placement
         foreach($tabSens as $sens){
             for($indiceLigneDepart = 0; $indiceLigneDepart < $tailleTableauLigne; $indiceLigneDepart++){
                 for($indiceColDepart = 0; $indiceColDepart < $tailleTableauColonne; $indiceColDepart++){
                     $listeEtudiantsCopie = $listeEtudiants;
+                    $placementEtudiants = array();
 
                     remplirSalle(
                         $planSalle,
@@ -391,6 +390,8 @@ function placementAligne(&$unControle, &$erreur = true){
         // Créer le plan de placement de la salle
         associerPlanPlacement($unControle, $uneSalle, $placementEtudiantsFinal);
         $listeEtudiants = $listeEtudiantsFinal;
+        
+
     }
 
     if (count($listeEtudiants)==0){
