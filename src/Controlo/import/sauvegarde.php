@@ -1,110 +1,99 @@
 <?php
+include_once("config.php");
+function CopieRep($orig, $dest)
+{
 
-/**
- * @brief Sauvegarde des fichiers dans le dossier de sauvegarde
- * 
- */
+    //mkdir ($dest,0777); // à modifier si le rep cible existe déjà
+    $dir = dir($orig);
+    while ($entry = $dir->read()) {
+        $pathOrig = "$orig/$entry";
+        $pathDest = "$dest/$entry";
+        // repertoire ->copie récursive
+        if (is_dir($pathOrig) and (substr($entry, 0, 1) <> '.')) CopieRep($pathOrig, $pathDest);
+        // fichier -> copie simple
+        if (is_file($pathOrig) and ($pathDest <> '') and ($fp = fopen($pathOrig, 'rb'))) {
+            $buf = fread($fp, filesize($pathOrig));
+            $cop = fopen($pathDest, 'ab+');
+            fputs($cop, $buf);
+            fclose($cop);
+            fclose($fp);
+        }
+    }
+    $dir->close();
+}
+
+
+function rrmdir($dir)
+{
+    if (is_dir($dir)) {
+        $objects = scandir($dir);
+        foreach ($objects as $object) {
+            if ($object != "." && $object != "..") {
+                if (filetype($dir . "/" . $object) == "dir") rmdir($dir . "/" . $object);
+                else unlink($dir . "/" . $object);
+            }
+        }
+        reset($objects);
+        rmdir($dir);
+    }
+}
 function sauvegarde()
 {
-    // Chemin des dossiers à sauvegarder
-    $dossiers = array(
-        CSV_CONTROLES_FOLDER_NAME,
-        CSV_ENSEIGNANTS_FOLDER_NAME,
-        CSV_ETUDIANTS_FOLDER_NAME,
-        GENERATIONS_FOLDER_NAME,
-        CSV_SALLES_FOLDER_NAME,
-        CSV_UTILISATEURS_FOLDER_NAME
-    );
 
-    // Date de la sauvegarde (aujourd'hui)
-    $date = date("Y-m-d");
+    // Sauvegarde générale
+    $cheminSauvegarde = SAUVEGARDE_FOLDER_NAME;
 
-    $faireMaj = true;
-    // Vérification de la dernière modification du dossier de sauvegarde
-    if (!is_dir(SAUVEGARDES_FOLDER_NAME)) {
-        mkdir(SAUVEGARDES_FOLDER_NAME);
-    }
+
+    // Chemin du dossier de sauvegarde Controles
+    $cheminSauvegardeControles = SAUVEGARDE_CONTROLES_FOLDER_NAME;
+    // Chemin du dossier de sauvegarde Enseignants
+    $cheminSauvegardeEnseignants = SAUVEGARDE_ENSEIGNANTS_FOLDER_NAME;
+    // Chemin du dossier de sauvegarde Etudiants
+    $cheminSauvegardeEtudiants = SAUVEGARDE_ETUDIANTS_FOLDER_NAME;
+    // Chemin du dossier de sauvegarde Salles
+    $cheminSauvegardeSalles = SAUVEGARDE_SALLES_FOLDER_NAME;
+    // Chemin du dossier de sauvegarde Utilisateurs
+    $cheminSauvegardeUtilisateurs = SAUVEGARDE_UTILISATEURS_FOLDER_NAME;
+
+
     
-    $derniere_modification = filemtime(SAUVEGARDES_FOLDER_NAME);
-    if ($derniere_modification > time()) { // Si la dernière modification date de moins de 24 heures, on ne fait rien
-        $faireMaj = false;
-    }
+    $dossierSauvegarde = scandir($cheminSauvegarde);
+    // Pacours le tableau de contrôles et récupère chaque dossier
+    foreach ($dossierSauvegarde as $dossier) {
 
-    if ($faireMaj) {
-        // Création du dossier de sauvegarde si nécessaire
-        if (!is_dir(SAUVEGARDES_FOLDER_NAME)) {
-            mkdir(SAUVEGARDES_FOLDER_NAME);
+        // Vérifier si c'est le dossier Controles
+        if (is_dir($dossier) and $dossier == "Controles") {
+            // Copier les dossiers
+            CopieRep($dossier, $cheminSauvegardeControles);
         }
 
-        // Boucle sur les dossiers à sauvegarder
-        foreach ($dossiers as $dossier) {
-            // Chemin complet du dossier à sauvegarder
-            $chemin_dossier = $dossier;
-
-            // Chemin complet du dossier de sauvegarde
-            $chemin_sauvegarde = SAUVEGARDES_FOLDER_NAME . $dossier;
-
-            // Création du dossier de sauvegarde si nécessaire
-            if (!is_dir($chemin_sauvegarde)) {
-                mkdir($chemin_sauvegarde);
-            }
-
-            // Boucle sur les fichiers du dossier à sauvegarder
-            $fichiers = scandir($chemin_dossier);
-            foreach ($fichiers as $fichier) {
-                // Exclusion des fichiers cachés
-                if (strpos($fichier, '.') !== 0) {
-
-                    // Chemin complet du fichier à sauvegarder
-                    $chemin_fichier = $chemin_dossier . $fichier;
-
-                    // Chemin complet du fichier de sauvegarde
-                    $chemin_sauvegarde_fichier = $chemin_sauvegarde . $fichier;
-
-                    // Vérification si le fichier existe déjà dans la sauvegarde
-                    if (!file_exists($chemin_sauvegarde_fichier)) {
-                        if(!is_dir($chemin_sauvegarde_fichier)){
-                            // Copie du fichier dans la sauvegarde
-                            //print($chemin_fichier . ' -> ' . $chemin_sauvegarde_fichier );
-                            copy($chemin_fichier, $chemin_sauvegarde_fichier);
-                        }
-                        else{
-                            mkdir($chemin_sauvegarde_fichier);
-                        }
-                    } else {
-                        // Comparaison des dates de modification du fichier
-                        $date_fichier = date("Y-m-d", filemtime($chemin_fichier));
-                        $date_sauvegarde_fichier = date("Y-m-d", filemtime($chemin_sauvegarde_fichier));
-                        if ($date_fichier > $date_sauvegarde_fichier) {
-                            if(!is_dir($chemin_sauvegarde_fichier)){
-                            // Le fichier a été modifié depuis la dernière sauvegarde
-                            copy($chemin_fichier, $chemin_sauvegarde_fichier);
-                            }
-                        }
-                    }
-
-                }
-
-            }
+        // Vérifier si c'est le dossier Enseignants
+        elseif (is_dir($dossier) and $dossier == "Enseignants") {
+            // Copier les dossiers
+            CopieRep($dossier, $cheminSauvegardeEnseignants);
         }
 
-        // Enregistrement de la date de la dernière sauvegarde
-        touch(SAUVEGARDES_FOLDER_NAME);
-
-        // Vérification de la date de la dernière sauvegarde
-        if(file_exists(SAUVEGARDES_FOLDER_NAME.'/derniere_sauvegarde.txt')){
-            $derniere_sauvegarde = file_get_contents(SAUVEGARDES_FOLDER_NAME.'/derniere_sauvegarde.txt');
+        // Vérifier si c'est le dossier Etudiants 
+        elseif (is_dir($dossier) and $dossier == "Etudiants") {
+            // Copier les dossiers
+            CopieRep($dossier, $cheminSauvegardeEtudiants);
         }
-        else{
-            $derniere_sauvegarde = null;
+
+        // Vérifier si c'est le dossier Salles
+        elseif (is_dir($dossier) and $dossier == "Salles") {
+            // Copier les dossiers
+            CopieRep($dossier, $cheminSauvegardeSalles);
         }
-        
-        if (!$derniere_sauvegarde || strtotime($derniere_sauvegarde) < strtotime('-24 hours')) {
-            // Si la dernière sauvegarde date de plus de 24 heures, on effectue une nouvelle sauvegarde
 
-
-            // Écriture de la date de la dernière sauvegarde dans le fichier "derniere_sauvegarde.txt"
-            file_put_contents(SAUVEGARDES_FOLDER_NAME . '/derniere_sauvegarde.txt', $date);
+        // Vérifier si c'est le dossier Utilisateurs
+        elseif (is_dir($dossier) and $dossier == "Utilisateurs") {
+            // Copier les dossiers
+            CopieRep($dossier, $cheminSauvegardeUtilisateurs);
         }
     }
 }
+?>
+</p>
+</body>
+
+</html>

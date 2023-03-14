@@ -59,11 +59,43 @@ define("ANNEE_UNIVERSITAIRE", "2022-2023");
 // DOSSIER SAUVEGARDE
 // -----------------------------------------
 
+
 /**
- * @brief Nom du dossier où se retrouvent les sauvegardes
- * @note ex : Sauvegardes/
+ * @brief Nom du dossier où se retrouvent les dossiers à sauvegarder
+ * @note ex : Sauvegarde/
  */
-define("SAUVEGARDES_FOLDER_NAME","Sauvegardes/");
+define("SAUVEGARDE_FOLDER_NAME","Sauvegarde/");
+
+/**
+ * @brief Nom du dossier où se retrouvent les sauvegardes des contrôles
+ * @note ex : Sauvegarde/Controles
+ */
+define("SAUVEGARDE_CONTROLES_FOLDER_NAME","Sauvegarde/Controles");
+
+/**
+ * @brief Nom du dossier où se retrouvent les sauvegardes des enseignants
+ * @note ex : Sauvegarde/Enseignants
+ */
+define("SAUVEGARDE_ENSEIGNANTS_FOLDER_NAME","Sauvegarde/Enseignants");
+
+/**
+ * @brief Nom du dossier où se retrouvent les sauvegardes des etudiants
+ * @note ex : Sauvegarde/Etudiants
+ */
+define("SAUVEGARDE_ETUDIANTS_FOLDER_NAME","Sauvegarde/Etudiants");
+
+
+/**
+ * @brief Nom du dossier où se retrouvent les sauvegardes des salles
+ * @note ex : Sauvegarde/Salles
+ */
+define("SAUVEGARDE_SALLES_FOLDER_NAME","Sauvegarde/Salles");
+
+/**
+ * @brief Nom du dossier où se retrouvent les sauvegardes des utilisateurs
+ * @note ex : Sauvegarde/Utilisateurs
+ */
+define("SAUVEGARDE_UTILISATEURS_FOLDER_NAME","Sauvegarde/Utilisateurs");
 
 
 
@@ -1034,7 +1066,7 @@ define("PAGE_UTILISATEURS_PATH", PATH."index.php?page=utilisateurs");
 
 
 // Lancement de la sauvegarde
-//include_once(IMPORT_PATH."sauvegarde.php");
-//sauvegarde();
+include_once(IMPORT_PATH."sauvegarde.php");
+sauvegarde();
 
 ?>
