@@ -43,17 +43,48 @@ function sauvegarde()
     // Sauvegarde générale
     $cheminSauvegarde = SAUVEGARDE_FOLDER_NAME;
 
+    // Créer le dossier s'il n'existe pas
+    if (!file_exists($cheminSauvegarde)) {
+        mkdir($cheminSauvegarde, 0777, true);
+    }
+
 
     // Chemin du dossier de sauvegarde Controles
     $cheminSauvegardeControles = SAUVEGARDE_CONTROLES_FOLDER_NAME;
+
+    if (!file_exists($cheminSauvegardeControles)) {
+        mkdir($cheminSauvegardeControles, 0777, true);
+    }
+
+
     // Chemin du dossier de sauvegarde Enseignants
     $cheminSauvegardeEnseignants = SAUVEGARDE_ENSEIGNANTS_FOLDER_NAME;
+
+    if (!file_exists($cheminSauvegardeEnseignants)) {
+        mkdir($cheminSauvegardeEnseignants, 0777, true);
+    }
+
+
     // Chemin du dossier de sauvegarde Etudiants
     $cheminSauvegardeEtudiants = SAUVEGARDE_ETUDIANTS_FOLDER_NAME;
+
+    if (!file_exists($cheminSauvegardeEtudiants)) {
+        mkdir($cheminSauvegardeEtudiants, 0777, true);
+    }
+
     // Chemin du dossier de sauvegarde Salles
     $cheminSauvegardeSalles = SAUVEGARDE_SALLES_FOLDER_NAME;
+
+    if (!file_exists($cheminSauvegardeSalles)) {
+        mkdir($cheminSauvegardeSalles, 0777, true);
+    }
+
     // Chemin du dossier de sauvegarde Utilisateurs
     $cheminSauvegardeUtilisateurs = SAUVEGARDE_UTILISATEURS_FOLDER_NAME;
+
+    if (!file_exists($cheminSauvegardeUtilisateurs)) {
+        mkdir($cheminSauvegardeUtilisateurs, 0777, true);
+    }
 
 
     
