@@ -1021,6 +1021,12 @@ define("PAGE_MENTIONSLEGALES_PATH" , PATH."index.php?page=mentionsLegales");
 define("PAGE_PLACEMENT_AUTO_PATH" , PATH."index.php?page=controles&action=placementAuto");
 
 /**
+ * @brief Lien complet vers la page pour générer les feuilles d'émargement
+ * @note ex : http://localhost/src/index.php?page=controles&action=genererFE
+ */
+define("PAGE_GENERER_FE_PATH" , PATH."index.php?page=controles&action=genererFE");
+
+/**
  * @brief Lien complet vers la page de génération (qui revoit directement vers la page resultat)
  * @note ex : http://localhost/src/index.php?page=generer
  */

@@ -262,14 +262,20 @@
                             </form>
                             
 
-                            <div class="card bg-secondary">
-                                <div class="card-body text-center">
-                                    <p class="card-text">
-                                        <i class="fa fa-chalkboard-user fa-3x"></i>
-                                        <h5>Générer feuilles d\'émargement</h5>
-                                    </p>
+                            <form id="genererFE" action="' . PAGE_GENERER_FE_PATH . '" method="POST">
+                                <input type="hidden" name="idControle" value="' . $idControle . '">
+                                <a onClick="document.getElementById(\'genererFE\').submit();">
+                                <div class="card text-white bg-primary text-center">
+                                    <div class="card-body text-center">
+                                        <p class="card-text">
+                                            <i class="fa fa-chalkboard-user fa-3x"></i>
+                                            <h5>Générer feuilles d\'émargement</h5>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
+                                </a>
+                            </form>
+
 
                         </div>
                         <div class="col-md-5">

@@ -20,15 +20,6 @@ if(isset($_POST["idControle"])){
     </h2>';
 
 
-    // Message que c'est en dev
-    echo "
-        <div class='alert alert-warning' role='alert'>
-            <h4 class='alert-heading'>Fonctionnalité en développement</h4>
-            Cette fonctionnalité est en cours de développement.<br>
-            Elle n'est pas encore disponible.<br>
-            <p class='mb-0 mt-3'>Si le problème persiste, veuillez contacter l'administrateur.</p>
-        </div>";
-
     $unControle = recupererUnControle($idControle);
 
     $controleNom = $unControle->getNomLong();
@@ -71,7 +62,6 @@ if(isset($_POST["idControle"])){
             </div>";
     }
     else {
-        genererPDFFE($unControle);
         echo "
             <div class='alert alert-success' role='alert'>
                 <h4 class='alert-heading'>Télécharger les feuilles d'émargement</h4>

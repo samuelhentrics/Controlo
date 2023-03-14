@@ -588,7 +588,7 @@ function genererCSVPDP($unControle)
  * @brief Fonction qui génère le PDF des feuilles d'émargement
  * @param $unControle Controle
  */
-function genererPDFFE($unControle)
+function genererPDFFE($unControle, $anneeUniversitaire)
 {
     // Données de l'entête pour chaque page
     //      Récupération des variables importantes pour l'entête
@@ -711,9 +711,6 @@ function genererPDFFE($unControle)
             });
         }
     }
-
-
-    $anneeUniversitaire = ANNEE_UNIVERSITAIRE;
 
     foreach ($csvPDP as $nomSalle => $placesSalle) {
         // Création du PDF
