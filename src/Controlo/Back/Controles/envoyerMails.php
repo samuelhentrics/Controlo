@@ -25,7 +25,7 @@
         envoyerMailEtudiants($unControle, $intitule, $contenuMail, $expediteur, $listeOk, $listePasOk);
 
         if(count($listePasOk) != 0){
-          echo '<div class="alert alert-danger" role="alert">
+          echo '<div class="alertmù alert-danger" role="alert">
           <h4 class="alert-heading">Erreur</h4>
           <p>Les mails n\'ont pas pu être envoyés aux étudiants suivants :</p>
           <ul>';
@@ -36,6 +36,7 @@
           </div>';
         }
         else{
+          
           // Message d'alerte avec le nombre d'étudiants et un bouton qui permet d'afficher en js la liste des mails envoyés
           echo '<div class="alert alert-success" role="alert">
           <h4 class="alert-heading">Succès</h4>
@@ -52,6 +53,24 @@
           echo '</ul>
           </div>';
 
+          // Bouton pour afficher la liste des mails envoyés
+          echo '<button type="button" class="btn btn-success" onclick="afficherListeMailsEnvoyes()">Afficher la liste des mails envoyés</button>';
+          // Bouton pour réduire la liste des mails envoyés
+          echo '<button type="button" class="btn btn-danger" onclick="document.getElementById(\'listeMailsEnvoyes\').style.display = \'none\'">Réduire la liste des mails envoyés</button>';
+
+          echo '<script>
+          function afficherListeMailsEnvoyes(){
+            document.getElementById(\'listeMailsEnvoyes\').style.display = \'block\';
+          }
+          </script>';
+
+          // Ouvrir le fichier "mails.txt" mettre en première ligne 1 et en seconde ligne la date actuelle
+          // au format JJ/MM/YYYY HH:MM:SS
+          $chemin = GENERATIONS_FOLDER_NAME . $unControle->getNomDossierGeneration() . "/mails.txt";
+          $fichier = fopen($chemin, "w");
+          fwrite($fichier, "1\n");
+          fwrite($fichier, date("d/m/Y H:i:s"));
+          fclose($fichier);
         }
       }
 
@@ -66,8 +85,27 @@
         </button>
       </form>
       Envoyer un mail</h2>
+      ';
 
+      // Vérifier l'état des mails
+      if($unControle->getEtatMail() == 2){
+        // Récupérer la date d'envoi des mails
+        $chemin = GENERATIONS_FOLDER_NAME . $unControle->getNomDossierGeneration() . "/mails.txt";
+        // Récupérer la deuxieme ligne du fichier
+        $fichier = fopen($chemin, "r");
+        $ligne = fgets($fichier);
+        $ligne = fgets($fichier);
+        $dateEnvoi = $ligne;
+        fclose($fichier);
 
+        echo '<div class="alert alert-warning" role="alert">
+        <h4 class="alert-heading">Informations</h4>
+        <p>Les mails ont déjà été envoyés pour ce contrôle.</p>
+        <p>Date d\'envoi : '.$dateEnvoi.'</p>
+        </div>';
+      }
+
+      echo'
       <div class="row">
         <div class="col-md-9">
 

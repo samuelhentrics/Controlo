@@ -123,6 +123,10 @@ include("config.php");
                             require(BACK_PATH . "Controles/telechargerPDP.php");
                             break;
 
+                        case "genererFE":
+                            require(BACK_PATH . "Controles/genererFE.php");
+                            break;
+
                         case "telechargerFE":
                             require(BACK_PATH . "Controles/telechargerFE.php");
                             break;

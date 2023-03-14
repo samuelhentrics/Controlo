@@ -72,7 +72,7 @@ class PlanDePlacement
         $this->setAffichageMemePage($affichageMemePage);
     }
 
-
+ 
 
     //Encapsulation
 

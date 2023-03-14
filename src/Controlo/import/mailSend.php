@@ -78,7 +78,8 @@ function envoieUnMail($emailEnvoyeur, $emailDestinataire, $sujet, $message, $fil
     $boundary = md5(time());
     $headers = "From: $emailEnvoyeur\r\n";
     $headers .= "Reply-To: $emailEnvoyeur\r\n";
-    $headers .= "Content-type: multipart/mixed; boundary=\"$boundary\"\r\n";
+    $headers .= "Cc: $emailEnvoyeur\r\n";
+    $headers .= "Content-type: multipart/mixed; charset=utf-8; boundary=\"$boundary\"\r\n";
 
     // Convertir le message en UTF-8 si nécessaire
     if (mb_detect_encoding($message, 'UTF-8', true) === false) {

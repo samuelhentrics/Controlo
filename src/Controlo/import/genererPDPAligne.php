@@ -262,193 +262,148 @@ function remplirSalle(
 }
 
 
+function associerPlanPlacement(&$unControle, $uneSalle, $unPlacementEtudiants){
+    $nomSalle = $uneSalle->getNom();
+    $unPlanSalle = $uneSalle->getMonPlan()->getMesZones();
+    $nbLigneSalle = count($unPlanSalle);
+    
+    $unPDP = $unControle->getMesPlansDePlacement()[$nomSalle];
+    for($i = 0; $i < $nbLigneSalle; $i++){
+        $nbColSalle = count($unPlanSalle[$i]);
+        for($j = 0; $j < $nbColSalle; $j++){
+            $uneZoneOuEtudiant = $unPlacementEtudiants[$i][$j];
+            if($uneZoneOuEtudiant instanceof Etudiant){
+                $unEtudiant = $uneZoneOuEtudiant;
+                if($unEtudiant != null){
+                    $unePlace = $unPlanSalle[$i][$j];
+                    $placement = new UnPlacement();
+                    $placement->setMonEtudiant($unEtudiant);
+                    $placement->setMaZone($unePlace);
+                    $unPDP->ajouterPlacement($placement);
+                }
+            }
+        }
+    }
 
-// Préparation des données
-
-
-$unControle = recupererUnControle(1);
-
-$listeSalles = $unControle->getMesSalles();
-$listePromotions = $unControle->getMesPromotions();
-
-
-$uneSalle = $listeSalles["S124"];
-
-// $uneSalle = creerUneSalle("S129");
-// $uneSalle = creerRelationSallePlan($uneSalle);
-
-$planSalle = $uneSalle->getMonPlan();
-
-$listeEtudiants = array();
-foreach ($listePromotions as $unePromotion) {
-    $listeEtudiants = array_merge($listeEtudiants, $unePromotion->getMesEtudiants());
+    $unControle->ajouterPlanDePlacement($unPDP);
 }
 
-$nbRangeesEspacement = 1;
-$nbPlacesEspacement = 1;
 
-$indiceColDepart = 0;
-$indiceLigneDepart = 0;
+function placementAligne(&$unControle, &$erreur = true){
+    try{
+        $erreur = true;
 
-$tabSens = array("versLaDroite", "versLaGauche");
+        $listeSalles = $unControle->getMesSalles();
+        $listePromotions = $unControle->getMesPromotions();
 
+        $listeEtudiants = array();
+        foreach ($listePromotions as $unePromotion) {
+            $listeEtudiants = array_merge($listeEtudiants, $unePromotion->recupererListeEtudiantsNonDemissionnaire());
+        }
 
-$nbEtudiantsPlaces = 0;
-$tousTTplaces = false;
+        // -- Récupération des contraintes générales
+        $typePlacement = $_POST["typePlacement"];
+        $typeSeparation = $_POST["typeSeparation"];
 
-$tailleTableauLigne = $planSalle->getNbRangees();
-$tailleTableauColonne = $planSalle->getNbColonnes();
+        // -- Création des contraintes générales
+        $contraintesGenerales = new ContraintesGenerales($typePlacement, $typeSeparation);
+        $algoRemplissage = $contraintesGenerales->getAlgoRemplissage();
+        $listeEtudiants = trieListe($listeEtudiants, $algoRemplissage);
 
-// Variables finales
-$nbEtudiantsPlacesFinal = 0;
-$placementEtudiantsFinal = array();
-$tousTTplacesFinal = false;
+        $tabSens = array("versLaDroite", "versLaGauche");
 
+        $listePDP = $unControle->getMesPlansDePlacement();
 
-// Appel de la fonction
+        foreach($listeSalles as $uneSalle){
+            // Récupérer les contraintes
+            $lePDP = $listePDP[$uneSalle->getNom()];
 
-// (Sens vers la droite)
-foreach($tabSens as $sens){
-    for($indiceLigneDepart = 0; $indiceLigneDepart < $tailleTableauLigne; $indiceLigneDepart++){
-        for($indiceColDepart = 0; $indiceColDepart < $tailleTableauColonne; $indiceColDepart++){
-            $listeEtudiantsCopie = $listeEtudiants;
+            // Préparation des données
+            $contraintesEspacements = $lePDP->getMaContrainteEspacement();
 
-            remplirSalle(
-                $planSalle,
-                $listeEtudiantsCopie,
-                $nbRangeesEspacement,
-                $nbPlacesEspacement,
-                $indiceColDepart,
-                $indiceLigneDepart,
-                $sens,
-                $placementEtudiants,
-                $nbEtudiantsPlaces,
-                $tousTTplaces
-            );
+            $nbRangeesEspacement = $contraintesEspacements->getNbRangs();
+            $nbPlacesEspacement = $contraintesEspacements->getNbPlaces();
+        
+            $indiceColDepart = 0;
+            $indiceLigneDepart = 0;
+        
+            $nbEtudiantsPlaces = 0;
+            $tousTTplaces = false;
 
-            // Comparer le nombre d'étudiants placés
-            if($tousTTplacesFinal){
-                if($tousTTplaces){
-                    if($nbEtudiantsPlaces >= $nbEtudiantsPlacesFinal){
-                        $placementEtudiantsFinal = $placementEtudiants;
-                        $nbEtudiantsPlacesFinal = $nbEtudiantsPlaces;
-                        $indiceColDepartFinal = $indiceColDepart;
-                        $indiceLigneDepartFinal = $indiceLigneDepart;
-                        $sensFinal = $sens;
-                        $tousTTplacesFinal = $tousTTplaces;
+            $planSalle = $uneSalle->getMonPlan();
+            $tailleTableauLigne = $planSalle->getNbRangees();
+            $tailleTableauColonne = $planSalle->getNbColonnes();
+
+            $tousTTplacesFinal = false;
+            $nbEtudiantsPlacesFinal = 0;
+
+            $planSalle = $uneSalle->getMonPlan();
+
+            // Exploration des différents sens de remplissage et du meilleur placement
+            foreach($tabSens as $sens){
+                for($indiceLigneDepart = 0; $indiceLigneDepart < $tailleTableauLigne; $indiceLigneDepart++){
+                    for($indiceColDepart = 0; $indiceColDepart < $tailleTableauColonne; $indiceColDepart++){
+                        $listeEtudiantsCopie = $listeEtudiants;
+                        $placementEtudiants = array();
+
+                        remplirSalle(
+                            $planSalle,
+                            $listeEtudiantsCopie,
+                            $nbRangeesEspacement,
+                            $nbPlacesEspacement,
+                            $indiceColDepart,
+                            $indiceLigneDepart,
+                            $sens,
+                            $placementEtudiants,
+                            $nbEtudiantsPlaces,
+                            $tousTTplaces
+                        );
+
+                        // Comparer le nombre d'étudiants placés
+                        if($tousTTplacesFinal){
+                            if($tousTTplaces){
+                                if($nbEtudiantsPlaces > $nbEtudiantsPlacesFinal){
+                                    $placementEtudiantsFinal = $placementEtudiants;
+                                    $nbEtudiantsPlacesFinal = $nbEtudiantsPlaces;
+                                    $indiceColDepartFinal = $indiceColDepart;
+                                    $indiceLigneDepartFinal = $indiceLigneDepart;
+                                    $sensFinal = $sens;
+                                    $tousTTplacesFinal = $tousTTplaces;
+                                    $listeEtudiantsFinal = $listeEtudiantsCopie;
+                                }
+                            }
+                        }
+                        else{
+                            if($nbEtudiantsPlaces > $nbEtudiantsPlacesFinal || $tousTTplaces
+                            || $nbEtudiantsPlacesFinal == 0){
+                                $placementEtudiantsFinal = $placementEtudiants;
+                                $nbEtudiantsPlacesFinal = $nbEtudiantsPlaces;
+                                $indiceColDepartFinal = $indiceColDepart;
+                                $indiceLigneDepartFinal = $indiceLigneDepart;
+                                $sensFinal = $sens;
+                                $tousTTplacesFinal = $tousTTplaces;
+                                $listeEtudiantsFinal = $listeEtudiantsCopie;
+                            }
+                        }
                     }
                 }
             }
-            else{
-                if($nbEtudiantsPlaces >= $nbEtudiantsPlacesFinal || $tousTTplaces){
-                    $placementEtudiantsFinal = $placementEtudiants;
-                    $nbEtudiantsPlacesFinal = $nbEtudiantsPlaces;
-                    $indiceColDepartFinal = $indiceColDepart;
-                    $indiceLigneDepartFinal = $indiceLigneDepart;
-                    $sensFinal = $sens;
-                    $tousTTplacesFinal = $tousTTplaces;
-                }
-            }
+
+            // Créer le plan de placement de la salle
+            associerPlanPlacement($unControle, $uneSalle, $placementEtudiantsFinal);
+            $listeEtudiants = $listeEtudiantsFinal;
+
         }
+
+        if (count($listeEtudiants)!=0){
+            throw new Exception("Impossible de placer tous les étudiants");
+        }
+
+        $erreur = false;
+
+        return $erreur;
+    }  catch (Exception $e) {
+        throw new Exception($e->getMessage());
     }
 }
-$placementEtudiants = $placementEtudiantsFinal;
-$nbEtudiantsPlaces = $nbEtudiantsPlacesFinal;
-$indiceColDepart = $indiceColDepartFinal;
-$indiceLigneDepart = $indiceLigneDepartFinal;
-$sens = $sensFinal;
-$tousTTplaces = $tousTTplacesFinal;
 
-
-
-
-
-
-// Affichage du résultat
-
-if($tousTTplaces){
-    $ttPlaces = "oui";
-}
-else{
-    $ttPlaces = "non";
-}
-
-echo "<div class='container'>";
-// Nom du contrôle
-echo "Contrôle : " . $unControle->getNomLong() . "<br>";
-echo "Salle : " . $uneSalle->getNom() . "<br>";
-echo "Nombre de rangées d'espacement : $nbRangeesEspacement <br>";
-echo "Nombre de places d'espacement : $nbPlacesEspacement <br>";
-echo "<br>";
-
-// Info partie étudiant
-echo "Nombre d'étudiants : " . count($listeEtudiants) . "<br>";
-echo "Nombre d'étudiants TT Sans Ordi: " . count(recupererIndiceEtudiantsTT($listeEtudiants)) . "<br>";
-echo "Nombre d'étudiants TT Ordi : " . count(recupererIndiceEtudiantsTT($listeEtudiants, true)) . "<br>";
-echo "<br>";
-
-echo "La stratégie choisie est : $sens <br>";
-echo "Nombre d'étudiants placés : $nbEtudiantsPlaces <br>";
-echo "Tous les étudiants TT ont été placés dans la salle : $ttPlaces <br>";
-echo "Indice colonne de départ : $indiceColDepart <br>";
-echo "Indice ligne de départ : $indiceLigneDepart <br>";
-echo "<br>";
-
-afficherTableau($placementEtudiants);
-echo "</div>";
-
-// Table bootstrap
-
-
-
-
-function afficherTableau($placementEtudiants){
-echo "<table class='table table-bordered'>";
-foreach($placementEtudiants as $uneLigne){
-    echo "<tr>";
-    foreach($uneLigne as $uneZoneOuEtudiant){
-        // Centrer le texte
-        echo "<td class='text-center'";
-        if($uneZoneOuEtudiant instanceof Etudiant){
-            // Vérifier si l'étudiant dispose d'un tiers temps
-            if($uneZoneOuEtudiant->getEstTT()){
-                // Vérifier si l'étudiant dispose d'un tiers temps ordinateur
-                if($uneZoneOuEtudiant->getAOrdi()){
-                    // Couleur de fond en rouge
-                    echo " style='background-color: #FF0000;'>";
-
-                    // Afficher le nom de l'étudiant
-                    echo $uneZoneOuEtudiant->getNom();
-                }
-                else{
-                    // Couleur de fond en vert
-                    echo " style='background-color: #00FF00;'>";
-
-                    // Afficher le nom de l'étudiant
-                    echo $uneZoneOuEtudiant->getNom();
-                }
-            }
-            else{
-                // Couleur de fond en bleu
-                echo " style='background-color: #00BFFF;'>";
-                echo $uneZoneOuEtudiant->getNom();
-            }
-        }
-        else{
-            
-            if($uneZoneOuEtudiant->getType() == "place"){
-                // gris
-                echo " style='background-color: #808080;'>";
-                echo $uneZoneOuEtudiant->getNumero();
-            }
-            else{
-                echo " style='background-color: #FFFFFF;'>";
-                echo "X";
-            }
-        }
-        echo "</td>";
-    }
-    echo "</tr>";
-}
-echo "</table>";
-}

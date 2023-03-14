@@ -21,6 +21,7 @@ include_once(CLASS_PATH . CLASS_CONTRAINTES_GENERALES_FILE_NAME);
 include_once(CLASS_PATH . CLASS_PLAN_PLACEMENT_FILE_NAME);
 include_once(CLASS_PATH . CLASS_UN_PLACEMENT_FILE_NAME);
 include_once(IMPORT_PATH . "genererPDF.php");
+include_once(IMPORT_PATH . "genererPDPAligne.php");
 
 
 /**
@@ -244,6 +245,74 @@ function placerEtudiants(&$listeEtudiants, &$unControle, &$erreur)
   }
 }
 
+function placementV1(&$unControle, &$erreur){
+  // -- Récupération des contraintes générales
+  $typePlacement = $_POST["typePlacement"];
+  $typeSeparation = $_POST["typeSeparation"];
+
+  // -- Création des contraintes générales
+  $contraintesGenerales = new ContraintesGenerales($typePlacement, $typeSeparation);
+  // -- Récupération des promotions du contrôle
+  $listePromos = $unControle->getMesPromotions();
+
+  // -- Création des listes d'étudiants
+  $listeTTSansOrdi = array();
+  $listeOrdi = array();
+  $listeEtud = array();
+
+  // -- Récupération des étudiants des promotions
+  foreach ($listePromos as $unePromo) {
+    // Récupération des étudiants de la promotion et ajout dans les listes d'étudiants correspondantes
+    $listeTTSansOrdi = array_merge($listeTTSansOrdi, $unePromo->recupererListeEtudiantsTTSansOrdi());
+
+    $listeOrdi = array_merge($listeOrdi, $unePromo->recupererListeEtudiantsOrdi());
+    $listeEtud = array_merge($listeEtud, $unePromo->recupererListeEtudiantsNonTT());
+
+  }
+
+  // -- Supprimer les étudiants démissionnaires des listes
+  $listeTTSansOrdi = supprimerDemissionnaire($listeTTSansOrdi);
+  $listeOrdi = supprimerDemissionnaire($listeOrdi);
+  $listeEtud = supprimerDemissionnaire($listeEtud);
+
+  // -- Trie les listes d'étudiants
+  $algoTriage = $contraintesGenerales->getAlgoRemplissage();
+  $listeTTSansOrdi = trieListe($listeTTSansOrdi, $contraintesGenerales->getAlgoRemplissage());
+  $listeOrdi = trieListe($listeOrdi, $contraintesGenerales->getAlgoRemplissage());
+  $listeEtud = trieListe($listeEtud, $contraintesGenerales->getAlgoRemplissage());
+
+  try{
+    if (!empty($listeOrdi)) {
+      placerEtudiants($listeOrdi, $unControle, $erreur);
+    }
+
+    if($erreur){
+      throw new Exception("Erreur lors du placement des étudiants avec ordinateur");
+    }
+
+      // Placement des étudiants tiers-temps sans ordinateur
+      if (!empty($listeTTSansOrdi)) {
+        placerEtudiants($listeTTSansOrdi, $unControle, $erreur);
+      }
+    
+      if($erreur){
+        throw new Exception("Erreur lors du placement des étudiants avec ordinateur");
+      }
+
+      // Placement des étudiants sans ordinateur ni tiers-temps
+      if (!empty($listeEtud)) {
+        placerEtudiants($listeEtud, $unControle, $erreur);
+      }
+    
+      if($erreur){
+        throw new Exception("Erreur lors du placement des étudiants sans ordinateur ni tiers-temps");
+      }
+  }
+  catch(Exception $e){
+    throw new Exception($e->getMessage());
+  }
+}
+
 
 try {
 
@@ -304,34 +373,6 @@ try {
 
     }
 
-    // -- Récupération des promotions du contrôle
-    $listePromos = $unControle->getMesPromotions();
-
-    // -- Création des listes d'étudiants
-    $listeTTSansOrdi = array();
-    $listeOrdi = array();
-    $listeEtud = array();
-
-    // -- Récupération des étudiants des promotions
-    foreach ($listePromos as $unePromo) {
-      // Récupération des étudiants de la promotion et ajout dans les listes d'étudiants correspondantes
-      $listeTTSansOrdi = array_merge($listeTTSansOrdi, $unePromo->recupererListeEtudiantsTTSansOrdi());
-
-      $listeOrdi = array_merge($listeOrdi, $unePromo->recupererListeEtudiantsOrdi());
-      $listeEtud = array_merge($listeEtud, $unePromo->recupererListeEtudiantsNonTT());
-
-    }
-
-    // -- Supprimer les étudiants démissionnaires des listes
-    $listeTTSansOrdi = supprimerDemissionnaire($listeTTSansOrdi);
-    $listeOrdi = supprimerDemissionnaire($listeOrdi);
-    $listeEtud = supprimerDemissionnaire($listeEtud);
-
-    // -- Trie les listes d'étudiants
-    $listeTTSansOrdi = trieListe($listeTTSansOrdi, $contraintesGenerales->getAlgoRemplissage());
-    $listeOrdi = trieListe($listeOrdi, $contraintesGenerales->getAlgoRemplissage());
-    $listeEtud = trieListe($listeEtud, $contraintesGenerales->getAlgoRemplissage());
-
     // -- Création d'un indicateur d'erreur
     $erreur = false;
 
@@ -341,32 +382,20 @@ try {
     ----------------------------------------------------------------
     ----------------------------------------------------------------*/
 
-    // Placement des étudiants avec ordinateur
-    if (!empty($listeOrdi)) {
-      placerEtudiants($listeOrdi, $unControle, $erreur);
+    $choixPlacement = $_POST["choixPlacement"];
+
+    try{
+      // Placement des étudiants avec ordinateur
+      if($choixPlacement == "aligne"){
+        placementAligne($unControle, $erreur);
+      }
+      else{
+        placementV1($unControle, $erreur);
+      }
     }
-
-    if($erreur){
-      throw new Exception("Erreur lors du placement des étudiants avec ordinateur");
+    catch(Exception $e){
+      throw new Exception($e->getMessage());
     }
-
-      // Placement des étudiants tiers-temps sans ordinateur
-      if (!empty($listeTTSansOrdi)) {
-        placerEtudiants($listeTTSansOrdi, $unControle, $erreur);
-      }
-    
-      if($erreur){
-        throw new Exception("Erreur lors du placement des étudiants avec ordinateur");
-      }
-
-      // Placement des étudiants sans ordinateur ni tiers-temps
-      if (!empty($listeEtud)) {
-        placerEtudiants($listeEtud, $unControle, $erreur);
-      }
-    
-      if($erreur){
-        throw new Exception("Erreur lors du placement des étudiants sans ordinateur ni tiers-temps");
-      }
 
 
 
@@ -387,6 +416,5 @@ try {
   catch (Exception $e) {
     throw new Exception($e->getMessage());
   }
-
 
 ?>

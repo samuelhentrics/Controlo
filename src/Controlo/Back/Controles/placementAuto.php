@@ -22,8 +22,20 @@
                         <option value="TP">TP</option>
                     </select>
                 </p>
+
                 
                 ';
+
+                // Bouton radio entre "Aligné" et "Non aligné" pour le placement des étudiants
+                echo '
+                <p>Placement des étudiants :
+                    <input type="radio" id="aligne" name="choixPlacement" value="aligne" checked>
+                    <label for="aligne">Aligné</label>
+                    <input type="radio" id="nonaligne" name="choixPlacement" value="nonaligne">
+                    <label for="nonaligne">Non aligné</label>
+                </p>
+                ';
+
             }
 
             function demanderContraintesSalles($unControle)

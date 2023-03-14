@@ -336,6 +336,12 @@ define("CLASS_CONTROLE_FILE_NAME", "Controle.php");
 define("CLASS_SALLE_FILE_NAME", "Salle.php");
 
 /**
+ * @brief Nom du fichier de la classe UTILISATEUR
+ * @note ex : Utilisateur.php
+ */
+define("CLASS_UTILISATEUR_FILE_NAME", "Utilisateur.php");
+
+/**
  * @brief Nom du fichier de la classe Plan
  * @note ex : Plan.php
  */
@@ -407,6 +413,12 @@ define("CLASS_UN_PLACEMENT_FILE_NAME" , "UnPlacement.php");
  * @note ex: liste-controles.csv
  */
 define("LISTE_CONTROLES_FILE_NAME" , "liste-controles.csv");
+
+/**
+ * @brief Nom du fichier de la liste des utilisateurs
+ * @note ex: liste-utilisateurs.csv
+ */
+define("LISTE_UTILISATEUR_FILE_NAME" , "liste-utilisateurs.csv");
 
 /**
  * @brief Nom du fichier de la liste des salles
@@ -591,6 +603,18 @@ define("FONCTION_CREER_LISTE_CONTROLES_FILE_NAME" , "creerListeControles.php");
  * @note ex : Controlo/creationObjets/creerListeControles.php
  */
 define("FONCTION_CREER_LISTE_CONTROLES_PATH" , OBJECT_CREATION_PATH.FONCTION_CREER_LISTE_CONTROLES_FILE_NAME);
+
+/**
+ * @brief Nom du fichier où se trouve la fonction de création de la liste des contrôles
+ * @note ex: creerListeControles.php
+ */
+define("FONCTION_CREER_LISTE_UTILISATEURS_FILE_NAME" , "creerListeUtilisateurs.php");
+
+/**
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve la fonction de création de la liste des contrôles
+ * @note ex : Controlo/creationObjets/creerListeControles.php
+ */
+define("FONCTION_CREER_LISTE_UTILISATEURS_PATH" , OBJECT_CREATION_PATH.FONCTION_CREER_LISTE_UTILISATEURS_FILE_NAME);
 
 /**
  * @brief Nom du fichier où se trouve la fonction de création de la liste des enseignants
@@ -1029,6 +1053,12 @@ define("PAGE_MENTIONSLEGALES_PATH" , PATH."index.php?page=mentionsLegales");
 define("PAGE_PLACEMENT_AUTO_PATH" , PATH."index.php?page=controles&action=placementAuto");
 
 /**
+ * @brief Lien complet vers la page pour générer les feuilles d'émargement
+ * @note ex : http://localhost/src/index.php?page=controles&action=genererFE
+ */
+define("PAGE_GENERER_FE_PATH" , PATH."index.php?page=controles&action=genererFE");
+
+/**
  * @brief Lien complet vers la page de génération (qui revoit directement vers la page resultat)
  * @note ex : http://localhost/src/index.php?page=generer
  */
@@ -1063,6 +1093,12 @@ define("PAGE_DECONNEXION_PATH", PATH."index.php?page=logout");
  * @note ex : http://localhost/src/index.php?page=utilisateurs
  */
 define("PAGE_UTILISATEURS_PATH", PATH."index.php?page=utilisateurs");
+
+/**
+ * @brief Lien complet vers la page des utilisateurs
+ * @note ex : http://localhost/src/index.php?page=utilisateurs
+ */
+define("PAGE_AJOUTER_UTILISATEUR_PATH", PATH."index.php?page=utilisateurs&action=ajouter");
 
 
 // Lancement de la sauvegarde
