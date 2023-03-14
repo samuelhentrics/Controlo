@@ -247,8 +247,8 @@ function placerEtudiants(&$listeEtudiants, &$unControle, &$erreur)
 
 function placementV1(&$unControle, &$erreur){
   // -- Récupération des contraintes générales
-  $typePlacement = $_POST["typePlacement"];
-  $typeSeparation = $_POST["typeSeparation"];
+  $typePlacement = htmlspecialchars($_POST["typePlacement"]);
+  $typeSeparation = htmlspecialchars($_POST["typeSeparation"]);
 
   // -- Création des contraintes générales
   $contraintesGenerales = new ContraintesGenerales($typePlacement, $typeSeparation);
@@ -325,8 +325,8 @@ try {
     // Récupérer le contrôle
 
     // -- Récupération des contraintes générales
-    $typePlacement = $_POST["typePlacement"];
-    $typeSeparation = $_POST["typeSeparation"];
+    $typePlacement = htmlspecialchars($_POST["typePlacement"]);
+    $typeSeparation = htmlspecialchars($_POST["typeSeparation"]);
 
     // -- Création des contraintes générales
     $contraintesGenerales = new ContraintesGenerales($typePlacement, $typeSeparation);
@@ -337,8 +337,8 @@ try {
     // -- Création des plans de placement pour chaque salle
     foreach ($listeDeSalles as $nom => $uneSalle) {
       // Récupération des contraintes d'espacement
-      $nbPlaceSeparant = $_POST["nbPlacesSeparant-" . $nom];
-      $nbRangeeSeparant = $_POST["nbRangeesSeparant-" . $nom];
+      $nbPlaceSeparant = htmlspecialchars($_POST["nbPlacesSeparant-" . $nom]);
+      $nbRangeeSeparant = htmlspecialchars($_POST["nbRangeesSeparant-" . $nom]);
       // Gestion des erreurs
 
       // String en int
@@ -382,7 +382,7 @@ try {
     ----------------------------------------------------------------
     ----------------------------------------------------------------*/
 
-    $choixPlacement = $_POST["choixPlacement"];
+    $choixPlacement = htmlspecialchars($_POST["choixPlacement"]);
 
     try{
       // Placement des étudiants avec ordinateur

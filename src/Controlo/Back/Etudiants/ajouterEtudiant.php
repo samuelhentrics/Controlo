@@ -19,12 +19,12 @@
     // Vérifier si le formulaire a été envoyé
     if (isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["nomPromotion"]) && isset($_POST["td"]) && isset($_POST["tp"]) && isset($_POST["mail"])) {
       // Récupérer les données du formulaire
-      $nom = $_POST["nom"];
-      $prenom = $_POST["prenom"];
-      $nomPromotion = $_POST["nomPromotion"];
-      $td = $_POST["td"];
-      $tp = $_POST["tp"];
-      $email = $_POST["mail"];
+      $nom = htmlspecialchars($_POST["nom"]);
+      $prenom = htmlspecialchars($_POST["prenom"]);
+      $nomPromotion = htmlspecialchars($_POST["nomPromotion"]);
+      $td = htmlspecialchars($_POST["td"]);
+      $tp = htmlspecialchars($_POST["tp"]);
+      $email = htmlspecialchars($_POST["mail"]);
 
       if (isset($_POST["tiersTemps"]))
         $tiersTemps = true;

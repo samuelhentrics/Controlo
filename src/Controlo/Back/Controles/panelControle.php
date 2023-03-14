@@ -15,6 +15,8 @@
             // Préparation infos contrôle
         
             $idControle = $_POST["idControle"];
+            $idControle =     htmlspecialchars($idControle);
+       
             $unControle = recupererUnControle($idControle);
 
             $nomControle = $unControle->getNomLong();

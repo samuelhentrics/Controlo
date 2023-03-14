@@ -31,12 +31,12 @@
 
                 // Récupération du nom de la Salle et le nom du voisin
 
-                $salleNom = $_POST["salleNom"];
+                $salleNom = htmlspecialchars($_POST["salleNom"]);
                 if ($salleNom == "") {
                     $salleNom = $fichierSalleSansExtension;
                 }
 
-                $nomVoisin = $_POST["nomVoisin"];
+                $nomVoisin = htmlspecialchars($_POST["nomVoisin"]);
 
                 //Vérification de l'extension CSV
                 $extension = pathinfo($fichierSalle, PATHINFO_EXTENSION);

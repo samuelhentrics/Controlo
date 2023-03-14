@@ -10,7 +10,7 @@
         if (isset($_POST["nomSalle"])) {
             include(FONCTION_CREER_PLAN_SALLE_PATH);
 
-            $nomSalle = $_POST["nomSalle"];
+            $nomSalle = htmlspecialchars($_POST["nomSalle"]);
 
             echo '
             <h2>

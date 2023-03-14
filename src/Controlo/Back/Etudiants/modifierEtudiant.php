@@ -15,8 +15,8 @@
         </h2><br>';
 
         if (isset($_POST["idEtudiant"]) && isset($_POST["nomPromotion"])) {
-            $idEtudiant = $_POST["idEtudiant"];
-            $nomPromotion = $_POST["nomPromotion"];
+            $idEtudiant = htmlspecialchars($_POST["idEtudiant"]);
+            $nomPromotion = htmlspecialchars($_POST["nomPromotion"]);
 
             if (isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["td"]) && isset($_POST["tp"]) && isset($_POST["mail"])) {
                 include_once(FONCTION_CRUD_ETUDIANTS_PATH);

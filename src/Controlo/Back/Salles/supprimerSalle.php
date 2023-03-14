@@ -15,7 +15,7 @@ echo '
         </h2><br>';
 
 if (isset($_POST["nomSalle"])) {
-    $nomSalle = $_POST["nomSalle"];
+    $nomSalle = htmlspecialchars($_POST["nomSalle"]);
     try {
         supprimerSalle($nomSalle);
         // Affichage d'un message de succès

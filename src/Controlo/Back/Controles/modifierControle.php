@@ -9,7 +9,7 @@
         if (isset($_POST["idControle"])) {
 
             // Formulaire avec bouton de retour
-            $id = $_POST["idControle"];
+            $id = htmlspecialchars($_POST["idControle"]);
             echo '
             <h2>
                 <form action="'.PAGE_PANEL_CONTROLE_PATH.'" method="post" style="display:inline;">
@@ -91,6 +91,18 @@
                     $dateControle = $_POST['dateDebutControle'];
                     $mesReferents = $_POST['enseignant'];
                     $mesSurveillants = $_POST['surveillant'];
+                    
+                    //xss 
+                    $nomsPromos = htmlspecialchars($_POST["promotion"]);
+                    $nomsSalles = htmlspecialchars($_POST["choixSalles"]);
+                    $nomLong = htmlspecialchars($_POST['controleNomLong']);
+                    $nomCourt = htmlspecialchars($_POST['controleNomCourt']);
+                    $dureeTotale = htmlspecialchars($_POST['dureeTotale']);
+                    $heureNonTT = htmlspecialchars($_POST['heureNonTT']);
+                    $heureTT = htmlspecialchars($_POST['heureTT']);
+                    $dateControle = htmlspecialchars($_POST['dateDebutControle']);
+                    $mesReferents = htmlspecialchars($_POST['enseignant']);
+                    $mesSurveillants = htmlspecialchars($_POST['surveillant']);
 
                     // Transformer la date au format DD/MM/YYYY si elle est au format YYYY-MM-DD
                     if (preg_match("#[0-9]{4}-[0-9]{2}-[0-9]{2}#", $dateControle)) {

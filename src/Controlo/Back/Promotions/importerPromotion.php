@@ -30,12 +30,12 @@
                 $cheminTemporaire = $_FILES['fichierPromotion']['tmp_name'];
 
                 // Récupération du nom de la promotion pour génération et pour l'affichage
-                $nomGeneration = $_POST["nomGeneration"];
+                $nomGeneration = htmlspecialchars($_POST["nomGeneration"]);
                 if($nomGeneration == ""){
                     $nomGeneration = $fichierPromotionSansExtension;
                 }
 
-                $nomFormation = $_POST["nomFormation"];
+                $nomFormation = htmlspecialchars($_POST["nomFormation"]);
 
 
                 // Cas où seulement le fichier est saisi

@@ -18,9 +18,9 @@
             include_once(FONCTION_CRUD_ENSEIGNANTS_PATH);
             include_once(CLASS_PATH . CLASS_ENSEIGNANT_FILE_NAME);
 
-            $nom = $_POST['nom'];
-            $prenom = $_POST['prenom'];
-            $statut = $_POST['statut'];
+            $nom = htmlspecialchars($_POST['nom']);
+            $prenom = htmlspecialchars($_POST['prenom']);
+            $statut = htmlspecialchars($_POST['statut']);
 
             try {
                 $nouvelEnseignant = new Enseignant(0, $nom, $prenom, $statut);
