@@ -1,4 +1,7 @@
 Salle;NumeroPlace;Nom;Prenom;Statut;Mail
+S124;30;FERRY;Lagarde;TT;flagarde@iutbayonne.univ-pau.fr
+S124;10;BRUNEL;Leconte;;bleconte@iutbayonne.univ-pau.fr
+S124;20;CARTIER;Levy;;clevy@iutbayonne.univ-pau.fr
 S124;2;BOULET;Bouvet;TT;bbouvet@iutbayonne.univ-pau.fr
 S124;12;COMTE;Gros;TT;cgros@iutbayonne.univ-pau.fr
 S124;22;GRAS;Pascal;TT;gpascal@iutbayonne.univ-pau.fr
@@ -11,10 +14,7 @@ S124;26;BIGOT;Legros;;blegros@iutbayonne.univ-pau.fr
 S124;8;BIGOT;Guillou;;bguillou@iutbayonne.univ-pau.fr
 S124;18;BOCQUET;Morvan;;bmorvan@iutbayonne.univ-pau.fr
 S124;28;BOURDIN;Chambon;;bchambon@iutbayonne.univ-pau.fr
-S124;10;BRUNEL;Leconte;;bleconte@iutbayonne.univ-pau.fr
-S124;20;CARTIER;Levy;;clevy@iutbayonne.univ-pau.fr
-S124;30;CHAPUIS;Masse;;cmasse@iutbayonne.univ-pau.fr
-S127;2;FERRY;Lagarde;TT;flagarde@iutbayonne.univ-pau.fr
+S127;2;CHAPUIS;Masse;;cmasse@iutbayonne.univ-pau.fr
 S127;12;CLERC;Clerc;;cclerc@iutbayonne.univ-pau.fr
 S127;22;CORNU;Didier;;cdidier@iutbayonne.univ-pau.fr
 S127;4;DELANNOY;Lebon;;dlebon@iutbayonne.univ-pau.fr
