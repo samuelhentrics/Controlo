@@ -13,7 +13,7 @@ function creerListeUtilisateurs($affichageErreur = false){
 
         // Cas d'erreur : le fichier ne peut pas être ouvert
         if($fichier == false){
-            throw new Exception("Impossible d'ouvrir le fichier CSV ".LISTE_UTILIATEURS_FILE_NAME);
+            throw new Exception("Impossible d'ouvrir le fichier CSV ".LISTE_UTILISATEURS_FILE_NAME);
         }
 
         // Enlever l'entête du fichier CSV
