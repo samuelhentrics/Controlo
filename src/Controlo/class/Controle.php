@@ -577,7 +577,7 @@ class Controle
         if($this->controleInfoComplet()){
             // Vérifier que le dossier existe
             $nomDossier = $this->getNomDossierGeneration();
-            $cheminDossier = GENERATIONS_FOLDER_NAME . $nomDossier;
+            $cheminDossier = GENERATIONS_FOLDER_NAME . $nomDossier . "/" . PLANS_DE_PLACEMENT_PDF_PATH;
             if (file_exists($cheminDossier)){
                 return 2;
             }
@@ -620,7 +620,23 @@ class Controle
 
     public function getEtatMail(){
         if($this->getEtatPDP() == 2){
-            return 1;
+            // Ouvrir le fichier "mails.txt"
+            $nomDossier = $this->getNomDossierGeneration();
+            $cheminDossier = GENERATIONS_FOLDER_NAME . $nomDossier . "/mails.txt";
+            if (file_exists($cheminDossier)){
+                // Si la première ligne est "1", alors le mail a été envoyé
+                $fichier = fopen($cheminDossier, "r");
+                $ligne = fgets($fichier);
+                if ($ligne == "1"){
+                    return 2;
+                }
+                else{
+                    return 1;
+                }
+            }
+            else{
+                return 0;
+            }
         }
         else{
             return 0;

@@ -187,6 +187,16 @@ class Promotion
         }
     }
 
+    public function recupererListeEtudiantsNonDemissionnaire(){
+        $listeEtudiantsSansDemissionnaire = array();
+        foreach ($this->getMesEtudiants() as $key => $unEtudiant) {
+            if (!$unEtudiant->getEstDemissionnaire()){
+                array_push($listeEtudiantsSansDemissionnaire, $unEtudiant);
+            }
+        }
+        return $listeEtudiantsSansDemissionnaire;
+    }
+
     /**
      * @brief Retourne la liste des Etudiant non tiers-temps dans la Promotion
      * @return array Liste des Etudiant non tiers-temps
