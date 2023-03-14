@@ -25,7 +25,7 @@
         envoyerMailEtudiants($unControle, $intitule, $contenuMail, $expediteur, $listeOk, $listePasOk);
 
         if(count($listePasOk) != 0){
-          echo '<div class="alert alert-danger" role="alert">
+          echo '<div class="alertmù alert-danger" role="alert">
           <h4 class="alert-heading">Erreur</h4>
           <p>Les mails n\'ont pas pu être envoyés aux étudiants suivants :</p>
           <ul>';
