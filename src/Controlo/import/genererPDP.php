@@ -309,7 +309,7 @@ function placementV1(&$unControle, &$erreur){
       }
   }
   catch(Exception $e){
-    echo $e->getMessage();
+    throw new Exception($e->getMessage());
   }
 }
 
@@ -384,12 +384,17 @@ try {
 
     $choixPlacement = $_POST["choixPlacement"];
 
-    // Placement des étudiants avec ordinateur
-    if($choixPlacement == "aligne"){
-      $erreur = placementAligne($unControle);
+    try{
+      // Placement des étudiants avec ordinateur
+      if($choixPlacement == "aligne"){
+        placementAligne($unControle, $erreur);
+      }
+      else{
+        placementV1($unControle, $erreur);
+      }
     }
-    else{
-      placementV1($unControle, $erreur);
+    catch(Exception $e){
+      throw new Exception($e->getMessage());
     }
 
 
