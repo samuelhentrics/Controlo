@@ -297,7 +297,7 @@ function placementAligne(&$unControle, &$erreur = true){
 
     $listeEtudiants = array();
     foreach ($listePromotions as $unePromotion) {
-        $listeEtudiants = array_merge($listeEtudiants, $unePromotion->getMesEtudiants());
+        $listeEtudiants = array_merge($listeEtudiants, $unePromotion->recupererListeEtudiantsNonDemissionnaire());
     }
 
     // -- Récupération des contraintes générales
