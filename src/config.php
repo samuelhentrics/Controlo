@@ -304,10 +304,10 @@ define("CLASS_CONTROLE_FILE_NAME", "Controle.php");
 define("CLASS_SALLE_FILE_NAME", "Salle.php");
 
 /**
- * @brief Nom du fichier de la classe Salle
- * @note ex : Salle.php
+ * @brief Nom du fichier de la classe UTILISATEUR
+ * @note ex : Utilisateur.php
  */
-define("CLASS_UTILISATEUR_FILE_NAME", "Salle.php");
+define("CLASS_UTILISATEUR_FILE_NAME", "Utilisateur.php");
 
 /**
  * @brief Nom du fichier de la classe Plan
