@@ -373,7 +373,8 @@ function placementAligne(&$unControle, &$erreur = true){
                         }
                     }
                     else{
-                        if($nbEtudiantsPlaces > $nbEtudiantsPlacesFinal || $tousTTplaces){
+                        if($nbEtudiantsPlaces > $nbEtudiantsPlacesFinal || $tousTTplaces
+                        || $nbEtudiantsPlacesFinal == 0){
                             $placementEtudiantsFinal = $placementEtudiants;
                             $nbEtudiantsPlacesFinal = $nbEtudiantsPlaces;
                             $indiceColDepartFinal = $indiceColDepart;
@@ -390,7 +391,6 @@ function placementAligne(&$unControle, &$erreur = true){
         // Créer le plan de placement de la salle
         associerPlanPlacement($unControle, $uneSalle, $placementEtudiantsFinal);
         $listeEtudiants = $listeEtudiantsFinal;
-        
 
     }
 
