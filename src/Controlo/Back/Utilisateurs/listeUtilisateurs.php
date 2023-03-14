@@ -46,7 +46,7 @@
                 <tbody>
 
                     <?php
-                    include(FONCTION_CREER_LISTE_UTILIATEURS_PATH);
+                    include(FONCTION_CREER_LISTE_UTILISATEURS_PATH);
 
                     $listeUtilisateurs = creerListeUtilisateurs(true);
 
