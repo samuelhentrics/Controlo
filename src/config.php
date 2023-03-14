@@ -1100,6 +1100,18 @@ define("PAGE_UTILISATEURS_PATH", PATH."index.php?page=utilisateurs");
  */
 define("PAGE_AJOUTER_UTILISATEUR_PATH", PATH."index.php?page=utilisateurs&action=ajouter");
 
+/**
+ * @brief Lien complet vers la page des utilisateurs
+ * @note ex : http://localhost/src/index.php?page=utilisateurs
+ */
+define("PAGE_MODIFIER_UTILISATEUR_PATH", PATH."index.php?page=utilisateurs&action=modifier");
+
+/**
+ * @brief Lien complet vers la page des utilisateurs
+ * @note ex : http://localhost/src/index.php?page=utilisateurs
+ */
+define("PAGE_SUPPRIMER_UTILISATEUR_PATH", PATH."index.php?page=utilisateurs&action=supprimer");
+
 
 // Lancement de la sauvegarde
 include_once(IMPORT_PATH."sauvegarde.php");
