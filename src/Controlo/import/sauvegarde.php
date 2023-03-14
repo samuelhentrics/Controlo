@@ -43,6 +43,11 @@ function sauvegarde()
     // Sauvegarde générale
     $cheminSauvegarde = SAUVEGARDE_FOLDER_NAME;
 
+    // Créer le dossier s'il n'existe pas
+    if (!file_exists($cheminSauvegarde)) {
+        mkdir($cheminSauvegarde, 0777, true);
+    }
+
 
     // Chemin du dossier de sauvegarde Controles
     $cheminSauvegardeControles = SAUVEGARDE_CONTROLES_FOLDER_NAME;
