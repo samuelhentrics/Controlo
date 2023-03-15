@@ -54,11 +54,36 @@
 
         <div class="col-3"></div>
         <div class="col-6 m-auto text-center">
-            <form action="<?php echo PAGE_PROFIL_PATH; ?>" method="post">
+        <?php
+        // Afficher l'avatar du profil
+        echo '<img src="' . IMG_PATH . $_SESSION["avatar"] . '" class="img-fluid" alt="Responsive image" style="max-width: 200px; max-height: 200px; border-radius: 50%;"><br><br>';
+        // Nom et prénom
+        echo '<h3>' . $_SESSION["nom"] . ' ' . $_SESSION["prenom"] . '</h3>';
+        // Rôle
+        switch($_SESSION["role"]){
+            case 0:
+                echo '<h5>Administrateur</h5>';
+                break;
+            case 1:
+                echo '<h5>Secrétaire/Administrateur</h5>';
+                break;
+            case 2:
+                echo '<h5>Secrétaire</h5>';
+                break;
+            default:
+                echo '<h5>Erreur</h5>';
+                break;
+        }
+
+        // Mail
+        echo '<h5>' . $_SESSION["email"] . '</h5>';
+        ?>
+        
+        <form action="<?php echo PAGE_PROFIL_PATH; ?>" method="post">
                 
 
                 <div class="form-group row">
-                    <label for="password" class="col-4 col-form-label">Mot de passe (Aucune modification si vide)</label>
+                    <label for="password" class="col-4 col-form-label">Nouveau mot de passe</label>
                     <div class="col-8">
                         <div class="input-group">
                             <input id="password" name="password" placeholder="ex: 1234" type="password" class="form-control"

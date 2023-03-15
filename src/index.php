@@ -24,7 +24,7 @@ include("config.php");
     <script src="<?php echo JS_PATH; ?>jquery.min.js"></script>
     <script src="<?php echo JS_PATH; ?>jquery.dataTables.min.js"></script>
     <script src="<?php echo JS_PATH; ?>datatables.bootstrap5.js"></script>
-
+    <script src="<?php echo JS_PATH; ?>controlo.js"></script>
 </head>
 
 <body>
@@ -366,25 +366,6 @@ include("config.php");
     include_once(IMPORT_PATH."sauvegarde.php");
     sauvegarde();
     ?>
-    <iframe src="index.html" frameborder="0"></iframe>
-<script>
-
-document.addEventListener('keydown', function(event) {
-  if (event.ctrlKey && event.keyCode === 79) {
-      event.preventDefault();
-      // ajouter ici le code que vous souhaitez exécuter à la place de l'action par défaut
-      console.log("test")
-      play()
-      
-    }
-})
-function play() {
-  var audio = new Audio('Controlooo.mp4');
-  audio.play();
-}
-
-
-</script>
 
 </body>
 
