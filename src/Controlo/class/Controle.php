@@ -628,7 +628,7 @@ class Controle
                 $fichier = fopen($cheminDossier, "r");
                 $ligne = fgets($fichier);
                 print($ligne);
-                if ($ligne == "1"){
+                if (trim($ligne) == "1"){
                     return 2;
                 }
                 else{
