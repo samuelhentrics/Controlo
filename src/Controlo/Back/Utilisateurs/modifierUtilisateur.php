@@ -20,8 +20,8 @@
             include_once(IMPORT_PATH . "connexion.php");
             $unUtilisateur = recupererUtilisateur($idUtilisateur);
             $id = $unUtilisateur->getId();
-            $nom = $unUtilisateur->getNom();
-            $prenom = $unUtilisateur->getPrenom();
+            $nom = utf8_decode($unUtilisateur->getNom());
+            $prenom = utf8_decode($unUtilisateur->getPrenom());
             $statut = $unUtilisateur->getRole();
             $mail = $unUtilisateur->getMail();
             $mdp = $unUtilisateur->getMdp();
@@ -100,8 +100,8 @@
                 // Maj donnée form
                 $unUtilisateur = recupererUtilisateur($idUtilisateur);
                 $id = $unUtilisateur->getId();
-                $nom = htmlspecialchars($unUtilisateur->getNom());
-                $prenom = htmlspecialchars($unUtilisateur->getPrenom());
+                $nom = utf8_decode(htmlspecialchars($unUtilisateur->getNom()));
+                $prenom = utf8_decode(htmlspecialchars($unUtilisateur->getPrenom()));
                 $statut = $unUtilisateur->getRole();
                 $mail = $unUtilisateur->getMail();
                 $mdp = $unUtilisateur->getMdp();

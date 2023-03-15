@@ -80,7 +80,7 @@
 
                         <tr>
                             <td>" . $nomUtilisateur . "</td>
-                            <td>" . $prenomUtilisateur . "</td>
+                            <td>" . utf8_decode($prenomUtilisateur) . "</td>
                             <td>" . $role . "</td>
                             <td>" . $mailUtilisateur . "</td>
                         <td class=\"text-center\">" );
