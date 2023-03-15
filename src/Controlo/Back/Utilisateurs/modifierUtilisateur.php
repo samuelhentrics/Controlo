@@ -80,14 +80,33 @@
                         throw new Exception("Les mots de passe ne correspondent pas.");
 
                     $mdp = hashPassword($mdp);
+
+                    $mdpChangePhrase = "Le mot de passe a été modifié.";
+                }
+                else{
+                    $mdpChangePhrase = "";
                 }
 
                 $nouvelUtilisateur = new Utilisateur($id, $nom, $prenom, $statut, $mail, $mdp);
-                modifierUtilisateur($unUtilisateur, $nouvelUtilisateur);
-                echo "<div class='alert alert-success' role='alert'>L'utilisateur a bien été modifié.</div>";
+                //modifierUtilisateur($unUtilisateur, $nouvelUtilisateur);
+                echo "<div class='alert alert-success' role='alert'>L'utilisateur a bien été modifié. $mdpChangePhrase</div>";
+            
+                // Maj donnée form
+                $unUtilisateur = recupererUtilisateur($idUtilisateur);
+                $id = $unUtilisateur->getId();
+                $nom = $unUtilisateur->getNom();
+                $prenom = $unUtilisateur->getPrenom();
+                $statut = $unUtilisateur->getRole();
+                $mail = $unUtilisateur->getMail();
+                $mdp = $unUtilisateur->getMdp();
             } catch (Exception $e) {
                 echo "<div class='alert alert-danger' role='alert'>
                 L'utilisateur n'a pas été modifié : " . $e->getMessage() . "</div>";
+
+                $nom = htmlspecialchars($_POST['nom']);
+                $prenom = htmlspecialchars($_POST['prenom']);
+                $statut = htmlspecialchars($_POST['role']);
+                $mail = htmlspecialchars($_POST['mail']);
             }
         }
         ?>
@@ -95,7 +114,8 @@
 
         <div class="col-3"></div>
         <div class="col-6 m-auto text-center">
-            <form action="<?php echo PAGE_AJOUTER_UTILISATEUR_PATH; ?>" method="post">
+            <form action="<?php echo PAGE_MODIFIER_UTILISATEUR_PATH; ?>" method="post">
+                <input type="hidden" name="idUtilisateur" value="<?php echo $idUtilisateur; ?>">
                 <div class="form-group row">
                     <label for="nom" class="col-4 col-form-label">Nom *</label>
                     <div class="col-8">
@@ -166,7 +186,7 @@
                     <div class="col-8">
                         <div class="input-group">
                             <input id="password2" name="password2" placeholder="ex: 1234" type="password" class="form-control"
-                                >
+                               value="" >
                         </div>
                     </div>
                 </div>
