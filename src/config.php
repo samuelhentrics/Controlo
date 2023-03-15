@@ -1123,8 +1123,4 @@ define("PAGE_MODIFIER_UTILISATEUR_PATH", PATH."index.php?page=utilisateurs&actio
 define("PAGE_SUPPRIMER_UTILISATEUR_PATH", PATH."index.php?page=utilisateurs&action=supprimer");
 
 
-// Lancement de la sauvegarde
-include_once(IMPORT_PATH."sauvegarde.php");
-sauvegarde();
-
 ?>

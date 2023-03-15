@@ -31,6 +31,8 @@ function creerListeUtilisateurs($affichageErreur = false){
                 $prenom = utf8_encode($ligne[5]);
                 $role = utf8_encode($ligne[3]);
                 $mail = utf8_encode($ligne[1]);
+                // Mettre le mail en minuscule
+                $mail = strtolower($mail);
                 $mdp = utf8_encode($ligne[2]);
                 // Créer l'objet Utilisateur
                 $utilisateur = new Utilisateur($id,$nom, $prenom, $role, $mail, $mdp);

@@ -46,12 +46,12 @@ function seConnecter($email, $pwd, $garderSession = false){
             // On vérifie si l'email et le mot de passe correspondent
 
 
-            if ($email == $ligne["email"] && estMdpValide($ligne["mdp"], $pwd)) {
+            if (strtolower($email) == strtolower($ligne["email"]) && estMdpValide($ligne["mdp"], $pwd)) {
                 // On crée la session
                 $_SESSION["id"] = $ligne["id"];
                 $_SESSION["nom"] = $ligne["nom"];
                 $_SESSION["prenom"] = $ligne["prenom"];
-                $_SESSION["email"] = $ligne["email"];
+                $_SESSION["email"] = strtolower($ligne["email"]);
                 $_SESSION["role"] = $ligne["role"];
                 $_SESSION["avatar"] = $ligne["src_pp"];
 
