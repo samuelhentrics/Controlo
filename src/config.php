@@ -741,7 +741,17 @@ define("FONCTION_CRUD_SALLES_FILE_NAME" , "sallesCRUD.php");
  */
 define("FONCTION_CRUD_SALLES_PATH" , CRUD_PATH.FONCTION_CRUD_SALLES_FILE_NAME);
 
+/** 
+ * @brief Nom du fichier où se trouve les fonctions CRUD des utilisateurs
+ * @note ex : utilisateursCRUD.php
+ */
+define("FONCTION_CRUD_UTILISATEURS_FILE_NAME" , "utilisateursCRUD.php");
 
+/** 
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve les fonctions CRUD des utilisateurs
+ * @note ex : Controlo/import/crud/utilisateursCRUD.php
+ */
+define("FONCTION_CRUD_UTILISATEURS_PATH" , CRUD_PATH.FONCTION_CRUD_UTILISATEURS_FILE_NAME);
 
 
 

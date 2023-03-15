@@ -1,5 +1,6 @@
 <?php
 
+include_once(FONCTION_CREER_LISTE_UTILISATEURS_PATH);
 
 /**
  * @brief Fonction qui ajoute un utilisateur dans le fichier CSV des utilisateurs
@@ -17,11 +18,13 @@ function ajouterUtilisateur($unUtilisateur){
         }
 
         // Ajouter l'utilisateur à la fin du fichier CSV
+        $id = $unUtilisateur->getId();
         $nom = $unUtilisateur->getNom();
         $prenom = $unUtilisateur->getPrenom();
         $role = $unUtilisateur->getRole();
         $mail = $unUtilisateur->getMail();
-        $ligne = array($nom, $prenom, $role, $mail);
+        $mdp = $unUtilisateur->getMdp();
+        $ligne = array($id, $mail, $mdp, $role, $nom, $prenom, "profil/default.png");
         fputcsv($monFichier, $ligne, ";");
 
         // Fermer le fichier CSV

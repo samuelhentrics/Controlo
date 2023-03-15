@@ -41,6 +41,7 @@
                         <th>Prénom de l'utilisateur</th>
                         <th>Role de l'utilisateur</th>
                         <th>Mail de l'utilisateur</th>
+                        <th class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,6 +54,8 @@
                     foreach ($listeUtilisateurs as $unUtilisateur) {
 
 
+                        // Id de l'utilisateur
+                        $idUtilisateur = $unUtilisateur->getId();
 
                         // Nom de l'utilisateur
                         $nomUtilisateur = $unUtilisateur->getNom();
@@ -68,7 +71,7 @@
 
                         switch($roleUtilisateur){
                             case 0:$role='Administrateur';break;
-                            case 1:$role='Secrétaire administrateur';break;
+                            case 1:$role='Secrétaire/Administrateur';break;
                             default: $role='Secrétaire';break;
                         };
                     
@@ -80,20 +83,30 @@
                             <td>" . $prenomUtilisateur . "</td>
                             <td>" . $role . "</td>
                             <td>" . $mailUtilisateur . "</td>
-                        <td class=\"text-center\">
+                        <td class=\"text-center\">" );
+
+                        if(!($roleUtilisateur==0 && !estAdmin())){
+                        print("
                           <form style='display:inline;' method=\"post\" action=" . PAGE_MODIFIER_UTILISATEUR_PATH . ">
-                         <input type=\"hidden\" name=\"nomUtilisateur\" value=\"" . $nomUtilisateur . "\">
+                         <input type=\"hidden\" name=\"idUtilisateur\" value=\"" . $idUtilisateur . "\">
                          <button type=\"submit\" class=\"btn btn-primary\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Modifier\">
                              <i class=\"fas fa-edit\"></i>
                          </button>
-                         </form>
+                         </form>");
+                        
+                        if($idUtilisateur != $_SESSION["id"]){
+                         print("
                          <form style='display:inline;' method=\"post\" action=" . PAGE_SUPPRIMER_UTILISATEUR_PATH . ">
-                         <input type=\"hidden\" name=\"nomUtilisateur\" value=\"" . $nomUtilisateur . "\">
+                         <input type=\"hidden\" name=\"idUtilisateur\" value=\"" . $idUtilisateur . "\">
                         
                          <button type=\"submit\" onclick=\"return confirm('Confirmer la suppression de: ".$nomUtilisateur."')\" name=\"action\" class=\"btn btn-danger\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Supprimer\">
                              <i class=\"fas fa-trash-alt\"></i>
                          </button>
-                         </form> 
+                         </form>");
+                        }
+                        }
+
+                        print("
                         </td>
 
 
