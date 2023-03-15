@@ -100,8 +100,8 @@
                 // Maj donnée form
                 $unUtilisateur = recupererUtilisateur($idUtilisateur);
                 $id = $unUtilisateur->getId();
-                $nom = $unUtilisateur->getNom();
-                $prenom = $unUtilisateur->getPrenom();
+                $nom = htmlspecialchars($unUtilisateur->getNom());
+                $prenom = htmlspecialchars($unUtilisateur->getPrenom());
                 $statut = $unUtilisateur->getRole();
                 $mail = $unUtilisateur->getMail();
                 $mdp = $unUtilisateur->getMdp();

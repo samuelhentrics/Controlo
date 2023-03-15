@@ -24,7 +24,7 @@
       </div>
       <div class="col-lg-3 d-flex justify-content-end">
         <p class="text-muted text-right">
-          Version 2.0 (Bêta)
+          Version 2.0
         </p>
       </div>
     </div>
