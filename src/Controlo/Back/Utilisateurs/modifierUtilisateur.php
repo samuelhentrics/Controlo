@@ -32,6 +32,12 @@
                 exit;
             }
 
+            if($id == $_SESSION['id']){
+                // Rédiriger vers son profil
+                echo '<meta http-equiv="refresh" content="0;URL='.PAGE_PROFIL_PATH.'">';
+                exit;
+            }
+
 
         }
         else{
@@ -88,7 +94,7 @@
                 }
 
                 $nouvelUtilisateur = new Utilisateur($id, $nom, $prenom, $statut, $mail, $mdp);
-                //modifierUtilisateur($unUtilisateur, $nouvelUtilisateur);
+                modifierUtilisateur($unUtilisateur, $nouvelUtilisateur);
                 echo "<div class='alert alert-success' role='alert'>L'utilisateur a bien été modifié. $mdpChangePhrase</div>";
             
                 // Maj donnée form
