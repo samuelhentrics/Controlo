@@ -627,6 +627,7 @@ class Controle
                 // Si la première ligne est "1", alors le mail a été envoyé
                 $fichier = fopen($cheminDossier, "r");
                 $ligne = fgets($fichier);
+                print($ligne);
                 if ($ligne == "1"){
                     return 2;
                 }
