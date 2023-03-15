@@ -741,7 +741,17 @@ define("FONCTION_CRUD_SALLES_FILE_NAME" , "sallesCRUD.php");
  */
 define("FONCTION_CRUD_SALLES_PATH" , CRUD_PATH.FONCTION_CRUD_SALLES_FILE_NAME);
 
+/** 
+ * @brief Nom du fichier où se trouve les fonctions CRUD des utilisateurs
+ * @note ex : utilisateursCRUD.php
+ */
+define("FONCTION_CRUD_UTILISATEURS_FILE_NAME" , "utilisateursCRUD.php");
 
+/** 
+ * @brief Lien complet (sans l'adresse du serveur) où se trouve les fonctions CRUD des utilisateurs
+ * @note ex : Controlo/import/crud/utilisateursCRUD.php
+ */
+define("FONCTION_CRUD_UTILISATEURS_PATH" , CRUD_PATH.FONCTION_CRUD_UTILISATEURS_FILE_NAME);
 
 
 
@@ -1112,9 +1122,11 @@ define("PAGE_MODIFIER_UTILISATEUR_PATH", PATH."index.php?page=utilisateurs&actio
  */
 define("PAGE_SUPPRIMER_UTILISATEUR_PATH", PATH."index.php?page=utilisateurs&action=supprimer");
 
+/**
+ * @brief Lien complet vers la page des utilisateurs
+ * @note ex : http://localhost/src/index.php?page=utilisateurs
+ */
+define("PAGE_PROFIL_PATH", PATH."index.php?page=utilisateurs&action=profil");
 
-// Lancement de la sauvegarde
-include_once(IMPORT_PATH."sauvegarde.php");
-sauvegarde();
 
 ?>
