@@ -354,6 +354,10 @@ include("config.php");
 
     require(BACK_PATH . "footer.php");
     
+
+    // Lancement de la sauvegarde
+    include_once(IMPORT_PATH."sauvegarde.php");
+    sauvegarde();
     ?>
 
 </body>
