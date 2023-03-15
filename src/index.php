@@ -287,6 +287,13 @@ include("config.php");
                     break;
                 }
 
+                if(isset($_GET['action'])){
+                    if($_GET['action'] == "profil"){
+                        require(BACK_PATH . "Utilisateurs/profil.php");
+                        break;
+                    }
+                }
+
                 if(!(estSecretaireAdmin() || estAdmin())){
                     echo "<meta http-equiv='refresh' content='0;url=index.php'>";
                     break;
