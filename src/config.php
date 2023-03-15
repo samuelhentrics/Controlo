@@ -1122,5 +1122,11 @@ define("PAGE_MODIFIER_UTILISATEUR_PATH", PATH."index.php?page=utilisateurs&actio
  */
 define("PAGE_SUPPRIMER_UTILISATEUR_PATH", PATH."index.php?page=utilisateurs&action=supprimer");
 
+/**
+ * @brief Lien complet vers la page des utilisateurs
+ * @note ex : http://localhost/src/index.php?page=utilisateurs
+ */
+define("PAGE_PROFIL_PATH", PATH."index.php?page=utilisateurs&action=profil");
+
 
 ?>

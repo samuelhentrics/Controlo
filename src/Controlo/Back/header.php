@@ -56,7 +56,7 @@
                             '. $_SESSION['prenom'] .' '. $_SESSION['nom'] .'
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="'.PAGE_PROFIL_PATH.'">
                                     <i class="fas fa-user me-2"></i>
                                     Afficher mon profil
                                 </a>
