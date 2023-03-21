@@ -11,8 +11,10 @@ class Utilisateur
     private $mail;
     private $mdp;
 
+    private $imgProfil;
+
     // Constructeur
-    public function __construct($id, $nom, $prenom, $role, $mail, $mdp)
+    public function __construct($id, $nom, $prenom, $role, $mail, $mdp, $imgProfil = "profil/default.png")
 
     {
         $this->setId($id);
@@ -21,6 +23,7 @@ class Utilisateur
         $this->setRole($role);
         $this->setMail($mail);
         $this->setMdp($mdp);
+        $this->setImgProfil($imgProfil);
     }
 
 
@@ -77,6 +80,16 @@ class Utilisateur
     public function setMdp($nouveauMdp)
     {
         $this->mdp = $nouveauMdp;
+    }
+
+    public function getImgProfil()
+    {
+        return $this->imgProfil;
+    }
+
+    public function setImgProfil($nouveauImgProfil)
+    {
+        $this->imgProfil = $nouveauImgProfil;
     }
     
 }

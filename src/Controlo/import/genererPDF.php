@@ -180,7 +180,7 @@ class PDF extends FPDF
         foreach ($header as $col) {
             $this->Cell($taille, 6, $col, 1);
             if($num == 0){
-                $taille *= 2.85;
+                $taille *= 3;
                 $num++;
             }
         }
@@ -721,18 +721,17 @@ function genererPDFFE($unControle, $anneeUniversitaire)
 
         // Création de l'entête n°1
         $entete1 = 
-        NOM_IUT.'<br>'.
-        DEPARTEMENT.'<br>'.
-        'Année Universitaire '.$anneeUniversitaire.'<br>'.
-        'Feuille d\'émargement de contrôle';
+        NOM_IUT.' -'.
+        DEPARTEMENT.' -'.
+        $anneeUniversitaire.'<br>';
 
         $pdf->SetFont('Arial', '', 11);
         $pdf->WriteHTML(utf8_decode($entete1));
-        $pdf->Ln(1);
+        $pdf->Ln(2);
 
         // Affichage du titre
         $pdf->SetFont('Arial', 'B', 14);
-        $pdf->Cell(0, 10, utf8_decode($nomSalle), 0, 1, 'C');
+        $pdf->Cell(0, 10, utf8_decode("Feuille d\'émargement - ".$nomSalle), 0, 1, 'C');
 
         $pdf->SetFont('Arial', '', 11);
         // Création de l'entête n°2
@@ -745,7 +744,7 @@ function genererPDFFE($unControle, $anneeUniversitaire)
             '<u>Date</u> : ' . $date . '            ' .
             '<u>Heure</u> : ' . $heureNonTT . '-' . $heureFinNonTT .' (' . $dureeNonTT . ')' . '            ' .
             '<u>TT</u> : ' . $heureTT . '-' . $heureFinTT . ' (' . $dureeTT . ')<br>'.
-            '<u>Enseignant(s)</u> : ' . $enseignants . '<br>' .
+            '<u>Enseignant(s)</u> : ' . $enseignants . '            ' .
             '<u>Surveillant(s)</u> : ' . $listeSurveillants[$nomSalle];
             ;
 

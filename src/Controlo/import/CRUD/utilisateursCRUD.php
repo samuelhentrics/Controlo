@@ -24,7 +24,8 @@ function ajouterUtilisateur($unUtilisateur){
         $role = $unUtilisateur->getRole();
         $mail = $unUtilisateur->getMail();
         $mdp = $unUtilisateur->getMdp();
-        $ligne = array($id, $mail, $mdp, $role, $nom, $prenom, "profil/default.png");
+        $imgProfil = $unUtilisateur->getImgProfil();
+        $ligne = array($id, $mail, $mdp, $role, $nom, $prenom, $imgProfil);
         fputcsv($monFichier, $ligne, ";");
 
         // Fermer le fichier CSV
@@ -67,16 +68,18 @@ function modifierUtilisateur($oldUser, $newUser){
                     $role = $newUser->getRole();
                     $mail = $newUser->getMail();
                     $mdp = $newUser->getMdp();
+                    $imgProfil = $newUser->getImgProfil();
                 }
                 else{
-                    $nom = utf8_encode($ligne[4]);
-                    $prenom = utf8_encode($ligne[5]);
-                    $role = utf8_encode($ligne[3]);
-                    $mail = utf8_encode($ligne[1]);
-                    $mdp = utf8_encode($ligne[2]);
+                    $nom = $ligne[4];
+                    $prenom = $ligne[5];
+                    $role = $ligne[3];
+                    $mail = $ligne[1];
+                    $mdp = $ligne[2];
+                    $imgProfil = $ligne[6];
                 }
 
-                $unUtilisateurArray = array($id, $mail, $mdp, $role, $nom, $prenom, "profil/default.png");
+                $unUtilisateurArray = array($id, $mail, $mdp, $role, $nom, $prenom, $imgProfil);
             
                 // Ajouter l'objet Utilisateur à la liste
                 array_push($listeUtilisateurs, $unUtilisateurArray);
@@ -136,16 +139,20 @@ function supprimerUtilisateur($idUtilisateur){
             if($ligne != false){
                 // Récupérer les informations de l'enseignant
                 $id = utf8_encode($ligne[0]);
-                $nom = utf8_encode($ligne[4]);
-                $prenom = utf8_encode($ligne[5]);
-                $role = utf8_encode($ligne[3]);
-                $mail = utf8_encode($ligne[1]);
-                $mdp = utf8_encode($ligne[2]);
-                // Créer l'objet Utilisateur
-                $utilisateur = new Utilisateur($id,$nom, $prenom, $role, $mail, $mdp);
 
-                // Ajouter l'objet Utilisateur à la liste
-                array_push($listeUtilisateurs, $utilisateur);
+                if($id != $idUtilisateur){
+                    $nom = $ligne[4];
+                    $prenom = $ligne[5];
+                    $role = $ligne[3];
+                    $mail = $ligne[1];
+                    $mdp = $ligne[2];
+                    $imgProfil = $ligne[6];
+                    // Créer l'objet Utilisateur
+                    $utilisateur = new Utilisateur($id,$nom, $prenom, $role, $mail, $mdp, $imgProfil);
+
+                    // Ajouter l'objet Utilisateur à la liste
+                    array_push($listeUtilisateurs, $utilisateur);
+                }
 
                 // Incrémenter l'id
                 $id++;
@@ -155,9 +162,6 @@ function supprimerUtilisateur($idUtilisateur){
         // Fermer le fichier CSV
 
         fclose($monFichier);
-
-        // Supprimer l'utilisateur dans la liste
-        unset($listeUtilisateurs[$idUtilisateur]);
 
         // Réécrire le fichier CSV
         $monFichier = fopen(CSV_UTILISATEURS_FOLDER_NAME . LISTE_UTILISATEURS_FILE_NAME, 'w');
@@ -177,8 +181,9 @@ function supprimerUtilisateur($idUtilisateur){
             $role = $unUtilisateur->getRole();
             $mail = $unUtilisateur->getMail();
             $mdp = $unUtilisateur->getMdp();
+            $imgProfil = $unUtilisateur->getImgProfil();
 
-            $ligne = array($id, $mail, $mdp, $role, $nom, $prenom, "profil/default.png");
+            $ligne = array($id, $mail, $mdp, $role, $nom, $prenom, $imgProfil);
             fputcsv($monFichier, $ligne, ";");
 
         }

@@ -1,0 +1,16 @@
+Salle;NumeroPlace;Nom;Prenom;Statut;Mail
+S124;2;ETUDIANT10;Etudiant1;TT;test1@iutbay.univ-pau.fr
+S124;12;ETUDIANT11;Etudiant1;TT;test1@iutbay.univ-pau.fr
+S124;21;ETUDIANT12;Etudiant1;TT;test1@iutbay.univ-pau.fr
+S124;4;ETUDIANT13;Etudiant1;TT;test1@iutbay.univ-pau.fr
+S124;14;ETUDIANT14;Etudiant1;TT;test1@iutbay.univ-pau.fr
+S124;24;ETUDIANT15;Etudiant1;TT;test1@iutbay.univ-pau.fr
+S124;6;ETUDIANT7;Etudiant1;TT;test1@iutbay.univ-pau.fr
+S124;16;ETUDIANT8;Etudiant1;TT;test1@iutbay.univ-pau.fr
+S124;26;ETUDIANT9;Etudiant1;TT;test1@iutbay.univ-pau.fr
+S124;8;ETUDIANT1;Etudiant1;;test1@iutbay.univ-pau.fr
+S124;18;ETUDIANT2;Etudiant1;;test1@iutbay.univ-pau.fr
+S124;28;ETUDIANT3;Etudiant1;;test1@iutbay.univ-pau.fr
+S124;10;ETUDIANT4;Etudiant1;;test1@iutbay.univ-pau.fr
+S124;20;ETUDIANT5;Etudiant1;;test1@iutbay.univ-pau.fr
+S124;30;ETUDIANT6;Etudiant1;;test1@iutbay.univ-pau.fr
