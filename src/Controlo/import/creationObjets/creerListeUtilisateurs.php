@@ -34,8 +34,9 @@ function creerListeUtilisateurs($affichageErreur = false){
                 // Mettre le mail en minuscule
                 $mail = strtolower($mail);
                 $mdp = utf8_encode($ligne[2]);
+                $imgProfil = utf8_encode($ligne[6]);
                 // Créer l'objet Utilisateur
-                $utilisateur = new Utilisateur($id,$nom, $prenom, $role, $mail, $mdp);
+                $utilisateur = new Utilisateur($id,$nom, $prenom, $role, $mail, $mdp, $imgProfil);
 
                 // Ajouter l'objet Utilisateur à la liste
                 array_push($listeUtilisateurs, $utilisateur);

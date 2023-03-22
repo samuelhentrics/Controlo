@@ -178,19 +178,35 @@ class PDF extends FPDF
         $taille = 20;
         $num = 0;
         foreach ($header as $col) {
-            $this->Cell($taille, 6, $col, 1);
+            $this->Cell($taille, 5, $col, 1);
             if($num == 0){
-                $taille *= 3;
+                $taille *= 2.85;
                 $num++;
             }
         }
         $this->Ln();
+
+
         //Données
+        
+        // Déterminer la taille restante
+        $reste = 297 - $this->GetY();
+
+        // Calculer la taille (hauteur) de chaque cellule
+        if(count($data) < 20)
+            $hauteur = $reste / 20;
+        else
+            $hauteur = 6.3;
+
+
+
         foreach ($data as $row) {
             $taille = 20;
             $num = 0;
+
+
             foreach ($row as $col) {
-                $this->Cell($taille, 6, $col, 1);
+                $this->Cell($taille, $hauteur, $col, 1);
                 if($num == 0){
                     $taille *= 2.85;
                     $num++;
@@ -723,17 +739,17 @@ function genererPDFFE($unControle, $anneeUniversitaire)
         $entete1 = 
         NOM_IUT.' -'.
         DEPARTEMENT.' -'.
-        $anneeUniversitaire.'<br>';
+        $anneeUniversitaire;
 
-        $pdf->SetFont('Arial', '', 11);
+        $pdf->SetFont('Arial', '', 10);
         $pdf->WriteHTML(utf8_decode($entete1));
-        $pdf->Ln(2);
+        $pdf->Ln();
+
 
         // Affichage du titre
-        $pdf->SetFont('Arial', 'B', 14);
-        $pdf->Cell(0, 10, utf8_decode("Feuille d\'émargement - ".$nomSalle), 0, 1, 'C');
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(0, 10, utf8_decode("Feuille d'émargement - ".$nomSalle), 0, 1, 'C');
 
-        $pdf->SetFont('Arial', '', 11);
         // Création de l'entête n°2
         $totalEtudiants = count($placesSalle);
 
@@ -750,7 +766,7 @@ function genererPDFFE($unControle, $anneeUniversitaire)
 
 
         // Affichage de l'entête
-        $pdf->SetFont('Arial', '', 11);
+        $pdf->SetFont('Arial', '', 10);
         $pdf->WriteHTML(utf8_decode($entete2));
         $pdf->Ln(7);
 

@@ -12,6 +12,7 @@ RewriteRule ^Enseignants/ - [F]
 RewriteRule ^Generations/ - [F]
 RewriteRule ^Salles/ - [F]
 RewriteRule ^Utilisateurs/ - [F]
+RewriteRule ^Sauvegarde/ - [F]
 
 ErrorDocument 403 "/S3.01A-Developpement-d-application-et-Gestion-de-projet/src/"
 

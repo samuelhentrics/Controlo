@@ -43,7 +43,6 @@
                     <tr>
                         <th>Nom de la Salle</th>
                         <th>Salle voisine</th>
-                        <th>Etat du plan</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -75,19 +74,6 @@
                             print("{$uneSalle->getMonVoisin()->getNom()}");
                         }
                         print("
-                            </td>
-                            <td class='text-center'>
-                        ");
-
-
-                        // Afficher si le plan existe ou non
-                        if ($uneSalle->getMonPlan() != null) {
-                            print("<i class=\"fa-solid fa-circle text-success\"></i> ");
-                        } else {
-                            print("<i class=\"fa-solid fa-circle text-danger\"></i>");
-                        }
-                        print("
-
                             </td>
                             <td class='text-center'>
                         ");

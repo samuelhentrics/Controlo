@@ -25,12 +25,7 @@
             $statut = $unUtilisateur->getRole();
             $mail = $unUtilisateur->getMail();
             $mdp = $unUtilisateur->getMdp();
-
-            if(estSecretaireAdmin() && $statut == 0){
-                echo "<div class='alert alert-danger' role='alert'>
-                Vous n'avez pas les droits pour modifier un administrateur.</div>";
-                exit;
-            }
+            $imgProfil = $unUtilisateur->getImgProfil();
 
             if($id == $_SESSION['id']){
                 // Rédiriger vers son profil
@@ -122,6 +117,12 @@
         <div class="col-6 m-auto text-center">
             <form action="<?php echo PAGE_MODIFIER_UTILISATEUR_PATH; ?>" method="post">
                 <input type="hidden" name="idUtilisateur" value="<?php echo $idUtilisateur; ?>">
+                <!-- Afficher l'image du profil -->
+                <div class="form-group row">
+                    <div class="m-auto text-center">
+                        <img src="<?php echo IMG_PATH . $imgProfil; ?>" alt="Image de profil" class="rounded-circle me-2" style="width: 100px; height: 100px;">
+                    </div><br>
+                </div>
                 <div class="form-group row">
                     <label for="nom" class="col-4 col-form-label">Nom *</label>
                     <div class="col-8">

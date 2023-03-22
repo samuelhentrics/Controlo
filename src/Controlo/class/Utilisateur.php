@@ -89,7 +89,12 @@ class Utilisateur
 
     public function setImgProfil($nouveauImgProfil)
     {
-        $this->imgProfil = $nouveauImgProfil;
+        if(file_exists(FRONT_PATH . IMG_FOLDER_NAME . $nouveauImgProfil)){
+            $this->imgProfil = $nouveauImgProfil;
+        }
+        else{
+            $this->imgProfil = "profil/default.png";
+        }
     }
     
 }
