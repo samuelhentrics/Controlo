@@ -342,6 +342,15 @@ function genererPDFPDP($unControle)
     if (!file_exists($cheminDossierPDPPDF)) {
         mkdir($cheminDossierPDPPDF);
     }
+    // Sinon supprime tous les fichiers PDF du dossier
+    else {
+        $fichiers = glob($cheminDossierPDPPDF . "/*");
+        foreach ($fichiers as $fichier) {
+            if (is_file($fichier)) {
+                unlink($fichier);
+            }
+        }
+    }
 
     foreach ($unControle->getMesSalles() as $nomSalle => $uneSalle) {
         // Informations sur le PDP
@@ -690,9 +699,18 @@ function genererPDFFE($unControle, $anneeUniversitaire)
         return;
     }
 
+    // Crée le dossier des feuilles d'emargement s'il n'existe pas/plus
     if (!file_exists($cheminDossierFE)) {
         mkdir($cheminDossierFE);
     }
+    // Si le dossier existe, supprimer les fichiers PDF
+    else {
+        $fichiersFE = glob($cheminDossierFE . "*.pdf");
+        foreach ($fichiersFE as $unFichierFE) {
+            unlink($unFichierFE);
+        }
+    }
+
 
     // Tentative ouverture du fichier CSV
     if (($fichierCSV = fopen($fichierListeEtudiants, "r")) !== FALSE) {
@@ -737,8 +755,8 @@ function genererPDFFE($unControle, $anneeUniversitaire)
 
         // Création de l'entête n°1
         $entete1 = 
-        NOM_IUT.' -'.
-        DEPARTEMENT.' -'.
+        NOM_IUT.' - '.
+        DEPARTEMENT.' - '.
         $anneeUniversitaire;
 
         $pdf->SetFont('Arial', '', 10);
