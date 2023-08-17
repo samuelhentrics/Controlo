@@ -20,12 +20,12 @@
   <p align="center">
     S3.01A - Développement d'application et Gestion de projet
     <br />
-    <a href="https://github.com/samuelhentrics/S3.01A-Developpement-d-application-et-Gestion-de-projet/tree/master/docs"><strong>Voir les documents »</strong></a>
+    <a href="https://github.com/samuelhentrics/Controlo/tree/master/docs"><strong>Voir les documents »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/samuelhentrics/S3.01A-Developpement-d-application-et-Gestion-de-projet/issues/">Reporter un bug</a>
+    <a href="https://github.com/samuelhentrics/Controlo/issues/">Reporter un bug</a>
     ·
-    <a href="https://github.com/samuelhentrics/S3.01A-Developpement-d-application-et-Gestion-de-projet/discussions/6">Proposer des fonctionnalités</a>
+    <a href="https://github.com/samuelhentrics/Controlo/discussions/6">Proposer des fonctionnalités</a>
   </p>
 </div>
 
@@ -94,18 +94,18 @@ Cédric ETCHEPARE - cetchepar001@iutbayonne.univ-pau.fr
 
 Benjamin PEYRE - bpeyre@iutbayonne.univ-pau.fr
 
-Lien du projet: [https://github.com/samuelhentrics/S3.01A-Developpement-d-application-et-Gestion-de-projet](https://github.com/samuelhentrics/S3.01A-Developpement-d-application-et-Gestion-de-projet)
+Lien du projet: [https://github.com/samuelhentrics/Controlo](https://github.com/samuelhentrics/Controlo)
 
 <p align="right">(<a href="#top">Retour en haut</a>)</p>
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/samuelhentrics/S3.01A-Developpement-d-application-et-Gestion-de-projet?style=for-the-badge
-[contributors-url]: https://github.com/samuelhentrics/S3.01A-Developpement-d-application-et-Gestion-de-projet/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/samuelhentrics/S3.01A-Developpement-d-application-et-Gestion-de-projet.svg?style=for-the-badge
-[forks-url]: https://github.com/samuelhentrics/S3.01A-Developpement-d-application-et-Gestion-de-projet/network/members
-[stars-shield]: https://img.shields.io/github/stars/samuelhentrics/S3.01A-Developpement-d-application-et-Gestion-de-projet.svg?style=for-the-badge
-[stars-url]: https://github.com/samuelhentrics/S3.01A-Developpement-d-application-et-Gestion-de-projet/stargazers
-[issues-shield]: https://img.shields.io/github/issues/samuelhentrics/S3.01A-Developpement-d-application-et-Gestion-de-projet.svg?style=for-the-badge
-[issues-url]: https://github.com/samuelhentrics/S3.01A-Developpement-d-application-et-Gestion-de-projet/issues
+[contributors-shield]: https://img.shields.io/github/contributors/samuelhentrics/Controlo?style=for-the-badge
+[contributors-url]: https://github.com/samuelhentrics/Controlo/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/samuelhentrics/Controlo.svg?style=for-the-badge
+[forks-url]: https://github.com/samuelhentrics/Controlo/network/members
+[stars-shield]: https://img.shields.io/github/stars/samuelhentrics/Controlo.svg?style=for-the-badge
+[stars-url]: https://github.com/samuelhentrics/Controlo/stargazers
+[issues-shield]: https://img.shields.io/github/issues/samuelhentrics/Controlo.svg?style=for-the-badge
+[issues-url]: https://github.com/samuelhentrics/Controlo/issues
